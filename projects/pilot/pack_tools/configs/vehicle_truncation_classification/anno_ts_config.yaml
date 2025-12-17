@@ -1,0 +1,42 @@
+base_classname: vehicle                                 # 一级类型名称
+num_classes: 4                                          # 类别数量
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    or:
+    - contains: {attrs: {ignore: "yes"}}                    # 包含{"attrs": {"ignore": "yes"}}
+    - and:
+      - range: {field: $BBOX_WIDTH, lt: 200}
+      - contains: {attrs: {occlusion: heavily_occluded}}
+      - or:
+        - range: {field: $BBOX_X1, gt: 5}
+        - range: {field: $BBOX_Y2, lt: 1270}
+        - contains: {attrs: {occlusion: heavily_occluded}}              # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+    - contains: {attrs: {occlusion: invisible}}                     # 包含{"attrs": {"occlusion": "invisible"}}
+    - range: {field: $BBOX_HEIGHT, lt: 24}                          # bbox高度 < 24
+    - range: {field: $BBOX_WIDTH, lt: 24}                           # bbox宽度 < 24
+- id: 1
+  name: None
+  match_condiction:
+    contains: {attrs: {truncation: None}}
+  upsample: 1
+- id: 2
+  name: Low
+  match_condiction:
+    or:
+      - contains: {attrs: {truncation: Low}}
+  upsample: 47
+- id: 3
+  name: Middle
+  match_condiction:
+    or:
+      - contains: {attrs: {truncation: Middle}}
+  upsample: 43
+- id: 4
+  name: High
+  match_condiction:
+    or:
+      - contains: {attrs: {truncation: High}}
+  upsample: 30

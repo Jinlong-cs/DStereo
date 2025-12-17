@@ -1,0 +1,5 @@
+hat_sim
+crop_roi==1.4.0
+AdasInference==1.8.5
+hatbc[all]==0.10.0b202309070700+b39a57d
+aidisdk==0.15.0

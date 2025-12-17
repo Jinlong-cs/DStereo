@@ -1,0 +1,211 @@
+psd:
+  dataset_1w_20221211:
+    train:
+      lmdb:
+        - mini_trainsets/SuperPSD/train_lmdb
+    val:
+      lmdb:
+        - mini_trainsets/SuperPSD/val_lmdb
+
+  v1.3.0_filterV3:
+    train:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/v1.3.0V3_filter_big_ignore/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/v1.3.0_filterV3/lmdb_parallel/train_lmdb
+        - LastVersion/Dataset/IPMPSD/v1.3.0_filterV3/lmdb_oblique/train_lmdb
+
+    val:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/v1.3.0_filterV3/lmdb_origin/val_lmdb/
+
+    weight:
+      lmdb:
+        - "226" # k
+        - "129" # k
+        - "125" # k
+
+  v1.3.0V3_filter_big_ignore_neg_703:
+    train:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/v1.3.0V3_filter_big_ignore_neg_703/lmdb_origin/train_lmdb
+
+    val:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/v1.3.0V3_filter_big_ignore_neg_703/lmdb_origin/val_lmdb
+
+    weight:
+      lmdb:
+        - "7" # 0.7k
+
+  bad_case_709295_1:
+    train:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/709295_1/lmdb_origin/train_lmdb
+    val:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/709295_1/lmdb_origin/val_lmdb
+
+    weight:
+      lmdb:
+        - "0.8" # k
+
+  bad_case_710024_1:
+    train:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/710024_1/lmdb_origin/train_lmdb
+    val:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/710024_1/lmdb_origin/val_lmdb
+
+    weight:
+      lmdb:
+        - "0.1" # 0.04 k
+
+  digged_data_1012:
+    train:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/708048_5/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709231_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709232_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709494_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709503_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709722_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709785_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709786_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709787_2/lmdb_origin/train_lmdb
+    val:
+      lmdb:
+        - LastVersion/Dataset/IPMPSD/708048_5/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709231_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709232_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709494_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709503_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709722_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709785_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709786_2/lmdb_origin/train_lmdb
+        - LastVersion/Dataset/IPMPSD/709787_2/lmdb_origin/train_lmdb
+
+    weight:
+      lmdb:
+        - "0.3"
+        - "0.06"
+        - "0.3"
+        - "0.3"
+        - "0.4"
+        - "0.1"
+        - "1.4"
+        - "0.4"
+        - "0.2"
+
+  demo_vw_anhui:
+    train:
+      lmdb:
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/550543/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/550595/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551053/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551054/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551055/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551123/lmdb_origin/train_lmdb
+
+    val:
+      lmdb:
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/550543/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/550595/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551053/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551054/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551055/lmdb_origin/train_lmdb
+        - VWVersion/Dataset/IPMPSD/demo_vw_anhui/551123/lmdb_origin/train_lmdb
+
+    weight:
+      lmdb:
+        - "10" # k
+        - "10" # k
+        - "10" # k
+        - "10" # k
+        - "10" # k
+        - "10" # k
+
+  demo_vw_beijing:
+    train:
+      lmdb:
+        - VWVersion/Dataset/IPMPSD/demo_vw_beijing/merged/lmdb_origin/train_lmdb
+
+    val:
+      lmdb:
+        - VWVersion/Dataset/IPMPSD/demo_vw_beijing/merged/lmdb_origin/val_lmdb
+
+    weight:
+      lmdb:
+        - "0.469" # k
+
+parsing:
+  last_version:
+    train:
+      lmdb:
+        - LastVersion/Dataset/IPMParsing/train/v1.1.0
+        - LastVersion/Dataset/IPMParsing/train/v1.2.0
+        - LastVersion/Dataset/IPMParsing/train/v1.2.1
+        - LastVersion/Dataset/IPMParsing/train/v1.2.4
+        - LastVersion/Dataset/IPMParsing/train/v1.2.5
+    val:
+      lmdb:
+        - LastVersion/Dataset/IPMParsing/val/v1.1.0
+        - LastVersion/Dataset/IPMParsing/val/v1.2.0
+        - LastVersion/Dataset/IPMParsing/val/v1.2.1
+        - LastVersion/Dataset/IPMParsing/val/v1.2.2
+    weight:
+      lmdb:
+        - "55719"
+        - "2553"
+        - "10593"
+        - "366"
+        - "1031"
+
+  demo_vw_anhui:
+    train:
+      lmdb:
+        - VWVersion/Dataset/IPMParsing/train/vw_anhui_demo.744826_1
+        - VWVersion/Dataset/IPMParsing/train/vw_anhui_demo.744827_2
+        - VWVersion/Dataset/IPMParsing/train/vw_anhui_demo.744916_1
+    val:
+      lmdb:
+        - VWVersion/Dataset/IPMParsing/val/vw_anhui_demo.744826_1
+        - VWVersion/Dataset/IPMParsing/val/vw_anhui_demo.744827_2
+        - VWVersion/Dataset/IPMParsing/val/vw_anhui_demo.744916_1
+    weight:
+      lmdb:
+        - "100"
+        - "100"
+        - "100"
+
+  demo_vw_beijing:
+    train:
+      lmdb:
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748268_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748269_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748270_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748271_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748272_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748273_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748274_1
+        - VWVersion/Dataset/IPMParsing/train/vw_bj_demo.748275_1
+    val:
+      lmdb:
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748268_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748269_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748270_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748271_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748272_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748273_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748274_1
+        - VWVersion/Dataset/IPMParsing/val/vw_bj_demo.748275_1
+    weight:
+      lmdb:
+        - "17"
+        - "31"
+        - "20"
+        - "27"
+        - "15"
+        - "11"
+        - "17"
+        - "18"

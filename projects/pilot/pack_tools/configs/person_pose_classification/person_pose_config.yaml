@@ -1,0 +1,58 @@
+base_classname: person                                  # 一级类型名称
+num_classes: 5                                          # 类别数量
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {ignore: "yes"}}                            # 包含{"attrs": {"ignore": "yes"}}
+    - contains: {attrs: {occlusion: heavily_occluded}}              # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+    - contains: {attrs: {occlusion: invisible}}                     # 包含{"attrs": {"occlusion": "invisible"}}
+    - contains: {attrs: {confidence: Low}}                          # 包含{"attrs": {"confidence": "Low"}}
+    - contains: {attrs: {confidence: VeryLow}}                      # 包含{"attrs": {"confidence": "VeryLow"}}
+    - and:                                                          # 以下所有条件为真, 则输出真
+      - range: {field: $BBOX_HEIGHT, lt: 55}                          # bbox高度 < 55
+      - not:                                                          # 以下条件的假值, 则输出值
+          contains: {attrs: {type: Lier}}                               # 包含{"attrs": {"type": "Lier"}}
+#    - range: {field: $BBOX_WIDTH, lt: 18}                           # bbox宽度 < 18
+    - range: {field: $BBOX_ASPECT_RATIO, gt: 6}                     # bbox高宽比 > 6
+    - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}                  # bbox高宽比 < 0.25
+    - and:                                                          # 以下所有条件为真, 则输出真
+      - contains: {attrs: {type: Pedestrian}}                         # 包含{"attrs": {"type": "Pedestrian"}}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 1}                     # bbox高宽比 < 1
+- id: 1
+  name: Bended
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {type: Bended}}                           # 包含{"attrs": {"type": "Bended"}}
+  upsample: 50                                      # 重采样倍率
+- id: 2
+  name: Cyclist
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {type: Cyclist}}                            # 包含{"attrs": {"type": "Cyclist"}}
+    - contains: {attrs: {type: Bicyclist}}                          # 包含{"attrs": {"type": "Bicyclist"}}
+    - contains: {attrs: {type: Motorcyclist}}                       # 包含{"attrs": {"type": "Motorcyclist"}}
+    - contains: {attrs: {type: Tricyclist}}                         # 包含{"attrs": {"type": "Tricyclist"}}
+    - contains: {attrs: {type: WithPersonalTransporter}}            # 包含{"attrs": {"type": "WithPersonalTransporter"}}
+  upsample: 5                                       # 重采样倍率
+- id: 3
+  name: Lier
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {type: Lier}}                             # 包含{"attrs": {"type": "Lier"}}
+  upsample: 100                                     # 重采样倍率
+- id: 4
+  name: Pedestrian
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {type: Pedestrian}}                       # 包含{"attrs": {"type": "Pedestrian"}}
+- id: 5
+  name: Sitter
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {type: Sitter}}                             # 包含{"attrs": {"type": "Sitter"}}
+    - contains: {attrs: {type: Squatter}}                           # 包含{"attrs": {"type": "Squatter"}}
+    - contains: {attrs: {type: WithWheelchair}}                     # 包含{"attrs": {"type": "WithWheelchair"}}
+  upsample: 25                                      # 重采样倍率
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    and: []                                                     # 以下所有条件为真, 则输出真

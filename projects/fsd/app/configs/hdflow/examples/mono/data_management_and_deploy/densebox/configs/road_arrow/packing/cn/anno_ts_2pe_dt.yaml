@@ -1,0 +1,52 @@
+base_classname: road_arrow # 一级类型名称
+num_classes: 4 # 类别数量
+allow_multi_match: false # 允许一个instance进行多次匹配
+default_ignore_full_image: true # 未定义的类别使用全图ignore
+remove_empty_images: true # 删除空图片
+shuffle: true # 打乱图片顺序
+class_mappers: # 目标类别转换器
+  - id: null # 空类, 用于过滤去除样本
+    match_condiction: # 为真值, 则匹配成功
+      or: # 以下任一条件为真, 则输出真
+        - contains: { attrs: { ignore: "yes" } } # 包含{"attrs": {"ignore": "yes"}}
+        - contains: { attrs: { occlusion: "invisible" } } # 包含{attrs: {occlusion: "invisible"}}
+        - contains: { attrs: { occlusion: "heavily_occluded" } } # 包含{attrs: {occlusion: "heavily_occluded"}}
+        - contains: { attrs: { paint: paint_off } } # 包含{ attrs: { paint: paint_off}}
+        - contains: { attrs: { ArrowSort: Unknown } }
+        - contains: { attrs: { ArrowSort: FP } }
+        - contains: { attrs: { ArrowSort: ManholeCover } }
+        - contains: { attrs: { ArrowSort: FP_Mismatched } } # 发版4pe diff GT
+        - contains: { attrs: { ArrowSort: FP_Mismatched_BigModel_IG } } # 发版4pe diff GT diff 大模型
+        - contains: { attrs: { ArrowSort: Word } } # Badcase标注数据 66175, 66174, 66173, 66169, 66131 中临时加入了Word文字误报
+        - range: { field: $BBOX_WIDTH, lt: 8 } # bbox宽度 < 8
+        - range: { field: $BBOX_HEIGHT, lt: 8 } # bbox高度 < 8
+        # 不需要知道方向的标志
+        - contains: { attrs: { ArrowSort: Diamond } }
+        - contains: { attrs: { ArrowSort: Other } }
+        - contains: { attrs: { ArrowSort: "No" } }
+        # 北美的类去除 2pe模型只加载roi，因此 remove 和 ignore 效果一样
+        - contains: { attrs: { ArrowSort: LaneReductionToLeft } }
+        - contains: { attrs: { ArrowSort: LaneReductionToRight } }
+        - contains: { attrs: { ArrowSort: RailwayAhead } }
+        - contains: { attrs: { ArrowSort: Bike } }
+        - contains: { attrs: { ArrowSort: SpeedHump } }
+  - id: 1
+    name: forward
+    match_condiction:
+      and:
+        - contains: { attrs: { direction: forward } }
+  - id: 2
+    name: backward
+    match_condiction:
+      and:
+        - contains: { attrs: { direction: backward } }
+  - id: 3
+    name: leftward
+    match_condiction:
+      and:
+        - contains: { attrs: { direction: leftward } }
+  - id: 4
+    name: rightward
+    match_condiction:
+      and:
+        - contains: { attrs: { direction: rightward } }

@@ -1,0 +1,113 @@
+
+psd:
+  mini_dataset: # template dataset
+    train:
+      data_version:
+        - dataset_1w_20221211
+    val:
+      data_version:
+        - dataset_1w_20221211
+    test:
+
+  last_version:
+    train:
+      data_version:
+        - v1.3.0_filterV3
+        - v1.3.0V3_filter_big_ignore_neg_703
+        - bad_case_709295_1
+        - bad_case_710024_1
+        - digged_data_1012
+    val:
+      data_version:
+        - v1.3.0_filterV3
+    weight:
+      data_version:
+        - v1.3.0_filterV3
+        - v1.3.0V3_filter_big_ignore_neg_703
+        - bad_case_709295_1
+        - bad_case_710024_1
+        - digged_data_1012
+
+  vw_demo_20230420:
+    train:
+      data_version:
+        - v1.3.0_filterV3
+        - v1.3.0V3_filter_big_ignore_neg_703
+        - bad_case_709295_1
+        - bad_case_710024_1
+        - digged_data_1012
+        - demo_vw_anhui
+    val:
+      data_version:
+        - v1.3.0_filterV3
+        - demo_vw_anhui
+    weight:
+      data_version:
+        - v1.3.0_filterV3
+        - v1.3.0V3_filter_big_ignore_neg_703
+        - bad_case_709295_1
+        - bad_case_710024_1
+        - digged_data_1012
+        - demo_vw_anhui
+
+  vw_demo_20230520:
+    train:
+      data_version:
+        - v1.3.0_filterV3
+        - v1.3.0V3_filter_big_ignore_neg_703
+        - bad_case_709295_1
+        - bad_case_710024_1
+        - digged_data_1012
+        - demo_vw_beijing
+    val:
+      data_version:
+        - v1.3.0_filterV3
+        - demo_vw_beijing
+    weight:
+      data_version:
+        - v1.3.0_filterV3
+        - v1.3.0V3_filter_big_ignore_neg_703
+        - bad_case_709295_1
+        - bad_case_710024_1
+        - digged_data_1012
+        - demo_vw_beijing
+
+parsing:
+  last_version:
+    train:
+      data_version:
+        - last_version
+    val:
+      data_version:
+        - last_version
+    weight:
+      data_version:
+        - last_version
+
+  vw_demo_20230420:
+    train:
+      data_version:
+        - last_version
+        - demo_vw_anhui
+    val:
+      data_version:
+        - last_version
+        - demo_vw_anhui
+    weight:
+      data_version:
+        - last_version
+        - demo_vw_anhui
+
+  vw_demo_20230520:
+    train:
+      data_version:
+        - last_version
+        - demo_vw_beijing
+    val:
+      data_version:
+        - last_version
+        - demo_vw_beijing
+    weight:
+      data_version:
+        - last_version
+        - demo_vw_beijing

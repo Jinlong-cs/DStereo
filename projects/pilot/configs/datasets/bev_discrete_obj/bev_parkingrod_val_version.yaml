@@ -1,0 +1,41 @@
+# group data version
+
+# bev_parkingrod
+pipeline_test:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 100
+pipeline_testV2:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 100
+v1.0.0:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 1
+
+v1.1.0:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 1
+      0049_UT126_20221128real_ml_7map:
+        sample_interval: 1
+    UT263:
+      0015_UT263_20220920_ml_3map:
+        sample_interval: 1
+
+v1.2.0:
+  BJ_V2:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+        sample_interval: 1
+
+v1.3.0:
+  BJ_V3:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+        sample_interval: 1

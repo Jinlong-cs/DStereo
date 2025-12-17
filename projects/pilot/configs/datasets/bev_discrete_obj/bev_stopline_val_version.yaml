@@ -1,0 +1,24 @@
+# group data version
+
+# bev_stopline
+v0.0.1:
+  pipeline_test:
+    30C1G:
+      0314_636396_FSD_Site_30C1G_20220214_v4: 
+  pipeline_testV2:
+    30C1G:
+      0314_636396_FSD_Site_30C1G_20220214_v4: 
+
+# HorizonDataEngine-lidar (HDE-lidar)
+# demo data
+HDE-lidar_v1.1.0:
+  BJ:
+    30C1G:
+      0314_636396_FSD_Site_30C1G_20220214_v4:
+      0314_636396_FSD_Site_30C1G_20220225_v4:
+    UT1R3:
+      0321_bj_2_FSD_Site_UT1R3_20220317_v4:
+        sample_interval: 12
+    H3165:
+      0304_FSD_Site_H3165_20220221_v4:
+        sample_interval: 4

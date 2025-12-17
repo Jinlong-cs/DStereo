@@ -1,0 +1,236 @@
+resize_2:
+  model_name: pilot_multitask_resize2
+  train:
+    entry: projects/pilot/configs/resize_2/multitask.py
+    stages: 
+      - with_bn
+      - freeze_bn_1
+      - freeze_bn_2
+      - freeze_bn_3
+      - sparse_3d_freeze_bn_1
+      - sparse_3d_freeze_bn_2
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/resize_2/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/resize_2/pred_multitask.py
+
+resize_4:
+  model_name: pilot_multitask_resize4
+  train:
+    entry: projects/pilot/configs/resize_4/multitask.py
+    stages: 
+      - with_bn
+      - freeze_bn_1
+      - freeze_bn_2
+      - sparse_3d_freeze_bn_1
+      - sparse_3d_freeze_bn_2
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/resize_4/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/resize_4/pred_multitask.py
+
+crop:
+  model_name: pilot_multitask_crop
+  train:
+    entry: projects/pilot/configs/crop/multitask.py
+    stages: 
+      - with_bn
+      - freeze_bn_1
+      - freeze_bn_2
+      - freeze_bn_3
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/crop/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/crop/pred_multitask.py
+
+resize_2_rear_bayes:
+  model_name: pilot5_multitask_resize2_rear
+  train:
+    entry: projects/pilot/configs/resize_2_rear_bayes/multitask.py
+    stages: 
+      - with_bn
+      - freeze_bn_1
+      - freeze_bn_2
+      - freeze_bn_3
+      - sparse_3d_freeze_bn_1
+      - sparse_3d_freeze_bn_2
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/resize_2_rear_bayes/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/resize_2_rear_bayes/pred_multitask.py
+
+resize_2_side_bayes:
+  model_name: pilot5_multitask_resize2_side
+  train:
+    entry: projects/pilot/configs/resize_2_side_bayes/multitask.py
+    stages: 
+      - with_bn
+      - freeze_bn_1
+      - freeze_bn_2
+      - freeze_bn_3
+      - sparse_3d_freeze_bn_1
+      - sparse_3d_freeze_bn_2
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/resize_2_side_bayes/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/resize_2_side_bayes/pred_multitask.py
+
+crop_bayes:
+  model_name: pilot5_multitask_crop
+  train:
+    entry: projects/pilot/configs/crop_bayes/multitask.py
+    stages: 
+      - with_bn
+      - freeze_bn_1
+      - freeze_bn_2
+      - freeze_bn_3
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/crop_bayes/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/crop_bayes/pred_multitask.py
+
+resize_2_bev:
+  model_name: pilot_multitask_resize2_bev
+  train:
+    entry: projects/pilot/configs/resize_2_bev/multitask.py
+    stages: 
+      - float
+      - float_freeze_bn
+      - qat
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval: 
+    entry: projects/pilot/configs/resize_2_bev/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/resize_2_bev/pred_multitask.py
+  
+image_fail_segmentation:
+  model_name: pilot_image_fail_segmentation
+  train: 
+    entry: projects/pilot/configs/single_task/image_fail_segmentation.py
+    stages:
+      - float
+      - freeze_bn_1
+      - freeze_bn_2
+      - qat
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+  eval:
+    entry: projects/pilot/configs/single_task/eval_image_fail_segmentation.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  infer:
+    entry: projects/pilot/configs/single_task/pred_image_fail_segmentation.py
+
+bev_5v:
+  model_name: pilot_multitask_bev_5v
+  train: 
+    entry: projects/pilot/configs/bev_5v/multitask.py
+    stages:
+      - float
+      - float_freeze_bn
+      - qat
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval:
+    entry: projects/pilot/configs/bev_5v/val_multitask.py
+    # AIDI eval
+    # entry: projects/pilot/configs/bev_5v/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  pack_infer:
+    entry: projects/pilot/configs/bev_5v/pack_infer_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 1
+
+bev_7v:
+  model_name: pilot_multitask_bev_7v
+  train: 
+    entry: projects/pilot/configs/bev_7v/multitask.py
+    stages:
+      - float
+      - float_freeze_bn
+      - qat
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval:
+    entry: projects/pilot/configs/bev_7v/val_multitask.py
+    # AIDI eval
+    # entry: projects/pilot/configs/bev_7v/eval_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  pack_infer:
+    entry: projects/pilot/configs/bev_7v/pack_infer_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 1
+
+bev_7v_temporal:
+  model_name: pilot_multitask_bev_7v_temporal
+  train: 
+    entry: projects/pilot/configs/bev_7v_temporal/multitask.py
+    stages:
+      - float
+      - float_freeze_bn
+      # - calibration
+      - qat
+    resource:
+      num_machines: 8
+      num_gpus_per_machine: 8
+  eval:
+    entry: projects/pilot/configs/bev_7v_temporal/val_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 4
+  pack_infer:
+    entry: projects/pilot/configs/bev_7v_temporal/pack_infer_multitask.py
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 1

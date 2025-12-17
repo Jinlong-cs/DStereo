@@ -1,0 +1,51 @@
+from as33_day_resize_4 import task_threshold
+
+task_threshold.update(
+    dict(
+        person_detection=dict(
+            threshold=dict(
+                report_type="DetEvalReport",
+                metric_type="ThresholdAtMaxDetRate",
+                metric_kwargs=dict(),
+            ),
+            datasets=[
+                dict(
+                    dataset_id=6028981,
+                    setting_names=[
+                        "all_region-det-ped_5cam_forward0m_50",
+                    ],
+                ),
+            ],
+        ),
+        cyclist_detection=dict(
+            threshold=dict(
+                report_type="DetEvalReport",
+                metric_type="ThresholdAtMaxDetRate",
+                metric_kwargs=dict(),
+            ),
+            datasets=[
+                dict(
+                    dataset_id=6028984,
+                    setting_names=[
+                        "all_region-det-cyclist_5cam_forward0m_50",
+                    ],
+                ),
+            ],
+        ),
+        vehicle_roi_3d=dict(
+            threshold=dict(
+                report_type="DetEvalReport",
+                metric_type="ThresholdAtMaxDetRate",
+                metric_kwargs=dict(),
+            ),
+            datasets=[
+                dict(
+                    dataset_id=6036059,
+                    setting_names=[
+                        "__rear___0-50m_IoU0.5.yaml",
+                    ],
+                ),
+            ],
+        ),
+    )
+)

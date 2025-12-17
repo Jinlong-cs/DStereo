@@ -1,0 +1,28 @@
+num_classes: 50                                         # 类别数量
+current_class_id: 9
+parent_class_id: 1
+default_ignore_full_image: true
+remove_empty_images: true                            # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+parent_box_classname: person
+parent_box_hard_condiction:
+  or:                                                       # 以下任一条件为真, 则输出真
+  - range: {field: $BBOX_HEIGHT, lt: 70}
+parent_box_ignore_condiction:
+  contains: {attrs: {ignore: "yes"}}
+children_box_classname: head
+children_box_remove_condiction:
+  contains: {attrs: {ignore: "yes"}}
+children_box_hard_condiction:
+  or:                                                       # 以下任一条件为真, 则输出真
+  - range: {field: $BBOX_HEIGHT, lt: 10}
+children_box_positive_condiction:
+  and: []
+match_mode: pack_children_then_parent_and_ignore_unmatched_parent
+match_overlap_threshold: 0.7
+class_mappers:                                          # 定义类别
+- id: 1
+  name: person
+- id: 9
+  name: head

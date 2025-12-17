@@ -1,0 +1,1 @@
+本路径用于存放交付SD白盒的离线打包(依赖hdflow)、离线infer(依赖hpflow)的pipeline的config代码

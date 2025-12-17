@@ -1,0 +1,91 @@
+from typing import Dict, Tuple
+
+import torch
+from torch.optim.optimizer import Optimizer
+
+from hat.registry import OBJECT_REGISTRY
+
+__all__ = [
+    "Lion",
+]
+
+
+@OBJECT_REGISTRY.register
+class Lion(Optimizer):
+    r"""Implements Lion algorithm <https://arxiv.org/pdf/2302.06675.pdf>.
+
+    Args:
+        params: iterable of parameters to optimize or dicts
+          defining parameter groups
+        lr: learning rate (default: 1e-4)
+        betas: coefficients used for computing running averages of gradient
+          and its square (default: (0.9, 0.99))
+        weight_decay: weight decay coefficient (default: 0)
+    Note docs:
+        https://horizonrobotics.feishu.cn/docx/AsStdmRXIoeSyZxk9OPccxvnn0u
+    """
+
+    def __init__(
+        self,
+        params: Dict,
+        lr: float = 1e-4,
+        betas: Tuple = (0.9, 0.99),
+        weight_decay: float = 0.0,
+    ):
+        if not 0.0 <= lr:
+            raise ValueError("Invalid learning rate: {}".format(lr))
+        if not 0.0 <= betas[0] < 1.0:
+            raise ValueError(
+                "Invalid beta parameter at index 0: {}".format(betas[0])
+            )
+        if not 0.0 <= betas[1] < 1.0:
+            raise ValueError(
+                "Invalid beta parameter at index 1: {}".format(betas[1])
+            )
+        defaults = {
+            "lr": lr,
+            "betas": betas,
+            "weight_decay": weight_decay,
+        }
+        super().__init__(params, defaults)
+
+    @torch.no_grad()
+    def step(self, closure=None):
+        """Perform a single optimization step.
+
+        Args:
+            closure (callable, optional): A closure that reevaluates the model
+              and returns the loss.
+        Returns:
+            the loss.
+        """
+        loss = None
+        if closure is not None:
+            with torch.enable_grad():
+                loss = closure()
+
+        for group in self.param_groups:
+            for p in group["params"]:
+                if p.grad is None:
+                    continue
+
+                # Perform stepweight decay
+                p.data.mul_(1 - group["lr"] * group["weight_decay"])
+
+                grad = p.grad
+                state = self.state[p]
+                # State initialization
+                if len(state) == 0:
+                    # Exponential moving average of gradient values
+                    state["exp_avg"] = torch.zeros_like(p)
+
+                exp_avg = state["exp_avg"]
+                beta1, beta2 = group["betas"]
+
+                # Weight update
+                update = exp_avg * beta1 + grad * (1 - beta1)
+                p.add_(torch.sign(update), alpha=-group["lr"])
+                # Decay the momentum running average coefficient
+                exp_avg.mul_(beta2).add_(grad, alpha=1 - beta2)
+
+        return loss

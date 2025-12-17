@@ -1,0 +1,165 @@
+base_classname: traffic_sign
+num_classes: 50
+allow_multi_match: true
+default_ignore_full_image: true
+remove_empty_images: false
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: {attrs: {Inside: "inside"}}
+        - contains: {attrs: {us_medium_type: ''}}
+        - contains: {attrs: {us_medium_type: sign_back}}
+        - contains: {attrs: {us_medium_type: False_Positive}}
+        - contains: {attrs: {us_medium_type: US_Unknown}}
+        - contains: {attrs: {us_medium_type: Unknown}}
+        - contains: {attrs: {us_medium_type: U_Unknown}}
+        - range: {field: $BBOX_HEIGHT, lt: 16}
+        - range: {field: $BBOX_WIDTH, lt: 16}
+
+  - id: 3
+    name: traffic_sign
+    match_condiction:
+      or:
+        - contains: {attrs: {us_medium_type: R_SpeedLimit}}
+        - contains: {attrs: {us_medium_type: Other_SpeedLim}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {us_medium_type: GuideSign_WhiteBlack_Text}}
+        - contains: {attrs: {us_medium_type: Other_WhiteBlack}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_BlackWhite}}
+        - contains: {attrs: {us_medium_type: Other_BlackWhite}}
+
+        - contains: {attrs: {us_medium_type: Prohibit_RedCircle}}
+        - contains: {attrs: {us_medium_type: Other_RedCircle}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_WhiteRed}}
+        - contains: {attrs: {us_medium_type: Other_WhiteRed}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_RedWhite}}
+        - contains: {attrs: {us_medium_type: Other_RedWhite}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_OrangeBlack}}
+        - contains: {attrs: {us_medium_type: GuideSign_OrangeBlack_diamond}}
+        - contains: {attrs: {us_medium_type: GuideSign_OrangeBlack_square}}
+        - contains: {attrs: {us_medium_type: GuideSign_OrangeBlack_Text}}
+        - contains: {attrs: {us_medium_type: Other_OrangeBlack}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_YellowBlack}}
+        - contains: {attrs: {us_medium_type: GuideSign_YellowBlack_diamond}}
+        - contains: {attrs: {us_medium_type: GuideSign_YellowBlack_square}}
+        - contains: {attrs: {us_medium_type: GuideSign_YellowBlack_Text}}
+        - contains: {attrs: {us_medium_type: Other_YellowBlack}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_BlueWhite}}
+        - contains: {attrs: {us_medium_type: Other_BlueWhite}}
+
+        - contains: {attrs: {us_medium_type: RouteID_Blue}}
+        - contains: {attrs: {us_medium_type: Other_RouteIDBlue}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_GreenWhite}}
+        - contains: {attrs: {us_medium_type: Other_GreenWhite}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_WhiteGreen}}
+        - contains: {attrs: {us_medium_type: Other_WhiteGreen}}
+
+        - contains: {attrs: {us_medium_type: BuisnessRouteID_Green}}
+        - contains: {attrs: {us_medium_type: Other_RouteIDGreen}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_GreenCircle}}
+        - contains: {attrs: {us_medium_type: Other_GreenCircle}}
+
+        - contains: {attrs: {us_medium_type: US_Milepost}}
+        - contains: {attrs: {us_medium_type: Other_Milepost}}
+
+        - contains: {attrs: {us_medium_type: GuideSign_BrownWhite}}
+        - contains: {attrs: {us_medium_type: Other_BrownWhite}}
+
+        - contains: {attrs: {us_medium_type: RouteID_White}}
+        - contains: {attrs: {us_medium_type: Other_RouteIDWhite}}
+
+#          add by chenran
+        - contains: {attrs: {us_medium_type: W_AdvisorySpeed}}
+        - contains: {attrs: {us_medium_type: Other_AdvisorySpeed}}
+        - contains: {attrs: {us_medium_type: Other_WhiteBlack_Text}}
+        - contains: {attrs: {us_medium_type: Other_OrangeBlack_Text}}
+        - contains: {attrs: {us_medium_type: Other_YellowBlack_Text}}
+        - contains: {attrs: {us_medium_type: GuideSign_BlueWhite_Text}}
+        - contains: {attrs: {us_medium_type: Other_BlueWhite_Text}}
+        - contains: {attrs: {us_medium_type: GuideSign_GreenWhite_Text}}
+        - contains: {attrs: {us_medium_type: Other_GreenWhite_Text}}
+        - contains: {attrs: {us_medium_type: Milepost}}
+        - contains: {attrs: {us_medium_type: GuideSign_BrownWhite_Text}}
+        - contains: {attrs: {us_medium_type: Other_BrownWhite_Text}}
+        - contains: {attrs: {us_medium_type: GuideSign_YellowBlack_Lane}}
+        - contains: {attrs: {us_medium_type: Other_YellowBlack_Lane}}
+
+
+    ignore_condiction:
+      or:
+        - contains: {attrs: {Inside: "inside"}}
+        - contains: {attrs: {ignore: "yes"}}
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 4}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}
+        - range: {field: $BBOX_HEIGHT, lt: 21}
+        - range: {field: $BBOX_WIDTH, lt: 21}
+    hard_condiction:
+      and:
+        - not:
+            contains: {attrs: {ignore: "yes"}}
+        - or:
+            - contains: {attrs: {occlusion: heavily_occluded}}
+            - contains: {attrs: {occlusion: invisible}}
+  - id: 3
+    name: traffic_sign
+    match_condiction:
+      and: []
+    ignore_condiction:
+      or:
+        - contains: {attrs: {Inside: "inside"}}
+        - contains: {attrs: {ignore: "yes"}}
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 4}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}
+        - range: {field: $BBOX_HEIGHT, lt: 21}
+        - range: {field: $BBOX_WIDTH, lt: 21}
+
+        - contains: {attrs: {us_medium_type: ''}}
+        - contains: {attrs: {us_medium_type: US_Other}}
+        - contains: {attrs: {us_medium_type: Unknown_SpeedLim}}
+        - contains: {attrs: {us_medium_type: Unknown_BlackWhite}}
+        - contains: {attrs: {us_medium_type: Unknown_WhiteBlack}}
+        - contains: {attrs: {us_medium_type: Unknown_RedCircle}}
+        - contains: {attrs: {us_medium_type: Unknown_WhiteRed}}
+        - contains: {attrs: {us_medium_type: Unknown_RedWhite}}
+        - contains: {attrs: {us_medium_type: Unknown_OrangeBlack}}
+        - contains: {attrs: {us_medium_type: Unknown_YellowBlack}}
+        - contains: {attrs: {us_medium_type: Unknown_BlueWhite}}
+        - contains: {attrs: {us_medium_type: Unknown_RouteIDBlue}}
+        - contains: {attrs: {us_medium_type: Unknown_GreenWhite}}
+        - contains: {attrs: {us_medium_type: Unknown_WhiteGreen}}
+        - contains: {attrs: {us_medium_type: Unknown_RouteIDGreen}}
+        - contains: {attrs: {us_medium_type: Unknown_GreenCircle}}
+        - contains: {attrs: {us_medium_type: Unknown_Milepost}}
+        - contains: {attrs: {us_medium_type: Unknown_BrownWhite}}
+        - contains: {attrs: {us_medium_type: Unknown_RouteIDWhite}}
+
+#            add by chenran
+        - contains: {attrs: {us_medium_type: Unknown_AdvisorySpeed}}
+        - contains: {attrs: {us_medium_type: Unknown_WhiteBlack_Text}}
+        - contains: {attrs: {us_medium_type: Unknown_OrangeBlack_Text}}
+        - contains: {attrs: {us_medium_type: Unknown_YellowBlack_Text}}
+        - contains: {attrs: {us_medium_type: Unknown_BlueWhite_Text}}
+        - contains: {attrs: {us_medium_type: Unknown_GreenWhite_Text}}
+        - contains: {attrs: {us_medium_type: Unknown_BrownWhite_Text}}
+        - contains: {attrs: {us_medium_type: O_Other}}
+        - contains: {attrs: {us_medium_type: Unknown_YellowBlack_Lane}}
+
+    hard_condiction:
+      and:
+        - not:
+            contains: {attrs: {ignore: "yes"}}
+        - or:
+            - contains: {attrs: {occlusion: heavily_occluded}}
+            - contains: {attrs: {occlusion: invisible}}

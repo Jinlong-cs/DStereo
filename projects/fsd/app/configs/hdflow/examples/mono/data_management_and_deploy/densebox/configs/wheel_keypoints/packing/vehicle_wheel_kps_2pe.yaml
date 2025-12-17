@@ -1,0 +1,51 @@
+base_classname: vehicle                                 # 一级类型名称
+pred_classname: vehicle_full                            # 模型预测的一级类型名称
+num_classes: 20                                        # 类别数量
+allow_multi_match: false                                # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: false                              # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: 4
+  name: vehicle
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {type: Sedan_Car}}
+    - contains: {attrs: {type: SUV}}
+    - contains: {attrs: {type: Special_vehicle}}
+    - contains: {attrs: {type: BigTruck}}
+    - contains: {attrs: {type: SmallTruck}}
+    - contains: {attrs: {type: Lorry}}
+    - contains: {attrs: {type: MiniVan}}
+    - contains: {attrs: {type: Bus}}
+    - contains: {attrs: {type: Motor-Tricycle}}
+    - contains: {attrs: {type: Tiny_car}}
+    - contains: {attrs: {type: Vehicle_others}}
+    - contains: {attrs: {type: Tricycle}}
+    - contains: {attrs: {type: Car}}
+    - contains: {attrs: {type: Van}}
+    - contains: {attrs: {type: Tram}}
+    - contains: {attrs: {type: Misc}}
+    - contains: {attrs: {type: Truck}}
+    - contains: {attrs: {type: other}}
+    - contains: {attrs: {type: unknown}}
+    - contains: {attrs: {type: Trucks}}
+    - contains: {attrs: {type: Small_Medium_Car}}
+    - contains: {attrs: {blur: Normal}}
+    - contains: {attrs: {blur: 'no'}}
+  ignore_condiction:                                        # 为真值, 则判定为ignore区域
+    or:
+    - contains: {attrs: {ignore: "yes"}}                          # 包含{"attrs": {"ignore": "yes"}}
+    - contains: {attrs: {occlusion: invisible}}
+  hard_condiction:                                          # 为真值, 则判定为hard样本
+    and:                                                        # 以下所有条件为真, 则输出真
+    - not:                                                          # 条件为假, 则输出真
+        contains: {attrs: {ignore: "yes"}}                              # 包含{"attrs": {"ignore": "yes"}}
+    - or:                                                       # 以下任一条件为真, 则输出真
+      - range: {field: $BBOX_HEIGHT, lt: 30}                          # 高度 < 30
+      - range: {field: $BBOX_WIDTH, lt: 30}                           # 宽度 < 30
+
+match_overlap_thresh: 0.8                                 # 预测和gt的iou阈值
+cutin_match_overlap_thresh: 0.5
+match_bbox_score_thresh: 0.18                             # 预测bbox的score阈值

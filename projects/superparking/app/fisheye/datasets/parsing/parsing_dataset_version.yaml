@@ -1,0 +1,17 @@
+
+superparking:
+  v0.9.0:
+    train:
+      - v09
+    val:
+      - v09
+  ci_test:
+    train:
+      - mini
+    val:
+      - mini
+  v0.6.0:
+    train:
+      - v06
+    val:
+      - v06

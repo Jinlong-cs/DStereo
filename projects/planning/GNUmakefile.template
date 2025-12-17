@@ -1,0 +1,61 @@
+###################################
+# makefile for planning task training #
+###################################
+include Makefile
+
+# change to your own bucket path
+HAT_BUCKET=/horizon-bucket
+
+# set to your config file
+config=projects/planning/configs/value_iter_net.py
+
+# set to your cluster, refer to $HOME/.hobot/gpucluster.yaml
+# cluster=share-debug-queue-idc
+# cluster=share-3090-idc
+cluster=share-3090-small-bcloud
+# cluster=project-3090-genenal-decision-bcloud
+
+# 浮点训练
+train:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage float
+
+# qat训练（量化感知训练），伪量化模型，其实还是浮点模型，带scale
+qat:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage qat
+
+# 模型验证，前向推理; 可以分别三个阶段，int_infer就是fps等评测
+val:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/predict.py --config ${config} --stage float
+
+# 模型量化，convert转为定点模型，真量化模型，量化<->反量化中间部分模型，生成 .pt
+int_infer:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage int_infer
+
+# 模型编译，生成 .hbir/.hbm
+fps:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/deploy/compile_perf.py --config ${config}
+
+# 可以在job_list中配置跑多个任务
+submit:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	cd plugins/k8s_submit; \
+	python3 submit.py --config ../../$(config) --cluster $(cluster)
+
+# 单测全跑了一遍
+test:
+	export PYTHONPATH=`pwd`; \
+	python3 -m pytest tests/unit_tests; \
+	python3 -m pytest tests/intergration_tests;
+
+

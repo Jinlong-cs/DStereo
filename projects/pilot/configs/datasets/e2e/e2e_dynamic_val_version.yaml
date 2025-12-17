@@ -1,0 +1,48 @@
+    
+# -------------------------- validation --------------------------
+# v0.0.1 using for pipeline_test
+pipeline_test:
+  BEIJING:
+    UT126:
+      UT126_20221109:
+        sample_interval: 100
+v0.0.1:
+  BEIJING:
+    UT126:
+      UT126_20221109:
+        sample_interval: 1
+
+v0.0.2:
+  BEIJING:
+    UT263:
+      UT263_20221110:
+        sample_interval: 1
+
+v1.0.0:
+  BEIJING:
+    H3165:
+      H3165_20211103:
+        sample_interval: 1
+
+v2.0.0:
+  BEIJING:
+    UT126:
+      UT126_20221109_20221110:
+        sample_interval: 1
+    UT263:
+      UT263_20221109_20221110:
+        sample_interval: 1
+    NC109:
+      NC109_20221110_20221111:
+        sample_interval: 1
+
+v3.0.0:
+  Contrast:
+    UT126:
+      UT126_20230103_20230108:
+        sample_interval: 1
+    LS912:
+      LS912_2023_463662:
+        sample_interval: 1
+
+  

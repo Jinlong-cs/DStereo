@@ -1,0 +1,142 @@
+base_classname: person                                  # 一级类型名称
+num_classes: 50                                         # 类别数量
+allow_multi_match: true                                 # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+# remove_empty_images: false                            # 删除空图片
+remove_empty_images: true # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {type: InVehicle}}                          # 包含{"attrs": {"type": "InVehicle"}}
+    - contains: {attrs: {type: NonTarget}}                          # 包含{"attrs": {"type": "NonTarget"}}
+    - contains: {attrs: {type: Dummy}}                              # 包含{"attrs": {"type": "Dummy"}}
+    - contains: {attrs: {type: OnPoster}}                           # 包含{"attrs": {"type": "OnPoster"}}
+    - contains: {attrs: {type: Stroller}}                           # 包含{"attrs": {"type": "Stroller"}}
+    - and:
+      - not:
+          contains: {attrs: {OverlappedBox: "yes"}}
+      - or:
+        - contains: {attrs: {type: PersonRideBicycle}}                # 包含{"attrs": {"type": "PersonRideBicycle"}}
+        - contains: {attrs: {type: PersonPushBicycle}}                # 包含{"attrs": {"type": "PersonPushBicycle"}}
+        - contains: {attrs: {type: PersonRideMotorcycle}}             # 包含{"attrs": {"type": "PersonRideMotorcycle"}}
+        - contains: {attrs: {type: PersonPushMotorcycle}}             # 包含{"attrs": {"type": "PersonPushMotorcycle"}}
+        - contains: {attrs: {type: PersonRideTricycle}}               # 包含{"attrs": {"type": "PersonRideTricycle"}}
+        - contains: {attrs: {type: PersnPushTricycle}}                # 包含{"attrs": {"type": "PersnPushTricycle"}}
+- id: 1
+  name: person
+  upsample: 3  # big object
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    and:
+      - range: {field: $BBOX_HEIGHT, gt: 63}                        # bbox高度 > 47(<30m), for pilot
+      - or:                                                         # 以下任一条件为真, 则输出真
+        - contains: {attrs: {type: Pedestrian}}                         # 包含{"attrs": {"type": "Pedestrian"}}
+        - contains: {attrs: {type: Pedestrians}}                        # 包含{"attrs": {"type": "Pedestrians"}} # 预测结果填错导致的
+        - contains: {attrs: {type: Pedestriain}}                        # 包含{"attrs": {"type": "Pedestriain"}} # 预测结果填错导致的
+        - contains: {attrs: {type: pedestrian}}                         # 包含{"attrs": {"type": "pedestrian"}} # 预测结果填错导致的
+        - contains: {attrs: {type: Cyclist}}                            # 包含{"attrs": {"type": "Cyclist"}}
+        - contains: {attrs: {type: Bicyclist}}                          # 包含{"attrs": {"type": "Bicyclist"}}
+        - contains: {attrs: {type: Motorcyclist}}                       # 包含{"attrs": {"type": "Motorcyclist"}}
+        - contains: {attrs: {type: Tricyclist}}                         # 包含{"attrs": {"type": "Tricyclist"}}
+        - contains: {attrs: {type: Squatter}}                           # 包含{"attrs": {"type": "Squatter"}}
+        - contains: {attrs: {type: OtherPose}}                          # 包含{"attrs": {"type": "OtherPose"}}
+        - contains: {attrs: {type: WithPersonalTransporter}}            # 包含{"attrs": {"type": "WithPersonalTransporter"}}
+        - contains: {attrs: {type: Sitter}}                             # 包含{"attrs": {"type": "Sitter"}}
+        - contains: {attrs: {type: Bended}}                             # 包含{"attrs": {"type": "Bended"}}
+        - contains: {attrs: {type: Lier}}                               # 包含{"attrs": {"type": "Lier"}}
+        - contains: {attrs: {type: WithWheelchair}}                     # 包含{"attrs": {"type": "WithWheelchair"}}
+        - contains: {attrs: {type: Dummy}}                              # 包含{"attrs": {"type": "Dummy"}}
+        - contains: {attrs: {type: OnPoster}}                           # 包含{"attrs": {"type": "OnPoster"}}
+        - contains: {attrs: {type: Stroller}}                           # 包含{"attrs": {"type": "Stroller"}}
+        - contains: {attrs: {type: Others}}                             # 包含{"attrs": {"type": "Others"}}
+        - contains: {attrs: {type: Unknown}}                            # 包含{"attrs": {"type": "Unknown"}}
+        - contains: {attrs: {type: unknown}}                            # 包含{"attrs": {"type": "unknown"}} # 预测结果填错导致的
+        - and:
+          - contains: {attrs: {OverlappedBox: "yes"}}
+          - or:
+            - contains: {attrs: {type: PersonRideBicycle}}                # 包含{"attrs": {"type": "PersonRideBicycle"}}
+            - contains: {attrs: {type: PersonPushBicycle}}                # 包含{"attrs": {"type": "PersonPushBicycle"}}
+            - contains: {attrs: {type: PersonRideMotorcycle}}             # 包含{"attrs": {"type": "PersonRideMotorcycle"}}
+            - contains: {attrs: {type: PersonPushMotorcycle}}             # 包含{"attrs": {"type": "PersonPushMotorcycle"}}
+            - contains: {attrs: {type: PersonRideTricycle}}               # 包含{"attrs": {"type": "PersonRideTricycle"}}
+            - contains: {attrs: {type: PersnPushTricycle}}                # 包含{"attrs": {"type": "PersnPushTricycle"}}
+  ignore_condiction:                                        # 为真值, 则判定为ignore区域
+    contains: {attrs: {ignore: "yes"}}                          # 包含{"attrs": {"ignore": "yes"}}
+  hard_condiction:                                          # 为真值, 则判定为hard样本
+    and:                                                        # 以下所有条件为真, 则输出真
+    - not:                                                          # 条件为假, 则输出真
+        contains: {attrs: {ignore: "yes"}}                              # 包含{"attrs": {"ignore": "yes"}}
+    - or:                                                       # 以下任一条件为真, 则输出真
+      - contains: {attrs: {occlusion: heavily_occluded}}            # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+      - contains: {attrs: {occlusion: invisible}}                   # 包含{"attrs": {"occlusion": "invisible"}}
+      - contains: {attrs: {confidence: Low}}                        # 包含{"attrs": {"confidence": "Low"}}
+      - contains: {attrs: {confidence: VeryLow}}                    # 包含{"attrs": {"confidence": "VeryLow"}}
+      - contains: {attrs: {type: Others}}                           # 包含{"attrs": {"type": "Others"}}
+      - contains: {attrs: {type: Unknown}}                          # 包含{"attrs": {"type": "Unknown"}}
+      - contains: {attrs: {type: unknown}}                          # 包含{"attrs": {"type": "unknown"}} # 预测结果填错导致的
+      - range: {field: $BBOX_HEIGHT, lt: 30}                        # bbox高度 < 55
+      - range: {field: $BBOX_WIDTH, lt: 10}                         # bbox宽度 < 18
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 6}                   # bbox高宽比 > 6
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}                # bbox高宽比 < 0.25
+      - and:                                                        # 以下所有条件为真, 则输出真
+        - contains: {attrs: {type: Pedestrian}}                         # 包含{"attrs": {"type": "Pedestrian"}}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 1}                     # bbox高宽比 < 1
+- id: 1
+  name: person
+  upsample: 1  # small object
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    and:
+      - range: {field: $BBOX_HEIGHT, lt: 63}                        # bbox高度 < 47(>30m), for pilot
+      - or:                                                         # 以下任一条件为真, 则输出真
+        - contains: {attrs: {type: Pedestrian}}                         # 包含{"attrs": {"type": "Pedestrian"}}
+        - contains: {attrs: {type: Pedestrians}}                        # 包含{"attrs": {"type": "Pedestrians"}} # 预测结果填错导致的
+        - contains: {attrs: {type: Pedestriain}}                        # 包含{"attrs": {"type": "Pedestriain"}} # 预测结果填错导致的
+        - contains: {attrs: {type: pedestrian}}                         # 包含{"attrs": {"type": "pedestrian"}} # 预测结果填错导致的
+        - contains: {attrs: {type: Cyclist}}                            # 包含{"attrs": {"type": "Cyclist"}}
+        - contains: {attrs: {type: Bicyclist}}                          # 包含{"attrs": {"type": "Bicyclist"}}
+        - contains: {attrs: {type: Motorcyclist}}                       # 包含{"attrs": {"type": "Motorcyclist"}}
+        - contains: {attrs: {type: Tricyclist}}                         # 包含{"attrs": {"type": "Tricyclist"}}
+        - contains: {attrs: {type: Squatter}}                           # 包含{"attrs": {"type": "Squatter"}}
+        - contains: {attrs: {type: OtherPose}}                          # 包含{"attrs": {"type": "OtherPose"}}
+        - contains: {attrs: {type: WithPersonalTransporter}}            # 包含{"attrs": {"type": "WithPersonalTransporter"}}
+        - contains: {attrs: {type: Sitter}}                             # 包含{"attrs": {"type": "Sitter"}}
+        - contains: {attrs: {type: Bended}}                             # 包含{"attrs": {"type": "Bended"}}
+        - contains: {attrs: {type: Lier}}                               # 包含{"attrs": {"type": "Lier"}}
+        - contains: {attrs: {type: WithWheelchair}}                     # 包含{"attrs": {"type": "WithWheelchair"}}
+        - contains: {attrs: {type: Dummy}}                              # 包含{"attrs": {"type": "Dummy"}}
+        - contains: {attrs: {type: OnPoster}}                           # 包含{"attrs": {"type": "OnPoster"}}
+        - contains: {attrs: {type: Stroller}}                           # 包含{"attrs": {"type": "Stroller"}}
+        - contains: {attrs: {type: Others}}                             # 包含{"attrs": {"type": "Others"}}
+        - contains: {attrs: {type: Unknown}}                            # 包含{"attrs": {"type": "Unknown"}}
+        - contains: {attrs: {type: unknown}}                            # 包含{"attrs": {"type": "unknown"}} # 预测结果填错导致的
+        - and:
+          - contains: {attrs: {OverlappedBox: "yes"}}
+          - or:
+            - contains: {attrs: {type: PersonRideBicycle}}                # 包含{"attrs": {"type": "PersonRideBicycle"}}
+            - contains: {attrs: {type: PersonPushBicycle}}                # 包含{"attrs": {"type": "PersonPushBicycle"}}
+            - contains: {attrs: {type: PersonRideMotorcycle}}             # 包含{"attrs": {"type": "PersonRideMotorcycle"}}
+            - contains: {attrs: {type: PersonPushMotorcycle}}             # 包含{"attrs": {"type": "PersonPushMotorcycle"}}
+            - contains: {attrs: {type: PersonRideTricycle}}               # 包含{"attrs": {"type": "PersonRideTricycle"}}
+            - contains: {attrs: {type: PersnPushTricycle}}                # 包含{"attrs": {"type": "PersnPushTricycle"}}
+  ignore_condiction:                                        # 为真值, 则判定为ignore区域
+    contains: {attrs: {ignore: "yes"}}                          # 包含{"attrs": {"ignore": "yes"}}
+  hard_condiction:                                          # 为真值, 则判定为hard样本
+    and:                                                        # 以下所有条件为真, 则输出真
+    - not:                                                          # 条件为假, 则输出真
+        contains: {attrs: {ignore: "yes"}}                              # 包含{"attrs": {"ignore": "yes"}}
+    - or:                                                       # 以下任一条件为真, 则输出真
+      - contains: {attrs: {occlusion: heavily_occluded}}            # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+      - contains: {attrs: {occlusion: invisible}}                   # 包含{"attrs": {"occlusion": "invisible"}}
+      - contains: {attrs: {confidence: Low}}                        # 包含{"attrs": {"confidence": "Low"}}
+      - contains: {attrs: {confidence: VeryLow}}                    # 包含{"attrs": {"confidence": "VeryLow"}}
+      - contains: {attrs: {type: Others}}                           # 包含{"attrs": {"type": "Others"}}
+      - contains: {attrs: {type: Unknown}}                          # 包含{"attrs": {"type": "Unknown"}}
+      - contains: {attrs: {type: unknown}}                          # 包含{"attrs": {"type": "unknown"}} # 预测结果填错导致的
+      - range: {field: $BBOX_HEIGHT, lt: 30}                        # bbox高度 < 55
+      - range: {field: $BBOX_WIDTH, lt: 10}                         # bbox宽度 < 18
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 6}                   # bbox高宽比 > 6
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}                # bbox高宽比 < 0.25
+      - and:                                                        # 以下所有条件为真, 则输出真
+        - contains: {attrs: {type: Pedestrian}}                         # 包含{"attrs": {"type": "Pedestrian"}}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 1}                     # bbox高宽比 < 1

@@ -1,0 +1,68 @@
+base_classname: common_box
+num_classes: 6
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: { attrs: { ignore: yes } }
+        - contains: { attrs: { cameraset: fisheye_view } }
+        - contains: { attrs: { bad_image: bad_imaging } }
+        - contains: { attrs: { bad_image: blur_len } }
+        - contains: { attrs: { bad_image: mud_len } }
+        - contains: { attrs: { camera_direction: side } }
+        - contains: { attrs: { camera_direction: side_view } } # camera and image quality
+        - contains: { attrs: { weather: Haze } }
+        - contains: { attrs: { weather: Foggy } }
+        - contains: { attrs: { weather: haze } }
+        - contains: { attrs: { weather: confuse } } # weather
+  #- id: null
+  #  match_condiction:
+  #    contains: {attrs: {scene_status: traffic_jam}}
+  #  upsample: 0.3
+  - id: 4
+    name: Snowy
+    match_condiction:
+      or:
+        - contains: { attrs: { weather: Snowy } }
+        - contains: { attrs: { road_status: drive_area_snow } }
+    upsample: 2
+  - id: 1
+    name: Sunny
+    match_condiction:
+      or:
+        - contains: { attrs: { weather: Sunny } }
+        #- contains: {attrs: {weather: Sunny_Cloudy}}
+    upsample: 1
+  - id: 2
+    name: Cloudy
+    match_condiction:
+      or:
+        - contains: { attrs: { weather: Cloudy } }
+    upsample: 1
+  - id: 3
+    name: Rainy
+    match_condiction:
+      or:
+        - contains: { attrs: { weather: Rainy } }
+    upsample: 2
+  #- id: 4
+  #  name: Snowy
+  #  match_condiction:
+  #    or:
+  #      - contains: {attrs: {weather: Snowy}}
+  #      - contains: {attrs: {road_status: drive_area_snow}}
+  #  upsample: 15
+  - id: 5
+    name: Heavy_Rain
+    match_condiction:
+      contains: { attrs: { weather: Heavy_Rain } }
+    upsample: 4
+  - id: 6
+    name: Other
+    match_condiction:
+      or:
+        - contains: { attrs: { weather: Other } }
+        - contains: { attrs: { weather: Unknown } }
+    upsample: 1

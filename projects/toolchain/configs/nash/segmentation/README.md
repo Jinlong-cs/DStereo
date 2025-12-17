@@ -1,0 +1,8 @@
+# Segmentation
+|   model              |  dataset |   backbone     |   Input shape      |   config  |  ckpt download        |
+| :----------:          | :-------:|  :--------:    |  :------------:    | :------: |        :--------:           |
+| DeepLabV3Plus | Cityscapes | EfficientNetm0 |  1024x2048 | configs/segmentation/deeplabv3plus_efficientnetm0_cityscapes.py | wget -c ftp://openexplorer@vrftp.horizon.ai/horizon_torch_samples/RELEASE_VERSION/py38/modelzoo/qat_origin_modelzoo/deeplabv3plus_efficientnetm0_cityscapes/* --ftp-password='c5R,2!pG' |
+| DeepLabV3Plus | Cityscapes | EfficientNetm1 |  1024x2048 | configs/segmentation/deeplabv3plus_efficientnetm1_cityscapes.py | wget -c ftp://openexplorer@vrftp.horizon.ai/horizon_torch_samples/RELEASE_VERSION/py38/modelzoo/qat_origin_modelzoo/deeplabv3plus_efficientnetm1_cityscapes/* --ftp-password='c5R,2!pG' |
+| DeepLabV3Plus | Cityscapes | EfficientNetm2 |  1024x2048 | configs/segmentation/deeplabv3plus_efficientnetm2_cityscapes.py | wget -c ftp://openexplorer@vrftp.horizon.ai/horizon_torch_samples/RELEASE_VERSION/py38/modelzoo/qat_origin_modelzoo/deeplabv3plus_efficientnetm2_cityscapes/* --ftp-password='c5R,2!pG' |
+| fastscnn | Cityscapes | EfficientNetB0 tiny | 1024x2048 | configs/segmentation/fastscnn_efficientnetb0tiny_cityscapes.py | wget -c ftp://openexplorer@vrftp.horizon.ai/horizon_torch_samples/RELEASE_VERSION/py38/modelzoo/qat_origin_modelzoo/fastscnn_efficientnetb0_cityscapes/* --ftp-password='c5R,2!pG' |
+| unet | Cityscapes | MobileNetv1 | 1024x2048 | configs/segmentation/unet_mobilenetv1_cityscapes.py | wget -c ftp://openexplorer@vrftp.horizon.ai/horizon_torch_samples/RELEASE_VERSION/py38/modelzoo/qat_origin_modelzoo/unet_mobilenetv1_cityscapes/* --ftp-password='c5R,2!pG' |

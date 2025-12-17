@@ -1,0 +1,5 @@
+[docker-ce-stable]
+name=docker-ce-stable
+baseurl=http://mirrors.hobot.cc/docker/docker-ce/centos/x86_64/
+enabled=1
+gpgcheck=0

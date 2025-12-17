@@ -1,0 +1,21 @@
+base:
+  job_password: "6150"
+  framework: "pytorch"
+  task_label: "halo_imgq"
+  input_bucket: "MultiMode_2"
+  priority: 5
+  docker_image: "docker.hobot.cc/imagesys/hat:pilot-runtime-cu111-hdflow-20221122-torch1102-py38"
+  max_jobtime: 10000
+  launcher: "mpi"
+  upload_folder_name: "k8s_job"
+  folder_list:
+    [
+      "../../hat",
+      "../../tools",
+      "../../projects/halo",
+      "url2IP.py",
+    ]
+compile:
+  num_machines: 1
+  num_gpus_per_machine: 1
+

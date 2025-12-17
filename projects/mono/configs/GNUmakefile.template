@@ -1,0 +1,104 @@
+###################################
+# makefile for multitask training #
+###################################
+include Makefile
+
+# change to your own bucket path
+HAT_BUCKET=/horizon-bucket
+
+config=projects/mono/configs/app/multitask.py
+
+train:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/train.py --config ${config} --stage float
+
+qat:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/train.py --config ${config} --stage qat
+
+val_ckpt="http://fm-fangquan-hu.alitrain.hogpu.cc/plat_gpu/mono-resize-multitask-align_2dvdvru_full_steps-20230202_094746/output/models/mono_multitask/float-checkpoint-step-39999-626b30f3.pth.tar"
+val_step="float"
+val:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/predict.py --config ${config} --stage ${val_step} --ckpt ${val_ckpt} --hat-val-only 1 --hat-aidi-eval 1
+
+stage_one = "stage_one"
+stage_two = "stage_two"
+int_infer_stage_1:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	export INT_INFER_STAGE=${stage_one}; \
+	python3 tools/train.py --config ${config} --stage int_infer
+
+int_infer_stage_2:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	export INT_INFER_STAGE=${stage_two}; \
+	python3 tools/train.py --config ${config} --stage int_infer
+
+hbm_path="tmp_output/fisheye_multitask_sod/compile/model-feeb92b1.hbm"
+pb_path="tmp_output/fisheye_multitask_sod/compile/model.pt"
+input_path="verify.png"
+verify:
+	# hbdk-model-verifier --hbm ${hbm_path} --model-pt ${pb_path} --model-input ${input_path} --skip-bpu
+	hbdk-model-verifier --hbm ${hbm_path} --model-input ${input_path} --skip-bpu --no-predictor
+
+pipeline:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/train.py --config ${config} --stage float --pipeline-test
+	python3 tools/train.py --config ${config} --stage qat --pipeline-test
+	python3 tools/train.py --config ${config} --stage int_infer --pipeline-test
+
+fps:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/deploy/compile_perf.py --config ${config} --opt 3
+
+compile_pt_file="tmp_output/mono_resize_multitask/pipelinetest-deploy-checkpoint-last.pt"
+compile_out_dir="tmp_output/mono_resize_multitask/pipeline_test"
+compile_input_shape="1x3x512x960"
+compile_opt="O3"
+compile_march="bernoulli2"
+compile:
+	python3 tools/deploy/compile_standalone.py ${compile_pt_file} --output ${compile_out_dir} --input-size ${compile_input_shape} --opt ${compile_opt} --march ${compile_march} --debug
+
+
+perf-dataloader:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/analyze/perf_dataloader.py --config ${config} --step float --iter-nums 1000
+
+perf-model-training:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/analyze/perf_model_training.py --config ${config} --step float --iter-nums 1000
+
+
+# get pretrain model
+pretrain:
+	-mkdir tmp_pretrain
+	hadoop fs -get hdfs://hobot-bigdata/user/zhigang.yang/HdltModelZoo/float/classification/vargnetv2_05.pth.tar
+	mv vargnetv2_05.pth.tar tmp_pretrain/
+
+# set to your cluster, refer to $HOME/.hobot/gpucluster.yaml
+cluster=share-2080ti-aliyun
+
+submit:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	cd plugins/k8s_submit ; \
+	python3 submit.py --config ../../$(config) --cluster $(cluster)
+
+calops:
+	python3 tools/calops.py --config $(config) --input-shape 1,576,704,3
+
+data_perf:
+	python3 tools/analyze/perf_dataloader.py --config $(config) --stage float --num-workers 0 --allow-all-rank -ids "0"

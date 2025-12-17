@@ -1,0 +1,63 @@
+pipeline_test:
+  11v_driving_data_wide_temporal:
+    UT0F3:
+      merge_UT0F3_det_v5a_20230311_20230311_UT0F3_11v:
+        sample_interval: 50
+
+union_arrow_v2.2.2_small_roadmarking_v1.1.4_small:
+  11v_driving_data_small_union_small:
+    LS912:
+      merge_LS912_det_v5a_20221201_LS912_11v:
+        sample_interval: 1
+
+union_arrow_v2.2.2_wide_roadmarking_v1.1.4_wide:
+  11v_driving_data_wide_union_wide:
+    LS912:
+      merge_LS912_det_v5a_20221201_LS912_11v:
+        sample_interval: 1
+
+
+
+# temporal version
+temporal_v1_0_0_small:
+  11v_driving_data_small_temporal:
+    NC109:
+      merge_NC109_det_v5a_20221201_20221205_NC109_val_11v:
+
+temporal_v1_0_0_wide:
+  11v_driving_data_wide_temporal:
+    NC109:
+      merge_NC109_det_v5a_20221201_20221205_NC109_val_11v:
+
+# temporal version
+temporal_v1_1_0_small:
+  # delete driving data for small vcs model
+  # 11v_driving_data_small_temporal:
+  #   NC109:
+  #     merge_NC109_det_v5a_20221201_20221205_NC109_val_11v:
+  #   LS912:
+  #     20230316_744558_1_background_0_FSD_Site_LS912_20230115:
+  11v_parking_data_small_temporal:
+    LS830:
+      merged__0_204__20230316_20230321:
+      merged__0_204__20230410_20230414:
+      merged__0_204__20230415:
+    UT0Q9:
+      merged__0_204__20230415:
+    UT1R3:
+      merged__0_204__20230415:
+    UT126:
+      merged__0_204__20220920_20220922:
+    
+    
+
+temporal_v1_1_0_wide:
+  11v_driving_data_wide_temporal:
+    NC109:
+      merge_NC109_det_v5a_20221201_20221205_NC109_val_11v:
+    LS912:
+      20230316_744558_1_background_0_FSD_Site_LS912_20230115:
+    UT126:
+      20230306_741986_1_background_0_FSD_Site_UT126_20230131:
+    UT0Q9:
+      20230320_745267_1_background_0_FSD_Site_UT0Q9_20230201:

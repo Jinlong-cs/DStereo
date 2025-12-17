@@ -1,0 +1,60 @@
+base_classname: Traffic_light_shell          # 一级类型名称
+num_classes: 2                               # 分类的类别数
+allow_multi_match: true                      # 允许一个instance进行多次匹配
+default_ignore_full_image: true              # 未定义的类别使用全图ignore
+remove_empty_images: true                    # 删除空图片
+shuffle: true                                # 打乱图片顺序
+online_roilist: true
+class_mappers:                               # 类别列表
+- id: 2
+  name: fp
+  match_condiction:                          # 为真值, 则匹配成功
+    and:
+      - or:
+        - contains: {attrs: {NonTarget: "plate"}}
+        - contains: {attrs: {NonTarget: "shiner"}}
+        - contains: {attrs: {NonTarget: "black"}}
+        - contains: {attrs: {NonTarget: "other"}}
+        - contains: {attrs: {NonTarget: "unknown"}}
+        - contains: {attrs: {NonTarget: "Yes"}}
+      - range: {field: $BBOX_HEIGHT, gt: 10}              # bbox高度 > 10
+      - range: {field: $BBOX_WIDTH, gt: 10}               # bbox宽度 > 10
+  upsample: 1
+
+- id: null                                                # 空类, 用于过滤去除样本
+  name: null
+  match_condiction:                                       # 为真值, 则匹配成功
+    or:                                                   # 以下任一条件为真, 则输出真
+    - range: {field: $BBOX_HEIGHT, lt: 10}                # bbox高度 < 10
+    - range: {field: $BBOX_WIDTH, lt: 10}                 # bbox宽度 < 10
+    - contains: {attrs: {ignore: "yes"}}                  # 包含{"attrs": {"ignore": "yes"}}                                                   # 以下任一条件为真, 则输出真
+    - contains: {attrs: {occlusion: heavily_occluded}}    # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+    - contains: {attrs: {occlusion: invisible}}           # 包含{"attrs": {"occlusion": "invisible"}}
+    - contains: {attrs: {Type: unknown}}
+    - contains: {attrs: {direction: side}}
+    - contains: {attrs: {indicateType: unknown}}
+
+- id: 1
+  name: pos
+  match_condiction:                                       # 为真值, 则匹配成功
+    and:
+    - and:
+      - or:
+        - contains: {attrs: {Type: "on"}}
+        - contains: {attrs: {Type: "off"}}
+      - contains: {attrs: {direction: front}}
+      - contains: {attrs: {ignore: "no"}}
+      - not:                                              # 此处主要为表达无此字段时为负样本,如果确定所有样本均包含该字段，可以删除此语句
+          or:
+            - contains: {attrs: {NonTarget: "plate"}}
+            - contains: {attrs: {NonTarget: "shiner"}}
+            - contains: {attrs: {NonTarget: "black"}}
+            - contains: {attrs: {NonTarget: "other"}}
+            - contains: {attrs: {NonTarget: "unknown"}}
+            - contains: {attrs: {NonTarget: "Yes"}}
+      - contains: {attrs: {occlusion: full_visible}}    # 包含{"attrs": {"occlusion": "invisible"}}
+      - range: {field: $BBOX_HEIGHT, gt: 10}            # bbox高度 > 10
+      - range: {field: $BBOX_WIDTH, gt: 10}             # bbox宽度 > 10
+    - not:
+      contains: {attrs: {indicateType: unknown}}
+  upsample: 1.0

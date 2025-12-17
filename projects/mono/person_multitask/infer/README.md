@@ -1,0 +1,1 @@
+在本级地址下执行python infer_job_runner.py

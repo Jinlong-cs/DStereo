@@ -1,0 +1,2 @@
+export PYTHONPATH=`pwd`
+python3 tools/deploy/compile_standalone.py deploy-checkpoint-last.pt --input-size 1x3x192x960 --opt O3 --march bernoulli2 --name real3d_with_desensitization --extra-args "--dev-remove-extra-output-cpu-op --max-time-per-fc 1000"

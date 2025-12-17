@@ -1,0 +1,95 @@
+base_classname: common_box
+num_classes: 12
+remove_empty_images: true
+allow_multi_match: false                         # 允许一个instance进行多次匹配
+shuffle: true
+class_mappers:
+- id: null
+  match_condiction:
+    or:
+      - contains: {attrs: {ignore: yes}}
+      - contains: {attrs: {cameraset: fisheye_view}}
+      - contains: {attrs: {bad_image: bad_imaging}}
+      - contains: {attrs: {bad_image: blur_len}}
+      - contains: {attrs: {bad_image: mud_len}}
+      - contains: {attrs: {camera_direction: side}}
+      - contains: {attrs: {camera_direction: side_view}} # camera and image quality
+      - contains: {attrs: {weather: Snowy}} # 下面三行代表忽略snowy、heavy_rain、foggy数据
+      - contains: {attrs: {weather: Heavy_Rain}}
+      - contains: {attrs: {weather: Foggy}}
+      - contains: {attrs: {weather: confuse}} # weather
+- id: 7
+  name: medium_snow
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: medium_snow}}
+      - contains: {attrs: {road_status: drive_area_snow}}
+  upsample: 5
+- id: 1
+  name: Sunny
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Sunny}}
+      #- contains: {attrs: {weather: Sunny_Cloudy}}
+  upsample: 1
+- id: 2
+  name: Cloudy
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Sunny_Cloudy}}
+      - contains: {attrs: {weather: Cloudy}}
+  upsample: 1
+- id: 3
+  name: Rainy
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Rainy}}
+  upsample: 2
+- id: 4
+  name: medium_rain
+  match_condiction:
+    contains: {attrs: {weather: medium_rain}}
+  upsample: 10
+- id: 5
+  name: Heavy_Rain
+  match_condiction:
+    contains: {attrs: {weather: Heavy_Rain}}
+  upsample: 5
+- id: 6
+  name: flurry
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: flurry}}
+  upsample: 10
+- id: 8
+  name: Snowy
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Snowy}}
+      # - contains: {attrs: {road_status: drive_area_snow}}
+  upsample: 5
+- id: 9
+  name: Haze
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Haze}}
+  upsample: 10
+- id: 10
+  name: medium_fog
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: medium_fog}}
+  upsample: 10
+- id: 11
+  name: Foggy
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Foggy}}
+  upsample: 100
+- id: 12
+  name: Other
+  match_condiction:
+    or:
+      - contains: {attrs: {weather: Other}}
+      - contains: {attrs: {weather: Unknown}}
+  upsample: 1

@@ -1,0 +1,96 @@
+base_classname: traffic_sign
+num_classes: 20
+allow_multi_match: true
+default_ignore_full_image: true
+remove_empty_images: false
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+        - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_rectangle}}
+        - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: GSWB_Other}}
+        - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+        - contains: {attrs: {cn_medium_type: sign_Construction}}
+        - contains: {attrs: {cn_medium_type: C_Other}}
+        - contains: {attrs: {cn_medium_type: C_Unknown}}
+        - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+        - contains: {attrs: {cn_medium_type: RSBW_Other}}
+        - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+        - contains: {attrs: {cn_medium_type: GSGW_Other}}
+        - contains: {attrs: {cn_medium_type: GSGW_Unknown}}
+        - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+        - contains: {attrs: {cn_medium_type: TSBW_Other}}
+        - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: RouteID}}
+        - contains: {attrs: {cn_medium_type: RouteID_Other}}
+        - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+        - contains: {attrs: {cn_medium_type: O_Other}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+        - contains: {attrs: {cn_medium_type: False_Positive}}
+        - contains: {attrs: {cn_medium_type: Other_Detfp}}
+        - contains: {attrs: {cn_medium_type: Other_Exit}}
+        - contains: {attrs: {cn_medium_type: Other_LightArrow}}
+        - contains: {attrs: {cn_medium_type: Other_Mirror}}
+        - contains: {attrs: {cn_medium_type: mirror}}
+        - contains: {attrs: {cn_medium_type: Other_RedCircleLight}}
+        - contains: {attrs: {Inside: outside}}
+#        - and:
+#            - contains: {attrs: {ignore: "no"}}
+#            - contains: {attrs: {cn_medium_type: U_Unknown}}
+  - id: 3
+    name: traffic_sign
+    match_condiction:
+      or:
+        - contains: {attrs: {cn_medium_type: W_Warning}}
+        - contains: {attrs: {cn_medium_type: W_Other}}
+        - contains: {attrs: {cn_medium_type: W_Unknown}}
+        - contains: {attrs: {cn_medium_type: Prohibit_I}}
+        - contains: {attrs: {cn_medium_type: P_Other1}}
+        - contains: {attrs: {cn_medium_type: P_Unknown1}}
+        - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+        - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: P_Unknow_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+        - contains: {attrs: {cn_medium_type: PSL_Other}}
+        - contains: {attrs: {cn_medium_type: PSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+        - contains: {attrs: {cn_medium_type: PR_Other}}
+        - contains: {attrs: {cn_medium_type: PR_Unknown}}
+        - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+        - contains: {attrs: {cn_medium_type: MSL_Other}}
+        - contains: {attrs: {cn_medium_type: MSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+        - contains: {attrs: {cn_medium_type: I_Other_circle}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_circle}}
+#        - contains: {attrs: {cn_medium_type: O_Other}}
+        - contains: {attrs: {cn_medium_type: U_Unknown}}
+    ignore_condiction:
+      or:
+        - contains: {attrs: {ignore: "yes"}}
+        - contains: {attrs: {cn_medium_type: W_Other}}
+        - contains: {attrs: {cn_medium_type: W_Unknown}}
+        - contains: {attrs: {cn_medium_type: P_Unknown1}}
+        - contains: {attrs: {cn_medium_type: P_Unknow_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: PSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: PR_Unknown}}
+        - contains: {attrs: {cn_medium_type: MSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_circle}}
+        - contains: {attrs: {cn_medium_type: U_Unknown}}
+#        - contains: {attrs: {cn_medium_type: O_Other}}
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 4}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}
+        - or:
+            - range: {field: $BBOX_HEIGHT, lt: 13}
+            - range: {field: $BBOX_WIDTH, lt: 13}
+    hard_condiction:
+      and:
+        - not:
+            contains: {attrs: {ignore: "yes"}}
+        - or:
+            - contains: {attrs: {occlusion: heavily_occluded}}
+            - contains: {attrs: {occlusion: invisible}}

@@ -1,0 +1,221 @@
+# -------------------------- validation --------------------------
+# data used for pipeline test
+pipeline_test:
+  pipeline_test:
+    LX165:
+      20230327_FSD_Site_LX165_20230308_v5a_autolabel_freespace_11v_filter_vismask_sequential_val:
+pipeline_testV2:
+  pipeline_test:
+    H3165:
+      merge_H3165_vismask_v5a_v1111:
+        sample_interval: 10
+v_freespace_merge_1.0:
+  BEV_ELE_FREESPACE:
+    UT0Q9_dense_freespace:
+      UT0Q9_20220529:
+    H3165_dense_freespace:
+      H3165_20220518:
+    4GD36_dense_freespace:
+      4GD36_20220610:
+
+v_freespace_single_merge_1.0:
+  BEV_ELE_FREESPACE_SINGLE:
+    UT0Q9_dense_freespace:
+      UT0Q9_20220529:
+    H3165_dense_freespace:
+      H3165_20220518:
+    4GD36_dense_freespace:
+      4GD36_20220610:
+
+v_zhangaiwu_v1:
+  ZHANGAIWU:
+    UTHS6:
+      # FSD_Site_UTHS6_20220921_freespace:
+      FSD_Site_UTHS6_20220921_freespace_val:
+
+v2.1:
+  ZHANGAIWU_WIDE:
+    UTHS6:
+      FSD_Site_UTHS6_20220921_freespace_wide_artificial_val:
+      FSD_Site_UTHS6_20220921_freespace_wide_artificial_train:
+
+
+v2.2:
+  AUTO_LABEL_WIDE_PACK_READ:
+    # UT126:
+    #   FSD_Site_UT126_20220909_v5a_autolabel_freespace_11v:
+    #   FSD_Site_UT126_20220812_v5a_autolabel_freespace_11v:
+    4GD36:
+      FSD_Site_4GD36_20220531_v5a_autolabel_freespace:
+      FSD_Site_4GD36_20220610_v5a_autolabel_freespace:
+    UT0Q9:
+      FSD_Site_UT0Q9_20220622_v5a_autolabel_freespace:
+      FSD_Site_UT0Q9_20220520_v5a_autolabel_freespace:
+    # UT263:
+    #   FSD_Site_UT263_20220924_v5a_autolabel_freespace_11v:
+    # UTHS6:
+    #   FSD_Site_UTHS6_20220915_v5a_autolabel_freespace:
+
+# 7v BYD data with wide range gt (-51.2, -80.0, 153.6, 80.0)
+v3.1:
+  BYD_WIDE:
+    BYD18:
+      FSD_Site_BYD18_20221114_v5a_autolabel_freespace_7v:
+
+# 7v BYD data + 6v/11v auto label
+v3.2:
+  BYD_WIDE:
+    BYD18:
+      FSD_Site_BYD18_20221114_v5a_autolabel_freespace_7v:
+  AUTO_LABEL_WIDE_PACK_READ:
+    UT126:
+      FSD_Site_UT126_20220909_v5a_autolabel_freespace_11v:
+      FSD_Site_UT126_20220812_v5a_autolabel_freespace_11v:
+    4GD36:
+      FSD_Site_4GD36_20220531_v5a_autolabel_freespace:
+      FSD_Site_4GD36_20220610_v5a_autolabel_freespace:
+    UT0Q9:
+      FSD_Site_UT0Q9_20220622_v5a_autolabel_freespace:
+      FSD_Site_UT0Q9_20220520_v5a_autolabel_freespace:
+    UT263:
+      FSD_Site_UT263_20220924_v5a_autolabel_freespace_11v:
+    UTHS6:
+      FSD_Site_UTHS6_20220915_v5a_autolabel_freespace:
+
+# 7v BYD data + optimized 6v/11v auto label
+v3.3:
+  BYD_WIDE:
+    BYD72:
+      FSD_Site_BYD72_20221128_v5a_v2_autolabel_freespace_7v:
+        sample_interval: 3
+  AUTO_LABEL_WIDE_PACK_READ_V2:
+    4GD36:
+      FSD_Site_4GD36_20220610_v5a_autolabel_freespace:
+    UT0Q9:
+      FSD_Site_UT0Q9_20220622_v5a_autolabel_freespace:
+      FSD_Site_UT0Q9_20220520_v5a_autolabel_freespace:
+
+# Filter v3.3 bad data + quality_check_v1 byd data BYD19_20221108
+v3.4:
+  FILTER_V4.7_BAD_DATA:
+    4GD36:
+      FSD_Site_4GD36_20220610_v5a_autolabel_freespacescreen_iou_0309:
+    BYD19:
+      20230203_FSD_Site_BYD19_20221108_v5a_autolabel_freespace_drop_stillness_7v_after_rejectscreen_iou_0309:
+    BYD72:
+      FSD_Site_BYD72_20221128_v5a_v2_autolabel_freespace_7vscreen_iou_0309:
+        sample_interval: 3
+    UT0Q9:
+      FSD_Site_UT0Q9_20220520_v5a_autolabel_freespacescreen_iou_0309:
+      FSD_Site_UT0Q9_20220622_v5a_autolabel_freespacescreen_iou_0309:
+
+# 11v数据用于鱼眼vimask模型
+v3.5_11v:
+  FILTER_FSV4.0_BAD_DATA_11v:
+    UT0F3:
+      20230423_UT0F3_20230320_D_v5a_autolabel_freespace_11v_filter_vismask: # 2823, park
+        sample_interval: 2
+    UT1R3:
+      20230407_UT1R3_20230220_D_v5a_autolabel_freespace_11v_filter_vismask: # 1933, park
+        sample_interval: 2
+    LS830:
+      20230427_LS830_20230303_D_v5a_autolabel_freespace_11v_filter_vismask: # 1319, park
+    LX165:
+      20230327_FSD_Site_LX165_20230227_v5a_autolabel_freespace_11v_filter_vismask:  # 1680
+      20230327_FSD_Site_LX165_20230308_v5a_autolabel_freespace_11v_filter_vismask:  # 660
+  PARKING_QUALITY_CHECK_V1_filter_ele_vismask:
+    UT126:
+      20230407_UT126_20230210_D_v5a_autolabel_freespace_11v:  # 2076, park
+
+v3.5_11v_temporal:
+  SOURCE_VISMASK_V5.0.0_FISHEYE_DATA:
+    UT0F3:
+      20230423_UT0F3_20230320_D_v5a_autolabel_freespace_11v_filter_vismask_sequential_val: # 2116, park
+    UT1R3:
+      20230407_UT1R3_20230220_D_v5a_autolabel_freespace_11v_filter_vismask_sequential_val: # 1290, park
+    LS830:
+      20230427_LS830_20230303_D_v5a_autolabel_freespace_11v_filter_vismask_sequential_val: # 189, park
+    LX165:
+      20230327_FSD_Site_LX165_20230227_v5a_autolabel_freespace_11v_filter_vismask_sequential_val:  # 990
+      20230327_FSD_Site_LX165_20230308_v5a_autolabel_freespace_11v_filter_vismask_sequential_val:  # 225
+    UT126:
+      20230407_UT126_20230210_D_v5a_autolabel_freespace_11v_sequential_val:  # 1597, park
+
+v3.6_11v_driving_temporal:
+  DRIVING_PARKING_TEST_SET:
+    LS912:
+      FSD_Site_LS912_20230404_drive_zhuxian_v5a_11v_filter_vismask_total_gt:  # 7411
+        sample_interval: 3
+      FSD_Site_LS912_20230220_sequential_drive_zhuxian_v5a_11v_filter_vismask_filter_vismask_total_gt:  # 3240
+    LX165:
+      FSD_Site_LX165_20230302_drive_zhuxian_v5a_sequential_11v:  # 9603
+        sample_interval: 4
+v3.6_11v_parking_temporal:
+  DRIVING_PARKING_TEST_SET:
+    UT0F3:
+      20230423_UT0F3_20230320_D_v5a_autolabel_freespace_11v_filter_vismask_filter_vismask_total_gt:  # 2009
+    UT1R3:
+      20230407_UT1R3_20230220_D_v5a_autolabel_freespace_11v_filter_vismask_filter_vismask_total_gt:  # 1162
+    UT126:
+      20230407_UT126_20230210_D_v5a_autolabel_freespace_11v_filter_vismask_total_gt:  # 1448
+    UT370:
+      UT370_20230518_D_parking_zhuxian_v5a_11v_filter_vismask_total_gt:  # 2401
+    UT263:
+      UT263_20230301_D_parking_zhuxian_v5a_11v_filter_vismask_total_gt:  # 1315
+
+# 更新LS测试集
+v3.7_11v_driving_temporal:
+  DRIVING_PARKING_TEST_SET:
+    LS912:
+      FSD_Site_LS912_20230404_drive_zhuxian_v5a_11v_filter_vismask_total_gt:  # 7411
+        sample_interval: 3
+      FSD_Site_LS912_20230327_drive_zhuxian_v5a_11v_fliter_vismask_sequential:  # 8387
+        sample_interval: 3
+    LX165:
+      FSD_Site_LX165_20230302_drive_zhuxian_v5a_sequential_11v:  # 9603
+        sample_interval: 4
+v3.7_11v_parking_temporal:
+  DRIVING_PARKING_TEST_SET:
+    UT0F3:
+      20230423_UT0F3_20230320_D_v5a_autolabel_freespace_11v_filter_vismask_filter_vismask_total_gt:  # 2009
+    UT1R3:
+      20230407_UT1R3_20230220_D_v5a_autolabel_freespace_11v_filter_vismask_filter_vismask_total_gt:  # 1162
+    UT126:
+      20230407_UT126_20230210_D_v5a_autolabel_freespace_11v_filter_vismask_total_gt:  # 1448
+    UT370:
+      UT370_20230518_D_parking_zhuxian_v5a_11v_filter_vismask_total_gt:  # 2401
+    UT263:
+      UT263_20230301_D_parking_zhuxian_v5a_11v_filter_vismask_total_gt:  # 1315
+    LS830:
+      LS830_20230414_D_parking_zhuxian_v5a_11v_fliter_vismask_sequential: # 2207
+
+# EK underground val sets
+# underground: 6728 frames
+v1.0.0_ek_parking_underground:
+  parking_20240123:
+    HBEK383:
+      HBEK383_20231207_underground: null
+      HBEK383_20231221_underground: null
+      HBEK383_20231222_underground: null
+      HBEK383_20231223_underground: null
+      HBEK383_20231224_underground: null
+      HBEK383_20231210_underground: null
+      HBEK383_20231211_underground: null
+      HBEK383_20231212_underground: null
+      HBEK383_20231213_underground: null
+      HBEK383_20231214_underground: null
+      HBEK383_20231216_underground: null
+      HBEK383_20231217_underground: null
+      HBEK383_20231218_underground: null
+      HBEK383_20231219_underground: null
+      HBEK383_20231220_underground: null
+
+# EK ground val sets
+# ground: 554 frames
+v1.0.0_ek_parking_ground:
+  parking_20240123:
+    HBEK383:
+      HBEK383_20231206_ground: null
+      HBEK383_20231207_ground: null
+      HBEK383_20231209_ground: null
+      HBEK383_20231210_ground: null

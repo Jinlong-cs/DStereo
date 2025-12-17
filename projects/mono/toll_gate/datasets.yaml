@@ -1,0 +1,43 @@
+tollgate_4pe:
+  - batch_size: 13
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/super_drive/202303/202303_v1.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/super_drive/202303/202303_v1.rec
+    val_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/202212/202212.json
+    val_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/202212/202212.rec
+  - batch_size: 13
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/202302/202302.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/202302/202302.rec
+    val_json: null
+    val_rec: null
+  - batch_size: 20
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/202212/202212.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/202212/202212.rec
+    val_json: null
+    val_rec: null
+  - batch_size: 120
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/empty/empty.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/empty/empty.rec
+    val_json: null
+    val_rec: null
+  - batch_size: 111
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/empty/empty_v2.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/empty/empty_v2.rec
+    val_json: null
+    val_rec: null
+  - batch_size: 190
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/ori/ori.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/ori/ori.rec
+    val_json: null
+    val_rec: null
+  - batch_size: 260
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/super_drive/202304/202304_v1.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/super_drive/202304/202304_v1.rec
+    val_json: null
+    val_rec: null  
+  - batch_size: 230
+    train_json: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/clip/clip.json
+    train_rec: /ziyang02.wang/dataset/rec/Toll_pole/gongyong/clip/clip.rec
+    val_json: null
+    val_rec: null
+
+

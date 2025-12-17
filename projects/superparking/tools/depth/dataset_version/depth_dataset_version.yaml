@@ -1,0 +1,402 @@
+
+superparking:
+  mini_test:
+    train:
+      data_version:
+        mini:
+          - UT363
+    val:
+      data_version:
+        mini:
+          - UT363
+  v0.5.0:
+    train:
+      data_version:
+        v04:
+          - UT363
+        v05:
+          - JL661
+          - UT363
+    val:
+      data_version:
+        v04:
+          - UT363
+        v05:
+          - JL661
+          - UT363
+
+  train_all_front_val_right:
+    train:
+      data_version:
+        all_front_view:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+  train_all_rear_val_right:
+    train:
+      data_version:
+        all_rear_view:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+  train_all_left_val_right:
+    train:
+      data_version:
+        all_left_view:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+  train_all_right_val_left:
+    train:
+      data_version:
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_left_view:
+          - JL661
+          - UT299
+          - UT363
+  train_1%4_allview_val_rear:   # val front or rear or left or right
+    train:
+      data_version:
+        1/4_allview:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_left_view:          # all_rear_view  all_left_view  all_right_view
+          - JL661
+          - UT299
+          - UT363
+  train_all_data_val_rear:
+    train:
+      data_version:
+        all_rear_view:
+          - JL661
+          - UT299
+          - UT363
+        all_front_view:
+          - JL661
+          - UT299
+          - UT363
+        all_left_view:
+          - JL661
+          - UT299
+          - UT363
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_right_view:          #all_rear_view  all_left_view  all_right_view
+          - JL661
+          - UT299
+          - UT363
+  train_all_data_val_all_data:
+    train:
+      data_version:
+        all_rear_view:
+          - JL661
+          - UT299
+          - UT363
+        all_front_view:
+          - JL661
+          - UT299
+          - UT363
+        all_left_view:
+          - JL661
+          - UT299
+          - UT363
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_rear_view:
+          - JL661
+          - UT299
+          - UT363
+        all_front_view:
+          - JL661
+          - UT299
+          - UT363
+        all_left_view:
+          - JL661
+          - UT299
+          - UT363
+        all_right_view:
+          - JL661
+          - UT299
+          - UT363
+  train_front+rear_val_front:
+    train:
+      data_version:
+        all_front+rear:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_front_view:           # all_rear_view
+          - JL661
+          - UT299
+          - UT363
+  train_left+right_val_front:
+    train:
+      data_version:
+        all_left+right:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_front_view:           # all_right_view
+          - JL661
+          - UT299
+          - UT363
+  train_1/4_front+rear_val_front:
+    train:
+      data_version:
+        1/4_front+rear:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_front_view:           # all_rear_view
+          - JL661
+          - UT299
+          - UT363
+  train_1/4_left+right_val_left:
+    train:
+      data_version:
+        1/4_left+right:
+          - JL661
+          - UT299
+          - UT363
+    val:
+      data_version:
+        all_left_view:            # all_left_view
+          - JL661
+          - UT299
+          - UT363
+  camera_6cm_train1_val1:
+    train:
+      data_version:
+        camera_6cm_dataset_1:
+          - UT299
+          - UT363
+          - JL661
+    val:
+      data_version:
+        camera_6cm_dataset_1:
+          - UT299
+          - UT363
+          - JL661
+  camera_6cm_train2_val2:
+    train:
+      data_version:
+        camera_6cm_dataset_2:
+          - UT299
+          - UT363
+    val:
+      data_version:
+        camera_6cm_dataset_2:
+          - UT299
+          - UT363
+  camera_6cm_train1_val2:
+    train:
+      data_version:
+        camera_6cm_dataset_1:
+          - UT299
+          - UT363
+          - JL661
+    val:
+      data_version:
+        camera_6cm_dataset_2:
+          - UT299
+          - UT363
+  camera_6cm_train2_val1:
+    train:
+      data_version:
+        camera_6cm_dataset_2:
+          - UT299
+          - UT363
+    val:
+      data_version:
+        camera_6cm_dataset_1:
+          - UT299
+          - UT363
+          - JL661
+  camera_10cm_train1_val1:
+    train:
+      data_version:
+        camera_10cm_dataset_1:
+          - JL661
+    val:
+      data_version:
+        camera_10cm_dataset_1:
+          - JL661
+  camera_10cm_train2_val2:
+    train:
+      data_version:
+        camera_10cm_dataset_2:
+          - UT363
+    val:
+      data_version:
+        camera_10cm_dataset_2:
+          - UT363
+  camera_10cm_train1_val2:
+    train:
+      data_version:
+        camera_10cm_dataset_1:
+          - JL661
+    val:
+      data_version:
+        camera_10cm_dataset_2:
+          - UT363
+  camera_10cm_train2_val1:
+    train:
+      data_version:
+        camera_10cm_dataset_2:
+          - UT363
+    val:
+      data_version:
+        camera_10cm_dataset_1:
+          - JL661
+  camera_2cm_train1_val1:
+    train:
+      data_version:
+        camera_2cm_dataset_1:
+          - UT299
+          - UT363
+    val:
+      data_version:
+        camera_2cm_dataset_1:
+          - UT299
+          - UT363
+  camera_2cm_train1_val2:
+    train:
+      data_version:
+        camera_2cm_dataset_1:
+          - UT299
+          - UT363
+    val:
+      data_version:
+        camera_2cm_dataset_2:
+          - UT363
+  camera_2cm_train2_val2:
+    train:
+      data_version:
+        camera_2cm_dataset_2:
+          - UT363
+    val:
+      data_version:
+        camera_2cm_dataset_2:
+          - UT363
+  camera_2cm_train2_val1:
+    train:
+      data_version:
+        camera_2cm_dataset_2:
+          - UT363
+    val:
+      data_version:
+        camera_2cm_dataset_1:
+          - UT299
+          - UT363
+  pitch_1.2_train1_val1:
+    train:
+      data_version:
+        pitch_1.2_dataset_1:
+          - UT363
+    val:
+      data_version:
+        pitch_1.2_dataset_1:
+          - UT363
+  pitch_1.2_train1_val2:
+    train:
+      data_version:
+        pitch_1.2_dataset_1:
+          - UT363
+    val:
+      data_version:
+        pitch_1.2_dataset_2:
+          - UT363
+  pitch_1.2_train2_val2:
+    train:
+      data_version:
+        pitch_1.2_dataset_2:
+          - UT363
+    val:
+      data_version:
+        pitch_1.2_dataset_2:
+          - UT363
+  pitch_1.2_train2_val1:
+    train:
+      data_version:
+        pitch_1.2_dataset_2:
+          - UT363
+    val:
+      data_version:
+        pitch_1.2_dataset_1:
+          - UT363
+  pitch_2_train1_val1:
+    train:
+      data_version:
+        pitch_2_dataset_1:
+          - JL661
+    val:
+      data_version:
+        pitch_2_dataset_1:
+          - JL661
+  pitch_2_train1_val2:
+    train:
+      data_version:
+        pitch_2_dataset_1:
+          - JL661
+    val:
+      data_version:
+        pitch_2_dataset_2:
+          - JL661
+  pitch_2_train2_val2:
+    train:
+      data_version:
+        pitch_2_dataset_2:
+          - JL661
+    val:
+      data_version:
+        pitch_2_dataset_2:
+          - JL661
+  pitch_2_train2_val1:
+    train:
+      data_version:
+        pitch_2_dataset_2:
+          - JL661
+    val:
+      data_version:
+        pitch_2_dataset_1:
+          - JL661

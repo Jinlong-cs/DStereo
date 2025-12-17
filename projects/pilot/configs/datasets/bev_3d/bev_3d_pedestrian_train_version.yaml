@@ -1,0 +1,2053 @@
+# group data version
+# v0.0.1 using for pipeline_test
+
+pipeline_test:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+v0.0.1_11v:
+  BEIJING:
+    UTHS6:
+      UTHS6_20220611:
+        sample_interval: 5
+    UT126:
+      UT126_20220803_D:
+
+v1.0.1:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+
+v1.1.0_10v:
+  BEIJING:
+    DG201:
+      DG201_20210513_20210519:
+      DG201_20210520_20210531:
+
+# 存在标定参数不准以及GT有错误
+v1.0.2_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220902_20220913:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 1
+    UT263:
+      UT263_20220830_20220925:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220611_20220925:
+        sample_interval: 1
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220813_20221030:
+          sample_interval: 1
+    UT263:
+      UT263_20220822_20220908:
+          sample_interval: 1
+      UT263_20220909_20221014:
+          sample_interval: 1
+      UT263_20221022_20221031:
+          sample_interval: 1      
+    UTHS6:
+      UTHS6_20221021_20221026:
+          sample_interval: 1
+
+v1.0.3_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220902_20220913:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 1
+      UT126_20220901_20220920:
+        sample_interval: 1
+    UT263:
+      UT263_20220830_20220925:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220611_20220614:
+        sample_interval: 1
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901:
+        sample_interval: 1
+      UT126_20220906:
+        sample_interval: 1
+      UT126_20220920_20220923:
+        sample_interval: 1
+      UT126_20220924_20220927:
+        sample_interval: 1
+      UT126_20220929_20221006:
+        sample_interval: 1
+      UT126_20221007_20221010:
+        sample_interval: 1
+      UT126_20221011_20221014:
+        sample_interval: 1
+      UT126_20221015_20221018:
+        sample_interval: 1
+      UT126_20221019_20221022:
+        sample_interval: 1
+      UT126_20221023_20221026:
+        sample_interval: 1
+      UT126_20221027_20221030:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825:
+        sample_interval: 1
+      UT263_20220826-20220830: 
+        sample_interval: 1
+      UT263_20220831:
+        sample_interval: 1
+      UT263_20220923-20220926:
+        sample_interval: 1
+      UT263_20221004-20221005:
+        sample_interval: 1
+      UT263_20221028_20221031:
+        sample_interval: 1
+
+v1.0.4_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220902_20220913:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 1
+      UT126_20220901_20220920:
+        sample_interval: 1
+    UT263:
+      UT263_20220830_20220925:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220611_20220614:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112:
+        sample_interval: 1
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+      65U3D_20210725_20210803:
+      65U3D_20210928_20211006:
+      65U3D_20220123_20220126:
+      65U3D_20210801_20210806:
+      65U3D_20211008_20211011:
+      65U3D_20211004:
+      65U3D_20220117:
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+      30C1G_20220117_20220207:
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 6
+      H3165_20211119-20211130:
+        sample_interval: 6
+      H3165_20211202-20211209:
+        sample_interval: 6
+      H3165_20220110-20220117:
+      H3165_20220105_20220304:
+    25U7C:
+      25U7C_20211204_20211207:
+      25U7C_20211209_20211215:
+    RX141:
+      RX141_20211104_20211106:
+      RX141_20211120_20211203:
+    RX444:
+      RX444_20211113_20211116:
+      RX444_20211122_20211124:
+      RX444_20211125_20211126:
+    RX633:
+      RX633_20211208_20211215:
+      RX633_20211216_20211220:
+    # TODO (jiawei02.wang): 
+    # JL773,DG201,UT1R3,DG102 have some packaging error.
+    # They will be deleted in the next version.
+    JL773:
+      JL773_20220218_20220225:
+    DG201:
+      DG201_20220225_20220304:
+      DG201_20220222_20220224:
+    UT1R3:
+      UT1R3_20220303_20220311:
+    DG102:
+      DG102_20220219_20220301:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901:
+        sample_interval: 1
+      UT126_20220906:
+        sample_interval: 1
+      UT126_20220920_20220923:
+        sample_interval: 1
+      UT126_20220924_20220927:
+        sample_interval: 1
+      UT126_20220929_20221006:
+        sample_interval: 1
+      UT126_20221007_20221010:
+        sample_interval: 1
+      UT126_20221011_20221014:
+        sample_interval: 1
+      UT126_20221015_20221018:
+        sample_interval: 1
+      UT126_20221019_20221022:
+        sample_interval: 1
+      UT126_20221023_20221026:
+        sample_interval: 1
+      UT126_20221027_20221030:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825:
+        sample_interval: 1
+      UT263_20220826-20220830: 
+        sample_interval: 1
+      UT263_20220831:
+        sample_interval: 1
+      UT263_20220923-20220926:
+        sample_interval: 1
+      UT263_20221004-20221005:
+        sample_interval: 1
+      UT263_20221028_20221031:
+        sample_interval: 1
+
+v1.0.5_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924:
+        sample_interval: 1
+      UT0Q9_20221010_20221020:
+        sample_interval: 1
+      UT0Q9_20220902_20220913:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 1
+      UT126_20220901_20220920:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009:
+        sample_interval: 1
+      UT263_20221010_20221016:
+        sample_interval: 1
+      UT263_20220830_20220925:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809:
+        sample_interval: 1
+      UTHS6_20221018_20221023:
+        sample_interval: 1
+      UTHS6_20220611_20220614:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112:
+        sample_interval: 1
+      LS912_20221113_20221115:
+        sample_interval: 1
+      LS912_20221106-20221108:
+        sample_interval: 1
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+      65U3D_20210725_20210803:
+      65U3D_20210928_20211006:
+      65U3D_20220123_20220126:
+      65U3D_20210801_20210806:
+      65U3D_20211008_20211011:
+      65U3D_20211004:
+      65U3D_20220117:
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+      30C1G_20220117_20220207:
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 6
+      H3165_20211119-20211130:
+        sample_interval: 6
+      H3165_20211202-20211209:
+        sample_interval: 6
+      H3165_20220110-20220117:
+      H3165_20220105_20220304:
+    25U7C:
+      25U7C_20211204_20211207:
+      25U7C_20211209_20211215:
+    RX141:
+      RX141_20211104_20211106:
+      RX141_20211120_20211203:
+    RX444:
+      RX444_20211113_20211116:
+      RX444_20211122_20211124:
+      RX444_20211125_20211126:
+    RX633:
+      RX633_20211208_20211215:
+      RX633_20211216_20211220:
+    # TODO (jiawei02.wang): 
+    # JL773,DG201,UT1R3,DG102 have some packaging error.
+    # They will be deleted in the next version.
+    JL773:
+      JL773_20220218_20220225:
+    DG201:
+      DG201_20220225_20220304:
+      DG201_20220222_20220224:
+    UT1R3:
+      UT1R3_20220303_20220311:
+    DG102:
+      DG102_20220219_20220301:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901:
+        sample_interval: 1
+      UT126_20220906:
+        sample_interval: 1
+      UT126_20220920_20220923:
+        sample_interval: 1
+      UT126_20220924_20220927:
+        sample_interval: 1
+      UT126_20220929_20221006:
+        sample_interval: 1
+      UT126_20221007_20221010:
+        sample_interval: 1
+      UT126_20221011_20221014:
+        sample_interval: 1
+      UT126_20221015_20221018:
+        sample_interval: 1
+      UT126_20221019_20221022:
+        sample_interval: 1
+      UT126_20221023_20221026:
+        sample_interval: 1
+      UT126_20221027_20221030:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825:
+        sample_interval: 1
+      UT263_20220826-20220830: 
+        sample_interval: 1
+      UT263_20220831:
+        sample_interval: 1
+      UT263_20220923-20220926:
+        sample_interval: 1
+      UT263_20221004-20221005:
+        sample_interval: 1
+      UT263_20221028_20221031:
+        sample_interval: 1
+
+v1.0.5_11v_e2e_without_6v:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924:
+        sample_interval: 1
+      UT0Q9_20221010_20221020:
+        sample_interval: 1
+      UT0Q9_20220902_20220913:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 1
+      UT126_20220901_20220920:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009:
+        sample_interval: 1
+      UT263_20221010_20221016:
+        sample_interval: 1
+      UT263_20220830_20220925:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809:
+        sample_interval: 1
+      UTHS6_20221018_20221023:
+        sample_interval: 1
+      UTHS6_20220611_20220614:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112:
+        sample_interval: 1
+      LS912_20221113_20221115:
+        sample_interval: 1
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901:
+        sample_interval: 1
+      UT126_20220906:
+        sample_interval: 1
+      UT126_20220920_20220923:
+        sample_interval: 1
+      UT126_20220924_20220927:
+        sample_interval: 1
+      UT126_20220929_20221006:
+        sample_interval: 1
+      UT126_20221007_20221010:
+        sample_interval: 1
+      UT126_20221011_20221014:
+        sample_interval: 1
+      UT126_20221015_20221018:
+        sample_interval: 1
+      UT126_20221019_20221022:
+        sample_interval: 1
+      UT126_20221023_20221026:
+        sample_interval: 1
+      UT126_20221027_20221030:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825:
+        sample_interval: 1
+      UT263_20220826-20220830: 
+        sample_interval: 1
+      UT263_20220831:
+        sample_interval: 1
+      UT263_20220923-20220926:
+        sample_interval: 1
+      UT263_20221004-20221005:
+        sample_interval: 1
+      UT263_20221028_20221031:
+        sample_interval: 1
+
+v1.0.6_11v_e2e_without_6v:
+  # GT4D_11V:
+  #   UT0Q9:
+  #     UT0Q9-20221126:
+  #       sample_interval: 1
+  #     UT0Q9-20221127:
+  #       sample_interval: 1
+  #   UT1R3:
+  #     UT1R3-20221126:
+  #       sample_interval: 1
+  #   UT263:
+  #     UT263-20221118:
+  #       sample_interval: 1
+  #     UT263-20221119:
+  #       sample_interval: 1
+  #     UT263-20221120:
+  #       sample_interval: 1
+  #   UT126:
+  #     UT126-20221112:
+  #       sample_interval: 1
+  #     UT126-20221113:
+  #       sample_interval: 1
+  BEIJING_7v:
+    BYD72:
+      BYD72_20221109:
+        sample_interval: 1
+      BYD72_20221128:
+        sample_interval: 1
+    BYD19:
+      BYD19_20221106:
+        sample_interval: 1
+      BYD19_20221211:
+        sample_interval: 1
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924:
+        sample_interval: 1
+      UT0Q9_20221010_20221020:
+        sample_interval: 1
+      UT0Q9_20220902_20220913:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 1
+      UT126_20220901_20220920:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009:
+        sample_interval: 1
+      UT263_20221010_20221016:
+        sample_interval: 1
+      UT263_20220830_20220925:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809:
+        sample_interval: 1
+      UTHS6_20221018_20221023:
+        sample_interval: 1
+      UTHS6_20220611_20220614:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112:
+        sample_interval: 1
+      LS912_20221113_20221115:
+        sample_interval: 1
+      LS912_20221106-20221108:
+        sample_interval: 1
+      LS912_20221118:
+        sample_interval: 5
+      LS912_20221117_20221123:
+        sample_interval: 5
+      LS912_20221127_20221130:
+        sample_interval: 5
+  BEIJING_5v:
+    BYD18:
+      data_BYD18_20221114_v03:
+      data_BYD18_20221117_v03:
+      data_BYD18_20221118_v03:
+      data_BYD18_20221119_v03:
+      data_BYD18_20221120_v03:
+      data_BYD18_20221121_v03:
+      data_BYD18_20221122_v03:
+      data_BYD18_20221123_v03:
+      data_BYD18_20221124_v03:
+      data_BYD18_20221125_v03:
+    BYD19:
+      data_BYD19_20221103_v03:
+      data_BYD19_20221104_v03:
+      data_BYD19_20221105_v03:
+      data_BYD19_20221106_v03:
+      data_BYD19_20221107_v03:
+      data_BYD19_20221108_v03:
+      data_BYD19_20221109_v03:
+      data_BYD19_20221110_v03:
+      data_BYD19_20221111_v03:
+      data_BYD19_20221112_v03:
+      data_BYD19_20221113_v03:
+      data_BYD19_20221117_v03:
+      data_BYD19_20221118_v03:
+      data_BYD19_20221119_v03:
+      data_BYD19_20221120_v03:
+      data_BYD19_20221121_v03:
+      data_BYD19_20221122_v03:
+      data_BYD19_20221123_v03:
+      data_BYD19_20221124_v03:
+      data_BYD19_20221125_v03:
+    BYD72:
+      data_BYD72_20221125_v03:
+      data_BYD72_20221125_v03:
+      data_BYD72_20221125_v03:
+      data_BYD72_20221125_v03:
+      data_BYD72_20221104_v03:
+      data_BYD72_20221110_v03:
+      data_BYD72_20221111_v03:
+      data_BYD72_20221112_v03:
+      data_BYD72_20221113_v03:
+      data_BYD72_20221114_v03:
+      data_BYD72_20221118_v03:
+      data_BYD72_20221120_v03:
+      data_BYD72_20221121_v03:
+      data_BYD72_20221122_v03:
+      data_BYD72_20221123_v03:
+      data_BYD72_20221125_v03:
+      data_BYD72_20221126_v03:
+      data_BYD72_20221128_v03:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901:
+        sample_interval: 1
+      UT126_20220906:
+        sample_interval: 1
+      UT126_20220920_20220923:
+        sample_interval: 1
+      UT126_20220924_20220927:
+        sample_interval: 1
+      UT126_20220929_20221006:
+        sample_interval: 1
+      UT126_20221007_20221010:
+        sample_interval: 1
+      UT126_20221011_20221014:
+        sample_interval: 1
+      UT126_20221015_20221018:
+        sample_interval: 1
+      UT126_20221019_20221022:
+        sample_interval: 1
+      UT126_20221023_20221026:
+        sample_interval: 1
+      UT126_20221027_20221030:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825:
+        sample_interval: 1
+      UT263_20220826-20220830: 
+        sample_interval: 1
+      UT263_20220831:
+        sample_interval: 1
+      UT263_20220923-20220926:
+        sample_interval: 1
+      UT263_20221004-20221005:
+        sample_interval: 1
+      UT263_20221028_20221031:
+        sample_interval: 1
+
+release_v4.10.0:
+  BEIJING_7v:
+    BYD72:
+      BYD72_20221109:
+        sample_interval: 3
+      BYD72_20221128:
+        sample_interval: 3
+    BYD19:
+      BYD19_20221106:
+        sample_interval: 3
+      BYD19_20221211:
+        sample_interval: 3
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924:
+        sample_interval: 3
+      UT0Q9_20221010_20221020:
+        sample_interval: 3
+      UT0Q9_20220902_20220913:
+        sample_interval: 3
+    UT126:
+      UT126_20220803_20220925:
+        sample_interval: 3
+      UT126_20220901_20220920:
+        sample_interval: 3
+    UT263:
+      UT263_20220929_20221009:
+        sample_interval: 3
+      UT263_20221010_20221016:
+        sample_interval: 3
+      UT263_20220830_20220925:
+        sample_interval: 3
+    UTHS6:
+      UTHS6_20220801_20220809:
+        sample_interval: 3
+      UTHS6_20221018_20221023:
+        sample_interval: 3
+      UTHS6_20220611_20220614:
+        sample_interval: 3
+    UT1R3:
+      UT1R3_20221108_20221112:
+        sample_interval: 3
+    LS912:
+      LS912_20221107_20221112:
+        sample_interval: 3
+      LS912_20221113_20221115:
+        sample_interval: 3
+      LS912_20221106-20221108:
+        sample_interval: 3
+      LS912_20221118:
+        sample_interval: 15
+      LS912_20221117_20221123:
+        sample_interval: 15
+      LS912_20221127_20221130:
+        sample_interval: 15
+  BEIJING_5v:
+    BYD18:
+      data_BYD18_20221114_v03:
+        sample_interval: 3
+      data_BYD18_20221117_v03:
+        sample_interval: 3
+      data_BYD18_20221118_v03:
+        sample_interval: 3
+      data_BYD18_20221119_v03:
+        sample_interval: 3
+      data_BYD18_20221120_v03:
+        sample_interval: 3
+      data_BYD18_20221121_v03:
+        sample_interval: 3
+      data_BYD18_20221122_v03:
+        sample_interval: 3
+      data_BYD18_20221123_v03:
+        sample_interval: 3
+      data_BYD18_20221124_v03:
+        sample_interval: 3
+      data_BYD18_20221125_v03:
+        sample_interval: 3
+    BYD19:
+      data_BYD19_20221103_v03:
+        sample_interval: 3
+      data_BYD19_20221104_v03:
+        sample_interval: 3
+      data_BYD19_20221105_v03:
+        sample_interval: 3
+      data_BYD19_20221106_v03:
+        sample_interval: 3
+      data_BYD19_20221107_v03:
+        sample_interval: 3
+      data_BYD19_20221108_v03:
+        sample_interval: 3
+      data_BYD19_20221109_v03:
+        sample_interval: 3
+      data_BYD19_20221110_v03:
+        sample_interval: 3
+      data_BYD19_20221111_v03:
+        sample_interval: 3
+      data_BYD19_20221112_v03:
+        sample_interval: 3
+      data_BYD19_20221113_v03:
+        sample_interval: 3
+      data_BYD19_20221117_v03:
+        sample_interval: 3
+      data_BYD19_20221118_v03:
+        sample_interval: 3
+      data_BYD19_20221119_v03:
+        sample_interval: 3
+      data_BYD19_20221120_v03:
+        sample_interval: 3
+      data_BYD19_20221121_v03:
+        sample_interval: 3
+      data_BYD19_20221122_v03:
+        sample_interval: 3
+      data_BYD19_20221123_v03:
+        sample_interval: 3
+      data_BYD19_20221124_v03:
+        sample_interval: 3
+      data_BYD19_20221125_v03:
+        sample_interval: 3
+    BYD72:
+      data_BYD72_20221125_v03:
+        sample_interval: 3
+      data_BYD72_20221125_v03:
+        sample_interval: 3
+      data_BYD72_20221125_v03:
+        sample_interval: 3
+      data_BYD72_20221125_v03:
+        sample_interval: 3
+      data_BYD72_20221104_v03:
+        sample_interval: 3
+      data_BYD72_20221110_v03:
+        sample_interval: 3
+      data_BYD72_20221111_v03:
+        sample_interval: 3
+      data_BYD72_20221112_v03:
+        sample_interval: 3
+      data_BYD72_20221113_v03:
+        sample_interval: 3
+      data_BYD72_20221114_v03:
+        sample_interval: 3
+      data_BYD72_20221118_v03:
+        sample_interval: 3
+      data_BYD72_20221120_v03:
+        sample_interval: 3
+      data_BYD72_20221121_v03:
+        sample_interval: 3
+      data_BYD72_20221122_v03:
+        sample_interval: 3
+      data_BYD72_20221123_v03:
+        sample_interval: 3
+      data_BYD72_20221125_v03:
+        sample_interval: 3
+      data_BYD72_20221126_v03:
+        sample_interval: 3
+      data_BYD72_20221128_v03:
+        sample_interval: 3
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901:
+        sample_interval: 3
+      UT126_20220906:
+        sample_interval: 3
+      UT126_20220920_20220923:
+        sample_interval: 3
+      UT126_20220924_20220927:
+        sample_interval: 3
+      UT126_20220929_20221006:
+        sample_interval: 3
+      UT126_20221007_20221010:
+        sample_interval: 3
+      UT126_20221011_20221014:
+        sample_interval: 3
+      UT126_20221015_20221018:
+        sample_interval: 3
+      UT126_20221019_20221022:
+        sample_interval: 3
+      UT126_20221023_20221026:
+        sample_interval: 3
+      UT126_20221027_20221030:
+        sample_interval: 3
+    UT263:
+      UT263_20220822-20220825:
+        sample_interval: 3
+      UT263_20220826-20220830: 
+        sample_interval: 3
+      UT263_20220831:
+        sample_interval: 3
+      UT263_20220923-20220926:
+        sample_interval: 3
+      UT263_20221004-20221005:
+        sample_interval: 3
+      UT263_20221028_20221031:
+        sample_interval: 3
+
+v1.0.7_11v_e2e_without_6v:
+  BEIJING_7v:
+    # BYD72:
+    #   BYD72_20221109_wide_range:
+    #     sample_interval: 1
+    #   BYD72_20221128_wide_range:
+    #     sample_interval: 1
+    #   BYD72_20221119_20221120_wide_range:
+    #     sample_interval: 1
+    BYD18:
+      BYD18_20221128_20221130_wide_range:
+        sample_interval: 1
+    BYD19:
+      BYD19_20221106_wide_range:
+        sample_interval: 1
+      BYD19_20221128_20221210_wide_range:
+        sample_interval: 1
+      BYD19_20221201_wide_range:
+        sample_interval: 1
+      BYD19_20221211_wide_range:
+        sample_interval: 1
+      BYD19_20221212_wide_range:
+        sample_interval: 1
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924_wide_range:
+        sample_interval: 1
+      UT0Q9_20221010_20221020_wide_range:
+        sample_interval: 1
+      UT0Q9_20220902_20220913_wide_range:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925_wide_range:
+        sample_interval: 1
+      UT126_20220901_20220920_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009_wide_range:
+        sample_interval: 1
+      UT263_20221010_20221016_wide_range:
+        sample_interval: 1
+      UT263_20220830_20220925_wide_range:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809_wide_range:
+        sample_interval: 1
+      UTHS6_20221018_20221023_wide_range:
+        sample_interval: 1
+      UTHS6_20220611_20220614_wide_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112_wide_range:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112_wide_range:
+        sample_interval: 1
+      LS912_20221113_20221115_wide_range:
+        sample_interval: 1
+      LS912_20221106-20221108_wide_range:
+        sample_interval: 1
+      LS912_20221118_wide_range:
+        sample_interval: 5
+      LS912_20221117_20221123_wide_range:
+        sample_interval: 5
+      LS912_20221127_20221130_wide_range:
+        sample_interval: 5
+  BEIJING_5v:
+    BYD18:
+      data_BYD18_20221114_v03_wide_range:
+      data_BYD18_20221117_v03_wide_range:
+      data_BYD18_20221118_v03_wide_range:
+      data_BYD18_20221119_v03_wide_range:
+      data_BYD18_20221120_v03_wide_range:
+      data_BYD18_20221121_v03_wide_range:
+      data_BYD18_20221122_v03_wide_range:
+      data_BYD18_20221123_v03_wide_range:
+      data_BYD18_20221124_v03_wide_range:
+      data_BYD18_20221125_v03_wide_range:
+    BYD19:
+      data_BYD19_20221103_v03_wide_range:
+      data_BYD19_20221104_v03_wide_range:
+      data_BYD19_20221105_v03_wide_range:
+      data_BYD19_20221106_v03_wide_range:
+      data_BYD19_20221107_v03_wide_range:
+      data_BYD19_20221108_v03_wide_range:
+      data_BYD19_20221109_v03_wide_range:
+      data_BYD19_20221110_v03_wide_range:
+      data_BYD19_20221111_v03_wide_range:
+      data_BYD19_20221112_v03_wide_range:
+      data_BYD19_20221113_v03_wide_range:
+      data_BYD19_20221117_v03_wide_range:
+      data_BYD19_20221118_v03_wide_range:
+      data_BYD19_20221119_v03_wide_range:
+      data_BYD19_20221120_v03_wide_range:
+      data_BYD19_20221121_v03_wide_range:
+      data_BYD19_20221122_v03_wide_range:
+      data_BYD19_20221123_v03_wide_range:
+      data_BYD19_20221124_v03_wide_range:
+      data_BYD19_20221125_v03_wide_range:
+    BYD72:
+      data_BYD72_20221104_v03_wide_range:
+      data_BYD72_20221110_v03_wide_range:
+      data_BYD72_20221111_v03_wide_range:
+      data_BYD72_20221112_v03_wide_range:
+      data_BYD72_20221113_v03_wide_range:
+      data_BYD72_20221114_v03_wide_range:
+      data_BYD72_20221118_v03_wide_range:
+      data_BYD72_20221120_v03_wide_range:
+      data_BYD72_20221121_v03_wide_range:
+      data_BYD72_20221122_v03_wide_range:
+      data_BYD72_20221123_v03_wide_range:
+      data_BYD72_20221125_v03_wide_range:
+      data_BYD72_20221126_v03_wide_range:
+      data_BYD72_20221128_v03_wide_range:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901_wide_range:
+        sample_interval: 1
+      UT126_20220906_wide_range:
+        sample_interval: 1
+      UT126_20220920_20220923_wide_range:
+        sample_interval: 1
+      UT126_20220924_20220927_wide_range:
+        sample_interval: 1
+      UT126_20220929_20221006_wide_range:
+        sample_interval: 1
+      UT126_20221007_20221010_wide_range:
+        sample_interval: 1
+      UT126_20221011_20221014_wide_range:
+        sample_interval: 1
+      UT126_20221015_20221018_wide_range:
+        sample_interval: 1
+      UT126_20221019_20221022_wide_range:
+        sample_interval: 1
+      UT126_20221023_20221026_wide_range:
+        sample_interval: 1
+      UT126_20221027_20221030_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825_wide_range:
+        sample_interval: 1
+      UT263_20220826-20220830_wide_range:
+        sample_interval: 1
+      UT263_20220831_wide_range:
+        sample_interval: 1
+      UT263_20220923-20220926_wide_range:
+        sample_interval: 1
+      UT263_20221004-20221005_wide_range:
+        sample_interval: 1
+      UT263_20221028_20221031_wide_range:
+        sample_interval: 1
+
+v1.0.8_11v_e2e_without_6v_wide_range:
+  BEIJING_7v:
+    # BYD72:
+    #   BYD72_20221109_wide_range:
+    #     sample_interval: 1
+    #   BYD72_20221128_wide_range:
+    #     sample_interval: 1
+    #   BYD72_20221119_20221120_wide_range:
+    #     sample_interval: 1
+    BYD18:
+      BYD18_20221128_20221130_wide_range:
+        sample_interval: 1
+      BYD18_20221120_20221122_wide_range:
+        sample_interval: 1
+      BYD18_20221205_wide_range:
+        sample_interval: 1
+      BYD18_20221127_20221128_wide_range:
+          sample_interval: 1
+    BYD19:
+      BYD19_20221106_wide_range:
+        sample_interval: 1
+      BYD19_20221128_20221210_wide_range:
+        sample_interval: 1
+      BYD19_20221201_wide_range:
+        sample_interval: 1
+      BYD19_20221211_wide_range:
+        sample_interval: 1
+      BYD19_20221212_wide_range:
+        sample_interval: 1
+      BYD19_20221114_wide_range:
+        sample_interval: 1
+      BYD19_20221125_20221126_wide_range:
+        sample_interval: 1
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924_wide_range:
+        sample_interval: 1
+      UT0Q9_20221010_20221020_wide_range:
+        sample_interval: 1
+      UT0Q9_20220902_20220913_wide_range:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925_wide_range:
+        sample_interval: 1
+      UT126_20220901_20220920_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009_wide_range:
+        sample_interval: 1
+      UT263_20221010_20221016_wide_range:
+        sample_interval: 1
+      UT263_20220830_20220925_wide_range:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809_wide_range:
+        sample_interval: 1
+      UTHS6_20221018_20221023_wide_range:
+        sample_interval: 1
+      UTHS6_20220611_20220614_wide_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112_wide_range:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112_wide_range:
+        sample_interval: 1
+      LS912_20221113_20221115_wide_range:
+        sample_interval: 1
+      LS912_20221106-20221108_wide_range:
+        sample_interval: 1
+      LS912_20221118_wide_range:
+        sample_interval: 5
+      LS912_20221117_20221123_wide_range:
+        sample_interval: 5
+      LS912_20221127_20221130_wide_range:
+        sample_interval: 5
+  BEIJING_5v:
+    BYD18:
+      data_BYD18_20221114_v03_wide_range:
+      data_BYD18_20221117_v03_wide_range:
+      data_BYD18_20221118_v03_wide_range:
+      data_BYD18_20221119_v03_wide_range:
+      data_BYD18_20221120_v03_wide_range:
+      data_BYD18_20221121_v03_wide_range:
+      data_BYD18_20221122_v03_wide_range:
+      data_BYD18_20221123_v03_wide_range:
+      data_BYD18_20221124_v03_wide_range:
+      data_BYD18_20221125_v03_wide_range:
+    BYD19:
+      data_BYD19_20221103_v03_wide_range:
+      data_BYD19_20221104_v03_wide_range:
+      data_BYD19_20221105_v03_wide_range:
+      data_BYD19_20221106_v03_wide_range:
+      data_BYD19_20221107_v03_wide_range:
+      data_BYD19_20221108_v03_wide_range:
+      data_BYD19_20221109_v03_wide_range:
+      data_BYD19_20221110_v03_wide_range:
+      data_BYD19_20221111_v03_wide_range:
+      data_BYD19_20221112_v03_wide_range:
+      data_BYD19_20221113_v03_wide_range:
+      data_BYD19_20221117_v03_wide_range:
+      data_BYD19_20221118_v03_wide_range:
+      data_BYD19_20221119_v03_wide_range:
+      data_BYD19_20221120_v03_wide_range:
+      data_BYD19_20221121_v03_wide_range:
+      data_BYD19_20221122_v03_wide_range:
+      data_BYD19_20221123_v03_wide_range:
+      data_BYD19_20221124_v03_wide_range:
+      data_BYD19_20221125_v03_wide_range:
+    BYD72:
+      data_BYD72_20221104_v03_wide_range:
+      data_BYD72_20221110_v03_wide_range:
+      data_BYD72_20221111_v03_wide_range:
+      data_BYD72_20221112_v03_wide_range:
+      data_BYD72_20221113_v03_wide_range:
+      data_BYD72_20221114_v03_wide_range:
+      data_BYD72_20221118_v03_wide_range:
+      data_BYD72_20221120_v03_wide_range:
+      data_BYD72_20221121_v03_wide_range:
+      data_BYD72_20221122_v03_wide_range:
+      data_BYD72_20221123_v03_wide_range:
+      data_BYD72_20221125_v03_wide_range:
+      data_BYD72_20221126_v03_wide_range:
+      data_BYD72_20221128_v03_wide_range:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901_wide_range:
+        sample_interval: 1
+      UT126_20220906_wide_range:
+        sample_interval: 1
+      UT126_20220920_20220923_wide_range:
+        sample_interval: 1
+      UT126_20220924_20220927_wide_range:
+        sample_interval: 1
+      UT126_20220929_20221006_wide_range:
+        sample_interval: 1
+      UT126_20221007_20221010_wide_range:
+        sample_interval: 1
+      UT126_20221011_20221014_wide_range:
+        sample_interval: 1
+      UT126_20221015_20221018_wide_range:
+        sample_interval: 1
+      UT126_20221019_20221022_wide_range:
+        sample_interval: 1
+      UT126_20221023_20221026_wide_range:
+        sample_interval: 1
+      UT126_20221027_20221030_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825_wide_range:
+        sample_interval: 1
+      UT263_20220826-20220830_wide_range:
+        sample_interval: 1
+      UT263_20220831_wide_range:
+        sample_interval: 1
+      UT263_20220923-20220926_wide_range:
+        sample_interval: 1
+      UT263_20221004-20221005_wide_range:
+        sample_interval: 1
+      UT263_20221028_20221031_wide_range:
+        sample_interval: 1
+  GT4D_11V:
+    UT0Q9:
+      UT0Q9-20221126_wide_range:
+        sample_interval: 1
+      UT0Q9-20221127_wide_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3-20221126_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263-20221118_wide_range:
+        sample_interval: 1
+      UT263-20221119_wide_range:
+        sample_interval: 1
+      UT263-20221120_wide_range:
+        sample_interval: 1
+    UT126:
+      UT126-20221112_wide_range:
+        sample_interval: 1
+      UT126-20221113_wide_range:
+        sample_interval: 1
+
+v1.0.9_11v_e2e_without_6v_wide_range:
+  BEIJING_7v:
+    # BYD72:
+    #   BYD72_20221109_wide_range:
+    #     sample_interval: 1
+    #   BYD72_20221128_wide_range:
+    #     sample_interval: 1
+    #   BYD72_20221119_20221120_wide_range:
+    #     sample_interval: 1
+    BYD18:
+      BYD18_20221128_20221130_wide_range:
+        sample_interval: 1
+      BYD18_20221120_20221122_wide_range:
+        sample_interval: 1
+      BYD18_20221205_wide_range:
+        sample_interval: 1
+      BYD18_20221127_20221128_wide_range:
+          sample_interval: 1
+    BYD19:
+      BYD19_20221106_wide_range:
+        sample_interval: 1
+      BYD19_20221128_20221210_wide_range:
+        sample_interval: 1
+      BYD19_20221201_wide_range:
+        sample_interval: 1
+      BYD19_20221211_wide_range:
+        sample_interval: 1
+      BYD19_20221212_wide_range:
+        sample_interval: 1
+      BYD19_20221114_wide_range:
+        sample_interval: 1
+      BYD19_20221125_20221126_wide_range:
+        sample_interval: 1
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924_wide_range:
+        sample_interval: 1
+      UT0Q9_20221010_20221020_wide_range:
+        sample_interval: 1
+      UT0Q9_20220902_20220913_wide_range:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925_wide_range:
+        sample_interval: 1
+      UT126_20220901_20220920_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009_wide_range:
+        sample_interval: 1
+      UT263_20221010_20221016_wide_range:
+        sample_interval: 1
+      UT263_20220830_20220925_wide_range:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809_wide_range:
+        sample_interval: 1
+      UTHS6_20221018_20221023_wide_range:
+        sample_interval: 1
+      UTHS6_20220611_20220614_wide_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112_wide_range:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112_wide_range:
+        sample_interval: 1
+      LS912_20221113_20221115_wide_range:
+        sample_interval: 1
+      LS912_20221106-20221108_wide_range:
+        sample_interval: 1
+      LS912_20221118_wide_range:
+        sample_interval: 5
+      LS912_20221117_20221123_wide_range:
+        sample_interval: 5
+      LS912_20221127_20221130_wide_range:
+        sample_interval: 5
+  BEIJING_5v:
+    BYD18:
+      data_BYD18_20221114_v03_wide_range:
+      data_BYD18_20221117_v03_wide_range:
+      data_BYD18_20221118_v03_wide_range:
+      data_BYD18_20221119_v03_wide_range:
+      data_BYD18_20221120_v03_wide_range:
+      data_BYD18_20221121_v03_wide_range:
+      data_BYD18_20221122_v03_wide_range:
+      data_BYD18_20221123_v03_wide_range:
+      data_BYD18_20221124_v03_wide_range:
+      data_BYD18_20221125_v03_wide_range:
+    BYD19:
+      data_BYD19_20221103_v03_wide_range:
+      data_BYD19_20221104_v03_wide_range:
+      data_BYD19_20221105_v03_wide_range:
+      data_BYD19_20221106_v03_wide_range:
+      data_BYD19_20221107_v03_wide_range:
+      data_BYD19_20221108_v03_wide_range:
+      data_BYD19_20221109_v03_wide_range:
+      data_BYD19_20221110_v03_wide_range:
+      data_BYD19_20221111_v03_wide_range:
+      data_BYD19_20221112_v03_wide_range:
+      data_BYD19_20221113_v03_wide_range:
+      data_BYD19_20221117_v03_wide_range:
+      data_BYD19_20221118_v03_wide_range:
+      data_BYD19_20221119_v03_wide_range:
+      data_BYD19_20221120_v03_wide_range:
+      data_BYD19_20221121_v03_wide_range:
+      data_BYD19_20221122_v03_wide_range:
+      data_BYD19_20221123_v03_wide_range:
+      data_BYD19_20221124_v03_wide_range:
+      data_BYD19_20221125_v03_wide_range:
+    BYD72:
+      data_BYD72_20221104_v03_wide_range:
+      data_BYD72_20221110_v03_wide_range:
+      data_BYD72_20221111_v03_wide_range:
+      data_BYD72_20221112_v03_wide_range:
+      data_BYD72_20221113_v03_wide_range:
+      data_BYD72_20221114_v03_wide_range:
+      data_BYD72_20221118_v03_wide_range:
+      data_BYD72_20221120_v03_wide_range:
+      data_BYD72_20221121_v03_wide_range:
+      data_BYD72_20221122_v03_wide_range:
+      data_BYD72_20221123_v03_wide_range:
+      data_BYD72_20221125_v03_wide_range:
+      data_BYD72_20221126_v03_wide_range:
+      data_BYD72_20221128_v03_wide_range:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901_wide_range:
+        sample_interval: 1
+      UT126_20220906_wide_range:
+        sample_interval: 1
+      UT126_20220920_20220923_wide_range:
+        sample_interval: 1
+      UT126_20220924_20220927_wide_range:
+        sample_interval: 1
+      UT126_20220929_20221006_wide_range:
+        sample_interval: 1
+      UT126_20221007_20221010_wide_range:
+        sample_interval: 1
+      UT126_20221011_20221014_wide_range:
+        sample_interval: 1
+      UT126_20221015_20221018_wide_range:
+        sample_interval: 1
+      UT126_20221019_20221022_wide_range:
+        sample_interval: 1
+      UT126_20221023_20221026_wide_range:
+        sample_interval: 1
+      UT126_20221027_20221030_wide_range:
+        sample_interval: 1
+      UT126_20221103_20221113_wide_range:
+        sample_interval: 1
+      UT126_20221106_20221125_wide_range:
+        sample_interval: 5
+    UT263:
+      UT263_20220822-20220825_wide_range:
+        sample_interval: 1
+      UT263_20220826-20220830_wide_range:
+        sample_interval: 1
+      UT263_20220831_wide_range:
+        sample_interval: 1
+      UT263_20220923-20220926_wide_range:
+        sample_interval: 1
+      UT263_20221004-20221005_wide_range:
+        sample_interval: 1
+      UT263_20221028_20221031_wide_range:
+        sample_interval: 1
+      UT263_20221101_20221110_wide_range:
+        sample_interval: 1
+      UT263_20221111_20221121_wide_range:
+        sample_interval: 1
+      UT263_20221122_20221124_wide_range:
+        sample_interval: 1
+      UT263_20221126_20221205_wide_range:
+        sample_interval: 1
+      UT263_20221124_wide_range:
+        sample_interval: 1
+      UT263_20221126_20221202_wide_range:
+        sample_interval: 5
+      UT263_20221210_wide_range:
+        sample_interval: 5
+    LS912:
+      LS912_20221113_wide_range:
+        sample_interval: 1
+  GT4D_11V:
+    UT0Q9:
+      UT0Q9-20221126_wide_range:
+        sample_interval: 1
+      UT0Q9-20221127_wide_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3-20221126_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263-20221118_wide_range:
+        sample_interval: 1
+      UT263-20221119_wide_range:
+        sample_interval: 1
+      UT263-20221120_wide_range:
+        sample_interval: 1
+    UT126:
+      UT126-20221112_wide_range:
+        sample_interval: 1
+      UT126-20221113_wide_range:
+        sample_interval: 1
+
+v1.0.3_11v_e2e_small_range:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220902_20220913_small_range:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925_small_range:
+        sample_interval: 1
+      UT126_20220901_20220920_small_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220830_20220925_small_range:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220611_20220614_small_range:
+        sample_interval: 1  
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901_small_range:
+        sample_interval: 1
+      UT126_20220906_small_range:
+        sample_interval: 1
+      UT126_20220920_20220923_small_range:
+        sample_interval: 1
+      UT126_20220924_20220927_small_range:
+        sample_interval: 1
+      UT126_20220929_20221006_small_range:
+        sample_interval: 1
+      UT126_20221007_20221010_small_range:
+        sample_interval: 1
+      UT126_20221011_20221014_small_range:
+        sample_interval: 1
+      UT126_20221015_20221018_small_range:
+        sample_interval: 1
+      UT126_20221019_20221022_small_range:
+        sample_interval: 1
+      UT126_20221023_20221026_small_range:
+        sample_interval: 1
+      UT126_20221027_20221030_small_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825_small_range:
+        sample_interval: 1
+      UT263_20220826-20220830_small_range: 
+        sample_interval: 1
+      UT263_20220831_small_range:
+        sample_interval: 1
+      UT263_20220923-20220926_small_range:
+        sample_interval: 1
+      UT263_20221004-20221005_small_range:
+        sample_interval: 1
+      UT263_20221024_20221027_small_range:
+        sample_interval: 1
+      UT263_20221028_20221031_small_range:
+        sample_interval: 1
+
+v1.2.0_10v:
+#------ [remove] ------
+# remove DG201
+#------ [add ] ------
+# Add UT1R3, UTHS6
+#------ [update ] ------
+# 
+  BEIJING:
+    UT1R3:
+      UT1R3_20220616_20220623:
+        sample_interval: 5
+      UT1R3_20220629_20220702:
+        sample_interval: 5
+    UTHS6:
+      UTHS6_20220617_20220622:
+        sample_interval: 5
+      UTHS6_20220610_20220627:
+        sample_interval: 5
+      UTHS6_20220614_20220701:
+        sample_interval: 5
+      UTHS6_20220528_20220609:
+        sample_interval: 5
+
+v1.0.2:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+
+v1.0.3:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 2
+  BEIJING:
+    65U3D:
+      65U3D_20211031_20211109:
+
+v1.0.4:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 13
+  BEIJING:
+    65U3D:
+      65U3D_20211031_20211109:
+        sample_interval: 4
+      65U3D_20211113_20211115:
+    30C1G:
+      30C1G_20211031:
+
+v1.0.5:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20211031_20211109:
+        sample_interval: 3
+      65U3D_20211113_20211115:
+        sample_interval: 2
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 4
+    H3165:
+      H3165_20211101-20211118:
+      H3165_20211119-20211130:
+      H3165_20211202-20211209:
+
+v1.0.6:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 2
+      H3165_20211119-20211130:
+        sample_interval: 2
+      H3165_20211202-20211209:
+        sample_interval: 2
+        
+v1.0.9:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+      65U3D_20210725_20210803:
+      65U3D_20210928_20211006:
+      65U3D_20220123_20220126:
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+      30C1G_20220117_20220207:
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 2
+      H3165_20211119-20211130:
+        sample_interval: 2
+      H3165_20211202-20211209:
+        sample_interval: 2
+      H3165_20220110-20220117:
+    25U7C:
+      25U7C_20211204_20211207:
+    RX141:
+      RX141_20211104_20211106:
+      RX141_20211120_20211203:
+    RX444:
+      RX444_20211113_20211116:
+    # RX633:
+    #   RX633_20211208_20211215:
+
+v2.0.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# 65U3D_20210801_20210806
+# 65U3D_20211008_20211011
+# 65U3D_20211004
+# 65U3D_20220117
+# 25U7C_20211209_20211215
+# RX444_20211122_20211124:
+# RX444_20211125_20211126:
+# RX633_20211216_20211220
+#------ [update ] ------
+# Regenerate data that has been overwritten
+# 25U7C_20211204_20211207
+# RX633_20211208_20211215
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+      65U3D_20210725_20210803:
+      65U3D_20210928_20211006:
+      65U3D_20220123_20220126:
+      65U3D_20210801_20210806:
+      65U3D_20211008_20211011:
+      65U3D_20211004:
+      65U3D_20220117:
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+      30C1G_20220117_20220207:
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 2
+      H3165_20211119-20211130:
+        sample_interval: 2
+      H3165_20211202-20211209:
+        sample_interval: 2
+      H3165_20220110-20220117:
+    25U7C:
+      25U7C_20211204_20211207:
+      25U7C_20211209_20211215:
+    RX141:
+      RX141_20211104_20211106:
+      RX141_20211120_20211203:
+    RX444:
+      RX444_20211113_20211116:
+      RX444_20211122_20211124:
+      RX444_20211125_20211126:
+    RX633:
+      # RX633_20211208_20211215:
+      RX633_20211216_20211220:
+
+v2.1.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# H3165_20220105-20220304:
+#------ [update ] ------
+# All H3165 data are switched to 3S interval
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+      65U3D_20210725_20210803:
+      65U3D_20210928_20211006:
+      65U3D_20220123_20220126:
+      65U3D_20210801_20210806:
+      65U3D_20211008_20211011:
+      65U3D_20211004:
+      65U3D_20220117:
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+      30C1G_20220117_20220207:
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 6
+      H3165_20211119-20211130:
+        sample_interval: 6
+      H3165_20211202-20211209:
+        sample_interval: 6
+      H3165_20220110-20220117:
+      H3165_20220105_20220304:
+      H3165_20220105_20220304_crossing:
+      H3165_20220105_20220304_crossing_2:     
+    25U7C:
+      25U7C_20211204_20211207:
+      25U7C_20211209_20211215:
+    RX141:
+      RX141_20211104_20211106:
+      RX141_20211120_20211203:
+    RX444:
+      RX444_20211113_20211116:
+      RX444_20211122_20211124:
+      RX444_20211125_20211126:
+    RX633:
+      RX633_20211208_20211215:
+      RX633_20211216_20211220:
+
+v2.2.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# Add JL773、DG201、DG102、UT1R3
+#------ [update ] ------
+#
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 6
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+      65U3D_20211031_20211109:
+        sample_interval: 6
+      65U3D_20211113_20211115:
+        sample_interval: 6
+      65U3D_20210725_20210803:
+      65U3D_20210928_20211006:
+      65U3D_20220123_20220126:
+      65U3D_20210801_20210806:
+      65U3D_20211008_20211011:
+      65U3D_20211004:
+      65U3D_20220117:
+    30C1G:
+      30C1G_20211031:
+      30C1G_20211117_20211121:
+        sample_interval: 6
+      30C1G_20220117_20220207:
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 6
+      H3165_20211119-20211130:
+        sample_interval: 6
+      H3165_20211202-20211209:
+        sample_interval: 6
+      H3165_20220110-20220117:
+      H3165_20220105_20220304:
+      H3165_20220105_20220304_crossing:      
+      H3165_20220105_20220304_crossing_2:  
+    25U7C:
+      25U7C_20211204_20211207:
+      25U7C_20211209_20211215:
+    RX141:
+      RX141_20211104_20211106:
+      RX141_20211120_20211203:
+    RX444:
+      RX444_20211113_20211116:
+      RX444_20211122_20211124:
+      RX444_20211125_20211126:
+    RX633:
+      RX633_20211208_20211215:
+      RX633_20211216_20211220:
+    # TODO (jiawei02.wang): 
+    # Same as vehicle.
+    JL773:
+      JL773_20220218_20220225:
+    DG201:
+      DG201_20220225_20220304:
+      DG201_20220222_20220224:
+    UT1R3:
+      UT1R3_20220303_20220311:
+    DG102:
+      DG102_20220219_20220301:
+
+v2.3.0_mix:
+# NOTE: use for 10v mix train
+#------ [remove] ------
+#
+#------ [add ] ------
+# Add UT1R3, UTHS6 dataset
+#------ [update ] ------
+# Update v2.2.0 6v dataset sample_interval
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210628_20210630:
+        sample_interval: 16
+  AT:
+    DG202:
+      DG202_20210620-20210628_20210701-20210702:
+        sample_interval: 36
+  BEIJING:
+    65U3D:
+      65U3D_20210601_20210607:
+        sample_interval: 16
+      65U3D_20211031_20211109:
+        sample_interval: 16
+      65U3D_20211113_20211115:
+        sample_interval: 16
+      65U3D_20210725_20210803:
+        sample_interval: 16
+      65U3D_20210928_20211006:
+        sample_interval: 16
+      65U3D_20220123_20220126:
+        sample_interval: 16
+      65U3D_20210801_20210806:
+        sample_interval: 16
+      65U3D_20211008_20211011:
+        sample_interval: 16
+      65U3D_20211004:
+      65U3D_20220117:
+    30C1G:
+      30C1G_20211031:
+        sample_interval: 10
+      30C1G_20211117_20211121:
+        sample_interval: 24
+      30C1G_20220117_20220207:
+        sample_interval: 24
+    H3165:
+      H3165_20211101-20211118:
+        sample_interval: 24
+      H3165_20211119-20211130:
+        sample_interval: 24
+      H3165_20211202-20211209:
+        sample_interval: 24
+      H3165_20220110-20220117:
+        sample_interval: 10
+      H3165_20220105_20220304:
+    25U7C:
+      25U7C_20211204_20211207:
+        sample_interval: 2
+      25U7C_20211209_20211215:
+        sample_interval: 2
+    RX141:
+      RX141_20211104_20211106:
+        sample_interval: 2
+      RX141_20211120_20211203:
+        sample_interval: 2
+    RX444:
+      RX444_20211113_20211116:
+        sample_interval: 2
+      RX444_20211122_20211124:
+        sample_interval: 2
+      RX444_20211125_20211126:
+        sample_interval: 2
+    RX633:
+      RX633_20211208_20211215:
+        sample_interval: 2
+      RX633_20211216_20211220:
+        sample_interval: 2
+    JL773:
+      JL773_20220218_20220225:
+        sample_interval: 2
+    DG201:
+      DG201_20220225_20220304:
+        sample_interval: 2
+      DG201_20220222_20220224:
+        sample_interval: 2
+    UT1R3:
+      UT1R3_20220303_20220311:
+        sample_interval: 2
+    DG102:
+      DG102_20220219_20220301:
+        sample_interval: 2
+    UT1R3:
+      UT1R3_20220616_20220623:
+        sample_interval: 5
+      UT1R3_20220629_20220702:
+        sample_interval: 5
+    UTHS6:
+      UTHS6_20220617_20220622:
+        sample_interval: 5
+      UTHS6_20220614_20220701:
+        sample_interval: 5
+      UTHS6_20220528_20220609:
+        sample_interval: 5
+      UTHS6_20220610_20220627_4v:
+        sample_interval: 5
+
+v3.0.0:
+  MOTR:
+    30C1G:
+      30C1G_20211031_20211101:
+    65U3D:
+      65U3D_20211029_20211114:
+    H3165:
+      H3165_20211103_20211117:
+
+v1.0.5_11v_e2e_small_range:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924_small_range:
+        sample_interval: 1
+      UT0Q9_20221010_20221020_small_range:
+        sample_interval: 1
+      UT0Q9_20220902_20220913_small_range:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925_small_range:
+        sample_interval: 1
+      UT126_20220901_20220920_small_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009_small_range:
+        sample_interval: 1
+      UT263_20221010_20221016_small_range:
+        sample_interval: 1
+      UT263_20220830_20220925_small_range:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809_small_range:
+        sample_interval: 1
+      UTHS6_20221018_20221023_small_range:
+        sample_interval: 1
+      UTHS6_20220611_20220614_small_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112_small_range:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112_small_range:
+        sample_interval: 1
+      LS912_20221113_20221115_small_range:
+        sample_interval: 1
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901_small_range:
+        sample_interval: 1
+      UT126_20220906_small_range:
+        sample_interval: 1
+      UT126_20220920_20220923_small_range:
+        sample_interval: 1
+      UT126_20220924_20220927_small_range:
+        sample_interval: 1
+      UT126_20220929_20221006_small_range:
+        sample_interval: 1
+      UT126_20221007_20221010_small_range:
+        sample_interval: 1
+      UT126_20221011_20221014_small_range:
+        sample_interval: 1
+      UT126_20221015_20221018_small_range:
+        sample_interval: 1
+      UT126_20221019_20221022_small_range:
+        sample_interval: 1
+      UT126_20221023_20221026_small_range:
+        sample_interval: 1
+      UT126_20221027_20221030_small_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825_small_range:
+        sample_interval: 1
+      UT263_20220826-20220830_small_range: 
+        sample_interval: 1
+      UT263_20220831_small_range:
+        sample_interval: 1
+      UT263_20220923-20220926_small_range:
+        sample_interval: 1
+      UT263_20221004-20221005_small_range:
+        sample_interval: 1
+      UT263_20221028_20221031_small_range:
+        sample_interval: 1
+
+v1.0.5_gt4d_11v_small_range:
+  GT4D_11V_1.10_small_range:
+    UT0Q9:
+      UT0Q9-20221126_small_range:
+        sample_interval: 1
+      UT0Q9-20221127_small_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3-20221126_small_range:
+        sample_interval: 1
+    UT263:
+      UT263-20221118_small_range:
+        sample_interval: 1
+      UT263-20221119_small_range:
+        sample_interval: 1
+      UT263-20221120_small_range:
+        sample_interval: 1
+    UT126:
+      UT126-20221112_small_range:
+        sample_interval: 1
+      UT126-20221113_small_range:
+        sample_interval: 1
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220908_20220924_small_range:
+        sample_interval: 1
+      UT0Q9_20221010_20221020_small_range:
+        sample_interval: 1
+      UT0Q9_20220902_20220913_small_range:
+        sample_interval: 1
+    UT126:
+      UT126_20220803_20220925_small_range:
+        sample_interval: 1
+      UT126_20220901_20220920_small_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220929_20221009_small_range:
+        sample_interval: 1
+      UT263_20221010_20221016_small_range:
+        sample_interval: 1
+      UT263_20220830_20220925_small_range:
+        sample_interval: 1
+    UTHS6:
+      UTHS6_20220801_20220809_small_range:
+        sample_interval: 1
+      UTHS6_20221018_20221023_small_range:
+        sample_interval: 1
+      UTHS6_20220611_20220614_small_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221108_20221112_small_range:
+        sample_interval: 1
+    LS912:
+      LS912_20221107_20221112_small_range:
+        sample_interval: 1
+      LS912_20221113_20221115_small_range:
+        sample_interval: 1
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220831-20220901_small_range:
+        sample_interval: 1
+      UT126_20220906_small_range:
+        sample_interval: 1
+      UT126_20220920_20220923_small_range:
+        sample_interval: 1
+      UT126_20220924_20220927_small_range:
+        sample_interval: 1
+      UT126_20220929_20221006_small_range:
+        sample_interval: 1
+      UT126_20221007_20221010_small_range:
+        sample_interval: 1
+      UT126_20221011_20221014_small_range:
+        sample_interval: 1
+      UT126_20221015_20221018_small_range:
+        sample_interval: 1
+      UT126_20221019_20221022_small_range:
+        sample_interval: 1
+      UT126_20221023_20221026_small_range:
+        sample_interval: 1
+      UT126_20221027_20221030_small_range:
+        sample_interval: 1
+    UT263:
+      UT263_20220822-20220825_small_range:
+        sample_interval: 1
+      UT263_20220826-20220830_small_range: 
+        sample_interval: 1
+      UT263_20220831_small_range:
+        sample_interval: 1
+      UT263_20220923-20220926_small_range:
+        sample_interval: 1
+      UT263_20221004-20221005_small_range:
+        sample_interval: 1
+      UT263_20221028_20221031_small_range:
+        sample_interval: 1

@@ -1,0 +1,33 @@
+base_classname: image_label
+num_classes: 4
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: { attrs: { ignore: yes } }
+  - id: 1
+    name: normal
+    match_condiction:
+      or:
+        - contains: { attrs: { glare: normal } }
+    upsample: 1
+  - id: 2
+    name: mild
+    match_condiction:
+      or:
+        - contains: { attrs: { glare: mild } }
+    upsample: 2
+  - id: 3
+    name: medium
+    match_condiction:
+      or:
+        - contains: { attrs: { glare: medium } }
+    upsample: 10
+  - id: 4
+    name: severe
+    match_condiction:
+      or:
+        - contains: { attrs: { glare: severe } }
+    upsample: 20

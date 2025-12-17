@@ -1,0 +1,74 @@
+###################################
+# makefile for Neural ISP training #
+###################################
+include Makefile
+
+# change to your own bucket path
+HAT_BUCKET=/horizon-bucket
+
+# set to your config file
+config=projects/isp/app/det/entry.py
+
+# set to your cluster, refer to $HOME/.hobot/gpucluster.yaml
+cluster=project-neural-isp-titanxp
+
+train:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage float
+
+qat:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage qat
+
+val_ckpt=
+
+val:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage float --val-only --val-ckpt ${val_ckpt}
+
+int_infer:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage int_infer
+
+fps:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/deploy/compile_perf.py --config ${config}
+
+
+submit:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 plugins/k8s_submit/submit.py --config $(config) --cluster $(cluster)
+
+test:
+	export PYTHONPATH=`pwd`; \
+	python3 -m pytest tests/unit_tests; \
+	python3 -m pytest tests/intergration_tests;
+
+
+prediction:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/predict.py --config ${config} 
+
+
+cicd-train:
+	export PYTHONPATH=`pwd`:`pwd`/projects/isp; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 -m inference.main --config ${config} --stage float
+
+cicd-val:
+	export PYTHONPATH=`pwd`:`pwd`/projects/isp; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 -m inference.main --config ${config} --stage float --val-only --val-ckpt ${val_ckpt}
+
+cicd-aidi-eval:
+	export PYTHONPATH=`pwd`:`pwd`/projects/isp; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/predict.py --config ${config}
+

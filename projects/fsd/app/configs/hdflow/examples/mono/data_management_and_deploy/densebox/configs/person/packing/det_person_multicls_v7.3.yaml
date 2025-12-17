@@ -1,0 +1,260 @@
+# based v7.2 config
+# add AEB_PersonRideBicycle
+# add AEB_PersonRideMotorcycle
+# @2022.6.16 kaijun01.zhang
+base_classname: person                                  # 一级类型名称
+num_classes: 50                                         # 类别数量
+allow_multi_match: true                                 # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+remove_zh_image_path: true
+class_mappers:                                          # 目标类别转换器
+- id: 49
+  upsample: 3
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    or:
+    - contains: {attrs: {type: NonTarget}}                        # 包含{"attrs": {"type": "NonTarget"}}
+- id: 1  #hard case upsample
+  name: person
+  upsample: 3
+  match_condiction:
+    or:
+      - and:
+        - contains: {attrs: {type: Dummy_AEB}}
+        - contains: {attrs: {type: AEB_Pedestrian}}
+        - or:
+          - contains: {attrs: {age: Child}}
+          - contains: {attrs: {age: Teenagers}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+  hard_condiction:
+    and:
+    - not:
+      contains: {attrs: {ignore: "no"}}
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {type: Sitter}}
+          - contains: {attrs: {type: Squatter}}
+        - range: {field: $BBOX_HEIGHT, lt: 45}
+      - and:
+        - range: {field: $BBOX_HEIGHT, lt: 200}
+        - contains: {attrs: {occlusion: heavily_occluded}}
+      - contains: {attrs: {occlusion: invisible}}
+      - contains: {attrs: {confidence: Low}}
+      - range: {field: $BBOX_HEIGHT, lt: 37}
+      - range: {field: $BBOX_WIDTH, lt: 13}
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 5}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.2}
+      - and:
+        - contains: {attrs: {type: Pedestrian}}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 1}
+- id: 1  #hard case upsample
+  name: person
+  upsample: 2
+  match_condiction:
+    or:
+    - contains: {attrs: {type: Squatter}}
+    - contains: {attrs: {type: Sitter}}
+    - contains: {attrs: {type: Bended}}
+    # - contains: {attrs: {type: Dummy_AEB}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+  hard_condiction:
+    and:
+    - not:
+      contains: {attrs: {ignore: "no"}}
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {type: Sitter}}
+          - contains: {attrs: {type: Squatter}}
+        - range: {field: $BBOX_HEIGHT, lt: 45}
+      - and:
+        - range: {field: $BBOX_HEIGHT, lt: 200}
+        - contains: {attrs: {occlusion: heavily_occluded}}
+      - contains: {attrs: {occlusion: invisible}}
+      - contains: {attrs: {confidence: Low}}
+      - range: {field: $BBOX_HEIGHT, lt: 37}
+      - range: {field: $BBOX_WIDTH, lt: 13}
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 5}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.2}
+      - and:
+        - contains: {attrs: {type: Pedestrian}}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 1}
+- id: 1  #hard case upsample
+  name: person
+  upsample: 1
+  match_condiction:
+    or:
+    - contains: {attrs: {type: Others}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+    - contains: {attrs: {occlusion: invisible}}
+  hard_condiction:
+    and:
+    - not:
+      contains: {attrs: {ignore: "no"}}
+    - or:
+      - contains: {attrs: {occlusion: heavily_occluded}}
+      - contains: {attrs: {confidence: Low}}
+      - contains: {attrs: {age: Child}}
+      - range: {field: $BBOX_HEIGHT, lt: 80}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 1.2}
+- id: 1
+  name: person
+  match_condiction:
+    or:
+    - contains: {attrs: {type: Pedestrian}}
+    - contains: {attrs: {type: Pedestrians}}
+    - contains: {attrs: {type: pedestrian}}
+    # - contains: {attrs: {type: Dummy_AEB}}
+    # - contains: {attrs: {type: Squatter}}
+    - contains: {attrs: {type: OtherPose}}
+    - contains: {attrs: {type: WithPersonalTransporter}}
+    # - contains: {attrs: {type: Sitter}}
+    # - contains: {attrs: {type: Bended}}
+    - contains: {attrs: {type: Lier}}
+    - contains: {attrs: {type: WithWheelchair}}
+    - contains: {attrs: {type: Dummy}}
+    - contains: {attrs: {type: OnPoster}}
+    - contains: {attrs: {type: Stroller}}
+    # - contains: {attrs: {type: Others}}
+    - contains: {attrs: {type: Other}}
+    - contains: {attrs: {type: other}}
+    - contains: {attrs: {type: InVehicle}}
+    # cyclist type
+    # - contains: {attrs: {type: Cyclist}}
+    # - contains: {attrs: {type: Bicyclist}}
+    # - contains: {attrs: {type: Motorcyclist}}
+    # - contains: {attrs: {type: Tricyclist}}
+    # - contains: {attrs: {type: Unknown}}
+    # - contains: {attrs: {type: unknown}}
+    # - and:
+    #   - contains: {attrs: {OverlappedBox: "yes"}}
+    #   - or:
+    #     - contains: {attrs: {type: PersonRideBicycle}}
+    #     - contains: {attrs: {type: PersonPushBicycle}}
+    #     - contains: {attrs: {type: PersonRideMotorcycle}}
+    #     - contains: {attrs: {type: PersonPushMotorcycle}}
+    #     - contains: {attrs: {type: PersonRideTricycle}}
+    #     - contains: {attrs: {type: PersnPushTricycle}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+  hard_condiction:
+    and:
+    - not:
+        contains: {attrs: {ignore: "yes"}}
+    - or:
+      - contains: {attrs: {type: Lier}}
+      - contains: {attrs: {type: Unknown}}
+      - contains: {attrs: {type: unknown}}
+      - contains: {attrs: {type: OtherPose}}
+      - contains: {attrs: {type: Dummy}}
+      - contains: {attrs: {type: OnPoster}}
+      - contains: {attrs: {type: Stroller}}
+      - contains: {attrs: {type: Others}}
+      - contains: {attrs: {type: Other}}
+      - contains: {attrs: {type: other}}
+      - contains: {attrs: {type: InVehicle}}
+      - and:
+        - range: {field: $BBOX_HEIGHT, lt: 200}
+        - contains: {attrs: {occlusion: heavily_occluded}}
+      - contains: {attrs: {occlusion: invisible}}
+      - contains: {attrs: {confidence: Low}}
+      - range: {field: $BBOX_HEIGHT, lt: 37}
+      - range: {field: $BBOX_WIDTH, lt: 13}
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 4}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}
+      - and:
+        - contains: {attrs: {type: Pedestrian}}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 1}
+- id: 7
+  name: cyclist
+  upsample: 3
+  match_condiction:
+    or:
+    - contains: {attrs: {type: PersonRideBicycle_AEB}}
+    - contains: {attrs: {type: PersonRideMotorcycle_AEB}}
+    - contains: {attrs: {type: AEB_PersonRideBicycle}}
+    - contains: {attrs: {type: AEB_PersonRideMotorcycle}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+  hard_condiction:
+    and:
+    - not:
+      contains: {attrs: {ignore: "yes"}}
+    - or:
+      - contains: {attrs: {confidence: Low}}
+      - contains: {attrs: {occlusion: invisible}}
+      #- and:
+      #  - range: {field: $BBOX_HEIGHT, lt: 200}
+      #  - contains: {attrs: {occlusion: heavily_occluded}}
+      - range: {field: $BBOX_HEIGHT, lt: 37}
+      - range: {field: $BBOX_WIDTH, lt: 13}
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 6}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.2}
+- id: 7
+  name: cyclist
+  match_condiction:
+    or:
+    - contains: {attrs: {type: PersonRideBicycle}}
+    - contains: {attrs: {type: PersonRideMotorcycle}}
+    - contains: {attrs: {type: PersonPushBicycle}}
+    - contains: {attrs: {type: PersonPushMotorcycle}}
+    # - contains: {attrs: {type: PersonRideTricycle}}
+    # - contains: {attrs: {type: PersnPushTricycle}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+  hard_condiction:
+    and:
+    - not:
+      contains: {attrs: {ignore: "yes"}}
+    - or:
+      - contains: {attrs: {confidence: Low}}
+      - contains: {attrs: {occlusion: invisible}}
+      #- and:
+      #  - range: {field: $BBOX_HEIGHT, lt: 200}
+      #  - contains: {attrs: {occlusion: heavily_occluded}}
+      - range: {field: $BBOX_HEIGHT, lt: 37}
+      - range: {field: $BBOX_WIDTH, lt: 13}
+      - range: {field: $BBOX_ASPECT_RATIO, gt: 6}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 0.2}
+- id: 7
+  name: cyclist
+  match_condiction:
+    or:
+    - contains: {attrs: {type: PersonRideTricycle}}
+    # - contains: {attrs: {type: PersnPushTricycle}}
+  ignore_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {confidence: VeryLow}}
+    - contains: {attrs: {occlusion: invisible}}
+  hard_condiction:
+    and:
+    - not:
+      contains: {attrs: {ignore: "yes"}}
+    - or:
+      - contains: {attrs: {confidence: Low}}
+      #- and:
+      #  - range: {field: $BBOX_HEIGHT, lt: 200}
+      - contains: {attrs: {occlusion: heavily_occluded}}
+      - range: {field: $BBOX_HEIGHT, lt: 80}
+      - range: {field: $BBOX_ASPECT_RATIO, lt: 1.8}
+- id: null
+  match_condiction:
+    and: []

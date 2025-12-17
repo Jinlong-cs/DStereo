@@ -1,0 +1,59 @@
+person_2pe:
+# - batch_size: 13
+#   train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_det_multicls_pedestrian_cyclist_det_2pe_online_packing_20220701_20221020_20221021-051132_data.anno.pb_rec
+#   train_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_det_multicls_pedestrian_cyclist_det_2pe_online_packing_20220701_20221020_20221021-051132_data.rec
+#   train_roi_list: /data/person_det_multicls/pedestrian_cyclist_det_2pe_online_packing_20220701_20221020/20221021-051132/data_roilist.json
+#   val_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_10635_20191203_ped_cyc_multiclass_20201125_10635_20191203_ped_cyc_multitask_20201125.anno.pb_rec
+#   val_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_10635_20191203_ped_cyc_multiclass_20201125_10635_20191203_ped_cyc_multitask_20201125.rec
+#   val_roi_json: null
+- batch_size: 63.5
+  train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_0323_820_10652_0220_quad_multicls_v3_v20210517_multicls_v20220720_0323_820_10652_0220_quad_multicls_v3_v20210517_train.anno.pb_rec
+  train_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_0323_820_10652_0220_quad_multicls_v3_v20210517_multicls_v20220720_0323_820_10652_0220_quad_multicls_v3_v20210517_train.rec
+  train_roi_list: /lele.liu/person_2pe_person_cyclist_detection_pb_rec_roilist/data_person_0323_820_10652_0220_quad_multicls_v3_v20210517_multicls_v20220720_0323_820_10652_0220_quad_multicls_v3_v20210517_train.roilist.pb_rec
+  val_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_10635_20191203_ped_cyc_multiclass_20201125_10635_20191203_ped_cyc_multitask_20201125.anno.pb_rec
+  val_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_10635_20191203_ped_cyc_multiclass_20201125_10635_20191203_ped_cyc_multitask_20201125.rec
+  val_roi_json: null
+  # origin_path: /mnt/cephfs-adas-boschhwy/adas/kaijun01.zhang/data_2021/release/0323_820_10652_0220_quad_multicls_v3_v20210517
+- batch_size: 43.5
+  train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_10652_820_AEB_multicls_v20210805_adjRainNight_multicls_v20220720_10652_820_AEB_multicls_v20210805_adjRainNight_train.anno.pb_rec
+  train_rec: /data/person/10652_820_AEB_multicls_v20210805_adjRainNight_multicls_v20220720/10652_820_AEB_multicls_v20210805_adjRainNight_train.rec
+  train_roi_list: /lele.liu/person_2pe_person_cyclist_detection_pb_rec_roilist/data_person_10652_820_AEB_multicls_v20210805_adjRainNight_multicls_v20220720_10652_820_AEB_multicls_v20210805_adjRainNight_train.roilist.pb_rec
+  val_json: null
+  val_rec: null
+  val_roi_json: null
+  # origin_path: /mnt/cephfs-adas-boschhwy/adas/kaijun01.zhang/data_2021/release/10652_820_AEB_multicls_v20210805_adjRainNight
+- batch_size: 14.3
+  train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_20210906_multicls_v20220720_20210906_train.anno.pb_rec
+  train_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_20210906_multicls_v20220720_20210906_train.rec
+  train_roi_list: /lele.liu/person_2pe_person_cyclist_detection_pb_rec_roilist/data_person_20210906_multicls_v20220720_20210906_train.roilist.pb_rec
+  val_json: null
+  val_rec: null
+- batch_size: 69.6
+  train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_20220304_multicls_v20220720_20220304_train.anno.pb_rec
+  train_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_20220304_multicls_v20220720_20220304_train.rec
+  train_roi_list: /lele.liu/person_2pe_person_cyclist_detection_pb_rec_roilist/data_person_20220304_multicls_v20220720_20220304_train.roilist.pb_rec
+  val_json: null
+  val_rec: null
+- batch_size: 32.6
+  train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_20220412_multicls_v20220720_20220412_train.anno.pb_rec
+  train_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_20220412_multicls_v20220720_20220412_train.rec
+  train_roi_list: /lele.liu/person_2pe_person_cyclist_detection_pb_rec_roilist/data_person_20220412_multicls_v20220720_20220412_train.roilist.pb_rec
+  val_json: null
+  val_rec: null
+- batch_size: 13
+  train_json: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_det_multicls_pedestrian_cyclist_det_2pe_online_packing_20220701_20221020_20221021-051132_data.anno.pb_rec
+  train_rec: /lele.liu/person_2pe_person_cyclist_detection_pb_rec/data_person_det_multicls_pedestrian_cyclist_det_2pe_online_packing_20220701_20221020_20221021-051132_data.rec
+  train_roi_list: /lele.liu/person_2pe_person_cyclist_detection_pb_rec_roilist/data_person_det_multicls_pedestrian_cyclist_det_2pe_online_packing_20220701_20221020_20221021-051132_data.roilist.pb_rec
+  val_json: null
+  val_rec: null
+  # origin_path: /mnt/cephfs-adas-boschhwy/adas/kaijun01.zhang/data_2021/release/20220304_20220412_release
+# - batch_size: 16
+#   train_json: hdfs://hobot-bigdata-aliyun/user/kaijun01.zhang/data/data_2020/10652_train_20210802/10652_train_20210802.json
+#   train_rec: hdfs://hobot-bigdata-aliyun/user/kaijun01.zhang/data/data_2020/10652_train_20210802/10652_train_20210802.rec
+#   # train_json: hdfs://hobot-bigdata-aliyun/user/kaijun01.zhang/data/data_2020/multiperson_occ_v20210909/multiperson_occ_v20210909.json
+#   # train_rec: hdfs://hobot-bigdata-aliyun/user/kaijun01.zhang/data/data_2020/multiperson_occ_v20210909/multiperson_occ_v20210909.rec
+#   # train_json: hdfs://hobot-bigdata/user/kaijun01.zhang/data/data_2020/10635_20191203_ped_cyc_multiclass_20201125/10635_20191203_ped_cyc_multitask_20201125.json
+#   # train_rec: hdfs://hobot-bigdata/user/kaijun01.zhang/data/data_2020/10635_20191203_ped_cyc_multiclass_20201125/10635_20191203_ped_cyc_multitask_20201125.rec
+#   train_roi_list: null
+#   val_json: hdfs://hobot-bigdata/user/kaijun01.zhang/data/data_2020/10635_20191203_ped_cyc_multiclass_20201125/10635_20191203_ped_cyc_multitask_20201125.json
+#   val_rec: hdfs://hobot-bigdata/user/kaijun01.zhang/data/data_2020/10635_20191203_ped_cyc_multiclass_20201125/10635_20191203_ped_cyc_multitask_20201125.rec

@@ -1,0 +1,38 @@
+base_classname: vehicle                                 # 一级类型名称
+num_classes: 5                                          # 类别数量
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+remove_zh_image_path: false                             # 删除中文路径图片
+class_mappers:                                          # 目标类别转换器
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {ignore: "yes"}}                            # 包含{"attrs": {"ignore": "yes"}}
+    - contains: {attrs: {negative_type: normal}}
+    - contains: {attrs: {negative_type: unknown}}
+    - contains: {attrs: {negative_type: Vehicle_light}}
+    - not:
+        has_path: 'attrs.negative_type'
+#    - contains: {attrs: {Orientation: Transverse}}                  # 包含{"attrs": {"Orientation": "Transverse"}}
+#    - contains: {attrs: {occlusion: heavily_occluded}}              # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+#    - contains: {attrs: {occlusion: heavily_occluded_c}}            # 包含{"attrs": {"occlusion": "heavily_occluded_c"}}
+    - contains: {attrs: {occlusion: invisible}}                     # 包含{"attrs": {"occlusion": "invisible"}}
+    - contains: {attrs: {occlusion: invisible_d}}                   # 包含{"attrs": {"occlusion": "invisible_d"}}
+    - contains: {attrs: {confidence: VeryLow}}                      # 包含{"attrs": {"confidence": "VeryLow"}}
+    - range: {field: $BBOX_HEIGHT, lt: 10}                          # 高度 < 10
+    - range: {field: $BBOX_WIDTH, lt: 10}                           # 宽度 < 10
+- id: 5
+  name: Negative
+  match_condiction:
+    or:
+    - contains: {attrs: {negative_type: vehicle_side}}
+    - contains: {attrs: {negative_type: light}}
+    - contains: {attrs: {negative_type: sign}}
+    - contains: {attrs: {negative_type: other}}
+    - contains: {attrs: {negative_type: building}}
+    - contains: {attrs: {negative_type: motorcycle}}
+    - contains: {attrs: {negative_type: background}}
+    - contains: {attrs: {negative_type: bus_station}}
+    - contains: {attrs: {negative_type: tunnel_portal}}
+    - contains: {attrs: {negative_type: Hole_portal}}
+    - contains: {attrs: {negative_type: stone}}

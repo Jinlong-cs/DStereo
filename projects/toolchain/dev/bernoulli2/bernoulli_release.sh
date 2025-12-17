@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+set -e
+
+export PYTHONPATH=`pwd`:$PYTHONPATH
+
+export RELEASE_VERSION=2.0.4
+export OE_VERSION=2.5.2
+export HORIZON_PLUGIN_PYTORCH_VERSION=1.6.3
+export HEMAT_VERSION=1.0.4
+export OLD_RELEASE_VERSION=2.0.3
+export OLD_OE_VERSION=1.1.44
+export SKIP_TEST=1
+export SKIP_MODEL_METRIC=1
+
+hdfs dfs -mkdir -p hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/v$RELEASE_VERSION/py38/
+
+# package  release
+cd plugins/code_stripping/
+python3 code_stripping.py --file-list configs/toolchain-file-list-bernoulli2.py --target-dir ../../release/HAT --override --toolchain-crop
+cd ../../release/HAT
+
+export PYTHONPATH=`pwd`:${PYTHONPATH}
+
+pip_ext="-i https://pypi.hobot.cc/simple --extra-index-url=https://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc"
+
+mkdir -p release_package/packages
+mkdir -p release_package/scripts
+
+# update version
+# sed -i s/"__version__ = \"/__version__ = \"$RELEASE_VERSION\" #"/g hat/version.py
+a=$(grep -ri "__version__" hat/version.py | grep  -w -Eo '[0-9\.]*')
+sed -i "s/$a/$RELEASE_VERSION+hat$a/g" hat/version.py
+
+pip3 download --no-deps hbdk==3.45.3 -i https://pypi.hobot.cc/simple --extra-index-url=https://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc
+pip3 download --no-deps horizon-plugin-pytorch==1.6.4 -f https://art-internal.hobot.cc/artifactory/custom-algo-pypi/horizon-plugin-pytorch/cu111/torch1102/ -i http://pypi.hobot.cc/simple --extra-index-url http://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc --trusted-host art-internal.hobot.cc
+
+mv hbdk*whl release_package/packages/
+mv horizon_plugin_pytorch*whl release_package/packages/
+
+pip3 uninstall -y hbdk hbdk-internal horizon_plugin_pytorch_cu111
+pip3 install release_package/packages/*whl ${pip_ext}
+python3 setup.py sdist bdist_wheel
+
+cp -r dist/horizon_torch_samples-*whl release_package/packages
+
+rm -rf dist
+
+# prepare scripts
+mkdir -p release_package/scripts/configs/
+mkdir -p release_package/scripts/tools/
+
+cp -r configs/*  release_package/scripts/configs/
+cp -r tools/* release_package/scripts/tools/
+
+# prepare tgz
+find ./release_package/ | grep -E "__pycache__" | xargs rm -rf
+tar -zcvf release_package-$RELEASE_VERSION.tgz release_package
+
+# pack release models
+hdfs dfs -get hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/python3.8/release_hbms
+hdfs dfs -get hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/python3.8/release_models
+tar -zcvf release_hbms-$RELEASE_VERSION.tgz release_hbms
+tar -zcvf release_models-$RELEASE_VERSION.tgz release_models
+
+ls release_package*.tgz
+ls release_models*.tgz
+hdfs dfs -copyFromLocal release_models*.tgz hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/v$RELEASE_VERSION/py38/
+hdfs dfs -copyFromLocal release_hbms*.tgz hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/v$RELEASE_VERSION/py38/
+hdfs dfs -copyFromLocal release_package*.tgz hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/v$RELEASE_VERSION/py38/
+
+hdfs dfs -ls hdfs://hobot-bigdata/user/rui.xu/horizon_algorithm_toolkit/bernoulli/v$RELEASE_VERSION/py38/

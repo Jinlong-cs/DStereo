@@ -1,0 +1,75 @@
+base_classname: Traffic_light_shell              # 一级类型名称
+num_classes: 10                                  # 分类的类别数
+allow_multi_match: false                         # 允许一个instance进行多次匹配
+default_ignore_full_image: true                  # 未定义的类别使用全图ignore
+remove_empty_images: true                        # 删除空图片
+shuffle: true                                    # 打乱图片顺序
+class_mappers:                                   # 类别列表
+- id: null                                       # 空类, 用于过滤去除样本
+  name: null
+  match_condiction:                              # 为真值, 则匹配成功
+    or:                                          # 以下任一条件为真, 则输出真
+    - range: {field: $BBOX_HEIGHT, lt: 10}       # bbox高度 < 10
+    - range: {field: $BBOX_WIDTH, lt: 10}        # bbox宽度 < 10
+    - contains: {attrs: {ignore: "yes"}}                        # 包含{"attrs": {"ignore": "yes"}}                                                   # 以下任一条件为真, 则输出真
+    - contains: {attrs: {occlusion: heavily_occluded}}          # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+    - contains: {attrs: {occlusion: invisible}}                 # 包含{"attrs": {"occlusion": "invisible"}}
+    - contains: {attrs: {traffic_lights_type: unknow}}
+    - contains: {attrs: {traffic_lights_type: on_off_unknow}}
+    - contains: {attrs: {traffic_lights_type: other}}
+    - and:
+      - contains: {attrs: {multi_lens: 'yes'}}
+      - contains: {attrs: {consist_color: 'no'}}
+- id: 1
+  name: green
+  match_condiction:                                         # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {traffic_lights_type: green}}
+    - contains: {attrs: {Type: 'on'}}
+    - contains: {attrs: {direction: front}}
+  upsample: 1.0
+- id: 2
+  name: yellow
+  match_condiction:                                          # 为真值, 则匹配成功
+    and:
+      - contains: {attrs: {traffic_lights_type: yellow}}
+      - contains: {attrs: {Type: 'on'}}
+      - contains: {attrs: {direction: front}}
+  upsample: 1.0
+- id: 3
+  name: red
+  match_condiction:                                           # 为真值, 则匹配成功
+    and:
+      - contains: {attrs: {traffic_lights_type: red}}
+      - contains: {attrs: {Type: 'on'}}
+      - contains: {attrs: {direction: front}}
+  upsample: 1.0
+- id: 6
+  name: white
+  match_condiction:                                           # 为真值, 则匹配成功
+    and:
+      - contains: {attrs: {traffic_lights_type: white}}
+      - contains: {attrs: {Type: 'on'}}
+      - contains: {attrs: {direction: front}}
+- id: 7
+  name: "off"
+  match_condiction:                                           # 为真值, 则匹配成功
+    and:
+      - contains: {attrs: {Type: 'off'}}
+      - contains: {attrs: {direction: front}}
+  upsample: 1.0
+- id: 8
+  name: back
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {direction: back}}
+  upsample: 1.0
+- id: 9
+  name: side
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {direction: side}}
+  upsample: 1.0
+- id: 10
+  name: multiple
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_type: multiple}}
+  upsample: 1.0

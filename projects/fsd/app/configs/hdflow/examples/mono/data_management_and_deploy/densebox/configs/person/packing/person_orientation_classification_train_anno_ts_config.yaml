@@ -1,0 +1,39 @@
+base_classname: person                                  # 一级类型名称
+num_classes: 8                                          # 类别数量
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: 1
+  name: back
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: back}}                      # 包含{"attrs": {"orientation": "back"}}
+  upsample: 1.
+- id: 2
+  name: front
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: front}}                     # 包含{"attrs": {"orientation": "front"}}
+  upsample: 1.
+- id: 3
+  name: left
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: left}}                      # 包含{"attrs": {"orientation": "left"}}
+- id: 4
+  name: left_anterior
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: left_anterior}}             # 包含{"attrs": {"orientation": "left_anterior"}}
+- id: 5
+  name: left_back
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: left_back}}                 # 包含{"attrs": {"orientation": "left_back"}}
+- id: 6
+  name: right
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: right}}                     # 包含{"attrs": {"orientation": "right"}}
+- id: 7
+  name: right_back
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: right_back}}                # 包含{"attrs": {"orientation": "right_back"}}
+- id: 8
+  name: right_front
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    contains: {attrs: {orientation: right_front}}               # 包含{"attrs": {"orientation": "right_front"}}

@@ -1,0 +1,393 @@
+from collections import OrderedDict
+
+from base_2d_galaxy_lmdb_datasets import datapaths as base_2d_datapaths
+from easydict import EasyDict
+from galaxy_x02_rear_lmdb_datasets import (
+    datapaths as galaxy_x02_rear_datapaths,
+)
+from galaxy_x03_rear_lmdb_datasets import (
+    datapaths as galaxy_x03_rear_datapaths,
+)
+from project_utils import merge_datapaths
+
+root = "dmpv2://matrix2"
+
+# ----- Required -----
+datapaths = dict()
+datapaths.update(
+    {
+        "person_3d_detection": {
+            "train_data_paths": [
+                {
+                    "data_path": [
+                        # x02 常规数据
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220723_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220724_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220725_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220726_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220816_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220817_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220818_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220819_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220820_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220724_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220725_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220816_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220817_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220818_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220819_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220820_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220822_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220823_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220824_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220825_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220826_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220901_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220902_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220903_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220904_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220905_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220906_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220907_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220908_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220909_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220822_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220823_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220824_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220825_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220826_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220901_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220902_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220905_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220906_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220907_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220908_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220811_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220812_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220813_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220815_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220816_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220817_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220818_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220819_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220820_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220821_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220822_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220824_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220811_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220813_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220815_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220816_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220817_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220818_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220819_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220820_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220821_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220822_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220824_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220802_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220803_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220804_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220805_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220806_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220807_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220808_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220825_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220826_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220827_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220829_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220830_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220901_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220902_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220903_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220802_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220803_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220804_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220805_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220806_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220807_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220808_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220825_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220826_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220827_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220828_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220829_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220830_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220831_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220901_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220902_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220903_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220910_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220912_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220914_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220915_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220917_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220919_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220921_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220922_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220925_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220912_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220915_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20220925_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220905_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220906_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220916_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220917_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220919_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220920_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220905_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20220906_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221009_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221011_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221013_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221015_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221016_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221023_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221024_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221025_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221027_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221029_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221031_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221009_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221011_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221013_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221015_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221016_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221023_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221024_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221025_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX513/with_calib_all/data_person_LX513_20221029_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221013_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221014_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221015_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221017_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221018_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221019_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221020_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221021_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221022_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221023_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221024_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221025_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221027_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221028_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221029_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221031_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221102_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221103_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221104_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221105_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221107_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221109_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221110_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221013_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221014_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221015_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221017_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221018_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221019_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221020_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221021_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221022_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221023_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221024_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221025_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/galaxy/rear/LX553/with_calib_all/data_person_LX553_20221027_v05__no_front__night.anno",
+                        # x03常规数据 1.0
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221119_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221120_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221121_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221122_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221123_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221124_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221125_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221126_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221127_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221128_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221129_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221130_v05__no_front__day.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221119_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221120_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221121_v05__no_front__night.anno",
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221123_v05__no_front__night.anno",
+                        # X03 2.0
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221201_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221202_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221203_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221203_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221204_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221204_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221205_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221205_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221206_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221206_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221207_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221207_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221208_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221208_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221209_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221209_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221210_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221210_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221211_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221211_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221212_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221215_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221215_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221216_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX066/data_person_LX066_20221216_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221124_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221124_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221125_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221125_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221126_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221126_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221127_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221127_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221128_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221128_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221129_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221129_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221130_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221130_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221201_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221201_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221202_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221202_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221203_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221203_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221204_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221204_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221205_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221205_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221206_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221206_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221207_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221207_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221208_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221208_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221209_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221209_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221210_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221210_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221211_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221211_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221212_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/users/wenyuan.zeng/data/3d/split_data_person/v05/LX038/data_person_LX038_20221212_v05__no_front__night.anno",  # noqa
+                        # x03 3.0
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221213_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221213_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221215_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221215_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221216_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221216_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221217_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221218_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221218_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221219_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221219_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221220_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221220_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221221_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221221_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221222_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221222_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221223_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221223_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221224_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221224_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221225_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221225_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221226_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221226_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221227_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221227_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221228_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221228_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221229_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221229_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221230_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221230_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX038/data_LX038_20221231_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221217_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221217_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221222_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221222_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221223_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221223_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221225_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221225_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221226_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221226_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221227_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221227_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221228_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221228_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221229_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221229_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221230_v05__no_front__day.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221230_v05__no_front__night.anno",  # noqa
+                        f"{root}/multicam_pilot/data/lmdb_datasets/data/real_3d/person3d/v05/LX066/data_LX066_20221231_v05__no_front__night.anno",  # noqa
+                    ],
+                    "sample_weight": 9,
+                    "partition": "normal",
+                },
+            ]
+        },
+    }
+)
+
+datapaths = merge_datapaths(
+    datapaths,
+    base_2d_datapaths,
+    galaxy_x02_rear_datapaths,
+    galaxy_x03_rear_datapaths,
+)
+
+datapaths = EasyDict(datapaths)
+
+
+# partition example on 20230807
+partitions = dict(
+    vehicle=dict(
+        partitions=OrderedDict(
+            base=dict(),
+            difficult_scene=dict(
+                special=["glare", "scene_fp"],
+            ),
+            special_vehicle=dict(
+                special=["big_vehicle", "special_vehicle"],
+            ),
+            jira=dict(
+                source=["jira_badcase"],
+            ),
+        ),
+        sample_weights=dict(
+            default=dict(
+                base=0.1, difficult_scene=0.4, special_vehicle=0.4, jira=0.1
+            ),
+        ),
+    ),
+    vehicle_3d_detection=dict(
+        partitions=OrderedDict(
+            normal=dict(),
+            rotation=dict(),
+        ),
+        sample_weights=dict(
+            default=dict(
+                normal=0.9506833036244798,
+                rotation=0.049316696375519886,
+            ),
+        ),
+    ),
+    person_3d_detection=dict(
+        partitions=OrderedDict(
+            normal=dict(),
+        ),
+        sample_weights=dict(
+            default=dict(
+                normal=1,
+            ),
+        ),
+    ),
+)

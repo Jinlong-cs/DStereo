@@ -1,0 +1,26 @@
+num_classes: 50                                         # 类别数量
+current_class_id: 10
+parent_class_id: 1
+default_ignore_full_image: true
+remove_empty_images: true                               # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+parent_box_classname: person
+parent_box_remove_condiction:
+
+children_box_classname: face
+children_box_remove_condiction:
+
+children_box_hard_condiction:
+  or:
+    - range: {field: $BBOX_ASPECT_RATIO, gt: 2.5}        # 高宽比>2.5
+    - range: {field: $BBOX_HEIGHT, lt: 16}               # 高度<16
+    - range: {field: $BBOX_WIDTH, lt: 12}                # 宽度<12
+
+children_box_ignore_condiction:
+  or:
+    - contains: {attrs: {ignore: "yes"}}
+
+children_box_positive_condiction:
+  and: []
+match_mode: matching_with_belongto_attr_and_remove_unmatched_parent

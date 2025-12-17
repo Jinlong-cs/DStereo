@@ -1,0 +1,8 @@
+person_2PE:
+- batch_size: 8.4
+  train_json: /jinmeng.yang/mini_data/2pe_4cls/data.anno.pb_rec
+  train_rec: /jinmeng.yang/mini_data/2pe_4cls/data.rec
+  # train_roi_list: null
+  val_json: /jinmeng.yang/mini_data/2pe_4cls/data.anno.pb_rec
+  val_rec: /jinmeng.yang/mini_data/2pe_4cls/data.rec
+  

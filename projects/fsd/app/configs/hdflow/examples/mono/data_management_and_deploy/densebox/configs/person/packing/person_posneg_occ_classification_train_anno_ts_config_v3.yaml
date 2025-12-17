@@ -1,0 +1,102 @@
+base_classname: person                                  # 一级类型名称
+num_classes: 5                                          # 类别数量
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    or:                                                     # 以下任一条件为真, 则输出真
+    - contains: {attrs: {ignore: "yes"}}                        # 包含{"attrs": {"ignore": "yes"}}
+    - contains: {attrs: {is_det: False}}
+    - contains: {attrs: {occlusion: invisible}}                 # 包含{"attrs": {"occlusion": "invisible"}}
+    - contains: {attrs: {confidence: Low}}                      # 包含{"attrs": {"confidence": "Low"}}
+    - contains: {attrs: {confidence: VeryLow}}                  # 包含{"attrs": {"confidence": "VeryLow"}}
+    - contains: {attrs: {type: Dummy}}
+    - contains: {attrs: {type: Lier}}
+    - contains: {attrs: {type: other}}
+    - contains: {attrs: {type: Others}}
+    - contains: {attrs: {type: Unknown}}
+    - contains: {attrs: {type: InVehicle}}
+    - contains: {attrs: {type: WithWheelchair}}
+    - contains: {attrs: {type: OtherPose}}
+    - contains: {attrs: {type: OnPoster}}
+    - contains: {attrs: {type: Stroller}}
+    - and:                                                      # 以下所有条件为真, 则输出真
+      - range: {field: $BBOX_HEIGHT, lt: 16}                      # bbox高度 < 16
+      - not:                                                      # 以下条件的假值, 则输出值
+          contains: {attrs: {type: Lier}}                           # 包含{"attrs": {"type": "Lier"}}
+    - range: {field: $BBOX_WIDTH, lt: 8}                       # bbox宽度 < 9
+    - range: {field: $BBOX_ASPECT_RATIO, gt: 10}                 # bbox高宽比 > 6
+    - range: {field: $BBOX_ASPECT_RATIO, lt: 1}                 # bbox高宽比 < 1
+    # - contains: {attrs: {type: PersonRideBicycle}}
+    # - contains: {attrs: {type: PersonPushBicycle}}
+    # - contains: {attrs: {type: PersonRideMotorcycle}}
+    # - contains: {attrs: {type: PersonPushMotorcycle}}
+    # - contains: {attrs: {type: PersonRideTricycle}}
+    # - contains: {attrs: {type: PersnPushTricycle}}
+#    - and:
+#      - contains: {attrs: {OverlappedBox: "no"}}
+#      - or:
+#        - contains: {attrs: {type: PersonRideBicycle}}
+#        - contains: {attrs: {type: PersonPushBicycle}}
+#        - contains: {attrs: {type: PersonRideMotorcycle}}
+#        - contains: {attrs: {type: PersonPushMotorcycle}}
+#        - contains: {attrs: {type: PersonRideTricycle}}
+#        - contains: {attrs: {type: PersnPushTricycle}}
+    - contains: {attrs: {negative_type: normal}}
+    - contains: {attrs: {negative_type: unknown}}
+    - contains: {attrs: {negative_type: occlusion}}
+    - contains: {attrs: {negative_type: low_conf}}
+- id: 1
+  name: Negative
+  upsample_class_wise:
+    iron_fence: 10
+    traffic: 5
+    building: 2
+    bicycle: 2
+    trunk: 5
+    tree: 5
+    single: 5
+    vehicle: 2
+    multiple: 10
+    clothes: 10
+    other: 2
+  match_condiction:                                         # 为真值, 则匹配为该类别
+    or:
+    - contains: {attrs: {type: NonTarget}}                        # 包含{"attrs": {"type": "NonTarget"}}
+    - contains: {attrs: {type: Bicycle}}
+    - contains: {attrs: {type: Motorcycle}}
+    - contains: {attrs: {negative_type: building}}
+    - contains: {attrs: {negative_type: bicycle}}
+    - contains: {attrs: {negative_type: trunk}}
+    - contains: {attrs: {negative_type: tree}}
+    - contains: {attrs: {negative_type: iron_fence}}
+    - contains: {attrs: {negative_type: single}}
+    - contains: {attrs: {negative_type: traffic}}
+    - contains: {attrs: {negative_type: vehicle}}
+    - contains: {attrs: {negative_type: multiple}}
+    - contains: {attrs: {negative_type: clothes}}
+    - contains: {attrs: {negative_type: other}}
+- id: 2
+  name: full_visible
+  upsample: 1.0
+  match_condiction:
+    contains: {attrs: {occlusion: full_visible}}
+- id: 3
+  name: occluded
+  upsample: 1.0
+  match_condiction:
+    contains: {attrs: {occlusion: occluded}}
+- id: 4
+  name: heavily_occluded
+  upsample: 1.0
+  match_condiction:
+    contains: {attrs: {occlusion: heavily_occluded}}
+- id: 5
+  name: invisible
+  upsample: 1.0
+  match_condiction:
+    contains: {attrs: {occlusion: invisible}}
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    and: []                                                     # 以下所有条件为真, 则输出真

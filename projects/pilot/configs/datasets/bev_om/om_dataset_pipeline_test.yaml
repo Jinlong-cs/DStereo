@@ -1,0 +1,113 @@
+BJ:
+  UT126:
+    merge_UT126_roadedges_or_solid_v5a_v20230317_0_11v_pipeline_test:
+      sync_file: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/20230317/roadedges_or_solid/v20230317_0/merge_UT126_roadedges_or_solid_all_11v.txt
+      sync_file_lmdb: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/20230317/roadedges_or_solid/v20230317_0/merge_UT126_roadedges_or_solid_all_11v
+      homo_path: null
+      calib_path: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_UT126_20221231/Site_116_70282_39_87826_0/UT126_20221231_121404
+      root: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_UT126_20221231
+      gt_bev_dir: bev_GT_seg_v3
+      num_samples: 113752
+      sample_interval: 1
+      fill_fake_temporal_data: true
+      camera_module_type: X8b_X3c_isx031_X8b
+      bev_static_lmdb_path:
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230207_736201_1/train_FSD_Site_UT126_20230103_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230207_736201_1/train_FSD_Site_UT126_20230104_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230202_735229_1/train_FSD_Site_UT126_20221228_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230201_734789_1/train_FSD_Site_UT126_20221227_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230201_734789_1/train_FSD_Site_UT126_20221229_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736863_1/train_FSD_Site_UT126_20230106_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736863_1/train_FSD_Site_UT126_20230107_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736863_1/train_FSD_Site_UT126_20230109_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230214_737608_1/train_FSD_Site_UT126_20230114_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230214_737608_1/train_FSD_Site_UT126_20230116_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230214_737608_1/train_FSD_Site_UT126_20230117_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230214_737608_1/train_FSD_Site_UT126_20230118_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230214_737608_1/train_FSD_Site_UT126_20230119_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230203_735524_1/train_FSD_Site_UT126_20221231_bevmap
+      HDE_data_path: SD_Algorithm/12_perception_bev_hde/03_pack_package/site_data/
+      seg_data_path: ''
+    merge_UT126_parking_v5a_v20230614_0_11v_TS_C_pipeline_test:
+      sync_file: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/2023_temporal_complete/merge_UT126_parking_v5a_v20230614_0_11v_TS_complete.txt
+      sync_file_lmdb: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/2023_temporal_complete/merge_UT126_parking_v5a_v20230614_0_11v_TS_complete
+      homo_path: null
+      calib_path: SD_Algorithm/12_perception_bev_hde/03_hde_data/park_data/UT126_20230408_D/20230408-133131_736
+      root: SD_Algorithm/12_perception_bev_hde/03_hde_data/park_data/UT126_20230408_D
+      gt_bev_dir: bev_GT_seg_v3
+      num_samples: 186766
+      sample_interval: 1
+      fill_fake_temporal_data: false
+      camera_module_type: X8b_X3c_isx031_X8b
+      bev_static_lmdb_path:
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/parking_om/autolabel_data_758132_2/train_UT126_20230412_D_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/parking_om/autolabel_data_758132_2/train_UT126_20230413_D_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/parking_om/autolabel_data_758132_2/train_UT126_20230414_D_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/parking_om/autolabel_data_758132_2/train_UT126_20230417_D_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/parking_om/autolabel_data_758120_2/train_UT126_20230401_D_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/parking_om/autolabel_data_758120_2/train_UT126_20230408_D_bevmap
+      HDE_data_path: SD_Algorithm/12_perception_bev_hde/03_pack_package/park_data/
+      seg_data_path: ''
+  BYD18:
+    merge_BYD18_roadedges_or_solid_v5a_v20230222_1_7v_pipeline_test:
+      sync_file: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/20230222/roadedges_or_solid/v20230222_1/merge_BYD18_roadedges_or_solid_all_7v.txt
+      sync_file_lmdb: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/20230222/roadedges_or_solid/v20230222_1/merge_BYD18_roadedges_or_solid_all_7v
+      homo_path: null
+      calib_path: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_BYD18_20221227/Site_118_67815_31_98125_0/BYD18_20221227_065109
+      root: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_BYD18_20221227
+      gt_bev_dir: bev_GT_seg_v3
+      num_samples: 18830
+      sample_interval: 1
+      fill_fake_temporal_data: true
+      camera_module_type: X8b_X3c_X8b
+      bev_static_lmdb_path:
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736835_1/train_FSD_Site_BYD18_20221203_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230117_733333_1/train_FSD_Site_BYD18_20221227_bevmap
+      img_data_path:
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736835_1/rec_lmdb/train_FSD_Site_BYD18_20221203_front0820_rec
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736835_1/rec_lmdb/train_FSD_Site_BYD18_20221203_5v0223_rec
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230209_736835_1/rec_lmdb/train_FSD_Site_BYD18_20221203_front30fov_rec
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230117_733333_1/rec_lmdb/train_FSD_Site_BYD18_20221227_front0820_rec
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230117_733333_1/rec_lmdb/train_FSD_Site_BYD18_20221227_5v0223_rec
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230117_733333_1/rec_lmdb/train_FSD_Site_BYD18_20221227_front30fov_rec
+      seg_data_path: null
+    merge_BYD18_roadedges_or_solid_v5a_v20230616hde_0_7v_TS_C_pipeline_test:
+      sync_file: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/2023_temporal_complete/merge_BYD18_roadedges_or_solid_v5a_v20230616hde_0_7v_TS_complete.txt
+      sync_file_lmdb: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/2023_temporal_complete/merge_BYD18_roadedges_or_solid_v5a_v20230616hde_0_7v_TS_complete
+      homo_path: null
+      calib_path: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_BYD18_20230508/Site_121_42711_31_27423_0/BYD18_20230508_145348
+      root: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_BYD18_20230508
+      gt_bev_dir: bev_GT_seg_v3
+      num_samples: 119662
+      sample_interval: 1
+      fill_fake_temporal_data: false
+      camera_module_type: X8b_X3c_X8b
+      bev_static_lmdb_path:
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230531_760783_2/train_FSD_Site_BYD18_20230513_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230531_760783_2/train_FSD_Site_BYD18_20230514_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230531_760783_2/train_FSD_Site_BYD18_20230515_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230531_760783_2/train_FSD_Site_BYD18_20230516_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230525_759272_2/train_FSD_Site_BYD18_20230512_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230524_759147_2/train_FSD_Site_BYD18_20230506_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230524_759147_2/train_FSD_Site_BYD18_20230507_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230524_759147_2/train_FSD_Site_BYD18_20230508_bevmap
+      HDE_data_path: SD_Algorithm/12_perception_bev_hde/03_pack_package/site_data/
+      seg_data_path: ''
+  UT263:
+    merge_UT263_roadedges_or_solid_v5a_v20230703hde_0_11v_TS_C_pipeline_test:
+      sync_file: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/2023_temporal_complete/merge_UT263_roadedges_or_solid_v5a_v20230703hde_0_11v_TS_complete.txt
+      sync_file_lmdb: SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/merge_datasets/new_merge/2023_temporal_complete/merge_UT263_roadedges_or_solid_v5a_v20230703hde_0_11v_TS_complete
+      homo_path: null
+      calib_path: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_UT263_20230404/Site_115_50608_38_87126_0/UT263_20230404_064159
+      root: SD_Algorithm/12_perception_bev_hde/03_hde_data/FSD_Site_UT263_20230404
+      gt_bev_dir: bev_GT_seg_v3
+      num_samples: 5902
+      sample_interval: 1
+      fill_fake_temporal_data: false
+      camera_module_type: X8b_X3c_isx031_X8b
+      bev_static_lmdb_path:
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230614_763698_2/train_FSD_Site_UT263_20230401_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230614_763698_2/train_FSD_Site_UT263_20230403_bevmap
+      - SD_Algorithm/07_perception_bev_static/03_pack_package/shaokai.li/om_v3/autolabel_data_20230614_763698_2/train_FSD_Site_UT263_20230404_bevmap
+      HDE_data_path: SD_Algorithm/12_perception_bev_hde/03_pack_package/site_data/
+      seg_data_path: ''

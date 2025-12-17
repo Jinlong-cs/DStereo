@@ -1,0 +1,69 @@
+base_classname: traffic_sign
+num_classes: 4
+allow_multi_match: true
+default_ignore_full_image: true
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: GSWB_Other}}
+        - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+        - contains: {attrs: {cn_medium_type: sign_Construction}}
+        - contains: {attrs: {cn_medium_type: C_Other}}
+        - contains: {attrs: {cn_medium_type: C_Unknown}}
+        - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+        - contains: {attrs: {cn_medium_type: RSBW_Other}}
+        - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+        - contains: {attrs: {cn_medium_type: GSGW_Other}}
+        - contains: {attrs: {cn_medium_type: GSGW_Unknown}}
+        - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+        - contains: {attrs: {cn_medium_type: TSBW_Other}}
+        - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: RouteID}}
+        - contains: {attrs: {cn_medium_type: RouteID_Other}}
+        - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+        - contains: {attrs: {cn_medium_type: O_Other}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+        - contains: {attrs: {cn_medium_type: False_Positive}}
+        - contains: {attrs: {cn_medium_type: Other_Detfp}}
+        - contains: {attrs: {cn_medium_type: Other_Exit}}
+        - contains: {attrs: {cn_medium_type: Other_LightArrow}}
+        - contains: {attrs: {cn_medium_type: Other_Mirror}}
+        - contains: {attrs: {cn_medium_type: mirror}}
+        - contains: {attrs: {cn_medium_type: Other_RedCircleLight}}
+        - contains: {attrs: {Inside: outside}}
+        - contains: {attrs: {nested_outside: "yes"}}
+        - contains: {attrs: {ignore: "yes"}}
+        - and:
+            - contains: {attrs: {cn_medium_type: U_Unknown}}
+            - contains: {attrs: {occlusion: full_visible}}
+            - range: {field: $BBOX_HEIGHT, lt: 17}
+            - range: {field: $BBOX_WIDTH, lt: 17}
+  - id: 1
+    name: full_visible
+    upsample: 0.3
+    match_condiction:
+      and:
+        - contains: {attrs: {occlusion: full_visible}}
+  - id: 2
+    name: occluded
+    upsample: 2
+    match_condiction:
+      and:
+        - contains: {attrs: {occlusion: occluded}}
+  - id: 3
+    name: heavily_occluded
+    upsample: 5
+    match_condiction:
+      and:
+        - contains: {attrs: {occlusion: heavily_occluded}}
+  - id: 4
+    name: invisible
+    upsample: 15
+    match_condiction:
+      and:
+        - contains: {attrs: {occlusion: invisible}}

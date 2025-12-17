@@ -1,0 +1,459 @@
+      
+# group data version
+# v0.0.1 using for pipeline_test
+pipeline_test:
+  BEIJING:
+    UT0Q9:
+      UT0Q9_20220908:
+        sample_interval: 1
+v0.0.1:
+  BEIJING:
+    UT0Q9:
+      UT0Q9_20220908:
+        sample_interval: 1
+v1.0.0:
+  BEIJING:
+    30C1G:
+      30C1G_20211031-20211102:
+        sample_interval: 30
+    H3165:
+      H3165_20211101-20211112:
+        sample_interval: 30
+    65U3D:
+      65U3D_20211029-20211114:
+        sample_interval: 30
+v2.0.0:
+  BEIJING:
+    UT0Q9:
+      UT0Q9_20220908:
+        sample_interval: 8
+      UT0Q9_20220902:
+        sample_interval: 8
+      UT0Q9_20220913:
+        sample_interval: 8
+      UT0Q9_20230201:
+        sample_interval: 8
+    UT126:
+      UT126_20220803:
+        sample_interval: 8
+      UT126_20220829:
+        sample_interval: 8
+      UT126_20220901:
+        sample_interval: 8
+      UT126_20220903:
+        sample_interval: 8
+      UT126_20230201:
+        sample_interval: 8
+    UT0F3:
+      UT0F3_20230201:
+        sample_interval: 8
+    UT1R3:
+      UT1R3_20220706:
+        sample_interval: 8
+      UT1R3_20220817:
+        sample_interval: 8
+      UT1R3_20230202:
+        sample_interval: 8
+      UT1R3_20230212:
+        sample_interval: 8
+    UT263:
+      UT263_20220830:
+        sample_interval: 8
+      UT263_20220922:
+        sample_interval: 8
+      UT263_20230201:
+        sample_interval: 8
+      UT263_20230205:
+        sample_interval: 8
+    UTHS6:
+      UTHS6_20220611:
+        sample_interval: 8
+      UTHS6_20220720:
+        sample_interval: 8
+      UTHS6_20230202:
+        sample_interval: 8
+      UTHS6_20230203:
+        sample_interval: 8
+      UTHS6_20230208:
+        sample_interval: 8
+v3.0.0:
+  BEIJING:
+    UT0Q9:
+      UT0Q9_20220908:
+        sample_interval: 8
+      UT0Q9_20220902:
+        sample_interval: 8
+      UT0Q9_20220913:
+        sample_interval: 8
+      UT0Q9_20230201:
+        sample_interval: 8
+    UT126:
+      UT126_20220803:
+        sample_interval: 8
+      UT126_20220829:
+        sample_interval: 8
+      UT126_20220901:
+        sample_interval: 8
+      UT126_20220903:
+        sample_interval: 8
+      UT126_20230201:
+        sample_interval: 8
+    UT0F3:
+      UT0F3_20230201:
+        sample_interval: 8
+    UT1R3:
+      UT1R3_20220706:
+        sample_interval: 8
+      UT1R3_20220817:
+        sample_interval: 8
+      UT1R3_20230202:
+        sample_interval: 8
+      UT1R3_20230212:
+        sample_interval: 8
+    UT263:
+      UT263_20220830:
+        sample_interval: 8
+      UT263_20220922:
+        sample_interval: 8
+      UT263_20230201:
+        sample_interval: 8
+      UT263_20230205:
+        sample_interval: 8
+    UTHS6:
+      UTHS6_20220611:
+        sample_interval: 8
+      UTHS6_20220720:
+        sample_interval: 8
+      UTHS6_20230202:
+        sample_interval: 8
+      UTHS6_20230203:
+        sample_interval: 8
+      UTHS6_20230208:
+        sample_interval: 8
+  Contrast:
+    UT126:
+      UT126_20230102_20230212:
+        sample_interval: 8
+    UTHS6:
+      UTHS6_20221114:
+        sample_interval: 8
+      UTHS6_20230118:
+        sample_interval: 8
+    UT1R3:
+      UT1R3_20230105:
+        sample_interval: 8
+      UT1R3_20221104_20221204:
+        sample_interval: 8
+      UT1R3_20221106_D:
+        sample_interval: 8
+      UT1R3_20230204_20230210:
+        sample_interval: 8
+      UT1R3_20230211_20230215:
+        sample_interval: 8
+  4DGT:
+    LS912:
+      LS912_20230424_D:
+        sample_interval: 8
+      LS912_20230411_D:
+        sample_interval: 8
+      LS912_20230426_D:
+        sample_interval: 8
+      LS912_20230425_D:
+        sample_interval: 8
+      LS912_20230427_D:
+        sample_interval: 8
+      LS912_20230324:
+        sample_interval: 8
+      LS912_20230422_D:
+        sample_interval: 8
+      LS912_20230415:
+        sample_interval: 8
+      LS912_20230330_D:
+        sample_interval: 8
+      LS912_20230328:
+        sample_interval: 8
+      LS912_20230325:
+        sample_interval: 8
+      LS912_20230327:
+        sample_interval: 8
+      LS912_20230418:
+        sample_interval: 8
+      LS912_20230416:
+        sample_interval: 8
+      LS912_20230419:
+        sample_interval: 8
+      LS912_20230329_D:
+        sample_interval: 8
+      LS912_20230414:
+        sample_interval: 8
+      LS912_20230413:
+        sample_interval: 8
+      LS912_20230505_D:
+        sample_interval: 8
+      LS912_20230423_D:
+        sample_interval: 8
+    LS830:
+      LS830_20230328_D:
+        sample_interval: 8
+      LS830_20230317_D:
+        sample_interval: 8
+      LS830_20230325_D:
+        sample_interval: 8
+      LS830_20230327_D:
+        sample_interval: 8
+      LS830_20230323_D:
+        sample_interval: 8
+      LS830_20230321_D:
+        sample_interval: 8
+      LS830_20230318_D:
+        sample_interval: 8
+      LS830_20230322_D:
+        sample_interval: 8
+
+v4.0.0:
+  BEIJING:
+    UT0Q9:
+      UT0Q9_20220908:
+        sample_interval: 8
+      UT0Q9_20220902:
+        sample_interval: 8
+      UT0Q9_20220913:
+        sample_interval: 8
+      UT0Q9_20230201:
+        sample_interval: 8
+    UT126:
+      UT126_20220803:
+        sample_interval: 8
+      UT126_20220829:
+        sample_interval: 8
+      UT126_20220901:
+        sample_interval: 8
+      UT126_20220903:
+        sample_interval: 8
+      UT126_20230201:
+        sample_interval: 8
+    UT0F3:
+      UT0F3_20230201:
+        sample_interval: 8
+    UT1R3:
+      UT1R3_20220706:
+        sample_interval: 8
+      UT1R3_20220817:
+        sample_interval: 8
+      UT1R3_20230202:
+        sample_interval: 8
+      UT1R3_20230212:
+        sample_interval: 8
+    UT263:
+      UT263_20220830:
+        sample_interval: 8
+      UT263_20220922:
+        sample_interval: 8
+      UT263_20230201:
+        sample_interval: 8
+      UT263_20230205:
+        sample_interval: 8
+    UTHS6:
+      UTHS6_20220611:
+        sample_interval: 8
+      UTHS6_20220720:
+        sample_interval: 8
+      UTHS6_20230202:
+        sample_interval: 8
+      UTHS6_20230203:
+        sample_interval: 8
+      UTHS6_20230208:
+        sample_interval: 8
+  Contrast:
+    UT126:
+      UT126_20230102_20230212:
+        sample_interval: 8
+    UTHS6:
+      UTHS6_20221114:
+        sample_interval: 8
+      UTHS6_20230118:
+        sample_interval: 8
+    UT1R3:
+      UT1R3_20230105:
+        sample_interval: 8
+      UT1R3_20221104_20221204:
+        sample_interval: 8
+      UT1R3_20221106_D:
+        sample_interval: 8
+      UT1R3_20230204_20230210:
+        sample_interval: 8
+      UT1R3_20230211_20230215:
+        sample_interval: 8
+  4DGT:
+    LS912:
+      LS912_20230424_D:
+        sample_interval: 8
+      LS912_20230411_D:
+        sample_interval: 8
+      LS912_20230426_D:
+        sample_interval: 8
+      LS912_20230425_D:
+        sample_interval: 8
+      LS912_20230427_D:
+        sample_interval: 8
+      LS912_20230324:
+        sample_interval: 8
+      LS912_20230422_D:
+        sample_interval: 8
+      LS912_20230415:
+        sample_interval: 8
+      LS912_20230330_D:
+        sample_interval: 8
+      LS912_20230328:
+        sample_interval: 8
+      LS912_20230325:
+        sample_interval: 8
+      LS912_20230327:
+        sample_interval: 8
+      LS912_20230418:
+        sample_interval: 8
+      LS912_20230416:
+        sample_interval: 8
+      LS912_20230419:
+        sample_interval: 8
+      LS912_20230329_D:
+        sample_interval: 8
+      LS912_20230414:
+        sample_interval: 8
+      LS912_20230413:
+        sample_interval: 8
+      LS912_20230505_D:
+        sample_interval: 8
+      LS912_20230423_D:
+        sample_interval: 8
+    LS830:
+      LS830_20230328_D:
+        sample_interval: 8
+      LS830_20230317_D:
+        sample_interval: 8
+      LS830_20230325_D:
+        sample_interval: 8
+      LS830_20230327_D:
+        sample_interval: 8
+      LS830_20230323_D:
+        sample_interval: 8
+      LS830_20230321_D:
+        sample_interval: 8
+      LS830_20230318_D:
+        sample_interval: 8
+      LS830_20230322_D:
+        sample_interval: 8
+  AEB:
+    AEB_v1.1_train:
+      UT0T1_20231028_20231031_D_AEB_train_part3:
+        sample_interval: 8
+      UT0T1_20231101_20231102_D_AEB_train_part11:
+        sample_interval: 8
+      UT0T1_20231031_20231101_D_AEB_train_part8:
+        sample_interval: 8
+      UT3J5_20231102_20231103_D_AEB_train_part8:
+        sample_interval: 8
+      UT263_20231031_20231103_D_AEB_train_part10:
+        sample_interval: 8
+      UT370_20231031_20231103_D_AEB_train_part9:
+        sample_interval: 8
+      UT370_20231028_20231101_D_AEB_train_part7:
+        sample_interval: 8
+      UT3J5_20231027_20231028_D_AEB_train_part5:
+        sample_interval: 8
+      UT3J5_20231027_20231028_D_AEB_train_part6:
+        sample_interval: 8
+      UT3J5_20231102_20231103_D_AEB_train_part9:
+        sample_interval: 8
+      UT0F3_20231102_20231103_D_AEB_train_part5:
+        sample_interval: 8
+      LX165_20231101_20231102_D_AEB_train_part4:
+        sample_interval: 8
+      UT263_20231028_20231031_D_AEB_train_part4:
+        sample_interval: 8
+      UT263_20231031_20231101_D_AEB_train_part8:
+        sample_interval: 8
+      UT263_20231028_20231101_D_AEB_train_part3:
+        sample_interval: 8
+      UT370_20231028_20231029_D_AEB_train_part2:
+        sample_interval: 8
+      UT0F3_20231101_20231102_D_AEB_train_part4:
+        sample_interval: 8
+      UT0F3_20231102_20231103_D_AEB_train_part6:
+        sample_interval: 8
+      UT370_20231028_20231029_D_AEB_train_part1:
+        sample_interval: 8
+      UT370_20231029_20231101_D_AEB_train_part5:
+        sample_interval: 8
+      UT370_20231030_20231101_D_AEB_train_part6:
+        sample_interval: 8
+      UT0T1_20231031_D_AEB_train_part7:
+        sample_interval: 8
+      UT263_20231028_20231101_D_AEB_train_part2:
+        sample_interval: 8
+      UT0F3_20231028_20231102_D_AEB_train_part1:
+        sample_interval: 8
+      LX165_20231101_20231103_D_AEB_train_part5:
+        sample_interval: 8
+      UT370_20231103_D_AEB_train_part10:
+        sample_interval: 8
+      UT3J5_20231029_20231102_D_AEB_train_part3:
+        sample_interval: 8
+      UT263_20231028_20231029_D_AEB_train_part1:
+        sample_interval: 8
+      UT0T1_20231030_20231101_D_AEB_train_part5:
+        sample_interval: 8
+      UT263_20231028_20231101_D_AEB_train_part5:
+        sample_interval: 8
+      UT3J5_20231101_20231102_D_AEB_train_part4:
+        sample_interval: 8
+      UT0T1_20231028_20231101_D_AEB_train_part4:
+        sample_interval: 8
+      UT263_20231031_20231101_D_AEB_train_part7:
+        sample_interval: 8
+      UT0F3_20231028_20231102_D_AEB_train_part3:
+        sample_interval: 8
+      UT370_20231029_20231103_D_AEB_train_part11:
+        sample_interval: 8
+      UT0F3_20231028_20231031_D_AEB_train_part2:
+        sample_interval: 8
+      UT0T1_20231101_20231103_D_AEB_train_part10:
+        sample_interval: 8
+      UT0F3_20231102_20231103_D_AEB_train_part8:
+        sample_interval: 8
+      UT0F3_20231102_20231103_D_AEB_train_part7:
+        sample_interval: 8
+      UT0T1_20231028_20231102_D_AEB_train_part9:
+        sample_interval: 8
+      UT263_20231031_20231103_D_AEB_train_part9:
+        sample_interval: 8
+      UT263_20231029_20231103_D_AEB_train_part12:
+        sample_interval: 8
+      LX165_20231031_20231101_D_AEB_train_part3:
+        sample_interval: 8
+      UT3J5_20231027_20231028_D_AEB_train_part7:
+        sample_interval: 8
+      UT370_20231028_20231101_D_AEB_train_part8:
+        sample_interval: 8
+      LX165_20231031_20231101_D_AEB_train_part2:
+        sample_interval: 8
+      UT263_20231102_20231103_D_AEB_train_part11:
+        sample_interval: 8
+      UT370_20231028_20231029_D_AEB_train_part3:
+        sample_interval: 8
+      UT370_20231028_20231029_D_AEB_train_part4:
+        sample_interval: 8
+      UT3J5_20231028_20231102_D_AEB_train_part2:
+        sample_interval: 8
+      UT3J5_20231028_20231102_D_AEB_train_part1:
+        sample_interval: 8
+      UT263_20231029_20231101_D_AEB_train_part6:
+        sample_interval: 8
+      UT0T1_20231028_20231030_D_AEB_train_part2:
+        sample_interval: 8
+      UT0T1_20231030_20231101_D_AEB_train_part6:
+        sample_interval: 8
+      UT0T1_20231028_20231029_D_AEB_train_part1:
+        sample_interval: 8
+      LX165_20231028_20231030_D_AEB:
+        sample_interval: 8

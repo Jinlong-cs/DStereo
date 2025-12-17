@@ -1,0 +1,51 @@
+num_classes: 10                                         # 类别数量
+current_class_id: 4
+default_ignore_full_image: true                         # 其余类别全图ignore
+remove_empty_images: false                              # 删除空图片
+remove_zh_image_path: true                              # 删除中文路径图片
+shuffle: false                                           # 打乱图片顺序
+parent_box_classname: vehicle_full
+parent_box_remove_condiction:
+  range: {field: attrs.score, lt: 0.18}                         # obj["attrs"]["score"] < 0.18
+children_box_classname: vehicle
+children_box_remove_condiction:                                         # 为真值, 则删除
+  or:                                                         # 以下任一条件为真, 则输出真
+  - contains: {attrs: {type: Bike}}                           # 包含{"attrs": {"type": "Bike"}}
+  - contains: {attrs: {type: Motorcycle}}                     # 包含{"attrs": {"type": "Motercycling"}}
+  - contains: {attrs: {type: Motorcycle_electrombile}}        # 包含{"attrs": {"type": "Motorcycle"}}
+  - contains: {attrs: {type: unknown}}              # 包含{"attrs": {"Orientation": "Transverse"}}
+children_box_ignore_condiction:
+  contains: {attrs: {ignore: "yes"}}
+children_box_hard_condiction:
+  or:                                                       # 以下任一条件为真, 则输出真
+  - and:
+    - contains: {attrs: {occlusion: heavily_occluded}}            # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+    - and:
+      - range: {field: $BBOX_HEIGHT, lt: 720}
+      - range: {field: $BBOX_WIDTH, lt: 720}           # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+#  - contains: {attrs: {occlusion: heavily_occluded_c}}          # 包含{"attrs": {"occlusion": "heavily_occluded_c"}}
+  - contains: {attrs: {occlusion: invisible}}                   # 包含{"attrs": {"occlusion": "invisible"}}
+#  - contains: {attrs: {occlusion: invisible_d}}                 # 包含{"attrs": {"occlusion": "invisible_d"}}
+  - contains: {attrs: {type: Non-Motor Vehicle_others}}          # 包含{"attrs": {"type": "Vehicle_others"}}
+  - contains: {attrs: {type: other}}                          # 包含{"attrs": {"type": "unknown"}}
+#  - contains: {attrs: {part: unknown}}                          # 包含{"attrs": {"part": "unknown"}}
+#  - contains: {attrs: {part: full}}                             # 包含{"attrs": {"part": "full"}}
+#  - contains: {attrs: {part: other}}                            # 包含{"attrs": {"part": "other"}}
+  - and:                                                        # 以下所有条件为真, 则输出真
+    - range: {field: $BBOX_HEIGHT, lt: 12}                          # 高度 < 12
+    - range: {field: $BBOX_WIDTH, lt: 12}                           # 宽度 < 12
+#  - contains: {attrs: {confidence: Low}}                        # 包含{"attrs": {"confidence": "Low"}}
+#  - contains: {attrs: {confidence: VeryLow}}                    # 包含{"attrs": {"confidence": "VeryLow"}}
+#  - contains: {attrs: {Orientation: Unknown}}                   # 包含{"attrs": {"Orientation": "Unknown"}}
+#  - and:                                                        # 以下所有条件为真, 则输出真
+#    - contains: {attrs: {Orientation: oblique}}                     # 包含{"attrs": {"Orientation": "Unknown"}}
+#    - or:                                                           # 以下任一条件为真, 则输出真
+#      - contains: {attrs: {type: Motor-Tricycle}}                       # 包含{"attrs": {"type": "Motor-Tricycle"}}
+#      - contains: {attrs: {type: Tricycle}}                             # 包含{"attrs": {"type": "Tricycle"}}
+children_box_positive_condiction:
+  and: []
+match_mode: matching_with_overlaps
+match_overlap_threshold: 0.8
+class_mappers:                                          # 定义类别
+- id: 4
+  name: vehicle

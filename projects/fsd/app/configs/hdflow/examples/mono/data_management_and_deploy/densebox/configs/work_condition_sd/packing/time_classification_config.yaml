@@ -1,0 +1,39 @@
+base_classname: common_box
+num_classes: 3
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: { attrs: { ignore: yes } }
+        - contains: { attrs: { bad_image: bad_imaging } }
+        - contains: { attrs: { bad_image: blur_len } }
+        - contains: { attrs: { bad_image: mud_len } }
+        - contains: { attrs: { cameraset: fisheye_view } }
+        - contains: { attrs: { camera_direction: side } }
+        - contains: { attrs: { camera_direction: side_view } } # camera and image quality
+  - id: null
+    match_condiction:
+      contains: { attrs: { scene_status: traffic_jam } }
+    upsample: 0.3
+  - id: 1
+    name: Day
+    match_condiction:
+      or:
+        - contains: { attrs: { Time: Day } }
+    #      - contains: {attrs: {Time: sunrise_nightfall}}
+    upsample: 1
+  - id: 2
+    name: Night
+    match_condiction:
+      or:
+        - contains: { attrs: { Time: Night } }
+    upsample: 1
+  - id: 3
+    name: Other
+    match_condiction:
+      or:
+        - contains: { attrs: { Time: Other } }
+        - contains: { attrs: { Time: Unknown } }
+    upsample: 1

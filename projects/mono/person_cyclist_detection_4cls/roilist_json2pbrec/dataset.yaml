@@ -1,0 +1,8 @@
+person_2PE:
+- batch_size: 13
+  train_json: /data/person_det_multicls/pedestrian_cyclist_det_2pe_online_packing_20230426_20230531/20230804-102748//data.json
+  train_rec: /data/person_det_multicls/pedestrian_cyclist_det_2pe_online_packing_20230426_20230531/20230804-102748//data.rec
+  train_roi_list: /data/person_det_multicls/pedestrian_cyclist_det_2pe_online_packing_20230426_20230531/20230804-102748//data_roilist.json
+  val_json: /data/person/10635_20191203_ped_cyc_multiclass_20201125/10635_20191203_ped_cyc_multitask_20201125.json
+  val_rec: /data/person/10635_20191203_ped_cyc_multiclass_20201125/10635_20191203_ped_cyc_multitask_20201125.rec
+  val_roi_list: null

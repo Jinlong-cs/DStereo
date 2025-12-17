@@ -1,0 +1,51 @@
+# group data version
+
+# bev_psd:
+
+pipeline_test:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 100
+pipeline_testV2:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 100
+v1.0.0:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 1
+v1.1.0:
+  BJ_V2:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+        sample_interval: 1
+# driving test set
+v1.2.0:
+  BACK_GROUND:
+    UT126:
+      FSD_Site_UT126_20221224:
+        sample_interval: 1
+v1.3.0:
+  BACK_GROUND:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+      0019_UT126_20221010_ml_5map:
+v1.4.0:
+  BJ_V3:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+v1.5.0:
+  BJ_V3:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+      0019_UT126_20221010_ml_5map:
+  BJ_val:
+    UT1R3:
+      merged__122~122__20230209:
+v1_0_0_temporal_temp:
+  BJ_pipeline2.0_mult: 
+      UT126: 
+        merged__0_141__20220803_20220829:

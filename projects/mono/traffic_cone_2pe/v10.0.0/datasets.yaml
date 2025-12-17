@@ -1,0 +1,37 @@
+cone_bollard_classification:
+  - batch_size: 295803
+    # 295803
+    train_rec: /data/traffic_cone_2pe/CN_day_2pe_6cls_traffic_cone_train/20230116-163139/data.rec
+    train_json: /data/traffic_cone_2pe/CN_day_2pe_6cls_traffic_cone_train/20230116-163139/data.anno.pb_rec
+    val_rec: /data/traffic_cone_2pe/US_night_2pe_6cls_traffic_cone_train/20230117-102831/data.rec
+    val_json: /data/traffic_cone_2pe/US_night_2pe_6cls_traffic_cone_train/20230117-102831/data.anno.pb_rec
+  - batch_size: 152903
+    # 152903
+    train_rec: /data/traffic_cone_2pe/CN_night_2pe_6cls_traffic_cone_train/20230116-183120/data.rec
+    train_json: /data/traffic_cone_2pe/CN_night_2pe_6cls_traffic_cone_train/20230116-183120/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 75241
+    # 50161 *1.5
+    train_rec: /data/traffic_cone_2pe/CN_underground_2pe_6cls_traffic_cone_train/20230116-192635/data.rec
+    train_json: /data/traffic_cone_2pe/CN_underground_2pe_6cls_traffic_cone_train/20230116-192635/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 40366
+    # 40366
+    train_rec: /data/traffic_cone_2pe/US_day_2pe_6cls_traffic_cone_train/20230116-200023/data.rec
+    train_json: /data/traffic_cone_2pe/US_day_2pe_6cls_traffic_cone_train/20230116-200023/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 5636
+    # 5636
+    train_rec: /data/traffic_cone_2pe/US_night_2pe_6cls_traffic_cone_train/20230117-102831/data.rec
+    train_json: /data/traffic_cone_2pe/US_night_2pe_6cls_traffic_cone_train/20230117-102831/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 47532
+    # 23766 *2
+    train_rec: /data/traffic_cone_2pe/badcase_2pe_6cls_traffic_cone_train/20230601-172127/data.rec
+    train_json: /data/traffic_cone_2pe/badcase_2pe_6cls_traffic_cone_train/20230601-172127/data.anno.pb_rec
+    val_rec: null
+    val_json: null

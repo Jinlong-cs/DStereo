@@ -1,0 +1,5779 @@
+base_classname: traffic_sign
+num_classes: 714
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      and:
+        - or:
+            - contains:
+                attrs:
+                  ignore: 'yes'
+            - range:
+                field: $BBOX_HEIGHT
+                lt: 10
+            - range:
+                field: $BBOX_WIDTH
+                lt: 10
+  - id: 1
+    name: SL_MaxSpeed5_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-5--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim5}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed5_g4}}
+  - id: 2
+    name: SL_MaxSpeed10_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-10--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim10}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed10_g4}}
+  - id: 3
+    name: SL_MaxSpeed15_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-15--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim15}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed15_g4}}
+  - id: 4
+    name: SL_MaxSpeed20_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-20--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim20}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed20_g4}}
+  - id: 5
+    name: SL_MaxSpeed25_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-25--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim25}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed25_g4}}
+  - id: 6
+    name: SL_MaxSpeed30_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-30--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim30}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed30_g4}}
+  - id: 7
+    name: SL_MaxSpeed35_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-35--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim35}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed35_g4}}
+  - id: 8
+    name: SL_MaxSpeed40_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-40--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim40}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed40_g4}}
+  - id: 9
+    name: SL_MaxSpeed45_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-45--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim45}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed45_g4}}
+  - id: 10
+    name: SL_MaxSpeed50_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-50--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim50}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed50_g4}}
+  - id: 11
+    name: SL_MaxSpeed55_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed55_g4}}
+  - id: 12
+    name: SL_MaxSpeed60_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-60--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim60}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed60_g4}}
+  - id: 13
+    name: SL_MaxSpeed65_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-65--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim65}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed65_g4}}
+  - id: 14
+    name: SL_MaxSpeed70_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-70--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim70}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed70_g4}}
+  - id: 15
+    name: SL_MaxSpeed75_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed75_g4}}
+  - id: 16
+    name: SL_MaxSpeed80_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-80--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim80}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed80_g4}}
+  - id: 17
+    name: SL_MaxSpeed85_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed85_g4}}
+  - id: 18
+    name: SL_MaxSpeed90_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-90--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim90}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed90_g4}}
+  - id: 19
+    name: SL_MaxSpeed95_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed95_g4}}
+  - id: 20
+    name: SL_MaxSpeed100_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-100--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim100}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed100_g4}}
+  - id: 21
+    name: SL_MaxSpeed105_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed105_g4}}
+  - id: 22
+    name: SL_MaxSpeed110_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-110--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim110}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed110_g4}}
+  - id: 23
+    name: SL_MaxSpeed115_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed115_g4}}
+  - id: 24
+    name: SL_MaxSpeed120_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-120--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim120}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed120_g4}}
+  - id: 25
+    name: SL_MaxSpeed125_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed125_g4}}
+  - id: 26
+    name: SL_MaxSpeed130_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-130--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim130}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeed130_g4}}
+  - id: 27
+    name: SL_MaxSpeedLed5_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed5_g1}}
+  - id: 28
+    name: SL_MaxSpeedLed10_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-10--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim10ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed10_g1}}
+  - id: 29
+    name: SL_MaxSpeedLed15_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed15_g1}}
+  - id: 30
+    name: SL_MaxSpeedLed20_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-20--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim20ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed20_g1}}
+  - id: 31
+    name: SL_MaxSpeedLed25_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-25--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim25ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed25_g1}}
+  - id: 32
+    name: SL_MaxSpeedLed30_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-30--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim30ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed30_g1}}
+  - id: 33
+    name: SL_MaxSpeedLed35_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-35--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim35ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed35_g1}}
+  - id: 34
+    name: SL_MaxSpeedLed40_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-40--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim40ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed40_g1}}
+  - id: 35
+    name: SL_MaxSpeedLed45_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed45_g1}}
+  - id: 36
+    name: SL_MaxSpeedLed50_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-50--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim50ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed50_g1}}
+  - id: 37
+    name: SL_MaxSpeedLed55_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed55_g1}}
+  - id: 38
+    name: SL_MaxSpeedLed60_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-60--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim60ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed60_g1}}
+  - id: 39
+    name: SL_MaxSpeedLed65_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed65_g1}}
+  - id: 40
+    name: SL_MaxSpeedLed70_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-70--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim70ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed70_g1}}
+  - id: 41
+    name: SL_MaxSpeedLed75_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-75--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim75ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed75_g1}}
+  - id: 42
+    name: SL_MaxSpeedLed80_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-80--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim80ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed80_g1}}
+  - id: 43
+    name: SL_MaxSpeedLed85_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed85_g1}}
+  - id: 44
+    name: SL_MaxSpeedLed90_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-90--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim90ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed90_g1}}
+  - id: 45
+    name: SL_MaxSpeedLed95_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed95_g1}}
+  - id: 46
+    name: SL_MaxSpeedLed100_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-100--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim100ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed100_g1}}
+  - id: 47
+    name: SL_MaxSpeedLed105_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed105_g1}}
+  - id: 48
+    name: SL_MaxSpeedLed110_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-110--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim110ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed110_g1}}
+  - id: 49
+    name: SL_MaxSpeedLed115_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed115_g1}}
+  - id: 50
+    name: SL_MaxSpeedLed120_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-120--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim120ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed120_g1}}
+  - id: 51
+    name: SL_MaxSpeedLed125_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed125_g1}}
+  - id: 52
+    name: SL_MaxSpeedLed130_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--maximum-speed-limit-led-130--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLim130ele}}
+            - contains: {attrs: {gl_sub_type: SL_MaxSpeedLed130_g1}}
+  - id: 53
+    name: MS_MinSpeed5_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed5_g1}}
+  - id: 54
+    name: MS_MinSpeed10_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-10--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed10_g1}}
+  - id: 55
+    name: MS_MinSpeed15_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed15_g1}}
+  - id: 56
+    name: MS_MinSpeed20_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-20--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed20_g1}}
+  - id: 57
+    name: MS_MinSpeed25_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-25--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed25_g1}}
+  - id: 58
+    name: MS_MinSpeed30_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-30--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed30_g1}}
+  - id: 59
+    name: MS_MinSpeed35_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-35--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed35_g1}}
+  - id: 60
+    name: MS_MinSpeed40_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-40--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed40_g1}}
+  - id: 61
+    name: MS_MinSpeed45_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed45_g1}}
+  - id: 62
+    name: MS_MinSpeed50_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-50--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed50_g1}}
+  - id: 63
+    name: MS_MinSpeed55_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed55_g1}}
+  - id: 64
+    name: MS_MinSpeed60_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-60--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed60_g1}}
+  - id: 65
+    name: MS_MinSpeed65_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed65_g1}}
+  - id: 66
+    name: MS_MinSpeed70_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-70--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed70_g1}}
+  - id: 67
+    name: MS_MinSpeed75_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-75--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed75_g1}}
+  - id: 68
+    name: MS_MinSpeed80_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-80--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed80_g1}}
+  - id: 69
+    name: MS_MinSpeed85_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed85_g1}}
+  - id: 70
+    name: MS_MinSpeed90_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-90--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed90_g1}}
+  - id: 71
+    name: MS_MinSpeed95_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed95_g1}}
+  - id: 72
+    name: MS_MinSpeed100_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-100--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed100_g1}}
+  - id: 73
+    name: MS_MinSpeed105_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed105_g1}}
+  - id: 74
+    name: MS_MinSpeed110_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-110--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed110_g1}}
+  - id: 75
+    name: MS_MinSpeed115_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed115_g1}}
+  - id: 76
+    name: MS_MinSpeed120_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-120--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed120_g1}}
+  - id: 77
+    name: MS_MinSpeed125_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed125_g1}}
+  - id: 78
+    name: MS_MinSpeed130_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--minimum-speed-130--g1}}
+            - contains: {attrs: {gl_sub_type: MS_MinSpeed130_g1}}
+  - id: 79
+    name: PR_EndMaxSpeed5_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed5_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed5_g2}}
+  - id: 80
+    name: PR_EndMaxSpeed10_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-10--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev10}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed10_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed10_g2}}
+  - id: 81
+    name: PR_EndMaxSpeed15_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed15_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed15_g2}}
+  - id: 82
+    name: PR_EndMaxSpeed20_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-20--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev20}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed20_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed20_g2}}
+  - id: 83
+    name: PR_EndMaxSpeed25_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-25--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev25}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed25_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed25_g2}}
+  - id: 84
+    name: PR_EndMaxSpeed30_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-30--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev30}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed30_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed30_g2}}
+  - id: 85
+    name: PR_EndMaxSpeed35_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-35--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev35}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed35_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed35_g2}}
+  - id: 86
+    name: PR_EndMaxSpeed40_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-40--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev40}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed40_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed40_g2}}
+  - id: 87
+    name: PR_EndMaxSpeed45_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed45_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed45_g2}}
+  - id: 88
+    name: PR_EndMaxSpeed50_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-50--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev50}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed50_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed50_g2}}
+  - id: 89
+    name: PR_EndMaxSpeed55_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed55_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed55_g2}}
+  - id: 90
+    name: PR_EndMaxSpeed60_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-60--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev60}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed60_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed60_g2}}
+  - id: 91
+    name: PR_EndMaxSpeed65_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-65--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev65}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed65_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed65_g2}}
+  - id: 92
+    name: PR_EndMaxSpeed70_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-70--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev70}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed70_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed70_g2}}
+  - id: 93
+    name: PR_EndMaxSpeed75_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-75--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev75}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed75_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed75_g2}}
+  - id: 94
+    name: PR_EndMaxSpeed80_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-80--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev80}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed80_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed80_g2}}
+  - id: 95
+    name: PR_EndMaxSpeed85_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed85_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed85_g2}}
+  - id: 96
+    name: PR_EndMaxSpeed90_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-90--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev90}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed90_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed90_g2}}
+  - id: 97
+    name: PR_EndMaxSpeed95_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed95_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed95_g2}}
+  - id: 98
+    name: PR_EndMaxSpeed100_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-100--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev100}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed100_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed100_g2}}
+  - id: 99
+    name: PR_EndMaxSpeed105_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed105_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed105_g2}}
+  - id: 100
+    name: PR_EndMaxSpeed110_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-110--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev110}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed110_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed110_g2}}
+  - id: 101
+    name: PR_EndMaxSpeed115_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed115_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed115_g2}}
+  - id: 102
+    name: PR_EndMaxSpeed120_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-120--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev120}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed120_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed120_g2}}
+  - id: 103
+    name: PR_EndMaxSpeed125_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed125_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed125_g2}}
+  - id: 104
+    name: PR_EndMaxSpeed130_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-maximum-speed-limit-130--g1}}
+            - contains: {attrs: {cn_sub_type: P_SpeedLimRev130}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed130_g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMaxSpeed130_g2}}
+  - id: 105
+    name: PR_EndMinSpeed5_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed5_g1}}
+  - id: 106
+    name: PR_EndMinSpeed10_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-10--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed10_g1}}
+  - id: 107
+    name: PR_EndMinSpeed15_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed15_g1}}
+  - id: 108
+    name: PR_EndMinSpeed20_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-20--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed20_g1}}
+  - id: 109
+    name: PR_EndMinSpeed25_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-25--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed25_g1}}
+  - id: 110
+    name: PR_EndMinSpeed30_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-30--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed30_g1}}
+  - id: 111
+    name: PR_EndMinSpeed35_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-35--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed35_g1}}
+  - id: 112
+    name: PR_EndMinSpeed40_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-40--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed40_g1}}
+  - id: 113
+    name: PR_EndMinSpeed45_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed45_g1}}
+  - id: 114
+    name: PR_EndMinSpeed50_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-50--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed50_g1}}
+  - id: 115
+    name: PR_EndMinSpeed55_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed55_g1}}
+  - id: 116
+    name: PR_EndMinSpeed60_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-60--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed60_g1}}
+  - id: 117
+    name: PR_EndMinSpeed65_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed65_g1}}
+  - id: 118
+    name: PR_EndMinSpeed70_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-70--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed70_g1}}
+  - id: 119
+    name: PR_EndMinSpeed75_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-75--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed75_g1}}
+  - id: 120
+    name: PR_EndMinSpeed80_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-80--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed80_g1}}
+  - id: 121
+    name: PR_EndMinSpeed85_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed85_g1}}
+  - id: 122
+    name: PR_EndMinSpeed90_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-90--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed90_g1}}
+  - id: 123
+    name: PR_EndMinSpeed95_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed95_g1}}
+  - id: 124
+    name: PR_EndMinSpeed100_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-100--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed100_g1}}
+  - id: 125
+    name: PR_EndMinSpeed105_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed105_g1}}
+  - id: 126
+    name: PR_EndMinSpeed110_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-110--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed110_g1}}
+  - id: 127
+    name: PR_EndMinSpeed115_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed115_g1}}
+  - id: 128
+    name: PR_EndMinSpeed120_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-120--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed120_g1}}
+  - id: 129
+    name: PR_EndMinSpeed125_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed125_g1}}
+  - id: 130
+    name: PR_EndMinSpeed130_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-minimum-speed-130--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMinSpeed130_g1}}
+  - id: 131
+    name: C_AdvisoryExitOrRampSpeed_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--advisory-exit-or-ramp-speed--g1}}
+            - contains: {attrs: {gl_sub_type: C_AdvisoryExitOrRampSpeed_g1}}
+  - id: 132
+    name: R_SpeedZone_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--speed-limit-zone--g1}}
+            - contains: {attrs: {gl_sub_type: R_SpeedZone_g1}}
+  - id: 133
+    name: PR_EndSpeedZone_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-speed-limit-zone--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndSpeedZone_g1}}
+  - id: 134
+    name: PR_EndSpeedZone_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-speed-limit-zone--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndSpeedZone_g2}}
+  - id: 135
+    name: PR_EndSpeedZone_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-speed-limit-zone--g3}}
+            - contains: {attrs: {gl_sub_type: PR_EndSpeedZone_g3}}
+  - id: 136
+    name: PR_EndBicycleLane_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-bicycle-lane--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndBicycleLane_g1}}
+  - id: 137
+    name: PR_EndBicyclesAndPedes_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-shared-path-bicycles-and-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndBicyclesAndPedes_g1}}
+  - id: 138
+    name: PR_EndBicyclesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-bicycles-only--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndBicyclesOnly_g1}}
+  - id: 139
+    name: PR_EndBicyclesOnly_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-bicycles-only--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndBicyclesOnly_g2}}
+  - id: 140
+    name: PR_EndBuiltUpArea_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-built-up-area--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndBuiltUpArea_g1}}
+  - id: 141
+    name: PR_EndBuiltUpArea_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-built-up-area--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndBuiltUpArea_g2}}
+  - id: 142
+    name: PR_EndBuiltUpArea_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-built-up-area--g3}}
+            - contains: {attrs: {gl_sub_type: PR_EndBuiltUpArea_g3}}
+  - id: 143
+    name: PR_EndBuiltUpArea_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-built-up-area--g4}}
+            - contains: {attrs: {gl_sub_type: PR_EndBuiltUpArea_g4}}
+  - id: 144
+    name: PR_EndBusAndTaxiOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-bus-and-taxi-only--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndBusAndTaxiOnly_g1}}
+  - id: 145
+    name: PR_EndBusesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-buses-only--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndBusesOnly_g1}}
+  - id: 146
+    name: PR_EndBusesOnly_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-buses-only--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndBusesOnly_g2}}
+  - id: 147
+    name: PR_EndDualBicyAndPedes_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-dual-path-bicycles-and-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndDualBicyAndPedes_g1}}
+  - id: 148
+    name: PR_EndDualPathPedestriansAndBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-dual-path-pedestrians-and-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndDualPathPedestriansAndBicycles_g1}}
+  - id: 149
+    name: PR_EndLimitedAccessRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-limited-access-road--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndLimitedAccessRoad_g1}}
+  - id: 150
+    name: PR_EndLivingStreet_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-living-street--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndLivingStreet_g1}}
+  - id: 151
+    name: PR_EndLivingStreet_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-living-street--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndLivingStreet_g2}}
+  - id: 152
+    name: PR_EndLowBeamHeadlights_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-low-beam-headlights--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndLowBeamHeadlights_g1}}
+  - id: 153
+    name: PR_EndMopedsAndBiOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-mopeds-and-bicycles-only--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMopedsAndBiOnly_g1}}
+  - id: 154
+    name: PR_EndMotorway_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-motorway--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndMotorway_g1}}
+  - id: 155
+    name: PR_EndNoOverByVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-no-overtaking-by-heavy-goods-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndNoOverByVehicles_g1}}
+  - id: 156
+    name: PR_EndNoOverByVehicles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-no-overtaking-by-heavy-goods-vehicles--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndNoOverByVehicles_g2}}
+  - id: 157
+    name: PR_EndNoOvertaking_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-no-overtaking--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndNoOvertaking_g1}}
+  - id: 158
+    name: PR_EndNoOvertaking_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-no-overtaking--g4}}
+            - contains: {attrs: {gl_sub_type: PR_EndNoOvertaking_g4}}
+  - id: 159
+    name: PR_EndNoOvertaking_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-no-overtaking--g5}}
+            - contains: {attrs: {gl_sub_type: PR_EndNoOvertaking_g5}}
+  - id: 160
+    name: PR_EndNoParking_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-no-parking--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndNoParking_g1}}
+  - id: 161
+    name: PR_EndOneWayStraight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-one-way-straight--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndOneWayStraight_g1}}
+  - id: 162
+    name: PR_EndParkingZone_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-parking-zone--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndParkingZone_g1}}
+  - id: 163
+    name: PR_EndParkingZone_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-parking-zone--g2}}
+            - contains: {attrs: {gl_sub_type: PR_EndParkingZone_g2}}
+  - id: 164
+    name: PR_EndPedesAndBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-shared-path-pedestrians-and-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndPedesAndBicycles_g1}}
+  - id: 165
+    name: PR_EndPedestriansOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-pedestrians-only--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndPedestriansOnly_g1}}
+  - id: 166
+    name: PR_EndPriorityRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-priority-road--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndPriorityRoad_g1}}
+  - id: 167
+    name: PR_EndProhibition_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-prohibition--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndProhibition_g1}}
+  - id: 168
+    name: PR_EndRoadWorks_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--end-of-road-works--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndRoadWorks_g2}}
+  - id: 169
+    name: PR_EndSnowChains_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-snow-chains--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndSnowChains_g1}}
+  - id: 170
+    name: PR_EndTramsOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--end-of-trams-only--g1}}
+            - contains: {attrs: {gl_sub_type: PR_EndTramsOnly_g1}}
+  - id: 171
+    name: W_AccidentArea_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--accident-area--g5}}
+            - contains: {attrs: {gl_sub_type: W_AccidentArea_g5}}
+  - id: 172
+    name: W_AddedLaneLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--added-lane-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_AddedLaneLeft_g1}}
+  - id: 173
+    name: W_AddedLaneRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--added-lane-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_AddedLaneRight_g1}}
+  - id: 174
+    name: W_BicyclesCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--bicycles-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_BicyclesCrossing_g1}}
+  - id: 175
+    name: W_BicyclesCrossing_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--bicycles-crossing--g2}}
+            - contains: {attrs: {gl_sub_type: W_BicyclesCrossing_g2}}
+  - id: 176
+    name: W_BicyclesCrossing_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--bicycles-crossing--g3}}
+            - contains: {attrs: {gl_sub_type: W_BicyclesCrossing_g3}}
+  - id: 177
+    name: W_BicyclesCrossing_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--bicycles-crossing--g4}}
+            - contains: {attrs: {gl_sub_type: W_BicyclesCrossing_g4}}
+  - id: 178
+    name: W_Bollard_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--bollard--g1}}
+            - contains: {attrs: {gl_sub_type: W_Bollard_g1}}
+  - id: 179
+    name: W_BusStopAhead_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--bus-stop-ahead--g3}}
+            - contains: {attrs: {gl_sub_type: W_BusStopAhead_g3}}
+  - id: 180
+    name: W_Children_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--children--g1}}
+            - contains: {attrs: {gl_sub_type: W_Children_g1}}
+  - id: 181
+    name: W_Children_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--children--g2}}
+            - contains: {attrs: {gl_sub_type: W_Children_g2}}
+  - id: 182
+    name: W_Children_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--children--g3}}
+            - contains: {attrs: {gl_sub_type: W_Children_g3}}
+  - id: 183
+    name: W_Children_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--children--g4}}
+            - contains: {attrs: {gl_sub_type: W_Children_g4}}
+  - id: 184
+    name: W_Crossroads_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--crossroads--g1}}
+            - contains: {attrs: {gl_sub_type: W_Crossroads_g1}}
+  - id: 185
+    name: W_Crossroads_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--crossroads--g2}}
+            - contains: {attrs: {gl_sub_type: W_Crossroads_g2}}
+  - id: 186
+    name: W_Crossroads_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--crossroads--g3}}
+            - contains: {attrs: {gl_sub_type: W_Crossroads_g3}}
+  - id: 187
+    name: W_CurveLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--curve-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_CurveLeft_g1}}
+  - id: 188
+    name: W_CurveLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--curve-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_CurveLeft_g2}}
+  - id: 189
+    name: W_CurveLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--curve-left--g3}}
+            - contains: {attrs: {gl_sub_type: W_CurveLeft_g3}}
+  - id: 190
+    name: W_CurveRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--curve-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_CurveRight_g1}}
+  - id: 191
+    name: W_CurveRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--curve-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_CurveRight_g2}}
+  - id: 192
+    name: W_DangerousCrosswindsLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--dangerous-crosswinds-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_DangerousCrosswindsLeft_g1}}
+  - id: 193
+    name: W_DangerousCrosswindsLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--dangerous-crosswinds-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_DangerousCrosswindsLeft_g2}}
+  - id: 194
+    name: W_DangerousCrosswindsRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--dangerous-crosswinds-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_DangerousCrosswindsRight_g1}}
+  - id: 195
+    name: W_DescentOrClimbingLanesInTripleLanes_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--descent-or-climbing-lanes-in-triple-lanes--g1}}
+            - contains: {attrs: {gl_sub_type: W_DescentOrClimbingLanesInTripleLanes_g1}}
+  - id: 196
+    name: W_Dip_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--dip--g1}}
+            - contains: {attrs: {gl_sub_type: W_Dip_g1}}
+  - id: 197
+    name: W_Dip_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--dip--g2}}
+            - contains: {attrs: {gl_sub_type: W_Dip_g2}}
+  - id: 198
+    name: W_DividedHighway_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway--g1}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighway_g1}}
+  - id: 199
+    name: W_DividedHighway_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway--g2}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighway_g2}}
+  - id: 200
+    name: W_DividedHighway_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway--g3}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighway_g3}}
+  - id: 201
+    name: W_DividedHighwayEnds_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway-ends--g1}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighwayEnds_g1}}
+  - id: 202
+    name: W_DividedHighwayEnds_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway-ends--g2}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighwayEnds_g2}}
+  - id: 203
+    name: W_DividedHighwayEnds_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway-ends--g3}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighwayEnds_g3}}
+  - id: 204
+    name: W_DividedHighwayOnLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--divided-highway-on-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_DividedHighwayOnLeft_g2}}
+  - id: 205
+    name: W_DomesticAnimals_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--domestic-animals--g1}}
+            - contains: {attrs: {gl_sub_type: W_DomesticAnimals_g1}}
+  - id: 206
+    name: W_DomesticAnimals_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--domestic-animals--g2}}
+            - contains: {attrs: {gl_sub_type: W_DomesticAnimals_g2}}
+  - id: 207
+    name: W_DomesticAnimals_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--domestic-animals--g3}}
+            - contains: {attrs: {gl_sub_type: W_DomesticAnimals_g3}}
+  - id: 208
+    name: W_DomesticAnimals_g6
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--domestic-animals--g6}}
+            - contains: {attrs: {gl_sub_type: W_DomesticAnimals_g6}}
+  - id: 209
+    name: W_DoubleCurveFirstLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-curve-first-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_DoubleCurveFirstLeft_g1}}
+  - id: 210
+    name: W_DoubleCurveFirstLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-curve-first-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_DoubleCurveFirstLeft_g2}}
+  - id: 211
+    name: W_DoubleCurveFirstRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-curve-first-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_DoubleCurveFirstRight_g1}}
+  - id: 212
+    name: W_DoubleCurveFirstRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-curve-first-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_DoubleCurveFirstRight_g2}}
+  - id: 213
+    name: W_DoubleCurveFirstRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-turn-first-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_DoubleCurveFirstRight_g3}}
+  - id: 214
+    name: W_DoubleSideRoadsLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-side-roads-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_DoubleSideRoadsLeft_g1}}
+  - id: 215
+    name: W_DoubleTurnFirstLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--double-turn-first-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_DoubleTurnFirstLeft_g1}}
+  - id: 216
+    name: W_DualPathCyclistsAndPedestrians_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--dual-path-cyclists-and-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: W_DualPathCyclistsAndPedestrians_g1}}
+  - id: 217
+    name: W_Electricity_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--electricity--g1}}
+            - contains: {attrs: {gl_sub_type: W_Electricity_g1}}
+  - id: 218
+    name: W_Electricity_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--electricity--g2}}
+            - contains: {attrs: {gl_sub_type: W_Electricity_g2}}
+  - id: 219
+    name: W_EquestriansCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--equestrians-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_EquestriansCrossing_g1}}
+  - id: 220
+    name: W_EquestriansCrossing_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--equestrians-crossing--g2}}
+            - contains: {attrs: {gl_sub_type: W_EquestriansCrossing_g2}}
+  - id: 221
+    name: W_FallingRocksOrDebrisLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--falling-rocks-or-debris-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_FallingRocksOrDebrisLeft_g1}}
+  - id: 222
+    name: W_FallingRocksOrDebrisLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--falling-rocks-or-debris-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_FallingRocksOrDebrisLeft_g2}}
+  - id: 223
+    name: W_FallingRocksOrDebrisLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--falling-rocks-or-debris-left--g3}}
+            - contains: {attrs: {gl_sub_type: W_FallingRocksOrDebrisLeft_g3}}
+  - id: 224
+    name: W_FallingRocksOrDebrisRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--falling-rocks-or-debris-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_FallingRocksOrDebrisRight_g1}}
+  - id: 225
+    name: W_FallingRocksOrDebrisRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--falling-rocks-or-debris-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_FallingRocksOrDebrisRight_g2}}
+  - id: 226
+    name: W_FallingRocksOrDebrisRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--falling-rocks-or-debris-right--g3}}
+            - contains: {attrs: {gl_sub_type: W_FallingRocksOrDebrisRight_g3}}
+  - id: 227
+    name: W_Ferry_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--ferry--g1}}
+            - contains: {attrs: {gl_sub_type: W_Ferry_g1}}
+  - id: 228
+    name: W_FlaggersInRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--flaggers-in-road--g1}}
+            - contains: {attrs: {gl_sub_type: W_FlaggersInRoad_g1}}
+  - id: 229
+    name: W_FlaggersInRoad_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--flaggers-in-road--g2}}
+            - contains: {attrs: {gl_sub_type: W_FlaggersInRoad_g2}}
+  - id: 230
+    name: W_FrogCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--frog-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_FrogCrossing_g1}}
+  - id: 231
+    name: W_HairpinCurveLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--hairpin-curve-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_HairpinCurveLeft_g1}}
+  - id: 232
+    name: W_HairpinCurveLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--hairpin-curve-left--g3}}
+            - contains: {attrs: {gl_sub_type: W_HairpinCurveLeft_g3}}
+  - id: 233
+    name: W_HairpinCurveRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--hairpin-curve-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_HairpinCurveRight_g1}}
+  - id: 234
+    name: W_HairpinCurveRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--hairpin-curve-right--g3}}
+            - contains: {attrs: {gl_sub_type: W_HairpinCurveRight_g3}}
+  - id: 235
+    name: W_HeightRestriction_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--height-restriction--g2}}
+            - contains: {attrs: {gl_sub_type: W_HeightRestriction_g2}}
+  - id: 236
+    name: W_HeightRestriction_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--height-restriction--g3}}
+            - contains: {attrs: {gl_sub_type: W_HeightRestriction_g3}}
+  - id: 237
+    name: W_HorizontalAlignmentLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--horizontal-alignment-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_HorizontalAlignmentLeft_g1}}
+  - id: 238
+    name: W_HorizontalAlignmentRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--horizontal-alignment-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_HorizontalAlignmentRight_g1}}
+  - id: 239
+    name: W_IcyRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--icy-road--g1}}
+            - contains: {attrs: {gl_sub_type: W_IcyRoad_g1}}
+  - id: 240
+    name: W_JunctionLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-perpendicular-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_JunctionLeft_g1}}
+  - id: 241
+    name: W_JunctionLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-acute-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_JunctionLeft_g2}}
+  - id: 242
+    name: W_JunctionRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-perpendicular-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_JunctionRight_g1}}
+  - id: 243
+    name: W_JunctionRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-acute-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_JunctionRight_g2}}
+  - id: 244
+    name: W_JunctionWithASideRoadAcuteLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-acute-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_JunctionWithASideRoadAcuteLeft_g1}}
+  - id: 245
+    name: W_JunctionWithASideRoadAcuteRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-acute-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_JunctionWithASideRoadAcuteRight_g1}}
+  - id: 246
+    name: W_JunctionWithASideRoadPerpendicularLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-perpendicular-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_JunctionWithASideRoadPerpendicularLeft_g2}}
+  - id: 247
+    name: W_JunctionWithASideRoadPerpendicularLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-perpendicular-left--g3}}
+            - contains: {attrs: {gl_sub_type: W_JunctionWithASideRoadPerpendicularLeft_g3}}
+  - id: 248
+    name: W_JunctionWithASideRoadPerpendicularRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-perpendicular-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_JunctionWithASideRoadPerpendicularRight_g2}}
+  - id: 249
+    name: W_JunctionWithASideRoadPerpendicularRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--junction-with-a-side-road-perpendicular-right--g3}}
+            - contains: {attrs: {gl_sub_type: W_JunctionWithASideRoadPerpendicularRight_g3}}
+  - id: 250
+    name: W_KangalooCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--kangaloo-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_KangalooCrossing_g1}}
+  - id: 251
+    name: W_LimitedLightingUnderTrees_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--limited-lighting-under-trees--g1}}
+            - contains: {attrs: {gl_sub_type: W_LimitedLightingUnderTrees_g1}}
+  - id: 252
+    name: W_Loop270Degree_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--loop-270-degree--g1}}
+            - contains: {attrs: {gl_sub_type: W_Loop270Degree_g1}}
+  - id: 253
+    name: W_LooseRoadSurface_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--loose-road-surface--g1}}
+            - contains: {attrs: {gl_sub_type: W_LooseRoadSurface_g1}}
+  - id: 254
+    name: W_LowFlyingAircraft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--low-flying-aircraft--g1}}
+            - contains: {attrs: {gl_sub_type: W_LowFlyingAircraft_g1}}
+  - id: 255
+    name: W_LowFlyingAircraft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--low-flying-aircraft--g3}}
+            - contains: {attrs: {gl_sub_type: W_LowFlyingAircraft_g3}}
+  - id: 256
+    name: W_LowFlyingAircraft_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--low-flying-aircraft--g4}}
+            - contains: {attrs: {gl_sub_type: W_LowFlyingAircraft_g4}}
+  - id: 257
+    name: W_NarrowBridge_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--narrow-bridge--g1}}
+            - contains: {attrs: {gl_sub_type: W_NarrowBridge_g1}}
+  - id: 258
+    name: W_NarrowBridge_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--narrow-bridge--g3}}
+            - contains: {attrs: {gl_sub_type: W_NarrowBridge_g3}}
+  - id: 259
+    name: W_OffsetRoads_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--offset-roads--g1}}
+            - contains: {attrs: {gl_sub_type: W_OffsetRoads_g1}}
+  - id: 260
+    name: W_OffsetRoads_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--offset-roads--g2}}
+            - contains: {attrs: {gl_sub_type: W_OffsetRoads_g2}}
+  - id: 261
+    name: W_OffsetRoads_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--offset-roads--g3}}
+            - contains: {attrs: {gl_sub_type: W_OffsetRoads_g3}}
+  - id: 262
+    name: W_OffsetRoads_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--offset-roads--g4}}
+            - contains: {attrs: {gl_sub_type: W_OffsetRoads_g4}}
+  - id: 263
+    name: W_OpeningOrSwingBridge_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--opening-or-swing-bridge--g1}}
+            - contains: {attrs: {gl_sub_type: W_OpeningOrSwingBridge_g1}}
+  - id: 264
+    name: W_OtherDanger_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--other-danger--g1}}
+            - contains: {attrs: {gl_sub_type: W_OtherDanger_g1}}
+  - id: 265
+    name: W_OtherDanger_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--other-danger--g3}}
+            - contains: {attrs: {gl_sub_type: W_OtherDanger_g3}}
+  - id: 266
+    name: W_PassLeftOrRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pass-left-or-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_PassLeftOrRight_g1}}
+  - id: 267
+    name: W_PassLeftOrRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pass-left-or-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_PassLeftOrRight_g2}}
+  - id: 268
+    name: W_PedestriansCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g1}}
+  - id: 269
+    name: W_PedestriansCrossing_g10
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g10}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g10}}
+  - id: 270
+    name: W_PedestriansCrossing_g11
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g11}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g11}}
+  - id: 271
+    name: W_PedestriansCrossing_g12
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g12}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g12}}
+  - id: 272
+    name: W_PedestriansCrossing_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g4}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g4}}
+  - id: 273
+    name: W_PedestriansCrossing_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g5}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g5}}
+  - id: 274
+    name: W_PedestriansCrossing_g9
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--pedestrians-crossing--g9}}
+            - contains: {attrs: {gl_sub_type: W_PedestriansCrossing_g9}}
+  - id: 275
+    name: W_Playground_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--playground--g1}}
+            - contains: {attrs: {gl_sub_type: W_Playground_g1}}
+  - id: 276
+    name: W_PriorityToTheRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--crossroads-with-priority-to-the-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_PriorityToTheRight_g1}}
+  - id: 277
+    name: W_QuayOrRiverBank_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--quay-or-river-bank--g1}}
+            - contains: {attrs: {gl_sub_type: W_QuayOrRiverBank_g1}}
+  - id: 278
+    name: W_RailroadBarriers_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-with-barriers--g1}}
+            - contains: {attrs: {gl_sub_type: W_RailroadBarriers_g1}}
+  - id: 279
+    name: W_RailroadCrossing_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing--g2}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossing_g2}}
+  - id: 280
+    name: W_RailroadCrossing_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing--g3}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossing_g3}}
+  - id: 281
+    name: W_RailroadCrossing_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing--g4}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossing_g4}}
+  - id: 282
+    name: W_RailroadCrossingB_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-without-barriers--g1}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingB_g1}}
+  - id: 283
+    name: W_RailroadCrossingB_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-without-barriers--g3}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingB_g3}}
+  - id: 284
+    name: W_RailroadCrossingWithBarriers_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-with-barriers--g2}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingWithBarriers_g2}}
+  - id: 285
+    name: W_RailroadCrossingWithBarriers_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-with-barriers--g4}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingWithBarriers_g4}}
+  - id: 286
+    name: W_RailroadCrossingWithBarriers_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-with-barriers--g5}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingWithBarriers_g5}}
+  - id: 287
+    name: W_RailroadCrossingWithoutBarriers_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-without-barriers--g2}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingWithoutBarriers_g2}}
+  - id: 288
+    name: W_RailroadCrossingWithoutBarriers_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-crossing-without-barriers--g4}}
+            - contains: {attrs: {gl_sub_type: W_RailroadCrossingWithoutBarriers_g4}}
+  - id: 289
+    name: W_RailroadIntersection_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-intersection--g3}}
+            - contains: {attrs: {gl_sub_type: W_RailroadIntersection_g3}}
+  - id: 290
+    name: W_RailroadIntersection_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--railroad-intersection--g4}}
+            - contains: {attrs: {gl_sub_type: W_RailroadIntersection_g4}}
+  - id: 291
+    name: W_RampClosed_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--ramp-closed--g1}}
+            - contains: {attrs: {gl_sub_type: W_RampClosed_g1}}
+  - id: 292
+    name: W_RestrictedZone_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--restricted-zone--g1}}
+            - contains: {attrs: {gl_sub_type: W_RestrictedZone_g1}}
+  - id: 293
+    name: W_RoadBump_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-bump--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadBump_g1}}
+  - id: 294
+    name: W_RoadBump_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-bump--g2}}
+            - contains: {attrs: {gl_sub_type: W_RoadBump_g2}}
+  - id: 295
+    name: W_RoadBump_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-bump--g3}}
+            - contains: {attrs: {gl_sub_type: W_RoadBump_g3}}
+  - id: 296
+    name: W_RoadNarrows_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-narrows--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadNarrows_g1}}
+  - id: 297
+    name: W_RoadNarrows_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-narrows--g2}}
+            - contains: {attrs: {gl_sub_type: W_RoadNarrows_g2}}
+  - id: 298
+    name: W_RoadNarrowsLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-narrows-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadNarrowsLeft_g1}}
+  - id: 299
+    name: W_RoadNarrowsLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-narrows-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_RoadNarrowsLeft_g2}}
+  - id: 300
+    name: W_RoadNarrowsRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-narrows-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadNarrowsRight_g1}}
+  - id: 301
+    name: W_RoadNarrowsRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-narrows-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_RoadNarrowsRight_g2}}
+  - id: 302
+    name: W_RoadTollAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-toll-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadTollAhead_g1}}
+  - id: 303
+    name: W_RoadWidens_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-widens--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadWidens_g1}}
+  - id: 304
+    name: W_RoadWidensLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-widens-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadWidensLeft_g1}}
+  - id: 305
+    name: W_RoadWidensRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--road-widens-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_RoadWidensRight_g1}}
+  - id: 306
+    name: W_Roadworks_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roadworks--g1}}
+            - contains: {attrs: {gl_sub_type: W_Roadworks_g1}}
+  - id: 307
+    name: W_Roadworks_g10
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roadworks--g10}}
+            - contains: {attrs: {gl_sub_type: W_Roadworks_g10}}
+  - id: 308
+    name: W_Roadworks_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roadworks--g2}}
+            - contains: {attrs: {gl_sub_type: W_Roadworks_g2}}
+  - id: 309
+    name: W_Roadworks_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roadworks--g3}}
+            - contains: {attrs: {gl_sub_type: W_Roadworks_g3}}
+  - id: 310
+    name: W_Roadworks_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roadworks--g5}}
+            - contains: {attrs: {gl_sub_type: W_Roadworks_g5}}
+  - id: 311
+    name: W_Roundabout_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roundabout--g1}}
+            - contains: {attrs: {gl_sub_type: W_Roundabout_g1}}
+  - id: 312
+    name: W_Roundabout_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roundabout--g2}}
+            - contains: {attrs: {gl_sub_type: W_Roundabout_g2}}
+  - id: 313
+    name: W_Roundabout_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--roundabout--g4}}
+            - contains: {attrs: {gl_sub_type: W_Roundabout_g4}}
+  - id: 314
+    name: W_SchoolZone_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--school-zone--g2}}
+            - contains: {attrs: {gl_sub_type: W_SchoolZone_g2}}
+  - id: 315
+    name: W_SingleReverseCurve_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--single-reverse-curve--g1}}
+            - contains: {attrs: {gl_sub_type: W_SingleReverseCurve_g1}}
+  - id: 316
+    name: W_SkewedTRoadsLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--skewed-t-roads-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_SkewedTRoadsLeft_g1}}
+  - id: 317
+    name: W_SkewedTRoadsRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--skewed-t-roads-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_SkewedTRoadsRight_g1}}
+  - id: 318
+    name: W_SlipperyBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--slippery-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: W_SlipperyBicycles_g1}}
+  - id: 319
+    name: W_SlipperyRoadSurface_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--slippery-road-surface--g1}}
+            - contains: {attrs: {gl_sub_type: W_SlipperyRoadSurface_g1}}
+  - id: 320
+    name: W_SlipperyRoadSurface_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--slippery-road-surface--g2}}
+            - contains: {attrs: {gl_sub_type: W_SlipperyRoadSurface_g2}}
+  - id: 321
+    name: W_SoftShoulder_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--soft-shoulder--g1}}
+            - contains: {attrs: {gl_sub_type: W_SoftShoulder_g1}}
+  - id: 322
+    name: W_SoftShoulder_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--soft-shoulder--g2}}
+            - contains: {attrs: {gl_sub_type: W_SoftShoulder_g2}}
+  - id: 323
+    name: W_SteepAscent_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--steep-ascent--g1}}
+            - contains: {attrs: {gl_sub_type: W_SteepAscent_g1}}
+  - id: 324
+    name: W_SteepAscent_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--steep-ascent--g2}}
+            - contains: {attrs: {gl_sub_type: W_SteepAscent_g2}}
+  - id: 325
+    name: W_SteepDescent_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--steep-descent--g1}}
+            - contains: {attrs: {gl_sub_type: W_SteepDescent_g1}}
+  - id: 326
+    name: W_SteepDescent_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--steep-descent--g2}}
+            - contains: {attrs: {gl_sub_type: W_SteepDescent_g2}}
+  - id: 327
+    name: W_SteepDescent_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--steep-descent--g3}}
+            - contains: {attrs: {gl_sub_type: W_SteepDescent_g3}}
+  - id: 328
+    name: W_StopAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--stop-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: W_StopAhead_g1}}
+  - id: 329
+    name: W_TrafficMergesAtSignalizedIntersections_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-merges-at-signalized-intersections--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrafficMergesAtSignalizedIntersections_g1}}
+  - id: 330
+    name: W_TrafficMergesLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-merges-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrafficMergesLeft_g1}}
+  - id: 331
+    name: W_TrafficMergesLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-merges-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_TrafficMergesLeft_g2}}
+  - id: 332
+    name: W_TrafficMergesLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-merges-left--g3}}
+            - contains: {attrs: {gl_sub_type: W_TrafficMergesLeft_g3}}
+  - id: 333
+    name: W_TrafficMergesRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-merges-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrafficMergesRight_g1}}
+  - id: 334
+    name: W_TrafficMergesRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-merges-right--g2}}
+            - contains: {attrs: {gl_sub_type: W_TrafficMergesRight_g2}}
+  - id: 335
+    name: W_TrafficQueuesLikely_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-queues-likely--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrafficQueuesLikely_g1}}
+  - id: 336
+    name: W_TrafficQueuesLikely_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-queues-likely--g2}}
+            - contains: {attrs: {gl_sub_type: W_TrafficQueuesLikely_g2}}
+  - id: 337
+    name: W_TrafficSignals_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-signals--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrafficSignals_g1}}
+  - id: 338
+    name: W_TrafficSignals_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-signals--g2}}
+            - contains: {attrs: {gl_sub_type: W_TrafficSignals_g2}}
+  - id: 339
+    name: W_TrafficSignals_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-signals--g3}}
+            - contains: {attrs: {gl_sub_type: W_TrafficSignals_g3}}
+  - id: 340
+    name: W_TrafficSignals_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-signals--g4}}
+            - contains: {attrs: {gl_sub_type: W_TrafficSignals_g4}}
+  - id: 341
+    name: W_TrafficSignals_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-signals--g5}}
+            - contains: {attrs: {gl_sub_type: W_TrafficSignals_g5}}
+  - id: 342
+    name: W_TrafficSlow_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--traffic-slow--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrafficSlow_g1}}
+  - id: 343
+    name: W_TrailCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--trail-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrailCrossing_g1}}
+  - id: 344
+    name: W_TramsCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--trams-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_TramsCrossing_g1}}
+  - id: 345
+    name: W_TramsCrossing_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--trams-crossing--g2}}
+            - contains: {attrs: {gl_sub_type: W_TramsCrossing_g2}}
+  - id: 346
+    name: W_TripleLanesRightTurn_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--triple-lanes-right-turn--g1}}
+            - contains: {attrs: {gl_sub_type: W_TripleLanesRightTurn_g1}}
+  - id: 347
+    name: W_TRoads_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--t-roads--g1}}
+            - contains: {attrs: {gl_sub_type: W_TRoads_g1}}
+  - id: 348
+    name: W_TRoads_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--t-roads--g2}}
+            - contains: {attrs: {gl_sub_type: W_TRoads_g2}}
+  - id: 349
+    name: W_TrucksCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--trucks-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_TrucksCrossing_g1}}
+  - id: 350
+    name: W_TrucksCrossing_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--trucks-crossing--g2}}
+            - contains: {attrs: {gl_sub_type: W_TrucksCrossing_g2}}
+  - id: 351
+    name: W_Tunnel_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--tunnel--g1}}
+            - contains: {attrs: {gl_sub_type: W_Tunnel_g1}}
+  - id: 352
+    name: W_Tunnel_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--tunnel--g5}}
+            - contains: {attrs: {gl_sub_type: W_Tunnel_g5}}
+  - id: 353
+    name: W_Tunnel_g7
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--tunnel--g7}}
+            - contains: {attrs: {gl_sub_type: W_Tunnel_g7}}
+  - id: 354
+    name: W_TurnLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--turn-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_TurnLeft_g1}}
+  - id: 355
+    name: W_TurnLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--turn-left--g2}}
+            - contains: {attrs: {gl_sub_type: W_TurnLeft_g2}}
+  - id: 356
+    name: W_TurnRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--turn-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_TurnRight_g1}}
+  - id: 357
+    name: W_TwoWayTraffic_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--two-way-traffic--g1}}
+            - contains: {attrs: {gl_sub_type: W_TwoWayTraffic_g1}}
+  - id: 358
+    name: W_TwoWayTraffic_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--two-way-traffic--g2}}
+            - contains: {attrs: {gl_sub_type: W_TwoWayTraffic_g2}}
+  - id: 359
+    name: W_UnevenRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--uneven-road--g1}}
+            - contains: {attrs: {gl_sub_type: W_UnevenRoad_g1}}
+  - id: 360
+    name: W_UnevenRoad_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--uneven-road--g2}}
+            - contains: {attrs: {gl_sub_type: W_UnevenRoad_g2}}
+  - id: 361
+    name: W_VehiclesCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--vehicles-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: W_VehiclesCrossing_g1}}
+  - id: 362
+    name: W_WidthRestriction_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--width-restriction--g3}}
+            - contains: {attrs: {gl_sub_type: W_WidthRestriction_g3}}
+  - id: 363
+    name: W_WildAnimals_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--wild-animals--g1}}
+            - contains: {attrs: {gl_sub_type: W_WildAnimals_g1}}
+  - id: 364
+    name: W_WildAnimals_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--wild-animals--g4}}
+            - contains: {attrs: {gl_sub_type: W_WildAnimals_g4}}
+  - id: 365
+    name: W_WildAnimals_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--wild-animals--g5}}
+            - contains: {attrs: {gl_sub_type: W_WildAnimals_g5}}
+  - id: 366
+    name: W_WildAnimals_g6
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--wild-animals--g6}}
+            - contains: {attrs: {gl_sub_type: W_WildAnimals_g6}}
+  - id: 367
+    name: W_WildAnimals_g7
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--wild-animals--g7}}
+            - contains: {attrs: {gl_sub_type: W_WildAnimals_g7}}
+  - id: 368
+    name: W_WindingRoadFirstLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--winding-road-first-left--g1}}
+            - contains: {attrs: {gl_sub_type: W_WindingRoadFirstLeft_g1}}
+  - id: 369
+    name: W_WindingRoadFirstRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--winding-road-first-right--g1}}
+            - contains: {attrs: {gl_sub_type: W_WindingRoadFirstRight_g1}}
+  - id: 370
+    name: W_WindingRoadFirstRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--winding-road-first-right--g3}}
+            - contains: {attrs: {gl_sub_type: W_WindingRoadFirstRight_g3}}
+  - id: 371
+    name: W_YieldAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--yield-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: W_YieldAhead_g1}}
+  - id: 372
+    name: W_YRoads_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--y-roads--g1}}
+            - contains: {attrs: {gl_sub_type: W_YRoads_g1}}
+  - id: 373
+    name: W_YRoads_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: warning--y-roads--g2}}
+            - contains: {attrs: {gl_sub_type: W_YRoads_g2}}
+  - id: 374
+    name: R_AllDirectionsPermitted_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--all-directions-permitted--g1}}
+            - contains: {attrs: {gl_sub_type: R_AllDirectionsPermitted_g1}}
+  - id: 375
+    name: R_BicyAndPedes_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--shared-path-bicycles-and-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: R_BicyAndPedes_g1}}
+  - id: 376
+    name: R_BicycleLaneLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--bicycle-lane-left--g1}}
+            - contains: {attrs: {gl_sub_type: R_BicycleLaneLeft_g1}}
+  - id: 377
+    name: R_BicyclesAndBusesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--bicycles-and-buses-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_BicyclesAndBusesOnly_g1}}
+  - id: 378
+    name: R_BicyclesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--bicycles-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_BicyclesOnly_g1}}
+  - id: 379
+    name: R_BusesAndTaxiOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--buses-and-taxi-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_BusesAndTaxiOnly_g1}}
+  - id: 380
+    name: R_BusesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--buses-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_BusesOnly_g1}}
+  - id: 381
+    name: R_BusesOnly_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--buses-only--g2}}
+            - contains: {attrs: {gl_sub_type: R_BusesOnly_g2}}
+  - id: 382
+    name: R_BusPriorityLane_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--bus-priority-lane--g1}}
+            - contains: {attrs: {gl_sub_type: R_BusPriorityLane_g1}}
+  - id: 383
+    name: R_CyclingRestriction_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--cycling-restriction--g1}}
+            - contains: {attrs: {gl_sub_type: R_CyclingRestriction_g1}}
+  - id: 384
+    name: R_DualBicyAndPedes_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--dual-path-bicycles-and-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: R_DualBicyAndPedes_g1}}
+  - id: 385
+    name: R_DualPathBicyclesAndPedestrians_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--dual-path-bicycles-and-pedestrians--g2}}
+            - contains: {attrs: {gl_sub_type: R_DualPathBicyclesAndPedestrians_g2}}
+  - id: 386
+    name: R_DualPedesAndBicy_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--dual-path-pedestrians-and-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_DualPedesAndBicy_g1}}
+  - id: 387
+    name: R_EquestriansOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--equestrians-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_EquestriansOnly_g1}}
+  - id: 388
+    name: R_GiveWayToOncomingTraffic_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--give-way-to-oncoming-traffic--g1}}
+            - contains: {attrs: {gl_sub_type: R_GiveWayToOncomingTraffic_g1}}
+  - id: 389
+    name: R_GoStraight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight--g1}}
+            - contains: {attrs: {gl_sub_type: R_GoStraight_g1}}
+  - id: 390
+    name: R_GoStraight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight--g3}}
+            - contains: {attrs: {gl_sub_type: R_GoStraight_g3}}
+  - id: 391
+    name: R_GoStraightBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightBicycles_g1}}
+  - id: 392
+    name: R_GoStraightOrTurnLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-or-turn-left--g1}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightOrTurnLeft_g1}}
+  - id: 393
+    name: R_GoStraightOrTurnLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-or-turn-left--g2}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightOrTurnLeft_g2}}
+  - id: 394
+    name: R_GoStraightOrTurnLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-or-turn-left--g3}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightOrTurnLeft_g3}}
+  - id: 395
+    name: R_GoStraightOrTurnRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-or-turn-right--g1}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightOrTurnRight_g1}}
+  - id: 396
+    name: R_GoStraightOrTurnRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-or-turn-right--g2}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightOrTurnRight_g2}}
+  - id: 397
+    name: R_GoStraightOrTurnRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--go-straight-or-turn-right--g3}}
+            - contains: {attrs: {gl_sub_type: R_GoStraightOrTurnRight_g3}}
+  - id: 398
+    name: R_HeightLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--height-limit--g1}}
+            - contains: {attrs: {gl_sub_type: R_HeightLimit_g1}}
+  - id: 399
+    name: R_KeepLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-left--g1}}
+            - contains: {attrs: {gl_sub_type: R_KeepLeft_g1}}
+  - id: 400
+    name: R_KeepLeft_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-left--g4}}
+            - contains: {attrs: {gl_sub_type: R_KeepLeft_g4}}
+  - id: 401
+    name: R_KeepLeft_g7
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-left--g7}}
+            - contains: {attrs: {gl_sub_type: R_KeepLeft_g7}}
+  - id: 402
+    name: R_KeepRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-right--g1}}
+            - contains: {attrs: {gl_sub_type: R_KeepRight_g1}}
+  - id: 403
+    name: R_KeepRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-right--g2}}
+            - contains: {attrs: {gl_sub_type: R_KeepRight_g2}}
+  - id: 404
+    name: R_KeepRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-right--g3}}
+            - contains: {attrs: {gl_sub_type: R_KeepRight_g3}}
+  - id: 405
+    name: R_KeepRight_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-right--g4}}
+            - contains: {attrs: {gl_sub_type: R_KeepRight_g4}}
+  - id: 406
+    name: R_KeepRight_g6
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--keep-right--g6}}
+            - contains: {attrs: {gl_sub_type: R_KeepRight_g6}}
+  - id: 407
+    name: R_LengthLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--length-limit--g1}}
+            - contains: {attrs: {gl_sub_type: R_LengthLimit_g1}}
+  - id: 408
+    name: R_LengthLimit_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--length-limit--g2}}
+            - contains: {attrs: {gl_sub_type: R_LengthLimit_g2}}
+  - id: 409
+    name: R_LowBeamHeadlights_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--low-beam-headlights--g2}}
+            - contains: {attrs: {gl_sub_type: R_LowBeamHeadlights_g2}}
+  - id: 410
+    name: R_LowBeamHeadlights_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--low-beam-headlights--g3}}
+            - contains: {attrs: {gl_sub_type: R_LowBeamHeadlights_g3}}
+  - id: 411
+    name: R_MinSafeDistance_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--minimum-safe-distance--g1}}
+            - contains: {attrs: {gl_sub_type: R_MinSafeDistance_g1}}
+  - id: 412
+    name: R_MopedsAndBicyclesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--mopeds-and-bicycles-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_MopedsAndBicyclesOnly_g1}}
+  - id: 413
+    name: R_MotorcyclesOnly_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--motorcycles-only--g2}}
+            - contains: {attrs: {gl_sub_type: R_MotorcyclesOnly_g2}}
+  - id: 414
+    name: R_NoBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoBicycles_g1}}
+  - id: 415
+    name: R_NoBicycles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-bicycles--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoBicycles_g2}}
+  - id: 416
+    name: R_NoBicycles_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-bicycles--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoBicycles_g3}}
+  - id: 417
+    name: R_NoBicyclesMopedsOrMotorcycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-bicycles-mopeds-or-motorcycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoBicyclesMopedsOrMotorcycles_g1}}
+  - id: 418
+    name: R_NoBicyclesOrMotorcycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-bicycles-or-motorcycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoBicyclesOrMotorcycles_g1}}
+  - id: 419
+    name: R_NoBiTractorsOrCarts_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-bicycles-tractors-or-carts--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoBiTractorsOrCarts_g1}}
+  - id: 420
+    name: R_NoBuses_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-buses--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoBuses_g1}}
+  - id: 421
+    name: R_NoBuses_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-buses--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoBuses_g3}}
+  - id: 422
+    name: R_NoCarryingDange_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-vehicles-carrying-dangerous-goods--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoCarryingDange_g1}}
+  - id: 423
+    name: R_NoCarryingDangerous_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-vehicles-carrying-dangerous-water-pollutants--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoCarryingDangerous_g1}}
+  - id: 424
+    name: R_NoCarts_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-carts--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoCarts_g1}}
+  - id: 425
+    name: R_NoCarts_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-carts--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoCarts_g2}}
+  - id: 426
+    name: R_NoCarts_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-carts--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoCarts_g3}}
+  - id: 427
+    name: R_NoEntry_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-entry--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoEntry_g1}}
+  - id: 428
+    name: R_NoEquestrians_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-equestrians--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoEquestrians_g1}}
+  - id: 429
+    name: R_NoGoodsVehicleTrailers_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-goods-vehicle-trailers--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoGoodsVehicleTrailers_g1}}
+  - id: 430
+    name: R_NoHandCarts_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-hand-carts--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoHandCarts_g1}}
+  - id: 431
+    name: R_NoHandCartsOrBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-hand-carts-or-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoHandCartsOrBicycles_g1}}
+  - id: 432
+    name: R_NoHawkers_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-hawkers--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoHawkers_g1}}
+  - id: 433
+    name: R_NoHeavyGoodsVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-heavy-goods-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoHeavyGoodsVehicles_g1}}
+  - id: 434
+    name: R_NoHeavyGoodsVehicles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-heavy-goods-vehicles--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoHeavyGoodsVehicles_g2}}
+  - id: 435
+    name: R_NoHeavyGoodsVehicles_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-heavy-goods-vehicles--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoHeavyGoodsVehicles_g3}}
+  - id: 436
+    name: R_NoHeavyGoodsVehicles_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-heavy-goods-vehicles--g4}}
+            - contains: {attrs: {gl_sub_type: R_NoHeavyGoodsVehicles_g4}}
+  - id: 437
+    name: R_NoHorn_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-horn--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoHorn_g1}}
+  - id: 438
+    name: R_NoLaneChangeToLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-lane-change-to-left--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoLaneChangeToLeft_g1}}
+  - id: 439
+    name: R_NoLaneChangeToRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-lane-change-to-right--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoLaneChangeToRight_g1}}
+  - id: 440
+    name: R_NoLeftTurn_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-left-turn--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoLeftTurn_g1}}
+  - id: 441
+    name: R_NoLeftTurn_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-left-turn--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoLeftTurn_g2}}
+  - id: 442
+    name: R_NoMopedsOrBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-mopeds-or-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoMopedsOrBicycles_g1}}
+  - id: 443
+    name: R_NoMotorcycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motorcycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorcycles_g1}}
+  - id: 444
+    name: R_NoMotorcycles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motorcycles--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorcycles_g2}}
+  - id: 445
+    name: R_NoMotorVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorVehicles_g1}}
+  - id: 446
+    name: R_NoMotorVehicles_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicles--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorVehicles_g3}}
+  - id: 447
+    name: R_NoMotorVehicles_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicles--g4}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorVehicles_g4}}
+  - id: 448
+    name: R_NoMotorVehicles_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicles--g5}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorVehicles_g5}}
+  - id: 449
+    name: R_NoMotorVehicleTrailers_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicle-trailers--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoMotorVehicleTrailers_g1}}
+  - id: 450
+    name: R_NoOverByVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-overtaking-by-heavy-goods-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoOverByVehicles_g1}}
+  - id: 451
+    name: R_NoOvertaking_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-overtaking--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoOvertaking_g1}}
+  - id: 452
+    name: R_NoOvertaking_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-overtaking--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoOvertaking_g2}}
+  - id: 453
+    name: R_NoOvertaking_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-overtaking--g4}}
+            - contains: {attrs: {gl_sub_type: R_NoOvertaking_g4}}
+  - id: 454
+    name: R_NoOvertaking_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-overtaking--g5}}
+            - contains: {attrs: {gl_sub_type: R_NoOvertaking_g5}}
+  - id: 455
+    name: R_NoParking_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-parking--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoParking_g1}}
+  - id: 456
+    name: R_NoParking_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-parking--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoParking_g2}}
+  - id: 457
+    name: R_NoParking_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-parking--g4}}
+            - contains: {attrs: {gl_sub_type: R_NoParking_g4}}
+  - id: 458
+    name: R_NoParking_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-parking--g5}}
+            - contains: {attrs: {gl_sub_type: R_NoParking_g5}}
+  - id: 459
+    name: R_NoParkingBiOrMotor_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-parking-bicycles-or-motorcycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoParkingBiOrMotor_g1}}
+  - id: 460
+    name: R_NoPedestrians_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestrians_g1}}
+  - id: 461
+    name: R_NoPedestrians_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestrians_g2}}
+  - id: 462
+    name: R_NoPedestrians_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestrians_g3}}
+  - id: 463
+    name: R_NoPedestrians_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians--g4}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestrians_g4}}
+  - id: 464
+    name: R_NoPedestriansBicyclesAnimalsOrHandCarts_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians-bicycles-animals-or-hand-carts--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestriansBicyclesAnimalsOrHandCarts_g1}}
+  - id: 465
+    name: R_NoPedestriansOrBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians-or-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestriansOrBicycles_g1}}
+  - id: 466
+    name: R_NoPedestriansOrBicycles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-pedestrians-or-bicycles--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoPedestriansOrBicycles_g2}}
+  - id: 467
+    name: R_NoRightTurn_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-right-turn--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoRightTurn_g1}}
+  - id: 468
+    name: R_NoRightTurn_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-right-turn--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoRightTurn_g2}}
+  - id: 469
+    name: R_NoRightTurn_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-right-turn--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoRightTurn_g3}}
+  - id: 470
+    name: R_NoStopping_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-stopping--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoStopping_g1}}
+  - id: 471
+    name: R_NoStopping_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-stopping--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoStopping_g2}}
+  - id: 472
+    name: R_NoStopping_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-stopping--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoStopping_g3}}
+  - id: 473
+    name: R_NoStopping_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-stopping--g5}}
+            - contains: {attrs: {gl_sub_type: R_NoStopping_g5}}
+  - id: 474
+    name: R_NoStraightThrough_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-straight-through--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoStraightThrough_g1}}
+  - id: 475
+    name: R_NoStraightThrough_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-straight-through--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoStraightThrough_g2}}
+  - id: 476
+    name: R_NoTractors_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-tractors--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoTractors_g1}}
+  - id: 477
+    name: R_NoTractorsMopedsOrBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-tractors-mopeds-or-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoTractorsMopedsOrBicycles_g1}}
+  - id: 478
+    name: R_NoTractorsOrCarts_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-tractors-or-carts--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoTractorsOrCarts_g1}}
+  - id: 479
+    name: R_NoTwoStageRightTurnForMopeds_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-two-stage-right-turn-for-mopeds--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoTwoStageRightTurnForMopeds_g1}}
+  - id: 480
+    name: R_NoUTurn_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-u-turn--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoUTurn_g1}}
+  - id: 481
+    name: R_NoUTurn_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-u-turn--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoUTurn_g2}}
+  - id: 482
+    name: R_NoUTurn_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-u-turn--g3}}
+            - contains: {attrs: {gl_sub_type: R_NoUTurn_g3}}
+  - id: 483
+    name: R_NoVehiclesCarryingExplosives_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-vehicles-carrying-explosives--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoVehiclesCarryingExplosives_g1}}
+  - id: 484
+    name: R_NoVehiclesExceptMotor_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicles-except-motorcycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoVehiclesExceptMotor_g1}}
+  - id: 485
+    name: R_NoVehiclesExceptMotor_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-motor-vehicles-except-motorcycles--g2}}
+            - contains: {attrs: {gl_sub_type: R_NoVehiclesExceptMotor_g2}}
+  - id: 486
+    name: R_NoVehiclesOrBuses_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--no-heavy-goods-vehicles-or-buses--g1}}
+            - contains: {attrs: {gl_sub_type: R_NoVehiclesOrBuses_g1}}
+  - id: 487
+    name: R_OneWayLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--one-way-left--g1}}
+            - contains: {attrs: {gl_sub_type: R_OneWayLeft_g1}}
+  - id: 488
+    name: R_OneWayRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--one-way-right--g1}}
+            - contains: {attrs: {gl_sub_type: R_OneWayRight_g1}}
+  - id: 489
+    name: R_OneWayStraight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--one-way-straight--g1}}
+            - contains: {attrs: {gl_sub_type: R_OneWayStraight_g1}}
+  - id: 490
+    name: R_PassOnEitherSide_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--pass-on-either-side--g1}}
+            - contains: {attrs: {gl_sub_type: R_PassOnEitherSide_g1}}
+  - id: 491
+    name: R_PassOnEitherSide_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--pass-on-either-side--g2}}
+            - contains: {attrs: {gl_sub_type: R_PassOnEitherSide_g2}}
+  - id: 492
+    name: R_PedesAndBicy_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--shared-path-pedestrians-and-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: R_PedesAndBicy_g1}}
+  - id: 493
+    name: R_PedestriansOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--pedestrians-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_PedestriansOnly_g1}}
+  - id: 494
+    name: R_PedestriansOnly_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--pedestrians-only--g2}}
+            - contains: {attrs: {gl_sub_type: R_PedestriansOnly_g2}}
+  - id: 495
+    name: R_PriorityOverVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--priority-over-oncoming-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: R_PriorityOverVehicles_g1}}
+  - id: 496
+    name: R_PriorityRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--priority-road--g1}}
+            - contains: {attrs: {gl_sub_type: R_PriorityRoad_g1}}
+  - id: 497
+    name: R_RoadClosed_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--road-closed--g1}}
+            - contains: {attrs: {gl_sub_type: R_RoadClosed_g1}}
+  - id: 498
+    name: R_RoadClosedToVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--road-closed-to-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: R_RoadClosedToVehicles_g1}}
+  - id: 499
+    name: R_RoadClosedToVehicles_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--road-closed-to-vehicles--g3}}
+            - contains: {attrs: {gl_sub_type: R_RoadClosedToVehicles_g3}}
+  - id: 500
+    name: R_Roundabout_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--roundabout--g1}}
+            - contains: {attrs: {gl_sub_type: R_Roundabout_g1}}
+  - id: 501
+    name: R_Roundabout_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--roundabout--g2}}
+            - contains: {attrs: {gl_sub_type: R_Roundabout_g2}}
+  - id: 502
+    name: R_Roundabout_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--roundabout--g3}}
+            - contains: {attrs: {gl_sub_type: R_Roundabout_g3}}
+  - id: 503
+    name: R_SnowChains_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--snow-chains--g1}}
+            - contains: {attrs: {gl_sub_type: R_SnowChains_g1}}
+  - id: 504
+    name: R_SnowmobilesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--snowmobiles-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_SnowmobilesOnly_g1}}
+  - id: 505
+    name: R_Stop_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop--g1}}
+            - contains: {attrs: {gl_sub_type: R_Stop_g1}}
+  - id: 506
+    name: R_Stop_g10
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop--g10}}
+            - contains: {attrs: {gl_sub_type: R_Stop_g10}}
+  - id: 507
+    name: R_Stop_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop--g2}}
+            - contains: {attrs: {gl_sub_type: R_Stop_g2}}
+  - id: 508
+    name: R_Stop_g6
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop--g6}}
+            - contains: {attrs: {gl_sub_type: R_Stop_g6}}
+  - id: 509
+    name: R_Stop_g7
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop--g7}}
+            - contains: {attrs: {gl_sub_type: R_Stop_g7}}
+  - id: 510
+    name: R_Stop_g8
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop--g8}}
+            - contains: {attrs: {gl_sub_type: R_Stop_g8}}
+  - id: 511
+    name: R_StopSignals_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--stop-signals--g1}}
+            - contains: {attrs: {gl_sub_type: R_StopSignals_g1}}
+  - id: 512
+    name: R_TaxiOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--taxi-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_TaxiOnly_g1}}
+  - id: 513
+    name: R_Text_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--text--g1}}
+            - contains: {attrs: {gl_sub_type: R_Text_g1}}
+  - id: 514
+    name: R_Text_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--text--g2}}
+            - contains: {attrs: {gl_sub_type: R_Text_g2}}
+  - id: 515
+    name: R_TramsAndBusesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--trams-and-buses-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_TramsAndBusesOnly_g1}}
+  - id: 516
+    name: R_TramsOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--trams-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_TramsOnly_g1}}
+  - id: 517
+    name: R_TrucksOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--trucks-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_TrucksOnly_g1}}
+  - id: 518
+    name: R_TurnLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left--g1}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeft_g1}}
+  - id: 519
+    name: R_TurnLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left--g2}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeft_g2}}
+  - id: 520
+    name: R_TurnLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left--g3}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeft_g3}}
+  - id: 521
+    name: R_TurnLeftAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeftAhead_g1}}
+  - id: 522
+    name: R_TurnLeftAhead_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left-ahead--g2}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeftAhead_g2}}
+  - id: 523
+    name: R_TurnLeftOrRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left-or-right--g1}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeftOrRight_g1}}
+  - id: 524
+    name: R_TurnLeftOrRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-left-or-right--g2}}
+            - contains: {attrs: {gl_sub_type: R_TurnLeftOrRight_g2}}
+  - id: 525
+    name: R_TurnRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-right--g1}}
+            - contains: {attrs: {gl_sub_type: R_TurnRight_g1}}
+  - id: 526
+    name: R_TurnRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-right--g2}}
+            - contains: {attrs: {gl_sub_type: R_TurnRight_g2}}
+  - id: 527
+    name: R_TurnRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-right--g3}}
+            - contains: {attrs: {gl_sub_type: R_TurnRight_g3}}
+  - id: 528
+    name: R_TurnRightAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-right-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: R_TurnRightAhead_g1}}
+  - id: 529
+    name: R_TurnRightAhead_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--turn-right-ahead--g2}}
+            - contains: {attrs: {gl_sub_type: R_TurnRightAhead_g2}}
+  - id: 530
+    name: R_TwoStageRightTurnForMopeds_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--two-stage-right-turn-for-mopeds--g1}}
+            - contains: {attrs: {gl_sub_type: R_TwoStageRightTurnForMopeds_g1}}
+  - id: 531
+    name: R_UTurn_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--u-turn--g1}}
+            - contains: {attrs: {gl_sub_type: R_UTurn_g1}}
+  - id: 532
+    name: R_UTurn_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--u-turn--g2}}
+            - contains: {attrs: {gl_sub_type: R_UTurn_g2}}
+  - id: 533
+    name: R_VehiclesCarryingDangerousGoodsOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--vehicles-carrying-dangerous-goods-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_VehiclesCarryingDangerousGoodsOnly_g1}}
+  - id: 534
+    name: R_VehiclesOnly_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--vehicles-only--g1}}
+            - contains: {attrs: {gl_sub_type: R_VehiclesOnly_g1}}
+  - id: 535
+    name: R_WearSeatBelt_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--wear-seat-belt--g2}}
+            - contains: {attrs: {gl_sub_type: R_WearSeatBelt_g2}}
+  - id: 536
+    name: R_WeightLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--weight-limit--g1}}
+            - contains: {attrs: {gl_sub_type: R_WeightLimit_g1}}
+  - id: 537
+    name: R_WeightLimit_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--weight-limit--g3}}
+            - contains: {attrs: {gl_sub_type: R_WeightLimit_g3}}
+  - id: 538
+    name: R_WeightLimit_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--weight-limit--g4}}
+            - contains: {attrs: {gl_sub_type: R_WeightLimit_g4}}
+  - id: 539
+    name: R_WeightLimitPerAxle_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--weight-limit-per-axle--g1}}
+            - contains: {attrs: {gl_sub_type: R_WeightLimitPerAxle_g1}}
+  - id: 540
+    name: R_WeightLimitPerTandemAxle_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--weight-limit-per-tandem-axle--g1}}
+            - contains: {attrs: {gl_sub_type: R_WeightLimitPerTandemAxle_g1}}
+  - id: 541
+    name: R_WidthLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--width-limit--g1}}
+            - contains: {attrs: {gl_sub_type: R_WidthLimit_g1}}
+  - id: 542
+    name: R_Yield_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: regulatory--yield--g1}}
+            - contains: {attrs: {gl_sub_type: R_Yield_g1}}
+  - id: 543
+    name: I_Airport_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--airport--g1}}
+            - contains: {attrs: {gl_sub_type: I_Airport_g1}}
+  - id: 544
+    name: I_BicycleLane_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bicycle-lane--g1}}
+            - contains: {attrs: {gl_sub_type: I_BicycleLane_g1}}
+  - id: 545
+    name: I_BicyclesBothWays_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bicycles-both-ways--g1}}
+            - contains: {attrs: {gl_sub_type: I_BicyclesBothWays_g1}}
+  - id: 546
+    name: I_BicyclesCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bicycles-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: I_BicyclesCrossing_g1}}
+  - id: 547
+    name: I_BicyclesCrossing_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bicycles-crossing--g3}}
+            - contains: {attrs: {gl_sub_type: I_BicyclesCrossing_g3}}
+  - id: 548
+    name: I_BikeRoute_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bike-route--g1}}
+            - contains: {attrs: {gl_sub_type: I_BikeRoute_g1}}
+  - id: 549
+    name: I_BuiltUpArea_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--built-up-area--g1}}
+            - contains: {attrs: {gl_sub_type: I_BuiltUpArea_g1}}
+  - id: 550
+    name: I_BuiltUpArea_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--built-up-area--g2}}
+            - contains: {attrs: {gl_sub_type: I_BuiltUpArea_g2}}
+  - id: 551
+    name: I_BusLaneStraight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bus-lane-straight--g1}}
+            - contains: {attrs: {gl_sub_type: I_BusLaneStraight_g1}}
+  - id: 552
+    name: I_BusStop_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--bus-stop--g1}}
+            - contains: {attrs: {gl_sub_type: I_BusStop_g1}}
+  - id: 553
+    name: I_Camera_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--camera--g1}}
+            - contains: {attrs: {gl_sub_type: I_Camera_g1}}
+  - id: 554
+    name: I_Camera_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--camera--g2}}
+            - contains: {attrs: {gl_sub_type: I_Camera_g2}}
+  - id: 555
+    name: I_Camera_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--camera--g3}}
+            - contains: {attrs: {gl_sub_type: I_Camera_g3}}
+  - id: 556
+    name: I_Camp_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--camp--g1}}
+            - contains: {attrs: {gl_sub_type: I_Camp_g1}}
+  - id: 557
+    name: I_CentralLane_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--central-lane--g1}}
+            - contains: {attrs: {gl_sub_type: I_CentralLane_g1}}
+  - id: 558
+    name: I_ChildrenCrossing_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--children-crossing--g5}}
+            - contains: {attrs: {gl_sub_type: I_ChildrenCrossing_g5}}
+  - id: 559
+    name: I_CycTwoAbreastPerm_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--cycling-two-abreast-permitted--g1}}
+            - contains: {attrs: {gl_sub_type: I_CycTwoAbreastPerm_g1}}
+  - id: 560
+    name: I_DeadEnd_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end--g1}}
+            - contains: {attrs: {gl_sub_type: I_DeadEnd_g1}}
+  - id: 561
+    name: I_DeadEnd_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end--g2}}
+            - contains: {attrs: {gl_sub_type: I_DeadEnd_g2}}
+  - id: 562
+    name: I_DeadEnd_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end--g3}}
+            - contains: {attrs: {gl_sub_type: I_DeadEnd_g3}}
+  - id: 563
+    name: I_DeadEndExBicyAndPedes_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end-except-bicycles-and-pedestrians--g1}}
+            - contains: {attrs: {gl_sub_type: I_DeadEndExBicyAndPedes_g1}}
+  - id: 564
+    name: I_DeadEndExceptBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end-except-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: I_DeadEndExceptBicycles_g1}}
+  - id: 565
+    name: I_DeadEndExceptBicyclesAndPedestrians_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end-except-bicycles-and-pedestrians--g2}}
+            - contains: {attrs: {gl_sub_type: I_DeadEndExceptBicyclesAndPedestrians_g2}}
+  - id: 566
+    name: I_DeadEndLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end-left--g1}}
+            - contains: {attrs: {gl_sub_type: I_DeadEndLeft_g1}}
+  - id: 567
+    name: I_DeadEndRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--dead-end-right--g1}}
+            - contains: {attrs: {gl_sub_type: I_DeadEndRight_g1}}
+  - id: 568
+    name: I_DisabledPersons_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--disabled-persons--g1}}
+            - contains: {attrs: {gl_sub_type: I_DisabledPersons_g1}}
+  - id: 569
+    name: I_DisabledPersons_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--disabled-persons--g2}}
+            - contains: {attrs: {gl_sub_type: I_DisabledPersons_g2}}
+  - id: 570
+    name: I_ExitAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--exit-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: I_ExitAhead_g1}}
+  - id: 571
+    name: I_ExitAhead_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--exit-ahead--g2}}
+            - contains: {attrs: {gl_sub_type: I_ExitAhead_g2}}
+  - id: 572
+    name: I_ExitAhead_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--exit-ahead--g3}}
+            - contains: {attrs: {gl_sub_type: I_ExitAhead_g3}}
+  - id: 573
+    name: I_FlightPort_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--flight-port--g1}}
+            - contains: {attrs: {gl_sub_type: I_FlightPort_g1}}
+  - id: 574
+    name: I_GasStation_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--gas-station--g1}}
+            - contains: {attrs: {gl_sub_type: I_GasStation_g1}}
+  - id: 575
+    name: I_GoStraightOrLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--go-straight-or-left--g1}}
+            - contains: {attrs: {gl_sub_type: I_GoStraightOrLeft_g1}}
+  - id: 576
+    name: I_GoStraightOrRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--go-straight-or-right--g1}}
+            - contains: {attrs: {gl_sub_type: I_GoStraightOrRight_g1}}
+  - id: 577
+    name: I_HazardousGoodsVehiclesLane_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--hazardous-goods-vehicles-lane--g1}}
+            - contains: {attrs: {gl_sub_type: I_HazardousGoodsVehiclesLane_g1}}
+  - id: 578
+    name: I_HeightLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--height-limit--g1}}
+            - contains: {attrs: {gl_sub_type: I_HeightLimit_g1}}
+  - id: 579
+    name: I_HurricaneEvacuationRoute_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--hurricane-evacuation-route--g1}}
+            - contains: {attrs: {gl_sub_type: I_HurricaneEvacuationRoute_g1}}
+  - id: 580
+    name: I_InterstateRoute_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--interstate-route--g1}}
+            - contains: {attrs: {gl_sub_type: I_InterstateRoute_g1}}
+  - id: 581
+    name: I_LimitedAccessRoad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--limited-access-road--g1}}
+            - contains: {attrs: {gl_sub_type: I_LimitedAccessRoad_g1}}
+  - id: 582
+    name: I_LivingStreet_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--living-street--g1}}
+            - contains: {attrs: {gl_sub_type: I_LivingStreet_g1}}
+  - id: 583
+    name: I_LivingStreet_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--living-street--g3}}
+            - contains: {attrs: {gl_sub_type: I_LivingStreet_g3}}
+  - id: 584
+    name: I_Lodging_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--lodging--g1}}
+            - contains: {attrs: {gl_sub_type: I_Lodging_g1}}
+  - id: 585
+    name: I_Motorway_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--motorway--g1}}
+            - contains: {attrs: {gl_sub_type: I_Motorway_g1}}
+  - id: 586
+    name: I_MotorwayExitAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--motorway-exit-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: I_MotorwayExitAhead_g1}}
+  - id: 587
+    name: I_MotorwayExitAhead_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--motorway-exit-ahead--g2}}
+            - contains: {attrs: {gl_sub_type: I_MotorwayExitAhead_g2}}
+  - id: 588
+    name: I_MotorwayExitAhead_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--motorway-exit-ahead--g3}}
+            - contains: {attrs: {gl_sub_type: I_MotorwayExitAhead_g3}}
+  - id: 589
+    name: I_Parking_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking--g1}}
+            - contains: {attrs: {gl_sub_type: I_Parking_g1}}
+  - id: 590
+    name: I_Parking_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking--g2}}
+            - contains: {attrs: {gl_sub_type: I_Parking_g2}}
+  - id: 591
+    name: I_Parking_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking--g3}}
+            - contains: {attrs: {gl_sub_type: I_Parking_g3}}
+  - id: 592
+    name: I_Parking_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking--g4}}
+            - contains: {attrs: {gl_sub_type: I_Parking_g4}}
+  - id: 593
+    name: I_Parking_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking--g5}}
+            - contains: {attrs: {gl_sub_type: I_Parking_g5}}
+  - id: 594
+    name: I_Parking_g6
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking--g6}}
+            - contains: {attrs: {gl_sub_type: I_Parking_g6}}
+  - id: 595
+    name: I_ParkingWithRestrictions_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--parking-with-restrictions--g1}}
+            - contains: {attrs: {gl_sub_type: I_ParkingWithRestrictions_g1}}
+  - id: 596
+    name: I_PedestriansCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--pedestrians-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: I_PedestriansCrossing_g1}}
+  - id: 597
+    name: I_PerpendicularParking_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--perpendicular-parking--g1}}
+            - contains: {attrs: {gl_sub_type: I_PerpendicularParking_g1}}
+  - id: 598
+    name: I_RestArea_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--rest-area--g1}}
+            - contains: {attrs: {gl_sub_type: I_RestArea_g1}}
+  - id: 599
+    name: I_RoadBump_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--road-bump--g1}}
+            - contains: {attrs: {gl_sub_type: I_RoadBump_g1}}
+  - id: 600
+    name: I_SafetyZone_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--safety-zone--g1}}
+            - contains: {attrs: {gl_sub_type: I_SafetyZone_g1}}
+  - id: 601
+    name: I_SafetyZone_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--safety-zone--g2}}
+            - contains: {attrs: {gl_sub_type: I_SafetyZone_g2}}
+  - id: 602
+    name: I_Stairs_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--stairs--g1}}
+            - contains: {attrs: {gl_sub_type: I_Stairs_g1}}
+  - id: 603
+    name: I_Stairs_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--stairs--g4}}
+            - contains: {attrs: {gl_sub_type: I_Stairs_g4}}
+  - id: 604
+    name: I_StopLine_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--stop-line--g1}}
+            - contains: {attrs: {gl_sub_type: I_StopLine_g1}}
+  - id: 605
+    name: I_StopPermitted_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--stop-permitted--g1}}
+            - contains: {attrs: {gl_sub_type: I_StopPermitted_g1}}
+  - id: 606
+    name: I_TollStation_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--toll-station--g1}}
+            - contains: {attrs: {gl_sub_type: I_TollStation_g1}}
+  - id: 607
+    name: I_TourismInformation_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--tourism-information--g1}}
+            - contains: {attrs: {gl_sub_type: I_TourismInformation_g1}}
+  - id: 608
+    name: I_TrafficMergesLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--traffic-merges-left--g1}}
+            - contains: {attrs: {gl_sub_type: I_TrafficMergesLeft_g1}}
+  - id: 609
+    name: I_TrafficMergesRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--traffic-merges-right--g1}}
+            - contains: {attrs: {gl_sub_type: I_TrafficMergesRight_g1}}
+  - id: 610
+    name: I_TrailCrossing_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--trail-crossing--g2}}
+            - contains: {attrs: {gl_sub_type: I_TrailCrossing_g2}}
+  - id: 611
+    name: I_TrailCrossing_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--trail-crossing--g3}}
+            - contains: {attrs: {gl_sub_type: I_TrailCrossing_g3}}
+  - id: 612
+    name: I_TramsCrossing_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--trams-crossing--g1}}
+            - contains: {attrs: {gl_sub_type: I_TramsCrossing_g1}}
+  - id: 613
+    name: I_TrucksBothWays_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--trucks-both-ways--g1}}
+            - contains: {attrs: {gl_sub_type: I_TrucksBothWays_g1}}
+  - id: 614
+    name: I_Tunnel_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--tunnel--g1}}
+            - contains: {attrs: {gl_sub_type: I_Tunnel_g1}}
+  - id: 615
+    name: I_Tunnel_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--tunnel--g2}}
+            - contains: {attrs: {gl_sub_type: I_Tunnel_g2}}
+  - id: 616
+    name: I_UrbanArea_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--urban-area--g1}}
+            - contains: {attrs: {gl_sub_type: I_UrbanArea_g1}}
+  - id: 617
+    name: I_VehiclesOnRails_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--vehicles-on-rails--g1}}
+            - contains: {attrs: {gl_sub_type: I_VehiclesOnRails_g1}}
+  - id: 618
+    name: I_WeightLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: information--weight-limit--g1}}
+            - contains: {attrs: {gl_sub_type: I_WeightLimit_g1}}
+  - id: 619
+    name: C_AccidentArea_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--accident-area--g2}}
+            - contains: {attrs: {gl_sub_type: C_AccidentArea_g2}}
+  - id: 620
+    name: C_BicyclesOrPedestriansDetour_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--bicycles-or-pedestrians-detour--g1}}
+            - contains: {attrs: {gl_sub_type: C_BicyclesOrPedestriansDetour_g1}}
+  - id: 621
+    name: C_BicyclesTurnRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--bicycles-turn-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_BicyclesTurnRight_g1}}
+  - id: 622
+    name: C_BikeRoute_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--bike-route--g1}}
+            - contains: {attrs: {gl_sub_type: C_BikeRoute_g1}}
+  - id: 623
+    name: C_BiPedesDetour_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--bicycles-and-pedestrians-detour--g1}}
+            - contains: {attrs: {gl_sub_type: C_BiPedesDetour_g1}}
+  - id: 624
+    name: C_BothDirections_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--both-directions--g1}}
+            - contains: {attrs: {gl_sub_type: C_BothDirections_g1}}
+  - id: 625
+    name: C_BothDirections_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--both-directions--g2}}
+            - contains: {attrs: {gl_sub_type: C_BothDirections_g2}}
+  - id: 626
+    name: C_Buses_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--buses--g1}}
+            - contains: {attrs: {gl_sub_type: C_Buses_g1}}
+  - id: 627
+    name: C_Camera_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--camera--g4}}
+            - contains: {attrs: {gl_sub_type: C_Camera_g4}}
+  - id: 628
+    name: C_Caravans_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--caravans--g2}}
+            - contains: {attrs: {gl_sub_type: C_Caravans_g2}}
+  - id: 629
+    name: C_ChevronLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_ChevronLeft_g1}}
+  - id: 630
+    name: C_ChevronLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-left--g2}}
+            - contains: {attrs: {gl_sub_type: C_ChevronLeft_g2}}
+  - id: 631
+    name: C_ChevronLeft_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-left--g3}}
+            - contains: {attrs: {gl_sub_type: C_ChevronLeft_g3}}
+  - id: 632
+    name: C_ChevronLeft_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-left--g4}}
+            - contains: {attrs: {gl_sub_type: C_ChevronLeft_g4}}
+  - id: 633
+    name: C_ChevronLeft_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-left--g5}}
+            - contains: {attrs: {gl_sub_type: C_ChevronLeft_g5}}
+  - id: 634
+    name: C_ChevronRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_ChevronRight_g1}}
+  - id: 635
+    name: C_ChevronRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-right--g2}}
+            - contains: {attrs: {gl_sub_type: C_ChevronRight_g2}}
+  - id: 636
+    name: C_ChevronRight_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-right--g3}}
+            - contains: {attrs: {gl_sub_type: C_ChevronRight_g3}}
+  - id: 637
+    name: C_ChevronRight_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-right--g4}}
+            - contains: {attrs: {gl_sub_type: C_ChevronRight_g4}}
+  - id: 638
+    name: C_ChevronRight_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--chevron-right--g5}}
+            - contains: {attrs: {gl_sub_type: C_ChevronRight_g5}}
+  - id: 639
+    name: C_DangerousOrPollutantGood_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--dangerous-or-pollutant-good--g1}}
+            - contains: {attrs: {gl_sub_type: C_DangerousOrPollutantGood_g1}}
+  - id: 640
+    name: C_DeadEnd_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--dead-end--g1}}
+            - contains: {attrs: {gl_sub_type: C_DeadEnd_g1}}
+  - id: 641
+    name: C_Detour_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--detour--g1}}
+            - contains: {attrs: {gl_sub_type: C_Detour_g1}}
+  - id: 642
+    name: C_DisabledPersons_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--disabled-persons--g1}}
+            - contains: {attrs: {gl_sub_type: C_DisabledPersons_g1}}
+  - id: 643
+    name: C_Distance_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--distance--g1}}
+            - contains: {attrs: {gl_sub_type: C_Distance_g1}}
+  - id: 644
+    name: C_Distance_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--distance--g2}}
+            - contains: {attrs: {gl_sub_type: C_Distance_g2}}
+  - id: 645
+    name: C_Distance_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--distance--g3}}
+            - contains: {attrs: {gl_sub_type: C_Distance_g3}}
+  - id: 646
+    name: C_ExceptBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: C_ExceptBicycles_g1}}
+  - id: 647
+    name: C_ExceptBicycles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-bicycles--g2}}
+            - contains: {attrs: {gl_sub_type: C_ExceptBicycles_g2}}
+  - id: 648
+    name: C_ExceptBuses_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-buses--g1}}
+            - contains: {attrs: {gl_sub_type: C_ExceptBuses_g1}}
+  - id: 649
+    name: C_ExceptPollutingLevelGreen_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-polluting-level-green--g1}}
+            - contains: {attrs: {gl_sub_type: C_ExceptPollutingLevelGreen_g1}}
+  - id: 650
+    name: C_ExceptTrams_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-trams--g1}}
+            - contains: {attrs: {gl_sub_type: C_ExceptTrams_g1}}
+  - id: 651
+    name: C_ExceptTrucks_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-trucks--g1}}
+            - contains: {attrs: {gl_sub_type: C_ExceptTrucks_g1}}
+  - id: 652
+    name: C_ExceptVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--except-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: C_ExceptVehicles_g1}}
+  - id: 653
+    name: C_GoLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--go-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_GoLeft_g1}}
+  - id: 654
+    name: C_GoRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--go-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_GoRight_g1}}
+  - id: 655
+    name: C_IncludingBusesVehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--including-buses-vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: C_IncludingBusesVehicles_g1}}
+  - id: 656
+    name: C_LaneControl_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--lane-control--g2}}
+            - contains: {attrs: {gl_sub_type: C_LaneControl_g2}}
+  - id: 657
+    name: C_Motorcycles_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--motorcycles--g2}}
+            - contains: {attrs: {gl_sub_type: C_Motorcycles_g2}}
+  - id: 658
+    name: C_Motorcycles_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--motorcycles--g3}}
+            - contains: {attrs: {gl_sub_type: C_Motorcycles_g3}}
+  - id: 659
+    name: C_ObstacleDelineator_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--obstacle-delineator--g1}}
+            - contains: {attrs: {gl_sub_type: C_ObstacleDelineator_g1}}
+  - id: 660
+    name: C_ObstacleDelineator_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--obstacle-delineator--g2}}
+            - contains: {attrs: {gl_sub_type: C_ObstacleDelineator_g2}}
+  - id: 661
+    name: C_ObstacleDelineator_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--obstacle-delineator--g3}}
+            - contains: {attrs: {gl_sub_type: C_ObstacleDelineator_g3}}
+  - id: 662
+    name: C_OneDirectionLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--one-direction-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_OneDirectionLeft_g1}}
+  - id: 663
+    name: C_OneDirectionRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--one-direction-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_OneDirectionRight_g1}}
+  - id: 664
+    name: C_PassLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--pass-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_PassLeft_g1}}
+  - id: 665
+    name: C_PassRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--pass-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_PassRight_g1}}
+  - id: 666
+    name: C_PedestriansAndBicycles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--pedestrians-and-bicycles--g1}}
+            - contains: {attrs: {gl_sub_type: C_PedestriansAndBicycles_g1}}
+  - id: 667
+    name: C_PedestriansLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--pedestrians-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_PedestriansLeft_g1}}
+  - id: 668
+    name: C_PedestriansRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--pedestrians-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_PedestriansRight_g1}}
+  - id: 669
+    name: C_PriorityRouteIs_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--priority-route-at-intersection--g1}}
+            - contains: {attrs: {gl_sub_type: C_PriorityRouteIs_g1}}
+  - id: 670
+    name: C_PriorityRouteIs_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--priority-route-at-intersection--g2}}
+            - contains: {attrs: {gl_sub_type: C_PriorityRouteIs_g2}}
+  - id: 671
+    name: C_PriorityRouteIs_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--priority-route-at-intersection--g3}}
+            - contains: {attrs: {gl_sub_type: C_PriorityRouteIs_g3}}
+  - id: 672
+    name: C_PriorityRouteIs_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--priority-route-at-intersection--g4}}
+            - contains: {attrs: {gl_sub_type: C_PriorityRouteIs_g4}}
+  - id: 673
+    name: C_PriorityRouteIs_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--priority-route-at-intersection--g5}}
+            - contains: {attrs: {gl_sub_type: C_PriorityRouteIs_g5}}
+  - id: 674
+    name: C_Railroad_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--railroad--g1}}
+            - contains: {attrs: {gl_sub_type: C_Railroad_g1}}
+  - id: 675
+    name: C_Railroad_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--railroad--g2}}
+            - contains: {attrs: {gl_sub_type: C_Railroad_g2}}
+  - id: 676
+    name: C_ResBothDirec_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--restriction-in-both-directions--g1}}
+            - contains: {attrs: {gl_sub_type: C_ResBothDirec_g1}}
+  - id: 677
+    name: C_Snow_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--snow--g4}}
+            - contains: {attrs: {gl_sub_type: C_Snow_g4}}
+  - id: 678
+    name: C_Snow_g5
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--snow--g5}}
+            - contains: {attrs: {gl_sub_type: C_Snow_g5}}
+  - id: 679
+    name: C_SoftShoulder_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--soft-shoulder--g1}}
+            - contains: {attrs: {gl_sub_type: C_SoftShoulder_g1}}
+  - id: 680
+    name: C_TimeRestrictions_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--time-restrictions--g1}}
+            - contains: {attrs: {gl_sub_type: C_TimeRestrictions_g1}}
+  - id: 681
+    name: C_TimeRestrictions_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--time-restrictions--g3}}
+            - contains: {attrs: {gl_sub_type: C_TimeRestrictions_g3}}
+  - id: 682
+    name: C_TowAwayZone_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--tow-away-zone--g1}}
+            - contains: {attrs: {gl_sub_type: C_TowAwayZone_g1}}
+  - id: 683
+    name: C_Tractors_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--tractors--g1}}
+            - contains: {attrs: {gl_sub_type: C_Tractors_g1}}
+  - id: 684
+    name: C_Trams_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trams--g1}}
+            - contains: {attrs: {gl_sub_type: C_Trams_g1}}
+  - id: 685
+    name: C_Trees_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trees--g1}}
+            - contains: {attrs: {gl_sub_type: C_Trees_g1}}
+  - id: 686
+    name: C_Trucks_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks--g1}}
+            - contains: {attrs: {gl_sub_type: C_Trucks_g1}}
+  - id: 687
+    name: C_TrucksAndTrailers_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-and-trailers--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksAndTrailers_g1}}
+  - id: 688
+    name: C_TrucksBusesTrailers_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-buses-trailers--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksBusesTrailers_g1}}
+  - id: 689
+    name: C_TrucksGoLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-go-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksGoLeft_g1}}
+  - id: 690
+    name: C_TrucksGoLeftAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-go-left-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksGoLeftAhead_g1}}
+  - id: 691
+    name: C_TrucksGoRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-go-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksGoRight_g1}}
+  - id: 692
+    name: C_TrucksGoRightAhead_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-go-right-ahead--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksGoRightAhead_g1}}
+  - id: 693
+    name: C_TrucksGoStraight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-go-straight--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksGoStraight_g1}}
+  - id: 694
+    name: C_TrucksTurnLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-turn-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksTurnLeft_g1}}
+  - id: 695
+    name: C_TrucksTurnRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--trucks-turn-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_TrucksTurnRight_g1}}
+  - id: 696
+    name: C_TurnLeft_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--turn-left--g1}}
+            - contains: {attrs: {gl_sub_type: C_TurnLeft_g1}}
+  - id: 697
+    name: C_TurnLeft_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--turn-left--g2}}
+            - contains: {attrs: {gl_sub_type: C_TurnLeft_g2}}
+  - id: 698
+    name: C_TurnRight_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--turn-right--g1}}
+            - contains: {attrs: {gl_sub_type: C_TurnRight_g1}}
+  - id: 699
+    name: C_TurnRight_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--turn-right--g2}}
+            - contains: {attrs: {gl_sub_type: C_TurnRight_g2}}
+  - id: 700
+    name: C_TwoWayTraffic_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--two-way-traffic--g1}}
+            - contains: {attrs: {gl_sub_type: C_TwoWayTraffic_g1}}
+  - id: 701
+    name: C_TwoWayTraffic_g2
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--two-way-traffic--g2}}
+            - contains: {attrs: {gl_sub_type: C_TwoWayTraffic_g2}}
+  - id: 702
+    name: C_TwoWayTraffic_g3
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--two-way-traffic--g3}}
+            - contains: {attrs: {gl_sub_type: C_TwoWayTraffic_g3}}
+  - id: 703
+    name: C_TwoWayTraffic_g4
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--two-way-traffic--g4}}
+            - contains: {attrs: {gl_sub_type: C_TwoWayTraffic_g4}}
+  - id: 704
+    name: C_Vehicles_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--vehicles--g1}}
+            - contains: {attrs: {gl_sub_type: C_Vehicles_g1}}
+  - id: 705
+    name: C_WeightLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--weight-limit--g1}}
+            - contains: {attrs: {gl_sub_type: C_WeightLimit_g1}}
+  - id: 706
+    name: C_WhenRainy_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--when-rainy--g1}}
+            - contains: {attrs: {gl_sub_type: C_WhenRainy_g1}}
+  - id: 707
+    name: C_WhenSnowy_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--when-snowy--g1}}
+            - contains: {attrs: {gl_sub_type: C_WhenSnowy_g1}}
+  - id: 708
+    name: C_WhenWet_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--when-wet--g1}}
+            - contains: {attrs: {gl_sub_type: C_WhenWet_g1}}
+  - id: 709
+    name: C_WidthLimit_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--width-limit--g1}}
+            - contains: {attrs: {gl_sub_type: C_WidthLimit_g1}}
+  - id: 710
+    name: C_WorkingDays_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {sub_type: complementary--working-days--g1}}
+            - contains: {attrs: {gl_sub_type: C_WorkingDays_g1}}
+  - id: 711
+    name: US_UnknownSign_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {cn_sub_type: U_Unknown}}
+            - contains: {attrs: {gl_sub_type: US_UnknownSign_g1}}
+  - id: 712
+    name: OS_OtherSign_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {cn_sub_type: O_Other}}
+            - contains: {attrs: {gl_sub_type: OS_OtherSign_g1}}
+  - id: 713
+    name: FP_SignBack_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: FP_SignBack_g1}}
+  - id: 714
+    name: FP_Other_g1
+    upsample: 1.0
+    match_condiction:
+      and:
+        - or:
+            - contains: {attrs: {gl_sub_type: object--support--traffic-sign-frame}}
+            - contains: {attrs: {cn_sub_type: False_Positive}}
+            - contains: {attrs: {gl_sub_type: FP_Other_g1}}
+            - contains: {attrs: {cn_sub_type: FP_Accessory_Arrow}}
+            - contains: {attrs: {cn_sub_type: FP_Building}}
+            - contains: {attrs: {cn_sub_type: FP_Circular_Marker}}
+            - contains: {attrs: {cn_sub_type: FP_Head}}
+            - contains: {attrs: {cn_sub_type: FP_IncompleteSign}}
+            - contains: {attrs: {cn_sub_type: FP_Light_Arrow}}
+            - contains: {attrs: {cn_sub_type: FP_Light_Circle}}
+            - contains: {attrs: {cn_sub_type: FP_Light_Shell}}
+            - contains: {attrs: {cn_sub_type: FP_Light_Time}}
+            - contains: {attrs: {cn_sub_type: FP_Mirror}}
+            - contains: {attrs: {cn_sub_type: FP_Other}}
+            - contains: {attrs: {cn_sub_type: FP_Polygon_Marker}}
+            - contains: {attrs: {cn_sub_type: FP_Route_Number}}
+            - contains: {attrs: {cn_sub_type: FP_SignWithContext}}
+            - contains: {attrs: {cn_sub_type: FP_Twig}}
+            - contains: {attrs: {cn_sub_type: FP_Unknown}}
+            - contains: {attrs: {cn_sub_type: FP_Vehicle_Wheel}}

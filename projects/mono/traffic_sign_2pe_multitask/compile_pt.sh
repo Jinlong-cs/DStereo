@@ -1,0 +1,1 @@
+python tools/deploy/compile_standalone.py $1 --input-size 1x3x64x64 --opt O3 --march bernoulli2 --name traffic_sign --input-source resizer --output-layout BPU_RAW --extra-args "--dev-remove-extra-output-cpu-op --max-time-per-fc 1000"

@@ -1,0 +1,107 @@
+# group data version
+
+# bev_static_obstacle single frame data
+pipeline_test:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+        sample_interval: 1000
+pipeline_testV2:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+        sample_interval: 1000
+v1.0.0:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+v1.1.0:
+  BJ:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+      0042_UT126_20221118_ml_20map:
+v1.1.1:
+  11v_driving_data_small:
+    UT126:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+v1.2.0:
+  BJ:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+      0042_UT126_20221118_ml_20map:
+    UT0F3:
+      merged__103_103__20221210_20230104:
+    UT3J5:
+      merged__144_144__20230216_20230223:
+  BJ_parking_lock_mining:
+    UT126:
+      merged__37_37__20221029:
+      merged__42_42__20221111_20221112:
+    UT0F3:
+      merged__103_103__20230103_20230104:
+    UT3J5:
+      merged__144_144__20230216_20230223:
+      merged__169_170__20230321:
+    LS830:
+      merged__150_153__20230302:
+    UT0Q9:
+      merged__150_153__20230227:
+      merged__169_170__20230324:
+      merged__178_178__20230316_20230320:
+    UT263:
+      merged__150_153__20230228:
+    UTHS6:
+      merged__150_153__20230228:
+
+# multi frame data
+v1.2.0_multi_frame: # pipeline2.0 multi frame
+  BJ_multi_frame:
+    UT0F3:
+      merged__103_103__20221210_20230104:
+    UT3J5:
+      merged__144_144__20230216_20230223:
+
+v1.3.0:
+  BJ:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+      0042_UT126_20221118_ml_20map:
+    UT0F3:
+      merged__103_103__20221210_20230104:
+    UT3J5:
+      merged__144_144__20230216_20230223:
+    LS830:
+      merged__341_347__20230904_20230908:
+    UT263:
+      merged__341_347__20230828_20230907:
+  BJ_parking_lock_mining:
+    UT126:
+      merged__37_37__20221029:
+      merged__42_42__20221111_20221112:
+    UT0F3:
+      merged__103_103__20230103_20230104:
+    UT3J5:
+      merged__144_144__20230216_20230223:
+      merged__169_170__20230321:
+    LS830:
+      merged__150_153__20230302:
+    UT0Q9:
+      merged__150_153__20230227:
+      merged__169_170__20230324:
+      merged__178_178__20230316_20230320:
+    UT263:
+      merged__150_153__20230228:
+    UTHS6:
+      merged__150_153__20230228:
+
+v1.0_open_parking:
+  BJ: 
+    UT263: 
+      merged__1_2__20231129:
+      merged__1_2__20231127_20231128:
+
+EK_v1.0:
+  BJ:
+    HBEK383:
+      merged__393_393__20231210_20231216:
+      merged__2389_2389__20231207:

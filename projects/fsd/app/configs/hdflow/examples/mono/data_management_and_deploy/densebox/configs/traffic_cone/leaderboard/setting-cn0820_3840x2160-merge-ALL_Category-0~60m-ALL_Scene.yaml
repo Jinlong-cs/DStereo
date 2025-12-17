@@ -1,0 +1,51 @@
+classname: common_box
+clip_to_image: true
+lower_overlap_for_small: true
+default_type: normal
+default_overlap: 0.5
+target_recalls:
+  - 0.85
+  - 0.9
+  - 0.95
+  - 0.99
+target_precisions:
+  - 0.85
+  - 0.9
+  - 0.95
+  - 0.99
+rois:
+  - bbox_min_height: 29.3738
+    max_distance_lateral: 8
+
+# clip_region: [116, 0, 2164, 1080]
+normal_iou_type: iou
+hard_iou_type: iou
+ignore_iou_type: iod
+crowd_mode: True
+crowd_iou_thresh: 0.4
+min_crowd_group_size: 3
+attrs:
+  ignore:
+    - value: 'yes'
+      type: ignore
+      overlap: 0.2
+  occlusion:
+    - value: 'full_visible'
+      type: normal
+      overlap: 0.2
+    - value: 'occluded'
+      type: normal
+      overlap: 0.2
+    - value: 'heavily_occluded'
+      type: hard
+      overlap: 0.2
+    - value: 'invisible'
+      type: ignore
+      overlap: 0.1
+  type:
+    - value: OtherBollard
+      type: remove
+      overlap: 0.2
+    - value: unknown
+      type: remove
+      overlap: 0.2

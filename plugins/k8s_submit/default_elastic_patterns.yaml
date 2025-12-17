@@ -1,0 +1,22 @@
+restart:
+  patterns:
+    - '.*RuntimeError: DataLoader worker \(pid \d+\) is killed by signal: Killed.*'
+    - '.*RuntimeError: DataLoader worker \(pid \d+\) is killed by signal: Bus error.*'
+    - '.*RuntimeError: NCCL communicator was aborted on rank \d+.*'
+    - '.*OSError: \[Errno \d+\] No space left on device:.*'
+  exitcode:
+    - 210
+    - 211
+    - 220
+    - 230
+
+exit:
+  patterns:
+    - '^/pytorch/aten/src/ATen/native/cuda/Loss\.cu.*Assertion.*failed.'
+    
+check_nccl:
+  patterns:
+    - '.*\[Rank \d+\] Watchdog caught collective operation timeout.*'
+    - '.*RuntimeError: CUDA error: misaligned address.*'
+    - '.*ncclRemoteError: A call failed possibly due to a network error or a remote process exiting prematurely.*'
+    

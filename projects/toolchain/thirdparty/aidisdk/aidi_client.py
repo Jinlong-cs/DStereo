@@ -1,0 +1,2 @@
+class AIDIClient(object):
+    pass

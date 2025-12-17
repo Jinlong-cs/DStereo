@@ -1,0 +1,91 @@
+classname: traffic_sign
+lower_overlap_for_small: true
+default_type: normal
+default_overlap: 0.5
+gt_cls_attr_name: gl_sub_type
+det_cls_attr_name: kTrafficSignCategory
+normal_iou_type: iou
+hard_iou_type: iou
+ignore_iou_type: iod
+clip_to_image: true
+score_thresh: 0.1
+write_eval_stats_sep_num_workers: 6
+
+target_recalls:
+  - 0.99
+  - 0.97
+  - 0.95
+  - 0.90
+  - 0.85
+  - 0.80
+target_precisions:
+  - 0.99
+  - 0.97
+  - 0.95
+  - 0.90
+  - 0.85
+  - 0.80
+
+target_thresholds:
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+
+attrs:
+  ignore:
+    - value: 'yes'
+      type: ignore
+      overlap: 0.5
+
+  occlusion:
+    - value: full_visible
+      type: normal
+      overlap: 0.5
+    - value: occluded
+      type: hard
+      overlap: 0.3
+    - value: heavily_occluded
+      type: ignore
+      overlap: 0.3
+    - value: invisible
+      type: ignore
+      overlap: 0.3
+
+  gl_medium_type:
+    - {overlap: 0.5, type: normal, value: speed_limit}
+    - {overlap: 0.5, type: normal, value: SL_Other_g1}
+    - {overlap: 0.5, type: ignore, value: SL_Unknown_g1}
+
+    - {overlap: 0.5, type: normal, value: minimum_speed}
+    - {overlap: 0.5, type: normal, value: MS_Other_g1}
+    - {overlap: 0.5, type: ignore, value: MS_Unknown_g1}
+
+    - {overlap: 0.5, type: normal, value: prohibit_remove}
+    - {overlap: 0.5, type: normal, value: PR_Other_g1}
+    - {overlap: 0.5, type: ignore, value: PR_Unknown_g1}
+
+    - {overlap: 0.5, type: normal, value: warning}
+    - {overlap: 0.5, type: normal, value: W_Other_g1}
+    - {overlap: 0.5, type: ignore, value: W_Unknown_g1}
+
+    - {overlap: 0.5, type: normal, value: regulatory}
+    - {overlap: 0.5, type: normal, value: R_Other_g1}
+    - {overlap: 0.5, type: ignore, value: R_Unknown_g1}
+
+    - {overlap: 0.5, type: normal, value: information}
+    - {overlap: 0.5, type: normal, value: I_Other_g1}
+    - {overlap: 0.5, type: ignore, value: I_Unknown_g1}
+
+    - {overlap: 0.5, type: normal, value: complementary}
+    - {overlap: 0.5, type: normal, value: C_Other_g1}
+    - {overlap: 0.5, type: ignore, value: C_Unknown_g1}
+
+    - {overlap: 0.5, type: ignore, value: unknown_sign}
+    - {overlap: 0.5, type: normal, value: other_sign}
+    - {overlap: 0.5, type: remove, value: false_positive}

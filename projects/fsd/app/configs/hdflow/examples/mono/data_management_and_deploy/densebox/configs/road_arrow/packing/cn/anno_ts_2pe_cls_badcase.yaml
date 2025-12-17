@@ -1,0 +1,108 @@
+base_classname: road_arrow                                  # 一级类型名称
+num_classes: 17                                         # 类别数量
+allow_multi_match: false                                 # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null                                              # 空类, 用于过滤去除样本
+  match_condiction:                                     # 为真值, 则匹配成功
+    or:                                                 # 以下任一条件为真, 则输出真
+    - contains: {attrs: {ignore: "yes"}}              # 包含{"attrs": {"ignore": "yes"}}
+    - contains: {attrs: {occlusion: "invisible"}}     # 包含{attrs: {occlusion: "invisible"}}
+    - contains: {attrs: {occlusion: "heavily_occluded"}}        # 包含{attrs: {occlusion: "heavily_occluded"}}
+    - contains: { attrs: { paint: paint_off}}         # 包含{ attrs: { paint: paint_off}}
+    - contains: { attrs: { ArrowSort: Unknown} }      # 包含 { attrs: { ArrowSort: Unknown} }
+    - contains: {attrs: {ArrowSort: FP}}
+    - contains: {attrs: {ArrowSort: ManholeCover}}
+    - contains: {attrs: {ArrowSort: FP_Mismatched}}    # 发版4pe diff GT
+    - contains: {attrs: {ArrowSort: FP_Mismatched_BigModel_IG}}    # 发版4pe diff GT diff 大模型
+    - contains: {attrs: {ArrowSort: Word}}    # Badcase标注数据 66175, 66174, 66173, 66169, 66131 中临时加入了Word文字误报
+    - range: {field: $BBOX_WIDTH, lt: 8}    # bbox宽度 < 8
+    - range: {field: $BBOX_HEIGHT, lt: 8}    # bbox高度 < 8
+
+- id: 1
+  name: Straight
+  match_condiction:                                            # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: Straight}}
+- id: 2
+  name: LeftTurn
+  match_condiction:                                             # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: LeftTurn}}
+- id: 3
+  name: RightTurn
+  match_condiction:                                              # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: RightTurn}}
+- id: 4
+  name: LeftTurnOrStraight
+  match_condiction:                                               # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: LeftTurnOrStraight}}
+- id: 5
+  name: RightTurnOrStraight
+  match_condiction:                                               # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: RightTurnOrStraight}}
+- id: 6
+  name: U_turn
+  match_condiction:                                                # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: U_turn}}
+- id: 7
+  name: StraightOrU_turn
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: StraightOrU_turn}}
+- id: 8
+  name: LeftTurnOrU_turn
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: LeftTurnOrU_turn}}
+- id: 9
+  name: LeftTurnOrRightTurn
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: LeftTurnOrRightTurn}}
+- id: 10
+  name: LeftMerge
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: LeftMerge}}
+- id: 11
+  name: RightMerge
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: RightMerge}}
+- id: 12
+  name: StraightOrLeftTurnOrRightTurn
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: StraightOrLeftTurnOrRightTurn}}
+- id: 13
+  name: 'No'
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: 'No'}}
+- id: 14
+  name: Diamond
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: Diamond}}
+- id: 15
+  name: SlowDownTriangle
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: SlowDownTriangle}}
+- id: 16
+  name: DistanceConfirmationLine
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: DistanceConfirmationLine}}
+- id: 17
+  name: Other
+  match_condiction:                                                 # 为真值, 则匹配成功
+    and:
+    - contains: {attrs: {ArrowSort: Other}}

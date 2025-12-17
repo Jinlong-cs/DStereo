@@ -1,0 +1,105 @@
+base_classname: Traffic_light_shell                 # 一级类型名称
+num_classes: 19                                     # 分类的类别数
+allow_multi_match: false                            # 允许一个instance进行多次匹配
+default_ignore_full_image: true                     # 未定义的类别使用全图ignore
+remove_empty_images: true                           # 删除空图片
+shuffle: true                                       # 打乱图片顺序
+class_mappers:                                      # 类别列表
+- id: null                                          # 空类, 用于过滤去除样本
+  name: null
+  match_condiction:                                 # 为真值, 则匹配成功
+    or:                                             # 以下任一条件为真, 则输出真
+    - range: {field: $BBOX_HEIGHT, lt: 10}          # bbox高度 < 10
+    - range: {field: $BBOX_WIDTH, lt: 10}           # bbox宽度 < 10
+    - contains: {attrs: {ignore: "yes"}}                          # 包含{"attrs": {"ignore": "yes"}}                                                   # 以下任一条件为真, 则输出真
+    - contains: {attrs: {occlusion: heavily_occluded}}            # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+    - contains: {attrs: {occlusion: invisible}}                   # 包含{"attrs": {"occlusion": "invisible"}}
+    - contains: {attrs: {traffic_lights_type: "on_off_unknow"}}
+    - contains: {attrs: {traffic_lights_type: side}}
+    - contains: {attrs: {traffic_lights_type: back}}
+    - contains: {attrs: {traffic_lights_type: "off"}}
+    - contains: {attrs: {traffic_lights_style: L_unknown}}
+- id: 1
+  name: L_Circle
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Circle}}
+  upsample: 0.3
+- id: 2
+  name: L_Forward
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Forward}}
+  upsample: 1.3
+- id: 3
+  name: L_Left
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Left}}
+  upsample: 1.0
+- id: 4
+  name: L_Right
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Right}}
+  upsample: 1.5
+- id: 5
+  name: L_Return
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Return}}
+- id: 6
+  name: L_Pedestrain
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Pedestrain}}
+  upsample: 1.0
+- id: 7
+  name: L_Non_Motor
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Non_Motor}}
+  upsample: 1.2
+- id: 8
+  name: L_Time
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Time}}
+- id: 9
+  name: L_Other
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Other}}
+- id: 10
+  name: L_left_and_return
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_left_and_return}}
+- id: 11
+  name: L_Forward_and_Left
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Forward_and_Left}}
+- id: 12
+  name: L_Forward_and_Right
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Forward_and_Right}}
+- id: 13
+  name: L_No_Drive_into
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_No_Drive_into}}
+  upsample: 1.5
+- id: 14
+  name: L_Allow_Drive_into
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: L_Allow_Drive_into}}
+  upsample: 1.2
+#- id: 15
+#  name: L_unknown
+#  match_condiction:                                           # 为真值, 则匹配成功
+#    contains: {attrs: {traffic_lights_style: L_unknown}}
+- id: 16
+  name: text_of_allow_ped
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: text_of_allow_ped}}
+- id: 17
+  name: sign_of_allow_ped
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: sign_of_allow_ped}}
+- id: 18
+  name: text_of_forbid_ped
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: text_of_forbid_ped}}
+- id: 19
+  name: sign_of_forbid_ped
+  match_condiction:                                           # 为真值, 则匹配成功
+    contains: {attrs: {traffic_lights_style: sign_of_forbid_ped}}

@@ -1,0 +1,92 @@
+base_classname: common_box
+num_classes: 6
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: { attrs: { ignore: yes } }
+        - contains: { attrs: { bad_image: bad_imaging } }
+        - contains: { attrs: { bad_image: blur_len } }
+        - contains: { attrs: { bad_image: mud_len } }
+        - contains: { attrs: { cameraset: fisheye_view } }
+        - contains: { attrs: { camera_direction: side } }
+        - contains: { attrs: { camera_direction: side_view } } # camera and image quality
+        #- contains: {attrs: {Time: Day}}  # time
+        - contains: { attrs: { scene: Urban_Opening } } # scene
+        - contains: { attrs: { scene: City_Opening } }
+        - contains: { attrs: { scene: City_Other } }
+        - contains: { attrs: { scene: suburban } }
+        - contains: { attrs: { scene: Bridge } }
+        - contains: { attrs: { scene: flyover_bridge } }
+        - contains: { attrs: { scene: Highway_like } }
+        - contains: { attrs: { scene: highway_like } }
+        - contains: { attrs: { scene: Gas_station } }
+        - contains: { attrs: { scene: River_side } }
+        - contains: { attrs: { scene: Forest } }
+        - contains: { attrs: { scene: Desert } }
+        - contains: { attrs: { scene: Others } }
+        - contains: { attrs: { scene: Other } }
+        - contains: { attrs: { scene: other } }
+        - contains: { attrs: { scene: Unknown } }
+        - contains: { attrs: { scene: under_bridge } }
+        - contains: { attrs: { scene: Roof_Parking_Lot } }
+        - contains: { attrs: { light_status: Other } } # light_status
+        - contains: { attrs: { light_status: Unknown } }
+        - contains: { attrs: { light_status: other } }
+  - id: null
+    match_condiction:
+      contains: { attrs: { scene_status: traffic_jam } }
+    upsample: 0.3
+  - id: 1
+    name: Highway
+    match_condiction:
+      or:
+        - contains: { attrs: { scene: Highway } }
+        - contains: { attrs: { scene: City_expressway } }
+        - contains: { attrs: { scene: ring_road_entry } }
+  - id: 2
+    name: Urban
+    match_condiction:
+      or:
+        - contains: { attrs: { scene: Urban } }
+        - contains: { attrs: { scene: Park } }
+        - contains: { attrs: { scene: urban_crossroad } }
+        - contains: { attrs: { scene: Cross_Roads } }
+        - contains: { attrs: { scene: Round_Cross } }
+        - contains: { attrs: { scene: Ground_Parking_Lot } }
+        - contains: { attrs: { scene: Roof_Parking_Lot } }
+    upsample: 1
+  - id: 3
+    name: Rural
+    match_condiction:
+      or:
+        - contains: { attrs: { scene: Rural } }
+        - contains: { attrs: { scene: Rural_Opening } }
+        - contains: { attrs: { scene: Rural_Other } }
+        - contains: { attrs: { scene: contry_crossroad } }
+        - contains: { attrs: { scene: National_road } }
+        - contains: { attrs: { scene: Highway_national_road } }
+        - contains: { attrs: { scene: Mountain } }
+    upsample: 1
+  - id: 4
+    name: Tunnel
+    match_condiction:
+      or:
+        - contains: { attrs: { scene: Tunnel } }
+        - contains: { attrs: { scene: Tunnel_Entry } }
+        - contains: { attrs: { scene: Tunnel_Exit } }
+    upsample: 3
+  - id: 5
+    name: Charge_Station
+    match_condiction:
+      or:
+        - contains: { attrs: { scene: Charge_Station } }
+        - contains: { attrs: { scene: urban_charge } }
+    upsample: 10
+  - id: 6
+    name: Underground_Parking_Lot
+    match_condiction:
+      contains: { attrs: { scene: Underground_Parking_Lot } }
+    upsample: 5

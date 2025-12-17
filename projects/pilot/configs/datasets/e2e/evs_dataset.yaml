@@ -1,0 +1,127 @@
+H3165_20211231_D:
+  packs:
+    - H3165_20211231_D/20211231-113720_658
+    - H3165_20211231_D/20211231-114720_658
+    - H3165_20211231_D/20211231-115720_658
+    - H3165_20211231_D/20211231-120220_658
+    - H3165_20211231_D/20211231-121220_658
+    - H3165_20211231_D/20211231-123220_658
+    - H3165_20211231_D/20211231-122220_658
+    - H3165_20211231_D/20211231-112720_658
+    - H3165_20211231_D/20211231-131220_658
+    - H3165_20211231_D/20211231-114220_658
+    - H3165_20211231_D/20211231-133220_658
+    - H3165_20211231_D/20211231-121720_658
+    - H3165_20211231_D/20211231-133720_658
+    - H3165_20211231_D/20211231-122720_658
+    - H3165_20211231_D/20211231-113220_658
+    - H3165_20211231_D/20211231-130720_658
+    - H3165_20211231_D/20211231-125220_658
+    - H3165_20211231_D/20211231-134220_658
+    - H3165_20211231_D/20211231-131720_658
+    - H3165_20211231_D/20211231-123720_658
+    - H3165_20211231_D/20211231-120720_658
+    - H3165_20211231_D/20211231-124220_658
+    - H3165_20211231_D/20211231-132220_658
+    - H3165_20211231_D/20211231-132720_658
+    - H3165_20211231_D/20211231-130220_658
+    - H3165_20211231_D/20211231-134720_658
+    - H3165_20211231_D/20211231-115220_658
+    - H3165_20211231_D/20211231-124720_658
+    - H3165_20211231_D/20211231-125720_658
+  gt_source: wchangan
+  gt_version: 2.0.0_0324cam
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/12_perception_bev_hde/01_unpack_package/H3165_29pack_eval
+UT126_20221109_D_v1:
+  packs:
+    - UT126_20221109_D/20221109-064542_413
+    - UT126_20221109_D/20221109-092808_620
+    - UT126_20221109_D/20221109-112308_620
+    - UT126_20221109_D/20221109-152311_964
+    - UT126_20221109_D/20221109-195916_094
+    - UT126_20221109_D/20221109-191357_522
+  gt_source: wchangan
+  gt_version: 1.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+UT126_20221109_D_v2:
+  packs:
+    - UT126_20221109_D/20221109-133310_872
+  gt_source: wchangan
+  gt_version: 2.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+UT126_20221110_D_v1:
+  packs:
+    - UT126_20221110_D/20221110-122138_618
+    - UT126_20221110_D/20221110-091307_239
+    - UT126_20221110_D/20221110-115138_618
+    - UT126_20221110_D/20221110-204112_785
+  gt_source: wchangan
+  gt_version: 1.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+UT126_20221110_D_v2:
+  packs:
+    - UT126_20221110_D/20221110-100307_239
+  gt_source: wchangan
+  gt_version: 2.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+UT263_20221109_D:
+  packs:
+    - UT263_20221109_D/20221109-204313_957
+    - UT263_20221109_D/20221109-200313_957
+  gt_source: wchangan
+  gt_version: 1.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+UT263_20221110_D:
+  packs:
+    - UT263_20221110_D/20221110-065236_869
+    - UT263_20221110_D/20221110-055236_869
+    - UT263_20221110_D/20221110-141056_377
+    - UT263_20221110_D/20221110-163239_119
+    - UT263_20221110_D/20221110-162239_119
+    - UT263_20221110_D/20221110-180446_169
+    - UT263_20221110_D/20221110-180946_169
+  gt_source: wchangan
+  gt_version: 1.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+NC109_20221110_D:
+  packs:
+    - NC109_20221110_D/20221110-153114_130
+    - NC109_20221110_D/20221110-184100_608
+    - NC109_20221110_D/20221110-190010_850
+    - NC109_20221110_D/20221110-120210_162
+    - NC109_20221110_D/20221110-123210_162
+    - NC109_20221110_D/20221110-203503_274
+    - NC109_20221110_D/20221110-212003_274
+  gt_source: wchangan
+  gt_version: 1.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+NC109_20221111_D_v1:
+  packs:
+    - NC109_20221111_D/20221111-065255_820
+    - NC109_20221111_D/20221111-070255_820
+    - NC109_20221111_D/20221111-080255_820
+    - NC109_20221111_D/20221111-083255_820
+    - NC109_20221111_D/20221111-095255_820
+    - NC109_20221111_D/20221111-095755_820
+    - NC109_20221111_D/20221111-154444_877
+    - NC109_20221111_D/20221111-181457_529
+    - NC109_20221111_D/20221111-092255_820
+  gt_source: wchangan
+  gt_version: 1.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v
+NC109_20221111_D_v2:
+  packs:
+    - NC109_20221111_D/20221111-093255_820
+  gt_source: wchangan
+  gt_version: 2.0.0
+  odom_version: 1.0.0-adas
+  pack_dir: /horizon-bucket/SD_Algorithm/06_perception_bev_dynamic/01_unpack_package/sd_dynamic_11v

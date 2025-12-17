@@ -1,0 +1,17 @@
+
+pipeline_test:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+
+union_arrow_v1.2.3_small_roadmarking_v1.2.1_small:
+  11v_driving_data_small_union_small:
+    LS912:
+      20221202_723057_1_FSD_Site_LS912_20221115:
+        sample_interval: 1
+
+union_arrow_v1.2.3_wide_roadmarking_v1.2.1_wide:
+  11v_driving_data_wide_union_wide:
+    LS912:
+      20221202_723057_1_FSD_Site_LS912_20221115:
+        sample_interval: 1

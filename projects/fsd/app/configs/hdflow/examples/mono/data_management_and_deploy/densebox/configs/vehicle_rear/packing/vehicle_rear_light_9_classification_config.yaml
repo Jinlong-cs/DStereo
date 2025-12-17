@@ -1,0 +1,131 @@
+base_classname: vehicle                                  # 一级类型名称
+num_classes: 9                                         # 类别数量
+allow_multi_match: false                                 # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null
+  match_condiction:
+    or:
+      - contains: {attrs: {ignore: "yes"}}
+      - contains: {attrs: {hard_sample: "yes"}}
+      - contains: {attrs: {part: head}}
+- id: 1
+  name: LeftTurnLightOn
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: left_turn_light_on}}
+    - contains: {attrs: {left_right_side_brake_light_status: 'off'}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - or:
+      - contains: {attrs: {HighSideBrakeLightStatus: 'off'}}
+      - contains: {attrs: {HighSideBrakeLightStatus: 'not_exist'}}
+    - contains: {attrs: {part: rear}}
+  upsample: 2
+- id: 2
+  name: RightTurnLightOn
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: right_turn_light_on}}
+    - contains: {attrs: {left_right_side_brake_light_status: 'off'}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - or:
+      - contains: {attrs: {HighSideBrakeLightStatus: 'off'}}
+      - contains: {attrs: {HighSideBrakeLightStatus: 'not_exist'}}
+    - contains: {attrs: {part: rear}}
+  upsample: 2
+- id: 3
+  name: BrakeLightOn
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {turn_signal_status: turn_light_off}}
+      - contains: {attrs: {turn_signal_status: turn_light_all_on}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - or:
+      - contains: {attrs: {left_right_side_brake_light_status: 'on'}}
+      - contains: {attrs: {left_right_side_brake_light_status: color_shiftt}}
+    - contains: {attrs: {HighSideBrakeLightStatus: 'on'}}
+    - contains: {attrs: {part: rear}}
+- id: 4
+  name: AllOff
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: turn_light_off}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - contains: {attrs: {left_right_side_brake_light_status: 'off'}}
+    - or:
+      - contains: {attrs: {HighSideBrakeLightStatus: 'off'}}
+      - contains: {attrs: {HighSideBrakeLightStatus: 'not_exist'}}
+    - contains: {attrs: {part: rear}}
+- id: 5
+  name: LeftTurnLightBrakeLightOn
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: left_turn_light_on}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - or:
+      - contains: {attrs: {left_right_side_brake_light_status: 'on'}}
+      - contains: {attrs: {left_right_side_brake_light_status: color_shiftt}}
+    - contains: {attrs: {HighSideBrakeLightStatus: 'on'}}
+    - contains: {attrs: {part: rear}}
+  upsample: 4
+- id: 6
+  name: RightTurnLightBrakeLightOn
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: right_turn_light_on}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - or:
+      - contains: {attrs: {left_right_side_brake_light_status: 'on'}}
+      - contains: {attrs: {left_right_side_brake_light_status: color_shiftt}}
+    - contains: {attrs: {HighSideBrakeLightStatus: 'on'}}
+    - contains: {attrs: {part: rear}}
+  upsample: 4
+- id: 7
+  name: ClearanceLampOn
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: turn_light_off}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - contains: {attrs: {left_right_side_brake_light_status: clearance_lamp_on}}
+    - or:
+      - contains: {attrs: {HighSideBrakeLightStatus: 'off'}}
+      - contains: {attrs: {HighSideBrakeLightStatus: 'not_exist'}}
+    - contains: {attrs: {part: rear}}
+- id: 8
+  name: LeftRightTurnLightOn
+  match_condiction:
+    and:
+    - contains: {attrs: {turn_signal_status: turn_light_all_on}}
+    - not:
+        contains: {attrs: {reverse_lamp_status: 'on'}}
+    - contains: {attrs: {left_right_side_brake_light_status: 'off'}}
+    - or:
+      - contains: {attrs: {HighSideBrakeLightStatus: 'off'}}
+      - contains: {attrs: {HighSideBrakeLightStatus: 'not_exist'}}
+    - contains: {attrs: {part: rear}}
+  upsample: 20
+- id: 9
+  name: ReverseLampOn
+  match_condiction:
+    and:
+    - contains: {attrs: {reverse_lamp_status: 'on'}}
+    - contains: {attrs: {turn_signal_status: turn_light_off}}
+    - contains: {attrs: {left_right_side_brake_light_status: 'off'}}
+    - or:
+      - contains: {attrs: {HighSideBrakeLightStatus: 'off'}}
+      - contains: {attrs: {HighSideBrakeLightStatus: 'not_exist'}}
+    - contains: {attrs: {part: rear}}
+  upsample: 20
+- id: null
+  match_condiction:
+    and: []

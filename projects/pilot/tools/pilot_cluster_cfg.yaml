@@ -1,0 +1,41 @@
+base:
+  job_password: "6150"
+  framework: "pytorch"
+  task_label: "pilot_multitask"
+  input_bucket: "matrix2,NIOFY_JFS"
+  priority: 5
+  # Docker维护文档：https://horizonrobotics.feishu.cn/wiki/wikcnsicemSV1DByUBMpJ0gevMh
+  docker_image: "docker.hobot.cc/imagesys/hat:pilot-runtime-cu111-hdflow-20230911-torch1102-py38"
+  docker_image_cpu: "docker.hobot.cc/imagesys/hdflow:runtime-py3.8-cpu-torch1.10.2-20231016"
+  max_jobtime: 20160
+  launcher: "mpi"
+  upload_folder_name: "k8s_job"
+  folder_list:
+    [
+      "../../hat",
+      "../../tools",
+      "../../projects/pilot",
+      "url2IP.py",
+    ]
+compile:
+  num_machines: 1
+  num_gpus_per_machine: 1
+  docker_image: "docker.hobot.cc/imagesys/hat:runtime-py3.8-torch1.10.2-cu102-1.1.2-curl"
+  input_bucket: "matrix2,HDLTAlgorithm"
+  folder_list:
+    [
+      "../../hat",
+      "../../Makefile",
+      "../../requirements",
+      "../../requirements.txt",
+      "../../tools",
+      "../../projects",
+      "../../projects/pilot",
+      "url2IP.py",
+    ]
+fillback_eval:
+  num_cpu: 4
+  num_machines: 1
+  num_gpus_per_machine: 0
+  input_bucket: "matrix2,NIOFY_JFS,saas-dap"
+  docker_image: "docker.hobot.cc/imagesys/hat:pilot5.1-py3.8-torch2.0.1-cpu-hdflow-5642030"

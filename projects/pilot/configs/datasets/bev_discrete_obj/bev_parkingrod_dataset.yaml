@@ -1,0 +1,1084 @@
+BJ:
+  UT126:
+    no_obst:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/weibin.han/tmp/psd_small_no_ob_dataset/psd/Vertical_Stereo#Parallel_Oblique#2_0.2/0021_UT126_20221013_ml_20map/Auto3dvDataset/sync_file.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/weibin.han/tmp/psd_small_no_ob_dataset/psd/Vertical_Stereo#Parallel_Oblique#2_0.2/0021_UT126_20221013_ml_20map/Auto3dvDataset/sync_file
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 309
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/weibin.han/tmp/psd_small_no_ob_dataset/psd/Vertical_Stereo#Parallel_Oblique#2_0.2/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/weibin.han/tmp/psd_small_no_ob_dataset/psd/Vertical_Stereo#Parallel_Oblique#2_0.2/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/weibin.han/tmp/psd_small_no_ob_dataset/psd/Vertical_Stereo#Parallel_Oblique#2_0.2/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/weibin.han/tmp/psd_small_no_ob_dataset/psd/Vertical_Stereo#Parallel_Oblique#2_0.2/0021_UT126_20221013_ml_20map/Auto3dvDataset/gt_file
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0005_UT126_20220825_ml_41map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 16794
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0006_UT126_20220830_ml_17map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 3126
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0008_UT126_20220906_ml_13map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 6896
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0010_UT126_20220909_ml_14map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 3326
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0011_UT126_20220916_ml_31map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 10193
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0014_UT126_20220920_ml_5map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 1406
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0014_UT126_20220920_ml_5map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0017_UT126_20220930_ml_34map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 24321
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0019_UT126_20221010_ml_5map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 6234
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0021_UT126_20221013_ml_20map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 22773
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0023_UT126_20221018_ml_16map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0023_UT126_20221018_ml_16map/711899/calib/UT126_20221009_D
+      root: SD_Algorithm
+      num_samples: 12556
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0025_UT126_20221021_ml_33map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0025_UT126_20221021_ml_33map/712898/calib/UT126_20221014_D
+      root: SD_Algorithm
+      num_samples: 39488
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0028_UT126_20221027_ml_5map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 5932
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0031_UT126_20221028_ml_23map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/calib_car/UT126
+      root: SD_Algorithm
+      num_samples: 10604
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0041_UT126_20221118_ml_21map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0041_UT126_20221118_ml_21map/719891/calib/UT126_20221106_D
+      root: SD_Algorithm
+      num_samples: 17285
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0042_UT126_20221118_ml_20map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0042_UT126_20221118_ml_20map/719995/calib/UT126_20221110_D
+      root: SD_Algorithm
+      num_samples: 8701
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0049_UT126_20221128real_ml_7map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0049_UT126_20221128real_ml_7map/721847/calib/UT126_20221114_D
+      root: SD_Algorithm
+      num_samples: 4829
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+  UT263:
+    0015_UT263_20220920_ml_3map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0015_UT263_20220920_ml_3map/706935/calib/UT263_20220828_D
+      root: SD_Algorithm
+      num_samples: 3174
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+    0024_UT263_20221018_ml_12map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0024_UT263_20221018_ml_12map/711905/calib/UT263_20221009_D
+      root: SD_Algorithm
+      num_samples: 8315
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+  NC110:
+    0046_NC110_20221118_ml_19map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0046_NC110_20221118_ml_19map/719999/calib/NC110_20221104_D
+      root: SD_Algorithm
+      num_samples: 4125
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+  UT1R3:
+    0051_UT1R3_20221128real_ml_19map:
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/sync_file_parkingrod.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/sync_file_parkingrod
+      homo_path: null
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking/0051_UT1R3_20221128real_ml_19map/721970/calib/UT1R3_20221109_D
+      root: SD_Algorithm
+      num_samples: 18305
+      sample_interval: 1
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_front_30fov
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/gt_file_parkingrod
+      camera_module_type: X8b_X3c_isx031_X8b
+
+BJ_V2:
+  NC109:
+    0027_NC109_20221021_ml_6map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0027_NC109_20221021_ml_6map/712900/calib/NC109_20221011_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 669
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0027_NC109_20221021_ml_6map/Auto3dvDataset/sync_file_filter_blk
+
+    0030_NC109_20221027_ml_7map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0030_NC109_20221027_ml_7map/714050/calib/NC109_20221015_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 484
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0030_NC109_20221027_ml_7map/Auto3dvDataset/sync_file_filter_blk
+
+    0032_NC109_20221028_ml_9map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0032_NC109_20221028_ml_9map/714575/calib/NC109_20221020_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 1622
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0032_NC109_20221028_ml_9map/Auto3dvDataset/sync_file_filter_blk
+
+    0035_NC109_20221104_ml_11map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0035_NC109_20221104_ml_11map/716306/calib/NC109_20221024_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 2160
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0035_NC109_20221104_ml_11map/Auto3dvDataset/sync_file_filter_blk
+
+    0040_NC109_20221111_ml_13map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0040_NC109_20221111_ml_13map/718168/calib/NC109_20221025_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4249
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0040_NC109_20221111_ml_13map/Auto3dvDataset/sync_file_filter_blk
+
+    0045_NC109_20221118_ml_26map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0045_NC109_20221118_ml_26map/719998/calib/NC109_20221108_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 8746
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0045_NC109_20221118_ml_26map/Auto3dvDataset/sync_file_filter_blk
+
+  NC110:
+    0046_NC110_20221118_ml_19map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0046_NC110_20221118_ml_19map/719999/calib/NC110_20221106_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 9227
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0046_NC110_20221118_ml_19map/Auto3dvDataset/sync_file_filter_blk
+
+  UT0Q9:
+    0052_UT0Q9_20221128real_ml_12map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0052_UT0Q9_20221128real_ml_12map/721972/calib/UT0Q9_20221023_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4335
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0052_UT0Q9_20221128real_ml_12map/Auto3dvDataset/sync_file_filter_blk
+
+  UT126:
+    0005_UT126_20220825_ml_41map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0005_UT126_20220825_ml_41map/700711/calib/UT126_20220811_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 18071
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0005_UT126_20220825_ml_41map/Auto3dvDataset/sync_file_filter_blk
+
+    0006_UT126_20220830_ml_17map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0006_UT126_20220830_ml_17map/701482/calib/UT126_20220817_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 6055
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0006_UT126_20220830_ml_17map/Auto3dvDataset/sync_file_filter_blk
+
+    0008_UT126_20220906_ml_13map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0008_UT126_20220906_ml_13map/703399/calib/UT126_20220831_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4305
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0008_UT126_20220906_ml_13map/Auto3dvDataset/sync_file_filter_blk
+
+    0010_UT126_20220909_ml_14map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0010_UT126_20220909_ml_14map/704562/calib/UT126_20220902_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4841
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0010_UT126_20220909_ml_14map/Auto3dvDataset/sync_file_filter_blk
+
+    0011_UT126_20220916_ml_31map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0011_UT126_20220916_ml_31map/706076/calib/UT126_20220906_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 13567
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0011_UT126_20220916_ml_31map/Auto3dvDataset/sync_file_filter_blk
+
+    0012_UT126_20220920_ml_12map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0012_UT126_20220920_ml_12map/706735/calib/UT126_20220912_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 7831
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0012_UT126_20220920_ml_12map/Auto3dvDataset/sync_file_filter_blk
+
+    0016_UT126_20220924_ml_18map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0016_UT126_20220924_ml_18map/707925/calib/UT126_20220917_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4317
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0016_UT126_20220924_ml_18map/Auto3dvDataset/sync_file_filter_blk
+
+    0017_UT126_20220930_ml_34map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0017_UT126_20220930_ml_34map/709358/calib/UT126_20220921_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 20069
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0017_UT126_20220930_ml_34map/Auto3dvDataset/sync_file_filter_blk
+
+    0019_UT126_20221010_ml_5map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0019_UT126_20221010_ml_5map/710416/calib/UT126_20220927_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4038
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0019_UT126_20221010_ml_5map/Auto3dvDataset/sync_file_filter_blk
+
+    0021_UT126_20221013_ml_20map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0021_UT126_20221013_ml_20map/711284/calib/UT126_20220929_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 15728
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0021_UT126_20221013_ml_20map/Auto3dvDataset/sync_file_filter_blk
+
+    0023_UT126_20221018_ml_16map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0023_UT126_20221018_ml_16map/711899/calib/UT126_20221010_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 8512
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0023_UT126_20221018_ml_16map/Auto3dvDataset/sync_file_filter_blk
+
+    0025_UT126_20221021_ml_33map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0025_UT126_20221021_ml_33map/712898/calib/UT126_20221013_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 23626
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0025_UT126_20221021_ml_33map/Auto3dvDataset/sync_file_filter_blk
+
+    0028_UT126_20221027_ml_5map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0028_UT126_20221027_ml_5map/714048/calib/UT126_20221018_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4846
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0028_UT126_20221027_ml_5map/Auto3dvDataset/sync_file_filter_blk
+
+    0031_UT126_20221028_ml_23map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0031_UT126_20221028_ml_23map/714574/calib/UT126_20221024_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 10405
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0031_UT126_20221028_ml_23map/Auto3dvDataset/sync_file_filter_blk
+
+    0033_UT126_20221104_ml_12map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0033_UT126_20221104_ml_12map/716305/calib/UT126_20221025_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 6654
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0033_UT126_20221104_ml_12map/Auto3dvDataset/sync_file_filter_blk
+
+    0037_UT126_20221111_ml_20map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0037_UT126_20221111_ml_20map/718163/calib/UT126_20221028_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 6901
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0037_UT126_20221111_ml_20map/Auto3dvDataset/sync_file_filter_blk
+
+    0041_UT126_20221118_ml_21map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0041_UT126_20221118_ml_21map/719891/calib/UT126_20221108_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 14326
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0041_UT126_20221118_ml_21map/Auto3dvDataset/sync_file_filter_blk
+
+    0042_UT126_20221118_ml_20map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0042_UT126_20221118_ml_20map/719995/calib/UT126_20221111_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 11113
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0042_UT126_20221118_ml_20map/Auto3dvDataset/sync_file_filter_blk
+
+    0049_UT126_20221128real_ml_7map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0049_UT126_20221128real_ml_7map/721847/calib/UT126_20221115_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 5462
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0049_UT126_20221128real_ml_7map/Auto3dvDataset/sync_file_filter_blk
+
+    0055_UT126_20221202_ml_26map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0055_UT126_20221202_ml_26map/723088/calib/UT126_20221119_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 15254
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0055_UT126_20221202_ml_26map/Auto3dvDataset/sync_file_filter_blk
+
+  UT1R3:
+    0047_UT1R3_20221118_ml_14map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0047_UT1R3_20221118_ml_14map/720000/calib/UT1R3_20221104_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 5381
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0047_UT1R3_20221118_ml_14map/Auto3dvDataset/sync_file_filter_blk
+
+    0051_UT1R3_20221128real_ml_19map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0051_UT1R3_20221128real_ml_19map/721970/calib/UT1R3_20221113_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 15613
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0051_UT1R3_20221128real_ml_19map/Auto3dvDataset/sync_file_filter_blk
+
+  UT263:
+    0007_UT263_20220902_ml_21map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0007_UT263_20220902_ml_21map/702474/calib/UT263_20220828_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 12548
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0007_UT263_20220902_ml_21map/Auto3dvDataset/sync_file_filter_blk
+
+    0009_UT263_20220906_ml_5map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0009_UT263_20220906_ml_5map/703400/calib/UT263_20220830_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 1513
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0009_UT263_20220906_ml_5map/Auto3dvDataset/sync_file_filter_blk
+
+    0015_UT263_20220920_ml_3map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0015_UT263_20220920_ml_3map/706935/calib/UT263_20220906_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 743
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0015_UT263_20220920_ml_3map/Auto3dvDataset/sync_file_filter_blk
+
+    0018_UT263_20220930_ml_14map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0018_UT263_20220930_ml_14map/709359/calib/UT263_20220922_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 6498
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0018_UT263_20220930_ml_14map/Auto3dvDataset/sync_file_filter_blk
+
+    0020_UT263_20221010_ml_5map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0020_UT263_20221010_ml_5map/710417/calib/UT263_20220928_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 3740
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0020_UT263_20221010_ml_5map/Auto3dvDataset/sync_file_filter_blk
+
+    0022_UT263_20221013_ml_33map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0022_UT263_20221013_ml_33map/711286/calib/UT263_20221004_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 20114
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0022_UT263_20221013_ml_33map/Auto3dvDataset/sync_file_filter_blk
+
+    0024_UT263_20221018_ml_12map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0024_UT263_20221018_ml_12map/711905/calib/UT263_20221010_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4106
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0024_UT263_20221018_ml_12map/Auto3dvDataset/sync_file_filter_blk
+
+    0026_UT263_20221021_ml_19map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0026_UT263_20221021_ml_19map/712899/calib/UT263_20221012_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 8953
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0026_UT263_20221021_ml_19map/Auto3dvDataset/sync_file_filter_blk
+
+    0029_UT263_20221027_ml_14map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0029_UT263_20221027_ml_14map/714049/calib/UT263_20221014_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 13630
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0029_UT263_20221027_ml_14map/Auto3dvDataset/sync_file_filter_blk
+
+    0034_UT263_20221104_ml_23map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0034_UT263_20221104_ml_23map/716307/calib/UT263_20221023_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 12227
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0034_UT263_20221104_ml_23map/Auto3dvDataset/sync_file_filter_blk
+
+    0038_UT263_20221111_ml_37map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0038_UT263_20221111_ml_37map/718166/calib/UT263_20221101_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 19435
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0038_UT263_20221111_ml_37map/Auto3dvDataset/sync_file_filter_blk
+
+    0043_UT263_20221118_ml_32map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0043_UT263_20221118_ml_32map/719996/calib/UT263_20221107_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 17256
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0043_UT263_20221118_ml_32map/Auto3dvDataset/sync_file_filter_blk
+
+    0050_UT263_20221128_ml_7map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0050_UT263_20221128_ml_7map/721846/calib/UT263_20221111_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 4639
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0050_UT263_20221128_ml_7map/Auto3dvDataset/sync_file_filter_blk
+
+  UT3J5:
+    0048_UT3J5_20221118_ml_20map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0048_UT3J5_20221118_ml_20map/720001/calib/UT3J5_20221110_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 8243
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0048_UT3J5_20221118_ml_20map/Auto3dvDataset/sync_file_filter_blk
+
+    0053_UT3J5_20221128real_ml_9map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0053_UT3J5_20221128real_ml_9map/721974/calib/UT3J5_20221113_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 1005
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0053_UT3J5_20221128real_ml_9map/Auto3dvDataset/sync_file_filter_blk
+
+  UTHS6:
+    0036_UTHS6_20221104_ml_15map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/gt_file_order
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0036_UTHS6_20221104_ml_15map/716310/calib/UTHS6_20221022_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 7203
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0036_UTHS6_20221104_ml_15map/Auto3dvDataset/sync_file_filter_blk
+
+    0039_UTHS6_20221111_ml_25map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0039_UTHS6_20221111_ml_25map/718167/calib/UTHS6_20221103_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 9740
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0039_UTHS6_20221111_ml_25map/Auto3dvDataset/sync_file_filter_blk
+
+    0044_UTHS6_20221118_ml_23map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0044_UTHS6_20221118_ml_23map/719997/calib/UTHS6_20221109_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 10291
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0044_UTHS6_20221118_ml_23map/Auto3dvDataset/sync_file_filter_blk
+
+    0054_UTHS6_20221128real_ml_2map:
+      bev_psd_obj_lmdb_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/gt_file_filted_v2
+      calib_path: SD_Algorithm/04_perception_fisheye/02_user/bev_parking/common/dataset_bev_parking_v2/0054_UTHS6_20221128real_ml_2map/721975/calib/UTHS6_20221111_D
+      camera_module_type: X8b_X3c_isx031_X8b
+      img_data_path:
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/img/camera_around
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/img/camera_fisheye
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/img/camera_front
+      - SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/img/camera_front_30fov
+      num_samples: 782
+      root: SD_Algorithm
+      sample_interval: 1
+      sync_file: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/sync_file_filter_blk.txt
+      sync_file_lmdb: SD_Algorithm/04_perception_fisheye/03_pack_package/bev_parking/psd/dataset_v2/discobj_psd/0054_UTHS6_20221128real_ml_2map/Auto3dvDataset/sync_file_filter_blk
+

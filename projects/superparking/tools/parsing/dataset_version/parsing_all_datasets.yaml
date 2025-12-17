@@ -1,0 +1,29 @@
+superparking:
+  v09:
+    train:
+      rec:
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/train_rec/fishe_parsing_v0.9.0/train.rec
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/train_rec/fishe_parsing_v0.9.1/train.rec
+      json:
+       - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/train_rec/fishe_parsing_v0.9.0/train.json
+       - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/train_rec/fishe_parsing_v0.9.1/train.json
+    val:
+      rec:
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.0/val.rec
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.1/val.rec
+      json:
+       - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.0/val.json
+       - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.1/val.json
+  v06:
+    train:
+      rec:
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/train_rec/fishe_parsing_v0.6.0/train.rec
+      json:
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/train_rec/fishe_parsing_v0.6.0/train.json
+    val:
+      rec:
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.0/val.rec
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.1/val.rec
+      json:
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.0/val.json
+        - SuperParking/LastVersion/Dataset/Parsing/sp_fisheye_parsing_data/val_rec/fishe_parsing_v0.9.1/val.json

@@ -1,0 +1,30 @@
+# group data version
+
+# bev_stopline
+v0.0.1:
+  pipeline_test:
+    30C1G:
+      0314_636396_FSD_Site_30C1G_20220214_v4: 
+
+# HorizonDataEngine-lidar (HDE-lidar)
+# demo data
+# Merge dataset of same plat_name
+HDE-lidar_v1.1.0:
+  BJ_Merge_v110:
+    merge:
+      merge_H3165:
+      merge_30C1G:
+      merge_UT0Q9:
+      merge_UT1R3:
+      merge_25U7C:
+
+# more data by matching front timestamp
+HDE-lidar_v1.1.2:
+  BJ_Merge_v112:
+    merge:
+      merge_H3165:
+      merge_30C1G:
+        sample_interval: 2
+      merge_UT0Q9:
+      merge_UT1R3:
+      merge_25U7C:

@@ -1,0 +1,158 @@
+infer_root: /mnt/data-1/data/kefan.chen/code/HAT-internal/tmp_output/fsd_om_qat_val_result_dir_type/infer_file/
+
+eval_result_output: /mnt/data-1/data/kefan.chen/code/HAT-internal/tmp_output/fsd_om_qat_val_result_dir_type/eval_result/
+
+cd_list: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+cd_threshold: 0.5
+thread_num: 32
+
+region:
+  all:
+  host_next: [-8, 8, 0, 100]
+  host: [-4, 4, 0, 100]
+
+upsample_value: -1
+
+remap_print_keys: {
+    "lane_solid": "solid",
+    "lane_dashed": "dashed",
+    "roadedge_roadside": "curb",
+    "lane_direction": "lane_dir",
+    "roadedge_subtype": "curb_type",
+}
+
+# Notice: when using passed parameter 'om_head_groups' in om_eval_metric.py,
+# we no longer load the 'om_head_groups' from this file.
+head_blacklist: []
+om_head_groups: {
+    "lane": {
+        "multi": True,
+        "group": "lane",
+        "key": "solid_lanes#lane_type",
+        "loss_weight": 3,
+        "cls_remap": {
+            "solid": 1,
+            "dotted": 2,
+            "dashed": 2,
+            "solid_fishbone": 1,
+            "ldotted_fishbone": 2,
+            "boots_dots": 2,
+            "other": 3,
+            "unknown": 3,
+        },
+        "cls_list": ["solid", "dashed", "other"],
+        "cls_colors": ["red", "blue", "green"],
+        "cls_thr": 0.5,
+    },
+    "roadedge": {
+        "multi": True,
+        "group": "roadedge",
+        "key": "roadedges#curb_category",
+        "loss_type": "ce_loss",
+        "cls_remap": {
+            "groundside": 1,
+            "roadside": 1,
+            "cone": 1,
+            "water_horse": 1,
+            "guardrail": 1,
+            "other": 1,
+            "unknown": 1,
+        },
+        "cls_list": ["roadside"],
+        "cls_colors": ["green"],
+        "cls_thr": 0.5,
+    },
+    "lane_direction": {
+        "group": "lane",
+        "loss_weight": 1.0,
+        "add_cost": True,
+        "auto_class_weight": False,
+        "global_auto_class_weight": [0.75, 2.0],
+        "key": "solid_lanes#lane_direction",
+        "cls_remap": {"unidirectional": 0, "bidirectional": 4},
+        "cls_list": ["up", "down", "left", "right", "bidirection"],
+        "cls_colors": ["white", "red", "green", "blue", "yellow"],
+    },
+    "roadedge_subtype": {
+        "group": "roadedge",
+        "loss_type": "ce_loss",
+        "key": "roadedges#curb_category",
+        "loss_weight": 1.0,
+        "auto_class_weight": False,
+        "global_auto_class_weight": [0.75, 3.5],
+        "cls_remap": {
+            "groundside": 0,
+            "roadside": 1,
+            "cone": 2,
+            "water_horse": 3,
+            "guardrail": 4,
+            "other": 5,
+            "unknown": -1,
+        },
+        "cls_list": [
+            "groundside",
+            "roadside",
+            "cone",
+            "water_horse",
+            "guardrail",
+            "other",
+        ],
+        "cls_colors": ["white", "red", "blue", "orange", "green", "yellow"],
+    },
+    "lane_color": {
+        "group": "lane",
+        "key": "solid_lanes#lane_color",
+        "loss_weight": 1.0,
+        "add_cost": True,
+        "auto_class_weight": False,
+        "global_auto_class_weight": [0.75, 2.5],
+        "cls_remap": {
+            "white": 0,
+            "yellow": 1,
+            "blue": 2,
+            "orange": 2,
+            "red": 2,
+            "other": 2,
+        },
+        "cls_list": ["white", "yellow", "other"],
+        "cls_colors": ["white", "yellow", "blue"],
+    },
+    "lane_wide": {
+        "group": "lane",
+        "key": "solid_lanes#lane_width",
+        "loss_weight": 1.0,
+        "add_cost": True,
+        "auto_class_weight": False,
+        "global_auto_class_weight": [0.75, 5.0],
+        "cls_remap": {"normal": 0, "wide": 1},
+        "cls_colors": ["red", "blue"],
+    },
+    "lane_double": {
+        "group": "lane",
+        "key": "solid_lanes#lane_flag",
+        "loss_weight": 1.0,
+        "add_cost": True,
+        "auto_class_weight": False,
+        "global_auto_class_weight": [0.75, 3.5],
+        "cls_remap": {"single": 0, "double": 1, "triple": 1},
+        "cls_list": ["single", "double"],
+        "cls_colors": ["red", "blue"],
+    },
+    "lane_property": {
+        "group": "lane",
+        "key": "solid_lanes#lane_properties",
+        "loss_weight": 1.0,
+        "add_cost": True,
+        "auto_class_weight": False,
+        "global_auto_class_weight": [1.0, 2.0],
+        "cls_remap": {
+            "general": 0,
+            "stay": 1,
+            "tide": 2,
+            "three_color": 3,
+            "bus": 4,
+            "other": 5,
+        },
+        "cls_colors": ["white", "red", "blue", "orange", "green", "yellow"],
+    },
+}

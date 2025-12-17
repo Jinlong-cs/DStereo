@@ -1,0 +1,106 @@
+task_name: "task_densetnt_master"
+version: "v3.0.0"
+user_name: "shengzhe.dai"
+local_train: True
+tag: "release_note"
+compile_level: "O3"  # O0 for validation, O3 for release.
+
+multipath_6v:
+  # Below are parametes to be change.
+  anchor_set: "vw_demo_139"  #"vw_demo_139" ,basic_124
+  project: "vw_demo"
+  dataset_name: "Vision"
+  train_pkl_name:  "basic_train_pkl"  # "vw_130_packs"
+  val_pkl_name:  "0421_0422_fusion_eval"  #"vw_test_pkl"
+  qat_ckpt_for_int_infer: "qat-checkpoint-best.pth.tar"
+  float_ckpt_for_int_infer: "float-checkpoint-best.pth.tar"
+  
+  # Belows are fix parameters, do not change!
+  train_config_file: "configs/traj_pred/multipath_vargnet.py"
+  pt2hbm:
+    model_name: "Multipath_6v"
+    # The size should be NCHW, unless it is a special designed op.
+    input_size: "1x1x512x512,1x4x512x512,32x3x1x1,p32x8x8x2,p32x8x8x2"
+    input_key: "road_map,rendered_obs,state_vectors,img_homographys,history_img_homographys"
+    input_source: "ddr"
+    extra_args: "--max-time-per-fc 1000"
+  hbm2aidi:
+    model_name: "traj_pred_multipath_fusion6v"
+
+vectornet_traj:
+  # Below are parametes to be change.
+  anchor_set: "vw_demo_139"  #"vw_demo_139" ,basic_124
+  project: "vw_demo"
+  dataset_name: "Vision_Navi"
+  train_pkl_name:  "basic_train_pkl"  # "vw_130_packs"
+  val_pkl_name:  "basic_val_pkl"  #"vw_test_pkl"
+  qat_ckpt_for_int_infer: "qat-checkpoint-best.pth.tar"
+  float_ckpt_for_int_infer: "float-checkpoint-best.pth.tar"
+  
+  # Belows are fix parameters, do not change!
+  train_config_file: "configs/traj_pred/vectornet_traj.py"
+  pt2hbm:
+    model_name: "Vectornet_traj_fullscene"
+    # The size should be NCHW, unless it is a special designed op.
+    input_size: "16x12x128x9,16x9x32x15,16x1x160x160,16x3x1x1"
+    input_key: "struct_road_feats,struct_traj_feats,attention_mask,state_vectors"
+    input_source: "ddr"
+    extra_args: "--max-time-per-fc 1000"
+  hbm2aidi:
+    model_name: "vectornet_traj_fullscene"
+
+vectornet_behav:
+  # Below are parametes to be change.
+  anchor_set: "vw_demo_139"  #"pilot_203","vw_demo_139",basic_124
+  project: "sd_demo"
+  dataset_name: "multi-task_perrec"
+  train_pkl_name:  "full_scene_train_pkl"  # "full_scene"
+  val_pkl_name:  "full_scene_val_pkl"  #"full_scene"
+  qat_ckpt_for_int_infer: "qat-checkpoint-best.pth.tar"
+  float_ckpt_for_int_infer: "float-checkpoint-best.pth.tar"
+  
+  # Belows are fix parameters, do not change!
+  train_config_file: "projects/prediction/configs/vectornet_behav.py"
+  pt2hbm:
+    model_name: "Vectornet_behav_fullscene"
+    # The size should be NCHW, unless it is a special designed op.
+    input_size: "16x12x128x9,16x9x32x15,16x1x160x160,16x17x1x1"
+    input_key: "struct_road_feats,struct_traj_feats,attention_mask,behav_state_vectors"
+    input_source: "ddr"
+    extra_args: "--max-time-per-fc 1000"
+  hbm2aidi:
+    model_name: "vectornet_behav_fullscene"
+
+densetnt_traj:
+  # Below are parametes to be change.
+  qat_ckpt_for_int_infer: "qat-checkpoint-best.pth.tar"
+  float_ckpt_for_int_infer: "float-checkpoint-best.pth.tar"
+  
+  # Belows are fix parameters, do not change!
+  train_config_file: "configs/traj_pred/densetnt_traj.py"
+  pt2hbm:
+    model_name: "densetnt"
+    # The size should be NCHW, unless it is a special designed op.
+    input_size: "16x12x128x9,16x11x32x11,16x1x160x160,16x3x1x1"
+    input_key: "struct_road_feats,struct_traj_feats,attention_mask,state_vectors"
+    input_source: "ddr"
+    extra_args: "--max-time-per-fc 1000"
+  hbm2aidi:
+    model_name: "densetnt"
+
+densetnt_traj_stage2:
+  # Below are parametes to be change.
+  qat_ckpt_for_int_infer: "qat-checkpoint-best.pth.tar"
+  float_ckpt_for_int_infer: "float-checkpoint-best.pth.tar"
+  
+  # Belows are fix parameters, do not change!
+  train_config_file: "configs/traj_pred/densetnt_traj.py"
+  pt2hbm:
+    model_name: "densetnt"
+    # The size should be NCHW, unless it is a special designed op.
+    input_size: "16x12x128x9,16x9x32x3,16x1x160x160,16x2x1x1024,16x3x1x1"
+    input_key: "struct_road_feats,struct_traj_feats,attention_mask,goal_coords,state_vectors"
+    input_source: "ddr"
+    extra_args: "--max-time-per-fc 1000"
+  hbm2aidi:
+    model_name: "densetnt_stage2"

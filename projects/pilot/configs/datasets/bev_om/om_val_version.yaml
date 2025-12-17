@@ -1,0 +1,355 @@
+# -------------------------- validation --------------------------
+pipeline_test:
+  BJ:
+    UT126:
+      merge_UT126_roadedges_or_solid_v5a_v20230317_0_11v_pipeline_test:
+        sample_interval: 10000
+      merge_UT126_parking_v5a_v20230614_0_11v_TS_C_pipeline_test:
+        sample_interval: 10000
+    UT263:
+      merge_UT263_roadedges_or_solid_v5a_v20230703hde_0_11v_TS_C_pipeline_test:
+        sample_interval: 5000
+    BYD18:
+      merge_BYD18_roadedges_or_solid_v5a_v20230222_1_7v_pipeline_test:
+        sample_interval: 5000
+      merge_BYD18_roadedges_or_solid_v5a_v20230616hde_0_7v_TS_C_pipeline_test:
+        sample_interval: 10000
+temporal_pipeline_test:
+  BJ:
+    UT126:
+      merge_UT126_parking_v5a_v20230614_0_11v_TS_C_pipeline_test:
+        sample_interval: 1000
+    UT263:
+      merge_UT263_roadedges_or_solid_v5a_v20230703hde_0_11v_TS_C:
+        sample_interval: 500
+    BYD18:
+      merge_BYD18_roadedges_or_solid_v5a_v20230616hde_0_7v_TS_C_pipeline_test:
+        sample_interval: 1000
+
+v2.0.0_all_elements_11v:
+  BJ:
+    UT263:
+      20221103_715768_2_FSD_Site_UT263_20221010_v5a_11v:
+        sample_interval: 18
+      20221103_715768_2_FSD_Site_UT263_20221013_v5a_11v:
+        sample_interval: 18
+    UT126:
+      20221103_715768_2_FSD_Site_UT126_20221012_v5a_11v:
+        sample_interval: 18
+      20221103_715768_2_FSD_Site_UT126_20221014_v5a_11v:
+        sample_interval: 18
+    NC109:
+      20221013_711280_1_FSD_Site_NC109_20220929_v5a_11v:
+        sample_interval: 10
+    UTHS6:
+      20221111_718171_1_FSD_Site_UTHS6_20221103_v5a_11v:
+        sample_interval: 10
+      20221111_718173_1_FSD_Site_UTHS6_20221029_v5a_11v:
+        sample_interval: 10
+
+v2.3.0_byd_7v_all_20230131:
+  BJ:
+    BYD18:
+      20230111_732102_1_FSD_Site_BYD18_20221206_v5a_7v:
+        sample_interval: 5
+    BYD19:
+      20230108_731435_1_FSD_Site_BYD19_20221202_v5a_7v:
+        sample_interval: 5
+    BYD72:
+      20230111_732179_3_FSD_Site_BYD72_20221201_v5a_7v:
+        sample_interval: 5
+
+v3.0.0_byd_7v_new_isp_all_20230427:
+  BJ:
+    BYD18:
+      20230420_752343_2_FSD_Site_BYD18_20230331_v5a_7v:
+        sample_interval: 5
+    BYD19:
+      20230505_755133_3_FSD_Site_BYD19_20230420_v5a_7v_TS_C:
+        sample_interval: 5
+
+v1.0_parking_20221117:
+  BJ:
+    NC109:
+      716860_1_NC109_parking_20221013_D_v5a_11v:
+        sample_interval: 20
+    UT126:
+      716860_1_UT126_parking_20220921_D_v5a_11v:
+        sample_interval: 10
+      716951_3_UT126_parking_20220803_D_v5a_11v:
+        sample_interval: 10
+    UT263:
+      716860_1_UT263_parking_20221016_D_v5a_11v:
+        sample_interval: 10
+      717594_1_UT263_parking_20221026_D_v5a_11v:
+        sample_interval: 10
+
+v1.0_parking_20221117_calib:
+  BJ:
+    NC109:
+      716860_1_NC109_parking_20221013_D_v5a_0_11v:
+        sample_interval: 20
+    UT126:
+      716860_1_UT126_parking_20220921_D_v5a_0_11v:
+        sample_interval: 10
+      716951_3_UT126_parking_20220803_D_v5a_0_11v:
+        sample_interval: 10
+    UT263:
+      716860_1_UT263_parking_20221016_D_v5a_0_11v:
+        sample_interval: 10
+      717594_1_UT263_parking_20221026_D_v5a_0_11v:
+        sample_interval: 10
+
+v2.0_parking_20230321:
+  BJ:
+    UT126:
+      729929_1_UT126_parking_20221113_D_v5a_11v:
+        sample_interval: 10
+      729929_1_UT126_parking_20221122_D_v5a_11v:
+        sample_interval: 10
+    UT0Q9:
+      729916_1_UT0Q9_parking_20221128_D_v5a_11v:
+        sample_interval: 10
+      729916_1_UT0Q9_parking_20221126_D_v5a_11v:
+        sample_interval: 10
+    NC110:
+      729568_1_NC110_parking_20221124_D_v5a_11v:
+        sample_interval: 10
+
+v1.0.1_driving_11v_temporal:
+  BJ:
+    UT263:
+      20221103_715768_2_FSD_Site_UT263_20221010_v5a_11v_TS_C:
+        sample_interval: 10
+      20221103_715768_2_FSD_Site_UT263_20221013_v5a_11v_TS_C:
+        sample_interval: 10
+    UTHS6:
+      20221111_718171_1_FSD_Site_UTHS6_20221103_v5a_11v_TS_C:
+        sample_interval: 10
+      20221111_718173_1_FSD_Site_UTHS6_20221029_v5a_11v_TS_C:
+        sample_interval: 10
+
+v1.0.1_driving_7v_temporal:
+  BJ:
+    BYD18:
+      20230420_752343_2_FSD_Site_BYD18_20230331_v5a_7v_TS_C:
+        sample_interval: 10
+      20230111_732102_1_FSD_Site_BYD18_20221206_v5a_7v_TS_C:
+        sample_interval: 10
+    BYD19:
+      20230108_731435_1_FSD_Site_BYD19_20221202_v5a_7v_TS_C:
+        sample_interval: 10
+    BYD72:
+      20230111_732179_3_FSD_Site_BYD72_20221201_v5a_7v_TS_C:
+        sample_interval: 10
+
+
+v1_0_1_parking_11v_temporal:
+  BJ:
+    UT126:
+      729929_1_UT126_parking_20221113_D_v5a_11v_TS_C:
+        sample_interval: 10
+      729929_1_UT126_parking_20221122_D_v5a_11v_TS_C:
+        sample_interval: 10
+    UT0Q9:
+      729916_1_UT0Q9_parking_20221128_D_v5a_11v_TS_C:
+        sample_interval: 10
+      729916_1_UT0Q9_parking_20221126_D_v5a_11v_TS_C:
+        sample_interval: 10
+    NC110:
+      729568_1_NC110_parking_20221124_D_v5a_11v_TS_C:
+        sample_interval: 10
+
+
+v3_0_0_test_split_all:
+  BJ:
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230531hde2_0_11v_TS_C:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230317_0_11v:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230420hde2_0_11v:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230516hde_0_11v_TS_C:
+        sample_interval: 20
+    BYD19:
+      merge_BYD19_roadedges_or_solid_v5a_v20230504hde2_0_7v:
+        sample_interval: 20
+      merge_BYD19_roadedges_or_solid_v5a_v20230420hde1_1_7v:
+        sample_interval: 20
+      merge_BYD19_roadedges_or_solid_v5a_v20230605hde1_1_7v_TS_C:
+        sample_interval: 20
+      merge_BYD19_roadedges_or_solid_v5a_v20230516hde1_1_7v_TS_C:
+        sample_interval: 20
+      merge_BYD19_roadedges_or_solid_v5a_v20230504hde_0_7v:
+        sample_interval: 20
+      merge_BYD19_roadedges_or_solid_v5a_v20230425hde1_1_7v:
+        sample_interval: 20
+      merge_BYD19_roadedges_or_solid_v5a_v20230426hde_0_7v:
+        sample_interval: 20
+
+v4_0_0_ls_11v_driving:
+  BJ:
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230531hde2_0_11v_TS_C:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230317_0_11v:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230420hde2_0_11v:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230516hde_0_11v_TS_C:
+        sample_interval: 20
+
+v4_0_0_ls_11v_driving_temporal:
+  BJ:
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230531hde2_0_11v_TS_C:
+        sample_interval: 10
+      merge_LS912_roadedges_or_solid_v5a_v20230516hde_0_11v_TS_C:
+        sample_interval: 10
+
+v4_0_0_11v_driving:
+  BJ:
+    UT263:
+      20221103_715768_2_FSD_Site_UT263_20221010_v5a_11v:
+        sample_interval: 20
+      20221103_715768_2_FSD_Site_UT263_20221013_v5a_11v:
+        sample_interval: 20
+    UT126:
+      20221103_715768_2_FSD_Site_UT126_20221012_v5a_11v:
+        sample_interval: 20
+      20221103_715768_2_FSD_Site_UT126_20221014_v5a_11v:
+        sample_interval: 20
+    NC109:
+      20221013_711280_1_FSD_Site_NC109_20220929_v5a_11v:
+        sample_interval: 20
+    UTHS6:
+      20221111_718171_1_FSD_Site_UTHS6_20221103_v5a_11v:
+        sample_interval: 20
+      20221111_718173_1_FSD_Site_UTHS6_20221029_v5a_11v:
+        sample_interval: 20
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230531hde2_0_11v_TS_C:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230317_0_11v:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230420hde2_0_11v:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230516hde_0_11v_TS_C:
+        sample_interval: 20
+
+v4_0_0_11v_driving_temporal:
+  BJ:
+    UT263:
+      20221103_715768_2_FSD_Site_UT263_20221010_v5a_11v_TS_C:
+        sample_interval: 10
+      20221103_715768_2_FSD_Site_UT263_20221013_v5a_11v_TS_C:
+        sample_interval: 10
+    UTHS6:
+      20221111_718171_1_FSD_Site_UTHS6_20221103_v5a_11v_TS_C:
+        sample_interval: 10
+      20221111_718173_1_FSD_Site_UTHS6_20221029_v5a_11v_TS_C:
+        sample_interval: 10
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230531hde2_0_11v_TS_C:
+        sample_interval: 20
+      merge_LS912_roadedges_or_solid_v5a_v20230516hde_0_11v_TS_C:
+        sample_interval: 20
+
+v4_0_0_11v_parking:
+  BJ:
+    UT126:
+      729929_1_UT126_parking_20221113_D_v5a_11v:
+        sample_interval: 10
+      729929_1_UT126_parking_20221122_D_v5a_11v:
+        sample_interval: 10
+    UT0Q9:
+      729916_1_UT0Q9_parking_20221128_D_v5a_11v:
+        sample_interval: 10
+      729916_1_UT0Q9_parking_20221126_D_v5a_11v:
+        sample_interval: 10
+    NC110:
+      729568_1_NC110_parking_20221124_D_v5a_11v:
+        sample_interval: 10
+    LS830:
+      763857_2_LS830_parking_20230513_D_v5a_11v_TS_C:
+        sample_interval: 10
+      763858_2_LS830_parking_lot_20230517_D_v5a_11v_TS_C:
+        sample_interval: 10
+
+v4_0_0_ls_11v_parking:
+  BJ:
+    LS830:
+      763857_2_LS830_parking_20230513_D_v5a_11v_TS_C:
+        sample_interval: 5
+      763858_2_LS830_parking_lot_20230517_D_v5a_11v_TS_C:
+        sample_interval: 5
+
+v5_0_0_11v_ls_driving:
+  BJ:
+    LS830:
+      merge_LS830_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230803hde_0_11v_TS_C:
+        sample_interval: 20
+
+v5_0_0_11v_driving:
+  BJ:
+    UT126:
+      merge_UT126_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    LS830:
+      merge_LS830_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    LS912:
+      merge_LS912_roadedges_or_solid_v5a_v20230803hde_0_11v_TS_C:
+        sample_interval: 20
+    UT0Q9:
+      merge_UT0Q9_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    UT1R3:
+      merge_UT1R3_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+
+v6_0_0_11v_driving:
+  BJ:
+    LS830:
+      merge_select_LS830_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    LS912:
+      merge_select_LS912_roadedges_or_solid_v5a_v20230803hde_0_11v_TS_C:
+        sample_interval: 20
+    UT0Q9:
+      merge_select_UT0Q9_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    UT126:
+      merge_select_UT126_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+    UT1R3:
+      merge_select_UT1R3_roadedges_or_solid_v5a_v20230728hde_0_11v_TS_C:
+        sample_interval: 20
+
+v6_0_0_11v_driving_highway:
+  BJ:
+    LS912:
+      20231030_786602_3_FSD_Site_LS912_20230825_v5a_11v_TS_C:
+        sample_interval: 10
+    LX165:
+      20231030_786602_3_FSD_Site_LX165_20230819_v5a_11v_TS_C:
+        sample_interval: 10
+      20231030_786602_3_FSD_Site_LX165_20230824_v5a_11v_TS_C:
+        sample_interval: 10
+    UT3J5:
+      20231030_786602_3_FSD_Site_UT3J5_20230821_v5a_11v_TS_C:
+        sample_interval: 10
+v1_0_0_ek_parking_underground:
+  BJ:
+    HBEK383:
+      merge_HBEK383_parking_v5a_v20240126_0_11v_TS_C:
+        sample_interval: 20
+v1_0_0_ek_parking_lot:
+  BJ:
+    HBEK383:
+      merge_HBEK383_parking_v5a_v20240126_1_11v_TS_C:
+        sample_interval: 10

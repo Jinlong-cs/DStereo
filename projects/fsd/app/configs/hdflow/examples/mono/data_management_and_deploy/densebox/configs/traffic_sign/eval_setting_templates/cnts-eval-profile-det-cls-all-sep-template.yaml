@@ -1,0 +1,1284 @@
+classname: traffic_sign
+lower_overlap_for_small: true
+default_type: normal
+default_overlap: 0.5
+gt_cls_attr_name: cn_sub_type
+det_cls_attr_name: kTrafficSignCategory
+normal_iou_type: iou
+hard_iou_type: iou
+ignore_iou_type: iod
+clip_to_image: true
+score_thresh: 0.1
+write_eval_stats_sep_num_workers: 6
+
+target_recalls:
+  - 0.99
+  - 0.97
+  - 0.95
+  - 0.90
+  - 0.85
+  - 0.80
+target_precisions:
+  - 0.99
+  - 0.97
+  - 0.95
+  - 0.90
+  - 0.85
+  - 0.80
+
+target_thresholds:
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+
+attrs:
+  ignore:
+    - value: 'yes'
+      type: ignore
+      overlap: 0.5
+
+  occlusion:
+    - value: full_visible
+      type: normal
+      overlap: 0.5
+    - value: occluded
+      type: hard
+      overlap: 0.3
+    - value: heavily_occluded
+      type: ignore
+      overlap: 0.3
+    - value: invisible
+      type: ignore
+      overlap: 0.3
+
+  cn_sub_type:
+    - {overlap: 0.5, type: remove, value: sign_back}
+    - {overlap: 0.5, type: remove, value: False_Positive}
+    - {overlap: 0.5, type: remove, value: FP_Accessory_Arrow}
+    - {overlap: 0.5, type: remove, value: FP_Building}
+    - {overlap: 0.5, type: remove, value: FP_Circular_Marker}
+    - {overlap: 0.5, type: remove, value: FP_Head}
+    - {overlap: 0.5, type: remove, value: FP_Light_Arrow}
+    - {overlap: 0.5, type: remove, value: FP_Light_Circle}
+    - {overlap: 0.5, type: remove, value: FP_Light_Shell}
+    - {overlap: 0.5, type: remove, value: FP_Light_Time}
+    - {overlap: 0.5, type: remove, value: FP_Mirror}
+    - {overlap: 0.5, type: remove, value: FP_Polygon_Marker}
+    - {overlap: 0.5, type: remove, value: FP_Route_Number}
+    - {overlap: 0.5, type: remove, value: FP_Twig}
+    - {overlap: 0.5, type: remove, value: FP_Vehicle_Wheel}
+    - {overlap: 0.5, type: remove, value: FP_Other}
+    - {overlap: 0.5, type: remove, value: FP_Unknown}
+    - {overlap: 0.5, type: remove, value: Other_Detfp}
+    - {overlap: 0.5, type: remove, value: Other_Exit}
+    - {overlap: 0.5, type: remove, value: Other_Mirror}
+    - {overlap: 0.5, type: remove, value: Other_RedCircleLight}
+    - {overlap: 0.5, type: remove, value: Other_LightArrow}
+
+  cn_medium_type:
+    - {overlap: 0.5, type: normal, value: P_SpeedLimit}
+    - {overlap: 0.5, type: normal, value: PSL_Other}
+    - {overlap: 0.5, type: ignore, value: PSL_Unknown}
+
+    - {overlap: 0.5, type: normal, value: P_ElectricalSpeedLimit}
+    - {overlap: 0.5, type: normal, value: P_Other_SpeedLimele}
+    - {overlap: 0.5, type: ignore, value: P_Unknow_SpeedLimele}
+
+    - {overlap: 0.5, type: normal, value: ProhibitRemove}
+    - {overlap: 0.5, type: normal, value: PR_Other}
+    - {overlap: 0.5, type: ignore, value: PR_Unknown}
+
+    - {overlap: 0.5, type: normal, value: Prohibit_I}
+    - {overlap: 0.5, type: normal, value: P_Other1}
+    - {overlap: 0.5, type: ignore, value: P_Unknown1}
+
+    - {overlap: 0.5, type: normal, value: W_Warning}
+    - {overlap: 0.5, type: ignore, value: W_Other}
+    - {overlap: 0.5, type: ignore, value: W_Unknown}
+
+    - {overlap: 0.5, type: normal, value: Min_SpeedLim}
+    - {overlap: 0.5, type: normal, value: MSL_Other}
+    - {overlap: 0.5, type: ignore, value: MSL_Unknown}
+
+    - {overlap: 0.5, type: normal, value: I_IndicationCircle}
+    - {overlap: 0.5, type: ignore, value: I_Other_circle}
+    - {overlap: 0.5, type: ignore, value: I_Unknown_circle}
+
+    - {overlap: 0.5, type: normal, value: I_IndicationRectangle}
+    - {overlap: 0.5, type: ignore, value: I_Other_rectangle}
+    - {overlap: 0.5, type: ignore, value: I_Unknown_rectangle}
+
+    - {overlap: 0.4, type: normal, value: GuideSign_WhiteBlack}
+    - {overlap: 0.4, type: ignore, value: GSWB_Other}
+    - {overlap: 0.4, type: ignore, value: GSWB_Unknown}
+
+    - {overlap: 0.5, type: normal, value: sign_Construction}
+    - {overlap: 0.5, type: normal, value: Sign_Construction}
+    - {overlap: 0.5, type: ignore, value: C_Other}
+    - {overlap: 0.5, type: ignore, value: C_Unknown}
+
+    - {overlap: 0.5, type: normal, value: RoadSign_BlueWhite}
+    - {overlap: 0.5, type: ignore, value: RSBW_Other}
+    - {overlap: 0.5, type: ignore, value: RSBW_Unknown}
+
+    - {overlap: 0.5, type: normal, value: GuideSign_GreenWhite}
+    - {overlap: 0.5, type: ignore, value: GSGW_Other}
+    - {overlap: 0.5, type: ignore, value: GSGW_Unknown}
+
+    - {overlap: 0.5, type: normal, value: TravelSign_BrownWhite}
+    - {overlap: 0.5, type: ignore, value: TSBW_Other}
+    - {overlap: 0.5, type: ignore, value: TSBW_Unknown}
+
+    - {overlap: 0.5, type: normal, value: RouteID}
+    - {overlap: 0.5, type: ignore, value: RouteID_Other}
+    - {overlap: 0.5, type: ignore, value: RouteID_Unknown}
+
+    - {overlap: 0.5, type: ignore, value: ''}
+    - {overlap: 0.5, type: ignore, value: O_Other}
+    - {overlap: 0.5, type: ignore, value: Other}
+    - {overlap: 0.5, type: ignore, value: U_Unknow}
+    - {overlap: 0.5, type: ignore, value: U_Unknown}
+    - {overlap: 0.5, type: ignore, value: Interchange_Street_Sign}
+    - {overlap: 0.5, type: remove, value: sign_back}
+    - {overlap: 0.5, type: remove, value: False_Positive}
+    - {overlap: 0.5, type: remove, value: Other_Detfp}
+    - {overlap: 0.5, type: remove, value: Other_Exit}
+    - {overlap: 0.5, type: remove, value: Other_Mirror}
+    - {overlap: 0.5, type: remove, value: Other_RedCircleLight}
+    - {overlap: 0.5, type: remove, value: Other_LightArrow}
+
+  is_merge_children:
+    - {overlap: 0.5, type: remove, value: "yes"}
+
+eval_types:
+  - P_Custom
+  - P_GiveWay
+  - P_HeightLim
+  - P_MultiVehicle
+  - P_NoAnimalVehicle
+  - P_NoBikeDownSlope
+  - P_NoBikeUpSlope
+  - P_NoBus
+  - P_NoCar
+  - P_NoCargoTricycle
+  - P_NoDangerous
+  - P_NoEntry
+  - P_NoForward
+  - P_NoForwardLeft
+  - P_NoForwardRight
+  - P_NoHorning
+  - P_NoHuman
+  - P_NoHumanCargoTriangle
+  - P_NoHumanPassengerTriangle
+  - P_NoHumanVehicle
+  - P_NoLeftRightTurn
+  - P_NoLeftTurn
+  - P_NoLongParking
+  - P_NoMinibus
+  - P_NoMotor
+  - P_NoMotorcycle
+  - P_NoNonMotor
+  - P_NoParking
+  - P_NoPassing
+  - P_NoPassingRev
+  - P_NoReturn
+  - P_NoRightTurn
+  - P_NoSpecificLeftTurn
+  - P_NoSpecificRightTurn
+  - P_NoTractor
+  - P_NoTrailer
+  - P_NoTricycle
+  - P_NoTruck
+  - P_Noway
+  - P_ParkingCheck
+  - P_SlowFor
+  - P_StopFor
+  - P_VehicleOther
+  - P_WeightLim
+  - P_WeightLimWheel
+  - P_WidthLim
+  - P_Other1
+  - W_AccidentProne
+  - W_BadWeather
+  - W_Bump
+  - W_Bumpy
+  - W_Children
+  - W_Circle
+  - W_ContinuousDown
+  - W_ContinuousTurn
+  - W_Cross
+  - W_CrossIntersection
+  - W_Cycle
+  - W_DamLeft
+  - W_DamRight
+  - W_Danger
+  - W_DetourAround
+  - W_DetourLeft
+  - W_DetourRight
+  - W_Disabled
+  - W_Down
+  - W_Ferry
+  - W_Fog
+  - W_Ford
+  - W_GuardedRailway
+  - W_HumpBridge
+  - W_Ice
+  - W_KeepDistance
+  - W_LRNarrow
+  - W_LRTurn
+  - W_LeftFalling
+  - W_LeftNarrow
+  - W_LeftTurn
+  - W_LowLying
+  - W_MergeLeft
+  - W_MergeRight
+  - W_MountLeft
+  - W_MountRight
+  - W_NarrowBridge
+  - W_Pedestrian
+  - W_RLTurn
+  - W_Railway
+  - W_Rain
+  - W_RightFalling
+  - W_RightNarrow
+  - W_RightTurn
+  - W_SideWind
+  - W_Slip
+  - W_Slow
+  - W_SlowDown
+  - W_SplitLeft
+  - W_SplitRight
+  - W_TIntersection
+  - W_TShapLeft
+  - W_TShapRight
+  - W_Tidal
+  - W_TrafficLight
+  - W_Tripod
+  - W_Tshape
+  - W_Tshaps
+  - W_Tunnel
+  - W_TunnelHeadlight
+  - W_TwoWay
+  - W_Up
+  - W_VehicleQueue
+  - W_Village
+  - W_Working
+  - W_YBLeft
+  - W_YBRight
+  - W_YLeft
+  - W_YRight
+  - W_Other
+  - I_Circle
+  - I_Forward
+  - I_ForwardLeft
+  - I_ForwardRight
+  - I_Honk
+  - I_Left
+  - I_LeftRight
+  - I_LeftTurn
+  - I_Motors
+  - I_NonMotors
+  - I_Right
+  - I_RightTurn
+  - I_Uturn
+  - I_Walk
+#  - I_Other_circle
+  - I_AllowUturn
+  - I_FastBusLane
+  - I_ForwardLane
+  - I_ForwardLeftLane
+  - I_ForwardRightLane
+  - I_LeftBusLane
+  - I_LeftLine
+  - I_LeftTurnLane
+  - I_MotorsLane
+  - I_MultiOccupantMotorsLane
+  - I_NonMotorsLane
+  - I_ParkingSpace
+  - I_PedestrianCross
+  - I_PriorityIntereesction
+  - I_RightLine
+  - I_RightTurnLane
+  - I_SplitDriveLine
+  - I_StraightLine
+  - I_UTurnAndLeftLane
+  - I_UTurnLane
+#  - I_Other_rectangle
+  - G_GuideSign_WhiteBlack
+  - IR_Ramp
+  - IR_RampArrow
+  - IR_Zones
+  - IR_ZonesII
+  - RoadSign # - R_RoadSign_BlueWhite
+#  - G_GuideSign_GreenWhite
+#  - T_TravelSign_BrownWhite
+  - RouteID_RedWhite
+  - RouteID_YellowBlack
+  - RouteID_Other
+  - I_MinSpeedLim40
+  - I_MinSpeedLim50
+  - I_MinSpeedLim60
+  - I_MinSpeedLim70
+  - I_MinSpeedLim80
+  - I_MinSpeedLim90
+  - I_MinSpeedLim100
+  - I_MinSpeedLim110
+  - P_SpeedLim5
+  - P_SpeedLim10
+  - P_SpeedLim15
+  - P_SpeedLim20
+  - P_SpeedLim25
+  - P_SpeedLim30
+  - P_SpeedLim35
+  - P_SpeedLim40
+  - P_SpeedLim45
+  - P_SpeedLim50
+  - P_SpeedLim55
+  - P_SpeedLim60
+  - P_SpeedLim65
+  - P_SpeedLim70
+  - P_SpeedLim75
+  - P_SpeedLim80
+  - P_SpeedLim85
+  - P_SpeedLim90
+  - P_SpeedLim95
+  - P_SpeedLim100
+  - P_SpeedLim105
+  - P_SpeedLim110
+  - P_SpeedLim115
+  - P_SpeedLim120
+  - P_SpeedLimRev5
+  - P_SpeedLimRev10
+  - P_SpeedLimRev15
+  - P_SpeedLimRev20
+  - P_SpeedLimRev25
+  - P_SpeedLimRev30
+  - P_SpeedLimRev35
+  - P_SpeedLimRev40
+  - P_SpeedLimRev45
+  - P_SpeedLimRev50
+  - P_SpeedLimRev55
+  - P_SpeedLimRev60
+  - P_SpeedLimRev65
+  - P_SpeedLimRev70
+  - P_SpeedLimRev75
+  - P_SpeedLimRev80
+  - P_SpeedLimRev85
+  - P_SpeedLimRev90
+  - P_SpeedLimRev95
+  - P_SpeedLimRev100
+  - P_SpeedLimRev105
+  - P_SpeedLimRev110
+  - P_SpeedLimRev115
+  - P_SpeedLimRev120
+  - P_SpeedLim40ele
+  - P_SpeedLim50ele
+  - P_SpeedLim60ele
+  - P_SpeedLim70ele
+  - P_SpeedLim80ele
+  - P_SpeedLim90ele
+  - P_SpeedLim100ele
+  - P_SpeedLim110ele
+  - P_SpeedLim120ele
+  - P_Other_SpeedLimele
+  - IR_Linearguide
+  - P_SpeedLim130
+  - PSL_Other
+  - PSL_Unknown
+  - P_NoLongParkingRev
+  - P_NoParkingRev
+  - PR_Other
+  - MSL_Other
+  - IR_SpecificRamp
+  - IR_RampExit
+  - IR_RampHighwayExit
+  - IR_RightLane
+  - IR_HighwayETCTollStationsNotice
+  - IR_ETCLanes
+  - IR_ETCLanesKeepDistance
+  - IR_ElectricalETC
+#  - False_Positive
+#  - RouteSign_Misc
+#  - GSWB_Misc
+#  - Multi_Misc
+#  - FP_Circular_Marker
+#  - FP_Light_Arrow
+#  - FP_Light_Circle
+#  - FP_Mirror
+#  - FP_Route_Number
+#  - FP_Other
+#  - sign_back
+
+gt2eval:
+  # Prohibit_I
+  P_Custom: P_Custom
+  P_Custum: P_Custom
+  P_GiveWay: P_GiveWay
+  P_HeightLim: P_HeightLim
+  P_Noway: P_Noway
+  P_NoAnimalVehicle: P_NoAnimalVehicle
+  P_NoBikeUpSlope: P_NoBikeUpSlope
+  P_NoBikeDownSlope: P_NoBikeDownSlope
+  P_NoBus: P_NoBus
+  P_NoCar: P_NoCar
+  P_NoCargoTricycle: P_NoCargoTricycle
+  P_NoDangerous: P_NoDangerous
+  P_NoEntry: P_NoEntry
+  P_NoFoward: P_NoForward
+  P_NoForward: P_NoForward
+  P_NoFowardLeft: P_NoForwardLeft
+  P_NoForwardLeft: P_NoForwardLeft
+  P_NoFowardRight: P_NoForwardRight
+  P_NoForwardRight: P_NoForwardRight
+  P_NoHorning: P_NoHorning
+  P_NoHuman: P_NoHuman
+  P_NoHumanCargoTriangel: P_NoHumanCargoTriangle
+  P_NoHumanCargoTriangle: P_NoHumanCargoTriangle
+  P_NoHumanPassengerTriangel: P_NoHumanPassengerTriangle
+  P_NoHumanPassengerTriangle: P_NoHumanPassengerTriangle
+  P_NoHumanVehicle: P_NoHumanVehicle
+  P_NoLeftRighgtTurn: P_NoLeftRightTurn
+  P_NoLeftRightTurn: P_NoLeftRightTurn
+  P_NoLeftTurn: P_NoLeftTurn
+  P_NoMinibus: P_NoMinibus
+  P_NoMotor: P_NoMotor
+  P_NoMotorcycle: P_NoMotorcycle
+  P_NoMotoTricycle: P_NoMotorcycle
+  P_NoNonMotor: P_NoNonMotor
+  P_NoPassing: P_NoPassing
+  P_NoReturn: P_NoReturn
+  P_NoRighgtTurn: P_NoRightTurn
+  P_NoRightTurn: P_NoRightTurn
+  P_NoTractor: P_NoTractor
+  P_NoTrailer: P_NoTrailer
+  P_NoTruck: P_NoTruck
+  P_NoLongParking: P_NoLongParking
+  P_NoParking: P_NoParking
+  P_NoTricycle: P_NoTricycle
+  P_ParkingCheck: P_ParkingCheck
+  P_SlowFor: P_SlowFor
+  P_StopFor: P_StopFor
+  P_NoSpecificLeftTurn: P_NoSpecificLeftTurn
+  P_NoSpecificRightTurn: P_NoSpecificRightTurn
+  P_WeightLim: P_WeightLim
+  P_WeightLimWheel: P_WeightLimWheel
+  P_WidthLim: P_WidthLim
+  P_MultiVehicle: P_MultiVehicle
+  P_VehicleOther: P_VehicleOther
+  P_Other1: P_Other1
+  P_RegionNoLongParking: IGNORE
+  P_RegionNoLongParkingRev: IGNORE
+  P_RegionNoParking: IGNORE
+  P_RegionNoParkingRev: IGNORE
+  P_RegionSpeedLim: IGNORE
+  P_RegionSpeedLimRev: IGNORE
+  P_NoElectricBicycle: IGNORE
+  P_On_Smoking: IGNORE
+  P_RampSpeedLim: IGNORE
+  P_Other: IGNORE
+  P_Other2: IGNORE
+  P_Other3: IGNORE
+  P_Prohibit_I: IGNORE
+  P_Prohibit_II: IGNORE
+  P_Prohibit_III: IGNORE
+  Prohibit_I: IGNORE
+  Prohibit_II: IGNORE
+  Prohibit_III: IGNORE
+  P_Misc1: IGNORE
+  P_Misc2: IGNORE
+  P_Misc3: IGNORE
+  P_Unknown1: IGNORE
+  P_Unknown2: IGNORE
+  P_Unknown3: IGNORE
+
+  # W_Warning
+  W_AccidentProne: W_AccidentProne
+  W_BadWeather: W_BadWeather
+  W_Bump: W_Bump
+  W_Bumpy: W_Bumpy
+  W_Children: W_Children
+  W_Circle: W_Circle
+  W_ContinuousDown: W_ContinuousDown
+  W_ContinuousTurn: W_ContinuousTurn
+  W_Cross: W_Cross
+  W_CrossIntersection: W_CrossIntersection
+  W_Cycle: W_Cycle
+  W_DamLeft: W_DamLeft
+  W_DamRight: W_DamRight
+  W_Danger: W_Danger
+  W_DetourLeft: W_DetourLeft
+  W_DetourRight: W_DetourRight
+  W_DetourAround: W_DetourAround
+  W_Down: W_Down
+  W_Disabled: W_Disabled
+  W_Ferry: W_Ferry
+  W_Ford: W_Ford
+  W_Fog: W_Fog
+  W_GuardedRailway: W_GuardedRailway
+  W_CuardedRailway: W_GuardedRailway
+  W_HumpBridge: W_HumpBridge
+  W_Ice: W_Ice
+  W_KeepDistance: W_KeepDistance
+  W_LowLying: W_LowLying
+  W_LRNarrow: W_LRNarrow
+  W_LRTurn: W_LRTurn
+  W_LeftNarrow: W_LeftNarrow
+  W_LeftFalling: W_LeftFalling
+  W_LeftTurn: W_LeftTurn
+  W_MergeLeft: W_MergeLeft
+  W_MergeRight: W_MergeRight
+  W_MountLeft: W_MountLeft
+  W_MountRight: W_MountRight
+  W_NarrowBridge: W_NarrowBridge
+  W_Pedestrian: W_Pedestrian
+  W_Railway: W_Railway
+  W_Rain: W_Rain
+  W_RightNarrow: W_RightNarrow
+  W_RightTurn: W_RightTurn
+  W_RightFalling: W_RightFalling
+  W_RLTurn: W_RLTurn
+  W_Slip: W_Slip
+  W_Slow: W_Slow
+  W_SlowDown: W_SlowDown
+  W_SideWind: W_SideWind
+  W_Side_Wind: W_SideWind
+  W_SplitLeft: W_SplitLeft
+  W_SplitRight: W_SplitRight
+  W_Tidal: W_Tidal
+  W_TIntersection: W_TIntersection
+  W_TrafficLight: W_TrafficLight
+  W_Tripod: W_Tripod
+  W_TShapLeft: W_TShapLeft
+  W_TShapRight: W_TShapRight
+  W_Tshape: W_Tshape
+  W_Tshap: W_Tshape
+  W_TShap: W_Tshape
+  W_Tshaps: W_Tshaps
+  W_Tunnel: W_Tunnel
+  W_TunnelHeadlight: W_TunnelHeadlight
+  W_TwoWay: W_TwoWay
+  W_Up: W_Up
+  W_Village: W_Village
+  W_VehicleQueue: W_VehicleQueue
+  W_Working: W_Working
+  W_YLeft: W_YLeft
+  W_Y_Left: W_YLeft
+  W_YRight: W_YRight
+  W_Y_Right: W_YRight
+  W_YBLeft: W_YBLeft
+  W_YB_Left: W_YBLeft
+  W_YBRight: W_YBRight
+  W_YB_Right: W_YBRight
+  W_Animal: W_Other
+  W_Domestic: W_Other
+  W_EmergencyLane: W_Other
+  W_AccidentManageArea: IGNORE
+  W_LanesDecrease: IGNORE
+  W_Other: W_Other
+  W_Warning: IGNORE
+  W_Unknown: IGNORE
+  W_Misc: IGNORE
+
+  # I_IndicationCircle
+  I_Circle: I_Circle
+  I_Forward: I_Forward
+  I_LeftTurn: I_LeftTurn
+  I_RightTurn: I_RightTurn
+  I_ForwardLeft: I_ForwardLeft
+  I_ForwardRight: I_ForwardRight
+  I_LeftRight: I_LeftRight
+  I_Right: I_Right
+  I_Left: I_Left
+  I_Honk: I_Honk
+  I_Uturn: I_Uturn
+  I_Walk: I_Walk
+  I_Motors: I_Motors
+  I_NonMotors: I_NonMotors
+  I_ForwardLeftStereo: RoadSign
+  I_ForwardRightStereo: RoadSign
+  I_ElectricBicycle: IGNORE
+  I_LightUp: IGNORE
+  I_NonVehicleAndPedestrian: IGNORE
+  I_NonVehiclePush: IGNORE
+  I_TruckKeepRight: IGNORE
+  I_TruckThrough: IGNORE
+  I_Other_circle: RoadSign
+  I_Unknown_circle: IGNORE
+
+  # I_IndicationRectangle
+  I_PedestrianCross: I_PedestrianCross
+  I_PriorityIntereesction: I_PriorityIntereesction
+  I_UTurnLane: I_UTurnLane
+  I_UTurnAndLeftLane: I_UTurnAndLeftLane
+  I_RightTurnLane: I_RightTurnLane
+  I_ForwardLane: I_ForwardLane
+  I_ForwardLeftLane: I_ForwardLeftLane
+  I_ForwardRightLane: I_ForwardRightLane
+  I_LeftTurnLane: I_LeftTurnLane
+  I_LeftBusLane: I_LeftBusLane
+  I_NonMotorsLane: I_NonMotorsLane
+  I_FastBusLane: I_FastBusLane
+  I_MultiOccupantMotorsLane: I_MultiOccupantMotorsLane
+  I_MotorsLane: I_MotorsLane
+  I_ParkingSpace: I_ParkingSpace
+  I_AllowUturn: I_AllowUturn
+  I_StraightLine: I_StraightLine
+  I_RightLine: I_RightLine
+  I_LeftLine: I_LeftLine
+  I_SplitDriveLine: I_SplitDriveLine
+  I_Passingfirst: RoadSign
+  I_ElectricBicycleLane: IGNORE
+  I_EndOfHardShoulderThrough: IGNORE
+  I_EndOfHardShoulderThroughTheFollow: IGNORE
+  I_HardShoulderThrough: IGNORE
+  I_PassengerCarLane: IGNORE
+  I_RectangleMisc: IGNORE
+  I_TramCarLane: IGNORE
+  I_Other_rectangle: RoadSign
+  I_Unknown_rectangle: IGNORE
+
+  # Other_Indications
+  I_IUnevenParkingSpace: IGNORE
+  I_Indication: IGNORE
+  I_IndicationCircle: IGNORE
+  I_IndicationRectangle: IGNORE
+  I_LeftParkingSpace: IGNORE
+  I_RightParkingSpace: IGNORE
+  I_Misc: IGNORE
+  I_Other: IGNORE
+  I_Unknown: IGNORE
+  T_Indicate_Unknown: IGNORE
+
+  # RoadSign_BlueWhite
+  R_RoadSign_BlueWhite: RoadSign
+  IR_PlaceName: RoadSign
+  IR_FamousPlaceName: RoadSign
+  IR_IntersectionNotice: RoadSign
+  IR_CrossIntersection: RoadSign
+  IR_Tcorssing: RoadSign
+  R_CircularIntersection: RoadSign
+  IR_Interchange: RoadSign
+  IR_BifurcationMark: RoadSign
+  IR_LocationDistance: RoadSign
+  RSBW_Other: RoadSign
+  RSBW_Unknown: IGNORE
+  RoadSign_BlueWhite: RoadSign
+  RSBW_Misc: RoadSign
+
+  G_GuideSign_BlueWhite: RoadSign
+  IR_RailwayStation: RoadSign
+  IR_Airport: RoadSign
+  IR_ParkingLot: RoadSign
+  IR_LongDistanceBusStation: RoadSign
+  IR_FirstAidStation: RoadSign
+  IR_FerryPier: RoadSign
+  IR_SceneryBrowseArea: RoadSign
+  IR_GasStation: RoadSign
+  IR_CarWash: RoadSign
+  IR_Ferry: RoadSign
+  IR_SubwayStation: RoadSign
+  IR_CateringServices: RoadSign
+  IR_CarRepair: RoadSign
+  IR_SlowRoad: RoadSign
+  IR_SteepSlope: RoadSign
+  IR_Foggy: RoadSign
+  IR_SoftFoundation: RoadSign
+  IR_BigCarRight: RoadSign
+  IR_TransverseWind: RoadSign
+  IR_AccidentPronePoint: RoadSign
+  IR_ContinuousDownhill: RoadSign
+  IR_Tunnel: RoadSign
+  IR_ProtectAnimals: RoadSign
+  IR_AvoidLine: RoadSign
+  IR_Accommodation: RoadSign
+  IR_AdministrativeBoundary: RoadSign
+  IR_BusStation: RoadSign
+  IR_Drink: RoadSign
+  IR_EmergencyShelter: RoadSign
+  IR_FootBridge: RoadSign
+  IR_LanesDecrease: RoadSign
+  IR_LanesIncrease: RoadSign
+  IR_MilePost: RoadSign
+  IR_Nameplate: RoadSign
+  IR_Police: RoadSign
+  IR_Port: RoadSign
+  IR_Quarantine: RoadSign
+  IR_RestArea: RoadSign
+  IR_RoadManageBoundary: RoadSign
+  IR_Snack: RoadSign
+  IR_StreetName: RoadSign
+  IR_Taxi: RoadSign
+  IR_TrafficSupervisory: RoadSign
+  IR_TransferCenter: RoadSign
+  IR_TunnelNextExitNotice: RoadSign
+  IR_ViewingPoint: RoadSign
+  IR_Ycorssing: RoadSign
+  IR_ChevronLeftOther: IGNORE
+  IR_ChevronLeft_g1: IGNORE
+  IR_ChevronLeft_g2: IGNORE
+  IR_ChevronLeft_g3: IGNORE
+  IR_ChevronRightOther: IGNORE
+  IR_ChevronRight_g1: IGNORE
+  IR_ChevronRight_g2: IGNORE
+  IR_ChevronRight_g3: IGNORE
+  IR_LinearguideHighway: IGNORE
+  IR_LinearguideIndicate: IGNORE
+  IR_LinearguideWarning: IGNORE
+  IR_ParkingLotCrossLayer: IGNORE
+  IR_ParkingLotElevator: IGNORE
+  IR_ParkingLotEntrance: IGNORE
+  IR_ParkingLotExit: IGNORE
+  IR_ParkingLotExitAndEntrance: IGNORE
+  IR_ParkingLotStair: IGNORE
+  GSBW_Other: RoadSign
+  GSBW_Unknown: IGNORE
+  GuideSign_BlueWhite: RoadSign
+
+  # GuideSign_GreenWhite
+  G_GuideSign_GreenWhite: RoadSign
+  IR_HighwayEntranceNotice: RoadSign
+  IR_HighwayEntrance: RoadSign
+  IR_HighwayStart: RoadSign
+  IR_HighwayEndNotice: RoadSign
+  IR_HighwayEnd: RoadSign
+  IR_HighwayNextExitNotice: RoadSign
+  IR_HighwayExitNotice: RoadSign
+  IR_HighwayExit: RoadSign
+  IR_HighwayLocationDirection: RoadSign
+  IR_HighwayLocationDistance: RoadSign
+  IR_HighwayTollStationsNotice: RoadSign
+  IR_HighwayGasStation: RoadSign
+  IR_HighwayEmergencyParkingBelt: RoadSign
+  IR_HighwayServiceNotice: RoadSign
+  IR_HighwayParkinAreaNotice: RoadSign
+  IR_HighwayParkingLotNotice: RoadSign
+  IR_HighwayClimbingLine: RoadSign
+  IR_HighwayCarDistanceConfirmation: RoadSign
+  IR_HighwayRoadTrafficInformation: RoadSign
+  IR_HighwayMileageCard: RoadSign
+  IR_HighwayShuntCombinedInduced: RoadSign
+  IR_HighwayDirection: RoadSign
+  IR_HighwayETCLanes: RoadSign
+  IR_HighwayEmergencyPhone: RoadSign
+  IR_HighwayName: RoadSign
+  IR_HighwayOverloadCheck: RoadSign
+  IR_HighwayRescueCall: RoadSign
+  IR_HighwaySlowDown: RoadSign
+  IR_HighwayTicket: RoadSign
+  IR_WeightCharge: RoadSign
+  GSGW_Other: RoadSign
+  GSGW_Unknown: IGNORE
+  GuideSign_GreenWhite: RoadSign
+  GSGW_Misc: RoadSign
+
+  # TravelSign_BrownWhite
+  T_TravelSign_BrownWhite: RoadSign
+  IR_TouristAreaDirectionDistance: RoadSign
+  IR_TravelSymbols: RoadSign
+  TSBW_Other: RoadSign
+  TSBW_Unknown: IGNORE
+  TravelSign_BrownWhite: RoadSign
+
+  # GuideSign_WhiteBlack
+  G_GuideSign_WhiteBlack: G_GuideSign_WhiteBlack
+  IR_Area: G_GuideSign_WhiteBlack
+  IR_PassingTime: G_GuideSign_WhiteBlack
+  IR_VehicleType: G_GuideSign_WhiteBlack
+  IR_DistanceArea: G_GuideSign_WhiteBlack
+  IR_WarningReason: G_GuideSign_WhiteBlack
+  IR_DrivingDirection: G_GuideSign_WhiteBlack
+  IR_CombinationAuxiliary: G_GuideSign_WhiteBlack
+  IR_Announcement: IGNORE
+  IR_AuxiliaryRoad: IGNORE
+  GSWB_Other: G_GuideSign_WhiteBlack
+  GSWB_Unknown: IGNORE
+  GuideSign_WhiteBlack: G_GuideSign_WhiteBlack
+
+  # Ramp
+  IR_Ramp: IR_Ramp
+  IR_RampArrow: IR_RampArrow
+  IR_RampAhead: IR_SpecificRamp
+  IR_RampDirection: IR_SpecificRamp
+  IR_RampExit: IR_RampExit
+  IR_RampHighwayExit: IR_RampHighwayExit
+  IR_RampInternal: IR_SpecificRamp
+  IR_RampOut: IR_SpecificRamp
+  IR_RightLane: IR_RightLane
+  IR_SpecificRamp: IR_SpecificRamp
+
+  # RouteID
+  R_RouteID_YellowBlack: RouteID_YellowBlack
+  RYB_Other: RouteID_YellowBlack
+  RYB_Unknown: IGNORE
+  RouteID_YellowBlack: RouteID_YellowBlack
+
+  R_RouteID_RedWhite: RouteID_RedWhite
+  RRW_Other: RouteID_RedWhite
+  RRW_Unknown: IGNORE
+  RouteID_RedWhite: RouteID_RedWhite
+
+  RouteID_HighwayMark: RoadSign
+
+  IR_CountryRoadNumMark: RouteID_Other
+  RouteID_TownRoadMark: RouteID_Other
+  RouteID_Other: RouteID_Other
+  RouteID_Unknown: IGNORE
+
+  # sign_Construction
+  IR_ZonesII: IR_ZonesII
+  G_GuideSign_BlueWhiteWithWarning: IR_Zones
+  IR_Zones: IR_Zones
+  GSBWW_Other: IR_Zones
+  GSBWW_Unknown: IGNORE
+  GuideSign_BlueWhiteWithWarning: IR_Zones
+
+  IR_RoadStop: IGNORE
+  IR_MobileConstruction: IGNORE
+  IR_CrossingMarking: IGNORE
+  C_Other: IGNORE
+  C_Unknown: IGNORE
+  Construction_Sign: IGNORE
+
+  # Min_SpeedLim
+  I_MinSpeedLim40: I_MinSpeedLim40
+  I_MinSpeedLim50: I_MinSpeedLim50
+  I_MinSpeedLim60: I_MinSpeedLim60
+  I_MinSpeedLim70: I_MinSpeedLim70
+  I_MinSpeedLim80: I_MinSpeedLim80
+  I_MinSpeedLim90: I_MinSpeedLim90
+  I_MinSpeedLim100: I_MinSpeedLim100
+  I_MinSpeedLim110: I_MinSpeedLim110
+  MSL_Other: MSL_Other
+  MSL_Unknown: MSL_Other
+
+  # P_SpeedLimit
+  P_SpeedLim5: P_SpeedLim5
+  P_SpeedLim10: P_SpeedLim10
+  P_SpeedLim15: P_SpeedLim15
+  P_SpeedLim20: P_SpeedLim20
+  P_SpeedLim25: P_SpeedLim25
+  P_SpeedLim30: P_SpeedLim30
+  P_SpeedLim35: P_SpeedLim35
+  P_SpeedLim40: P_SpeedLim40
+  P_SpeedLim45: P_SpeedLim45
+  P_SpeedLim50: P_SpeedLim50
+  P_SpeedLim55: P_SpeedLim55
+  P_SpeedLim60: P_SpeedLim60
+  P_SpeedLim65: P_SpeedLim65
+  P_SpeedLim70: P_SpeedLim70
+  P_SpeedLim75: P_SpeedLim75
+  P_SpeedLim80: P_SpeedLim80
+  P_SpeedLim85: P_SpeedLim85
+  P_SpeedLim90: P_SpeedLim90
+  P_SpeedLim95: P_SpeedLim95
+  P_SpeedLim100: P_SpeedLim100
+  P_SpeedLim105: P_SpeedLim105
+  P_SpeedLim110: P_SpeedLim110
+  P_SpeedLim115: P_SpeedLim115
+  P_SpeedLim120: P_SpeedLim120
+  P_SpeedLim130: P_SpeedLim130
+  PSL_Other: PSL_Other
+  PSL_Unknown: PSL_Unknown
+
+  # ProhibitRemove
+  P_SpeedLimRev5: P_SpeedLimRev5
+  P_SpeedLimRev10: P_SpeedLimRev10
+  P_SpeedLimRev15: P_SpeedLimRev15
+  P_SpeedLimRev20: P_SpeedLimRev20
+  P_SpeedLimRev25: P_SpeedLimRev25
+  P_SpeedLimRev30: P_SpeedLimRev30
+  P_SpeedLimRev35: P_SpeedLimRev35
+  P_SpeedLimRev40: P_SpeedLimRev40
+  P_SpeedLimRev45: P_SpeedLimRev45
+  P_SpeedLimRev50: P_SpeedLimRev50
+  P_SpeedLimRev55: P_SpeedLimRev55
+  P_SpeedLimRev60: P_SpeedLimRev60
+  P_SpeedLimRev65: P_SpeedLimRev65
+  P_SpeedLimRev70: P_SpeedLimRev70
+  P_SpeedLimRev75: P_SpeedLimRev75
+  P_SpeedLimRev80: P_SpeedLimRev80
+  P_SpeedLimRev85: P_SpeedLimRev85
+  P_SpeedLimRev90: P_SpeedLimRev90
+  P_SpeedLimRev95: P_SpeedLimRev95
+  P_SpeedLimRev100: P_SpeedLimRev100
+  P_SpeedLimRev105: P_SpeedLimRev105
+  P_SpeedLimRev110: P_SpeedLimRev110
+  P_SpeedLimRev115: P_SpeedLimRev115
+  P_SpeedLimRev120: P_SpeedLimRev120
+  P_SpeedLimRev: IGNORE
+
+  # Other Rev
+  P_NoPassingRev: P_NoPassingRev
+  P_NoLongParkingRev: P_NoLongParkingRev
+  P_NoParkingRev: P_NoParkingRev
+  PR_Other: PR_Other
+  PR_Unknown: PR_Other
+
+  # P_ElectricalSpeedLimit
+  P_SpeedLim40ele: P_SpeedLim40ele
+  P_SpeedLim50ele: P_SpeedLim50ele
+  P_SpeedLim60ele: P_SpeedLim60ele
+  P_SpeedLim70ele: P_SpeedLim70ele
+  P_SpeedLim80ele: P_SpeedLim80ele
+  P_SpeedLim90ele: P_SpeedLim90ele
+  P_SpeedLim100ele: P_SpeedLim100ele
+  P_SpeedLim110ele: P_SpeedLim110ele
+  P_SpeedLim120ele: P_SpeedLim120ele
+  P_SpeedLim5ele: P_Other_SpeedLimele
+  P_SpeedLim20ele: P_Other_SpeedLimele
+  P_SpeedLim30ele: P_Other_SpeedLimele
+  P_Other_SpeedLimele: P_Other_SpeedLimele
+  P_Unknow_SpeedLimele: IGNORE
+
+  # False_Positive
+  FP_Route_Number: IGNORE
+  FP_Mirror: IGNORE
+  FP_Circular_Marker: IGNORE
+  FP_Vehicle_Wheel: IGNORE
+  FP_Head: IGNORE
+  FP_Light_Arrow: IGNORE
+  FP_Light_Time: IGNORE
+  FP_Light_Circle: IGNORE
+  FP_Polygon_Marker: IGNORE
+  FP_Light_Shell: IGNORE
+  FP_Building: IGNORE
+  FP_Twig: IGNORE
+  FP_Accessory_Arrow: IGNORE
+  FP_IncompleteSign: IGNORE
+  FP_SignWithContext: IGNORE
+  FP_Other: IGNORE
+  FP_Unknown: IGNORE
+  False_Positive: IGNORE
+  sign_back: IGNORE
+  Sign: IGNORE
+
+  GSWB_Misc: G_GuideSign_WhiteBlack
+  RouteSign_Misc: RoadSign
+  Multi_Misc: IGNORE
+
+  # O_Other
+  IR_HundredMeterPile: IGNORE
+  IR_Milestone: IGNORE
+  IR_RoadBoundary: IGNORE
+  IR_Parking: IGNORE
+  IR_PedestrianUnderpass: IGNORE
+  IR_PedestrianTunnel: IGNORE
+  IR_Blocked: IGNORE
+  IR_DisabledSpecial: IGNORE
+  IR_HighwayHundredMetersCard: IGNORE
+  W_CrossLaneRail: IGNORE
+  IR_ETCLanes: IR_ETCLanes
+  IR_ElectricalETC: IR_ElectricalETC
+  IR_HighwayETCTollStationsNotice: IR_HighwayETCTollStationsNotice
+  IR_ETCLaneIndication: IGNORE
+  IR_ETCLanesKeepDistance: IR_ETCLanesKeepDistance
+  IR_ETCOther: IGNORE
+  IR_ETCTollStation: IGNORE
+  IR_HighwayHundredCard: IGNORE
+  IR_Linearguide: IR_Linearguide
+  W_Slash: IGNORE
+  GuideSign_MultiMisc: IGNORE
+
+  # medium type
+  P_ElectricalSpeedLimit: IGNORE
+  P_SpeedLimit: IGNORE
+  ProhibitRemove: IGNORE
+  Min_SpeedLim: IGNORE
+  sign_Construction: IGNORE
+  RouteID: IGNORE
+
+  # old shit model prelabel
+  Other_Construction_Sign: IGNORE
+  Other_GuideSign_BlueWhite: IGNORE
+  Other_GuideSign_GreenWhite: IGNORE
+  Other_GuideSign_WhiteBlack: IGNORE
+  Other_Indications: IGNORE
+  Other_Min_Speed: IGNORE
+  Other_RouteID_RedWhite: IGNORE
+  Other_RouteID_YellowBlack: IGNORE
+  Other_TravelSign_BrownWhite: IGNORE
+  Other_Exit: IGNORE
+
+  # garbage
+  '0': IGNORE
+  '': IGNORE
+  mirror: IGNORE
+  Sign_Misc: IGNORE
+  M_Misc: IGNORE
+  M_Other: IGNORE
+  O_Other: IGNORE
+  Other: IGNORE
+  U_Unknow: IGNORE
+  U_Unknown: IGNORE
+  Unknown: IGNORE
+
+det2eval:
+  0.0: REMOVE # for roi that con't resize to input size cause pyramid resizer restrict
+  P_Custom: P_Custom # 0
+  P_GiveWay: P_GiveWay # 1
+  P_HeightLim: P_HeightLim # 2
+  P_MultiVehicle: P_MultiVehicle # 3
+  P_NoAnimalVehicle: P_NoAnimalVehicle # 4
+  P_NoBikeDownSlope: P_NoBikeDownSlope # 5
+  P_NoBikeUpSlope: P_NoBikeUpSlope # 6
+  P_NoBus: P_NoBus # 7
+  P_NoCar: P_NoCar # 8
+  P_NoCargoTricycle: P_NoCargoTricycle # 9
+  P_NoDangerous: P_NoDangerous # 10
+  P_NoEntry: P_NoEntry # 11
+  P_NoForward: P_NoForward # 12
+  P_NoForwardLeft: P_NoForwardLeft # 13
+  P_NoForwardRight: P_NoForwardRight # 14
+  P_NoHorning: P_NoHorning # 15
+  P_NoHuman: P_NoHuman # 16
+  P_NoHumanCargoTriangle: P_NoHumanCargoTriangle # 17
+  P_NoHumanPassengerTriangle: P_NoHumanPassengerTriangle # 18
+  P_NoHumanVehicle: P_NoHumanVehicle # 19
+  P_NoLeftRightTurn: P_NoLeftRightTurn # 20
+  P_NoLeftTurn: P_NoLeftTurn # 21
+  P_NoLongParking: P_NoLongParking # 22
+  P_NoMinibus: P_NoMinibus # 23
+  P_NoMotor: P_NoMotor # 24
+  P_NoMotorcycle: P_NoMotorcycle # 25
+  P_NoNonMotor: P_NoNonMotor # 26
+  P_NoParking: P_NoParking # 27
+  P_NoPassing: P_NoPassing # 28
+  P_NoPassingRev: P_NoPassingRev # 29
+  P_NoReturn: P_NoReturn # 30
+  P_NoRightTurn: P_NoRightTurn # 31
+  P_NoSpecificLeftTurn: P_NoSpecificLeftTurn # 32
+  P_NoSpecificRightTurn: P_NoSpecificRightTurn # 33
+  P_NoTractor: P_NoTractor # 34
+  P_NoTrailer: P_NoTrailer # 35
+  P_NoTricycle: P_NoTricycle # 36
+  P_NoTruck: P_NoTruck # 37
+  P_Noway: P_Noway # 38
+  P_ParkingCheck: P_ParkingCheck # 39
+  P_SlowFor: P_SlowFor # 40
+  P_StopFor: P_StopFor # 41
+  P_VehicleOther: P_VehicleOther # 42
+  P_WeightLim: P_WeightLim # 43
+  P_WeightLimWheel: P_WeightLimWheel # 44
+  P_WidthLim: P_WidthLim # 45
+  P_Other1: P_Other1 # 46
+  W_AccidentProne: W_AccidentProne # 47
+  W_BadWeather: W_BadWeather # 48
+  W_Bump: W_Bump # 49
+  W_Bumpy: W_Bumpy # 50
+  W_Children: W_Children # 51
+  W_Circle: W_Circle # 52
+  W_ContinuousDown: W_ContinuousDown # 53
+  W_ContinuousTurn: W_ContinuousTurn # 54
+  W_Cross: W_Cross # 55
+  W_CrossIntersection: W_CrossIntersection # 56
+  W_Cycle: W_Cycle # 57
+  W_DamLeft: W_DamLeft # 58
+  W_DamRight: W_DamRight # 59
+  W_Danger: W_Danger # 60
+  W_DetourAround: W_DetourAround # 61
+  W_DetourLeft: W_DetourLeft # 62
+  W_DetourRight: W_DetourRight # 63
+  W_Disabled: W_Disabled # 64
+  W_Down: W_Down # 65
+  W_Ferry: W_Ferry # 66
+  W_Fog: W_Fog # 67
+  W_Ford: W_Ford # 68
+  W_GuardedRailway: W_GuardedRailway # 69
+  W_HumpBridge: W_HumpBridge # 70
+  W_Ice: W_Ice # 71
+  W_KeepDistance: W_KeepDistance # 72
+  W_LRNarrow: W_LRNarrow # 73
+  W_LRTurn: W_LRTurn # 74
+  W_LeftFalling: W_LeftFalling # 75
+  W_LeftNarrow: W_LeftNarrow # 76
+  W_LeftTurn: W_LeftTurn # 77
+  W_LowLying: W_LowLying # 78
+  W_MergeLeft: W_MergeLeft # 79
+  W_MergeRight: W_MergeRight # 80
+  W_MountLeft: W_MountLeft # 81
+  W_MountRight: W_MountRight # 82
+  W_NarrowBridge: W_NarrowBridge # 83
+  W_Pedestrian: W_Pedestrian # 84
+  W_RLTurn: W_RLTurn # 85
+  W_Railway: W_Railway # 86
+  W_Rain: W_Rain # 87
+  W_RightFalling: W_RightFalling # 88
+  W_RightNarrow: W_RightNarrow # 89
+  W_RightTurn: W_RightTurn # 90
+  W_SideWind: W_SideWind # 91
+  W_Slip: W_Slip # 92
+  W_Slow: W_Slow # 93
+  W_SlowDown: W_SlowDown # 94
+  W_SplitLeft: W_SplitLeft # 95
+  W_SplitRight: W_SplitRight # 96
+  W_TIntersection: W_TIntersection # 97
+  W_TShapLeft: W_TShapLeft # 98
+  W_TShapRight: W_TShapRight # 99
+  W_Tidal: W_Tidal # 100
+  W_TrafficLight: W_TrafficLight # 101
+  W_Tripod: W_Tripod # 102
+  W_Tshape: W_Tshape # 103
+  W_Tshaps: W_Tshaps # 104
+  W_Tunnel: W_Tunnel # 105
+  W_TunnelHeadlight: W_TunnelHeadlight # 106
+  W_TwoWay: W_TwoWay # 107
+  W_Up: W_Up # 108
+  W_VehicleQueue: W_VehicleQueue # 109
+  W_Village: W_Village # 110
+  W_Working: W_Working # 111
+  W_YBLeft: W_YBLeft # 112
+  W_YBRight: W_YBRight # 113
+  W_YLeft: W_YLeft # 114
+  W_YRight: W_YRight # 115
+  W_Other: W_Other # 116
+  I_Circle: I_Circle # 117
+  I_Forward: I_Forward # 118
+  I_ForwardLeft: I_ForwardLeft # 119
+  I_ForwardRight: I_ForwardRight # 120
+  I_Honk: I_Honk # 121
+  I_Left: I_Left # 122
+  I_LeftRight: I_LeftRight # 123
+  I_LeftTurn: I_LeftTurn # 124
+  I_Motors: I_Motors # 125
+  I_NonMotors: I_NonMotors # 126
+  I_Right: I_Right # 127
+  I_RightTurn: I_RightTurn # 128
+  I_Uturn: I_Uturn # 129
+  I_Walk: I_Walk # 130
+  I_Other_circle: RoadSign # 131
+  I_AllowUturn: I_AllowUturn # 132
+  I_FastBusLane: I_FastBusLane # 133
+  I_ForwardLane: I_ForwardLane # 134
+  I_ForwardLeftLane: I_ForwardLeftLane # 135
+  I_ForwardRightLane: I_ForwardRightLane # 136
+  I_LeftBusLane: I_LeftBusLane # 137
+  I_LeftLine: I_LeftLine # 138
+  I_LeftTurnLane: I_LeftTurnLane # 139
+  I_MotorsLane: I_MotorsLane # 140
+  I_MultiOccupantMotorsLane: I_MultiOccupantMotorsLane # 141
+  I_NonMotorsLane: I_NonMotorsLane # 142
+  I_ParkingSpace: I_ParkingSpace # 143
+  I_PedestrianCross: I_PedestrianCross # 144
+  I_PriorityIntereesction: I_PriorityIntereesction # 145
+  I_RightLine: I_RightLine # 146
+  I_RightTurnLane: I_RightTurnLane # 147
+  I_SplitDriveLine: I_SplitDriveLine # 148
+  I_StraightLine: I_StraightLine # 149
+  I_UTurnAndLeftLane: I_UTurnAndLeftLane # 150
+  I_UTurnLane: I_UTurnLane # 151
+  I_Other_rectangle: RoadSign # 152
+  G_GuideSign_WhiteBlack: G_GuideSign_WhiteBlack # 153
+  IR_Ramp: IR_Ramp # 154
+  IR_RampArrow: IR_RampArrow # 155
+  IR_Zones: IR_Zones # 156
+  IR_ZonesII: IR_ZonesII # 157
+  R_RoadSign_BlueWhite: RoadSign # 158
+  G_GuideSign_GreenWhite: RoadSign # 159
+  T_TravelSign_BrownWhite: RoadSign # 160
+  RouteID_RedWhite: RouteID_RedWhite # 161
+  RouteID_YellowBlack: RouteID_YellowBlack # 162
+  RouteID_Other: RouteID_Other # 163
+  I_MinSpeedLim40: I_MinSpeedLim40 # 164
+  I_MinSpeedLim50: I_MinSpeedLim50 # 165
+  I_MinSpeedLim60: I_MinSpeedLim60 # 166
+  I_MinSpeedLim70: I_MinSpeedLim70 # 167
+  I_MinSpeedLim80: I_MinSpeedLim80 # 168
+  I_MinSpeedLim90: I_MinSpeedLim90 # 169
+  I_MinSpeedLim100: I_MinSpeedLim100 # 170
+  I_MinSpeedLim110: I_MinSpeedLim110 # 171
+  P_SpeedLim5: P_SpeedLim5 # 172
+  P_SpeedLim10: P_SpeedLim10 # 173
+  P_SpeedLim15: P_SpeedLim15 # 174
+  P_SpeedLim20: P_SpeedLim20 # 175
+  P_SpeedLim25: P_SpeedLim25 # 176
+  P_SpeedLim30: P_SpeedLim30 # 177
+  P_SpeedLim35: P_SpeedLim35 # 178
+  P_SpeedLim40: P_SpeedLim40 # 179
+  P_SpeedLim45: P_SpeedLim45 # 180
+  P_SpeedLim50: P_SpeedLim50 # 181
+  P_SpeedLim55: P_SpeedLim55 # 182
+  P_SpeedLim60: P_SpeedLim60 # 183
+  P_SpeedLim65: P_SpeedLim65 # 184
+  P_SpeedLim70: P_SpeedLim70 # 185
+  P_SpeedLim75: P_SpeedLim75 # 186
+  P_SpeedLim80: P_SpeedLim80 # 187
+  P_SpeedLim85: P_SpeedLim85 # 188
+  P_SpeedLim90: P_SpeedLim90 # 189
+  P_SpeedLim95: P_SpeedLim95 # 190
+  P_SpeedLim100: P_SpeedLim100 # 191
+  P_SpeedLim105: P_SpeedLim105 # 192
+  P_SpeedLim110: P_SpeedLim110 # 193
+  P_SpeedLim115: P_SpeedLim115 # 194
+  P_SpeedLim120: P_SpeedLim120 # 195
+  P_SpeedLimRev5: P_SpeedLimRev5 # 196
+  P_SpeedLimRev10: P_SpeedLimRev10 # 197
+  P_SpeedLimRev15: P_SpeedLimRev15 # 198
+  P_SpeedLimRev20: P_SpeedLimRev20 # 199
+  P_SpeedLimRev25: P_SpeedLimRev25 # 200
+  P_SpeedLimRev30: P_SpeedLimRev30 # 201
+  P_SpeedLimRev35: P_SpeedLimRev35 # 202
+  P_SpeedLimRev40: P_SpeedLimRev40 # 203
+  P_SpeedLimRev45: P_SpeedLimRev45 # 204
+  P_SpeedLimRev50: P_SpeedLimRev50 # 205
+  P_SpeedLimRev55: P_SpeedLimRev55 # 206
+  P_SpeedLimRev60: P_SpeedLimRev60 # 207
+  P_SpeedLimRev65: P_SpeedLimRev65 # 208
+  P_SpeedLimRev70: P_SpeedLimRev70 # 209
+  P_SpeedLimRev75: P_SpeedLimRev75 # 210
+  P_SpeedLimRev80: P_SpeedLimRev80 # 211
+  P_SpeedLimRev85: P_SpeedLimRev85 # 212
+  P_SpeedLimRev90: P_SpeedLimRev90 # 213
+  P_SpeedLimRev95: P_SpeedLimRev95 # 214
+  P_SpeedLimRev100: P_SpeedLimRev100 # 215
+  P_SpeedLimRev105: P_SpeedLimRev105 # 216
+  P_SpeedLimRev110: P_SpeedLimRev110 # 217
+  P_SpeedLimRev115: P_SpeedLimRev115 # 218
+  P_SpeedLimRev120: P_SpeedLimRev120 # 219
+  P_SpeedLim40ele: P_SpeedLim40ele # 220
+  P_SpeedLim50ele: P_SpeedLim50ele # 221
+  P_SpeedLim60ele: P_SpeedLim60ele # 222
+  P_SpeedLim70ele: P_SpeedLim70ele # 223
+  P_SpeedLim80ele: P_SpeedLim80ele # 224
+  P_SpeedLim90ele: P_SpeedLim90ele # 225
+  P_SpeedLim100ele: P_SpeedLim100ele # 226
+  P_SpeedLim110ele: P_SpeedLim110ele # 227
+  P_SpeedLim120ele: P_SpeedLim120ele # 228
+  P_Other_SpeedLimele: P_Other_SpeedLimele # 229
+  RouteSign_Misc: RoadSign # 230
+  GSWB_Misc: G_GuideSign_WhiteBlack # 231
+  Multi_Misc: REMOVE # 232
+  FP_Circular_Marker: False_Positive # 233
+  FP_Light_Arrow: False_Positive # 234
+  FP_Light_Circle: False_Positive # 235
+  FP_Mirror: False_Positive # 236
+  FP_Route_Number: False_Positive # 237
+  FP_Other: False_Positive # 238
+  sign_back: False_Positive # 239
+  IR_Linearguide: IR_Linearguide # 240
+  P_SpeedLim130: P_SpeedLim130 # 241
+  PSL_Other: PSL_Other # 242
+  PSL_Unknown: PSL_Unknown # 243
+  P_NoLongParkingRev: P_NoLongParkingRev # 244
+  P_NoParkingRev: P_NoParkingRev # 245
+  PR_Other: PR_Other # 246
+  MSL_Other: MSL_Other # 247
+  IR_RampGreen: IR_Ramp # 248
+  IR_SpecificRamp: IR_SpecificRamp # 249
+  IR_RampExit: IR_RampExit # 250
+  IR_RampHighwayExit: IR_RampHighwayExit # 251
+  IR_AuxiliaryRoad: IR_AuxiliaryRoad # 252
+  IR_RightLane: IR_RightLane # 253
+  IR_HighwayETCTollStationsNotice: IR_HighwayETCTollStationsNotice # 254
+  IR_ETCLanes: IR_ETCLanes # 255
+  IR_ETCLanesKeepDistance: IR_ETCLanesKeepDistance # 256
+  IR_ElectricalETC: IR_ElectricalETC # 257
+
+det_cls:
+  - ALL
+  - SEP

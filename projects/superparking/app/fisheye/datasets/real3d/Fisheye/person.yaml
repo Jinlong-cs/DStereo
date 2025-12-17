@@ -1,0 +1,109 @@
+person:
+  3M96H_v00:
+    train:
+      rec:
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1207_1208_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1209_1210_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1211_1214_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1215_1217_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1218_1219_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1220_1225_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/3M96H/split/data_3M96H_2021_1229_1231_v00__fisheye__pedestrian.rec
+    val:
+      rec:
+        - SuperParking/Detection3D/val/v00/3M96H/split/data_3M96H_2021_1228_1230_v00__fisheye__pedestrian.rec
+
+  3M96H_v01:
+    train:
+      rec:
+        - SuperParking/Detection3D/v01/3M96H/split/data_3M96H_2022_0115_0121_v01__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v01/3M96H/split/data_3M96H_2022_0122_0225_v01__fisheye__pedestrian.rec
+    val:
+      rec:
+        - SuperParking/Detection3D/val/v01/3M96H/split/data_3M96H_2022_0114_0210_v01__fisheye__pedestrian.rec
+
+  3M96H_v02:
+    train:
+      rec:
+        - SuperParking/Detection3D/v02/3M96H/split/data_3M96H_2022_0302_0321_v02__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v02/3M96H/split/data_3M96H_2022_0322_0330_v02__fisheye__pedestrian.rec
+    val:
+      rec:
+        - SuperParking/Detection3D/val/v02/3M96H/split/data_3M96H_2022_0301_0307_v02__fisheye__pedestrian.rec
+
+  3M96H_v03:
+    train:
+      rec:
+        - SuperParking/Detection3D/v03/3M96H/split/data_3M96H_2022_0402_0410_v03__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v03/3M96H/split/data_3M96H_2022_0411_0413_v03__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v03/3M96H/split/data_3M96H_2022_0414_0418_v03__fisheye__pedestrian.rec
+    val:
+      rec:
+        # demo
+        - SuperParking/Detection3D/demo/split/data_3M96H_20220401_v03__fisheye__pedestrian.rec
+
+  JL661_v00:
+    train:
+      rec:
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0312_0317_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0318_0331_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0401_0404_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0405_0407_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0408_0409_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0413_0415_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0420_0424_v00__fisheye__pedestrian.rec
+    val:
+      rec:
+        - SuperParking/Detection3D/v00/JL661/split/data_JL661_2022_0425_v00__fisheye__pedestrian.rec
+
+  UT299_v04:
+    train:
+      rec:
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220610_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220611_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220613_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220614_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220620_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220622_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT299/split/data_UT299_20220623_v00__fisheye__pedestrian.rec
+
+  UT363_v04:
+    train:
+      rec:
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220617_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220620_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220621_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220622_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220623_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220624_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220626_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220627_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220628_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220629_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT363/split/data_UT363_20220630_v00__fisheye__pedestrian.rec
+
+  UT370_v04:
+    train:
+      rec:
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220528_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220529_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220530_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220531_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220601_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220602_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220604_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220605_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UT370/split/data_UT370_20220606_v00__fisheye__pedestrian.rec
+
+  UTF76_v04:
+    train:
+      rec:
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220618_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220620_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220621_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220622_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220623_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220627_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220628_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220629_v00__fisheye__pedestrian.rec
+        - SuperParking/Detection3D/v04/UTF76/split/data_UTF76_20220630_v00__fisheye__pedestrian.rec

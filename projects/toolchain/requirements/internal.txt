@@ -1,0 +1,3 @@
+# dependencies of internal horizon
+# which act as complements to build.txt
+# TODO(hongyu.xie, ?): to simplify hatbc dependence #

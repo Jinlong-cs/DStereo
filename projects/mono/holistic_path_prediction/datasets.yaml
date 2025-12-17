@@ -1,0 +1,16 @@
+hpp:
+- batch_size: 8
+  train_json: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/train_data/virtual_10_70_distcoeffs/hpp_wide20/data_split/hpp_json/anno_normal_data_80000.json
+  train_rec: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/train_data/virtual_10_70_distcoeffs/hpp_wide20/data_split/rec/ipm_train_normal_80000.rec
+  val_json: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/val_data/evalset_normal_wide20/trajs.json
+  val_rec: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/val_data/evalset_normal_wide20/ipm_train/
+- batch_size: 5
+  train_json: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/train_data/virtual_10_70_distcoeffs/hpp_wide20/data_split/hpp_json/anno_normal_data_49889.json
+  train_rec: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/train_data/virtual_10_70_distcoeffs/hpp_wide20/data_split/rec/ipm_train_normal_data_49889.rec
+  val_json:
+  val_rec:
+- batch_size: 4
+  train_json: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/train_data/virtual_10_70_distcoeffs/hpp_wide20/data_split/hpp_json/anno_abnormal_data_35699.json
+  train_rec: /horizon-bucket/mono/data/yingqian.zhao/HPP/data/train_data/virtual_10_70_distcoeffs/hpp_wide20/data_split/rec/ipm_train_abnormal_data_35699.rec
+  val_json:
+  val_rec:

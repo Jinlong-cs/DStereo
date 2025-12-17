@@ -1,0 +1,1111 @@
+# -------------------------- validation --------------------------
+# v0.0.1 using for pipeline_test
+
+pipeline_test:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+        sample_interval: 100
+pipeline_testV2:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+        sample_interval: 100
+v0.0.1_11v:
+  BEIJING:
+    UTHS6:
+      UTHS6_20220611:
+        sample_interval: 5
+    UT126:
+      UT126_20220803_D:
+# group data version
+v1.0.1:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+
+v1.1.0_10v:
+  BEIJING:
+    DG201:
+      DG201_20210518:
+      DG201_20210522:
+
+# 存在标定参数不准以及GT有错误
+v1.0.2_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220907_20220914:
+    UT263:
+      UT263_20221015_20221018:
+
+v1.0.3_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.4_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+    JL773:
+      JL773_20220225:
+    DG201:
+      DG201_20220304:
+    UT1R3:
+      UT1R3_20220311:
+    DG102:
+      DG102_20220301:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.5_11v_e2e:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+    JL773:
+      JL773_20220225:
+    DG201:
+      DG201_20220304:
+    UT1R3:
+      UT1R3_20220311:
+    DG102:
+      DG102_20220301:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.5_11v_e2e_without_6v:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010:
+
+v1.0.6_11v_e2e_without_6v:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_5v:
+    BYD19:
+      data_BYD19_20221114_v03:
+      data_BYD19_20221115_v03:
+      data_BYD19_20221116_v03:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010:  
+
+v1.1.0_BYD_wide_range_val_aidieval:
+  BEIJING_7v:
+    BYD18:
+      BYD18_20221126_val_4dgt_wide_range:
+        sample_interval: 1
+      BYD18_20221206_val_4dgt_wide_range:
+        sample_interval: 1
+    BYD72:
+      BYD72_20221201_val_4dgt_wide_range:
+        sample_interval: 1
+      BYD72_20221208_val_4dgt_wide_range:
+        sample_interval: 1
+    BYD19:
+      BYD19_20221202_val_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20221208_val_4dgt_wide_range:
+        sample_interval: 1
+
+v1.1.0_LS_wide_range_val_aidieval:
+  BEIJING_11v:
+    LS912:
+      LS912_20221217_20221220_4dgt_wide_range:
+        sample_interval: 1
+v1.1.0_LS_small_range_val_aidieval:
+  BEIJING_11v:
+    LS912:
+      LS912_20221217_20221220_4dgt_small_range:
+        sample_interval: 1
+
+v1.0.6_11v_e2e_without_6v_BYD:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_5v:
+    BYD19:
+      data_BYD19_20221114_v03:
+      data_BYD19_20221115_v03:
+      data_BYD19_20221116_v03:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010:
+  BEIJING_7v:
+    BYD18:
+      BYD18_20221126_val_4dgt_wide_range:
+      BYD18_20221206_val_4dgt_wide_range:
+    BYD72:
+      BYD72_20221201_val_4dgt_wide_range:
+      BYD72_20221208_val_4dgt_wide_range:
+    BYD19:
+      BYD19_20221202_val_4dgt_wide_range:
+      BYD19_20221208_val_4dgt_wide_range:
+
+v1.0.7_11v_e2e_BYD:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010:
+  BEIJING_7v:
+    BYD18:
+      BYD18_20221126_val_4dgt_wide_range:
+      BYD18_20221206_val_4dgt_wide_range:
+    BYD72:
+      BYD72_20221201_val_4dgt_wide_range:
+      BYD72_20221208_val_4dgt_wide_range:
+    BYD19:
+      BYD19_20221202_val_4dgt_wide_range:
+      BYD19_20221208_val_4dgt_wide_range:
+
+v1.0.6_11v_e2e_without_6v_BYD_incrementEval:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+        sample_interval: 5
+    UT0Q9:
+      UT0Q9_20220922:
+        sample_interval: 5
+    UT126:
+      UT126_20220922-20220924:
+        sample_interval: 5
+    LS912:
+      LS912_20221111:
+        sample_interval: 5
+  BEIJING_5v:
+    BYD19:
+      data_BYD19_20221114_v03:
+        sample_interval: 5
+      data_BYD19_20221115_v03:
+        sample_interval: 5
+      data_BYD19_20221116_v03:
+        sample_interval: 5
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+        sample_interval: 5
+    UT263:
+      UT263_20220922:
+        sample_interval: 5
+      UT263_20221010:
+        sample_interval: 5
+  BEIJING_7v:
+    BYD18:
+      BYD18_20221126_val_4dgt_wide_range:
+        sample_interval: 5
+      BYD18_20221206_val_4dgt_wide_range:
+        sample_interval: 5
+    BYD72:
+      BYD72_20221201_val_4dgt_wide_range:
+        sample_interval: 5
+      BYD72_20221208_val_4dgt_wide_range:
+        sample_interval: 5
+    BYD19:
+      BYD19_20221202_val_4dgt_wide_range:
+        sample_interval: 5
+      BYD19_20221208_val_4dgt_wide_range:
+        sample_interval: 5
+
+11v_val:
+  BEIJING_11v:
+    UT126:
+      UT126_20221102_val_4dgt_small_range:
+        sample_interval: 1
+      UT126_20221102_val_4dgt_wide_range:
+        sample_interval: 1
+      UT126_20221105_val_4dgt_small_range:
+        sample_interval: 1
+      UT126_20221105_val_4dgt_wide_range:
+        sample_interval: 1
+      UT126_20221109_val_4dgt_small_range:
+        sample_interval: 1
+      UT126_20221109_val_4dgt_wide_range:
+        sample_interval: 1
+      UT126_20221110_20221114_val_4dgt_small_range:
+        sample_interval: 1
+      UT126_20221110_20221114_val_4dgt_wide_range:
+        sample_interval: 1
+      UT126_20230103_20230110_val_4dgt_small_range:
+        sample_interval: 1
+      UT126_20230103_20230110_val_4dgt_wide_range:
+        sample_interval: 1
+    UT1R3:
+      UT1R3_20221201_val_4dgt_small_range:
+        sample_interval: 1
+      UT1R3_20221201_val_4dgt_wide_range:
+        sample_interval: 1
+      UT1R3_20221206_val_4dgt_small_range:
+        sample_interval: 1
+      UT1R3_20221206_val_4dgt_wide_range:
+        sample_interval: 1
+      UT1R3_20230110_val_4dgt_small_range:
+        sample_interval: 1
+      UT1R3_20230110_val_4dgt_wide_range:
+        sample_interval: 1
+    UT263:
+      UT263_20221106_val_4dgt_small_range:
+        sample_interval: 1
+      UT263_20221106_val_4dgt_wide_range:
+        sample_interval: 1
+      UT263_20221109_val_4dgt_small_range:
+        sample_interval: 1
+      UT263_20221109_val_4dgt_wide_range:
+        sample_interval: 1
+      UT263_20221110_val_4dgt_small_range:
+        sample_interval: 1
+      UT263_20221110_val_4dgt_wide_range:
+        sample_interval: 1
+      UT263_20221206_val_4dgt_small_range:
+        sample_interval: 1
+      UT263_20221206_val_4dgt_wide_range:
+        sample_interval: 1
+      UT263_20221214_20221215_val_4dgt_small_range:
+        sample_interval: 1
+      UT263_20221214_20221215_val_4dgt_wide_range:
+        sample_interval: 1
+      UT263_20230111_20230114_val_4dgt_small_range:
+        sample_interval: 1
+      UT263_20230111_20230114_val_4dgt_wide_range:
+        sample_interval: 1
+
+v1.2.0_10v:
+  BEIJING:
+    UT1R3:
+      UT1R3_20220624:
+    UTHS6:
+      UTHS6_20220608:
+      UTHS6_20220618:
+
+v1.0.2:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+
+v1.0.3:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211030:
+
+v1.0.4:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211030:
+    30C1G:
+      30C1G_20211101:
+
+v1.0.5:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211030:
+    30C1G:
+      30C1G_20211101:
+      30C1G_20211122:
+    H3165:
+      H3165_20211201:
+  
+v1.0.7:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+    30C1G:
+      30C1G_20211122:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+
+v1.0.8:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+
+v2.0.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# add RX633_20211221
+#
+#------ [update ] ------
+
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+
+v2.1.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# Add JL773、DG201、DG102、UT1R3
+#------ [update ] ------
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+    JL773:
+      JL773_20220225:
+    DG201:
+      DG201_20220304:
+    UT1R3:
+      UT1R3_20220311:
+    DG102:
+      DG102_20220301:
+v3.0.0:
+  MOTR:
+    30C1G:
+      30C1G_20211102_20211102:
+    65U3D:
+      65U3D_20211108_20211108:
+    H3165:
+      H3165_20211101_20211101:
+
+v1.0.5_11v_e2e_small_range:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815_small_range:
+    UT0Q9:
+      UT0Q9_20220922_small_range:
+    UT126:
+      UT126_20220922-20220924_small_range:
+    LS912:
+      LS912_20221111_small_range:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816_small_range:
+    UT263:
+      UT263_20220922_small_range:
+      UT263_20221010_small_range:
+
+#-----badcase mining allRegion eval dataset-----------
+11v_val_ultraClose_3mVru_aidieval:
+  BEIJING_11v:
+    UT126:
+      UT126_20221102_val_4dgt_ultraClose_3mVru:
+        sample_interval: 1
+    UT263:
+      UT263_20221206_val_4dgt_ultraClose_3mVru:
+        sample_interval: 1
+
+v1_1_4_2_wide_range_seq_val:
+  BEIJING_11v:
+    UT263:
+      UT263_20220929_20221009_wide_range_seq: 
+        sample_interval: 1
+  BEIJING_7v: 
+    BYD19:
+      BYD19_20221106_wide_range_seq:
+        sample_interval: 1
+
+v1_1_4_3_wide_range_seq_val:
+  BEIJING_11v:
+    UT263:
+      UT263_20220929_20221009_wide_range_seq: 
+        sample_interval: 1
+    LS912:
+      LS912_20230508_D_seq_4dgt_wide_range:
+        sample_interval: 1
+      LS912_20230509_D_seq_4dgt_wide_range:
+        sample_interval: 1
+      LS912_20230511_D_seq_4dgt_wide_range:
+        sample_interval: 1
+  BEIJING_7v: 
+    BYD19:
+      BYD19_20221106_wide_range_seq:
+        sample_interval: 1
+
+v1_1_5_2_fisheye5v_small_range:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+      
+7v_val_cls_2d_wide_range:
+  BEIJING_7v: 
+    BYD18:               
+      BYD18_20230423_D_4dgt_wide_range:
+        sample_interval: 1  
+    BYD19:               
+      BYD19_20230418_D_4dgt_wide_range:
+        sample_interval: 1  
+
+BYD_Test_2133_packs_subset_20230322_20230422:
+  BEIJING_7v: 
+    BYD19:
+      BYD19_20230322_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230323_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230324_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230325_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230327_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230328_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230329_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230330_D_4dgt_wide_range:
+        sample_interval: 1     
+      BYD19_20230403_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230404_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230406_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230407_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230408_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230410_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230411_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230412_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230413_D_4dgt_wide_range:
+        sample_interval: 1
+      BYD19_20230414_D_4dgt_wide_range:
+        sample_interval: 1  
+
+LS912_Test_subset_20230106_20230322_wide:
+  CROSSPOINTS: 
+    LS912:
+      merge_LS912_crosspoints_wide_v5a_v20230206_0_11v_wide_bev3d_wide_range:
+        sample_interval: 1
+
+LS912_Test_subset_20230106_20230322_small:
+  CROSSPOINTS: 
+    LS912:
+      merge_LS912_crosspoints_wide_v5a_v20230206_0_11v_wide_bev3d_small_range:
+        sample_interval: 1
+
+v1.1.0_BYD_wide_range_val_day:
+  BEIJING_7v:
+    BYD18:
+      BYD18_20221126_val_4dgt_wide_range_day:
+        sample_interval: 1
+      BYD18_20221206_val_4dgt_wide_range_day:
+        sample_interval: 1
+    BYD72:
+      BYD72_20221201_val_4dgt_wide_range_day:
+        sample_interval: 1
+      BYD72_20221208_val_4dgt_wide_range_day:
+        sample_interval: 1
+    BYD19:
+      BYD19_20221202_val_4dgt_wide_range_day:
+        sample_interval: 1
+      BYD19_20221208_val_4dgt_wide_range_day:
+        sample_interval: 1
+        
+v1.1.0_BYD_wide_range_val_night:
+  BEIJING_7v:
+    BYD18:
+      BYD18_20221126_val_4dgt_wide_range_night:
+        sample_interval: 1
+      BYD18_20221206_val_4dgt_wide_range_night:
+        sample_interval: 1
+    BYD72:
+      BYD72_20221201_val_4dgt_wide_range_night:
+        sample_interval: 1
+      BYD72_20221208_val_4dgt_wide_range_night:
+        sample_interval: 1
+    BYD19:
+      BYD19_20221202_val_4dgt_wide_range_night:
+        sample_interval: 1
+      BYD19_20221208_val_4dgt_wide_range_night:
+        sample_interval: 1
+
+v1_1_6_8_wide_range_parking:
+  BEIJING_11v_Parking: 
+    UT126: 
+      UT126_20230408_D_4dgt_wide_range: 
+        sample_interval: 1
+      UT126_20230414_D_4dgt_wide_range: 
+        sample_interval: 1
+    UT263:
+      UT263_20230620_D_4dgt_wide_range:
+        sample_interval: 1
+      UT263_20230509_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230510_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230511_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230512_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230513_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230514_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230515_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230516_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230517_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230519_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230614_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230615_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230616_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230617_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230619_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230621_D_ground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230509_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230510_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230511_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230512_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230513_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230514_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230515_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230516_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230517_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230518_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230519_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230615_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230616_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230617_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230619_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1   
+      UT263_20230621_D_underground_parking_4dgt_wide_range:
+        sample_interval: 1      
+aeb_test_site_val:
+  AEB_Test_Site:
+    HBEK016:
+      HBEK016_20231123_AEB_Test_Site_215155_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231124_AEB_Test_Site_215182_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231128_AEB_Test_Site_215647_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231201_AEB_Test_Site_216515_val_4dgt_wide_range:
+        sample_interval: 1
+
+
+# events that overlapped with training data are removed
+v1_1_bev_3d_all_range_aeb_temporal_val_rm_ovlp_sampled:
+  BEIJING_11v:
+    LX165:
+      LX165_20231028_20231103_D_seq_AEB_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LX165_20231028_20231103_D_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LX165_20231028_20231103_D_val/odometry/all_task/wheel.txt
+    UT0F3:
+      UT0F3_20231028_20231103_D_seq_AEB_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT0F3_20231028_20231103_D_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT0F3_20231028_20231103_D_val/odometry/all_task/wheel.txt
+    UT0T1:
+      UT0T1_20231028_20231103_D_seq_AEB_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT0T1_20231028_20231103_D_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT0T1_20231028_20231103_D_val/odometry/all_task/wheel.txt
+    UT263:
+      UT263_20231028_20231103_D_seq_AEB_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT263_20231028_20231103_D_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT263_20231028_20231103_D_val/odometry/all_task/wheel.txt
+    UT370:
+      UT370_20231028_20231103_D_seq_AEB_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT370_20231028_20231103_D_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT370_20231028_20231103_D_val/odometry/all_task/wheel.txt
+  BEIJING_7v:
+    UT3J5:
+      UT3J5_20231028_20231102_D_seq_AEB_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT3J5_20231028_20231102_D_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/UT3J5_20231028_20231102_D_val/odometry/all_task/wheel.txt
+
+v0_3_bev_3d_7v_all_range_main_temporal_val_sampled:
+  BEIJING_11v:
+    LS912:
+      LS912_20230327_D_seq_relabel_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230327_D_relabel_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230327_D_relabel_val/odometry/all_task/wheel.txt
+      LS912_20230419_D_seq_relabel_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230419_D_relabel_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230419_D_relabel_val/odometry/all_task/wheel.txt
+      LS912_20230423_D_seq_relabel_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230423_D_relabel_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230423_D_relabel_val/odometry/all_task/wheel.txt
+      LS912_20230530_D_seq_relabel_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230530_D_relabel_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230530_D_relabel_val/odometry/all_task/wheel.txt
+      LS912_20230607_D_seq_relabel_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230607_D_relabel_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS912_20230607_D_relabel_val/odometry/all_task/wheel.txt
+    LS830:
+      LS830_20230317_D_seq_relabel_val_4dgt_wide_range:
+        sample_interval: 1
+        sync_file_lmdb: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS830_20230317_D_relabel_val/sampled_sync_file_lmdb/all_range/all_task
+        odometry_file_path: /horizon-bucket/matrix2/users/naiyu01.gao/bev_3d_packing/LS830_20230317_D_relabel_val/odometry/all_task/wheel.txt
+
+v1_1_aeb_test_site_val:
+  AEB_Test_Site:
+    HBEK016:
+      HBEK016_20231123_AEB_Test_Site_215155_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231124_AEB_Test_Site_215182_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231128_AEB_Test_Site_215647_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231201_AEB_Test_Site_216515_val_4dgt_wide_range:
+        sample_interval: 1
+      HBEK016_20231122_AEB_Test_Site_215177_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_AEB_Test_Site_215645_val_4dgt_all_range:
+        sample_interval: 1
+
+# v0_3_2_bev_3d_7v_all_range_main_temporal_val_sampled:
+v3_0_bev_3d_7v_all_range_main_seq_val_sampled:
+  4DGT_1_8_2:
+    LS830:
+      LS830_20230317_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+    LS912:
+      LS912_20230327_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+      LS912_20230419_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+      LS912_20230423_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+      LS912_20230530_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+      LS912_20230607_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+
+# v1_1_2_bev_3d_all_range_aeb_temporal_val_rm_ovlp_sampled:
+v3_0_bev_3d_7v_all_range_aeb_seq_val_sampled:
+  4DGT_1_8_2:
+    LX165:
+      LX165_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+    UT0F3:
+      UT0F3_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+    UT0T1:
+      UT0T1_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+    UT263:
+      UT263_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+    UT370:
+      UT370_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+    UT3J5:
+      UT3J5_20231028_20231102_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+
+v3_0_1_aeb_test_site_val:
+  ManualAnno:
+    HBEK016:
+      HBEK016_20231122_seq_AEB_Test_Site_215177_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231123_seq_AEB_Test_Site_215155_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231124_seq_AEB_Test_Site_215182_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231125_seq_AEB_Test_Site_215551_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231125_seq_AEB_Test_Site_216056_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231125_seq_AEB_Test_Site_216064_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231127_seq_AEB_Test_Site_215578_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_seq_AEB_Test_Site_215637_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_seq_AEB_Test_Site_215645_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_seq_AEB_Test_Site_215647_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231129_seq_AEB_Test_Site_216498_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231130_seq_AEB_Test_Site_216445_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231201_seq_AEB_Test_Site_216515_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231217_seq_AEB_Test_Site_221888_val_manualanno_wide_range:
+        sample_interval: 1
+
+
+
+v3_0_bev_3d_7v_all_range_main_seq_val_sampled_egomotion:
+  4DGT_1_8_2:
+    LS830:
+      LS830_20230317_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LS830_20230317_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+    LS912:
+      LS912_20230327_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LS912_20230327_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+      LS912_20230419_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LS912_20230419_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+      LS912_20230423_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LS912_20230423_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+      LS912_20230530_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LS912_20230530_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+      LS912_20230607_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LS912_20230607_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+
+
+
+v3_0_bev_3d_7v_all_range_aeb_seq_val_sampled_egomotion:
+  4DGT_1_8_2:
+    LX165:
+      LX165_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/LX165_20231028_20231103_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+    UT0F3:
+      UT0F3_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/UT0F3_20231028_20231103_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+    UT0T1:
+      UT0T1_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/UT0T1_20231028_20231103_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+    UT263:
+      UT263_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/UT263_20231028_20231103_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+    UT370:
+      UT370_20231028_20231103_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/UT370_20231028_20231103_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+    UT3J5:
+      UT3J5_20231028_20231102_D_seq_val_sampled_4dgt_all_range:
+        sample_interval: 1
+        odometry_file_path: /horizon-bucket/matrix2/users/jianhang.he/bev_3d_packing/val/4DGT_1_8_2/UT3J5_20231028_20231102_D_val_sampled_relabel_1_8_2_vcs/egomotion/all/wheel.txt
+
+
+v3_2_0_aeb_test_site_val:
+  ManualAnno:
+    HBEK016:
+      HBEK016_20231122_seq_AEB_Test_Site_215177_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231123_seq_AEB_Test_Site_215155_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231124_seq_AEB_Test_Site_215182_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231125_seq_AEB_Test_Site_215551_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231125_seq_AEB_Test_Site_216056_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231125_seq_AEB_Test_Site_216064_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231127_seq_AEB_Test_Site_215578_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_seq_AEB_Test_Site_215637_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_seq_AEB_Test_Site_215645_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231128_seq_AEB_Test_Site_215647_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231129_seq_AEB_Test_Site_216498_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231130_seq_AEB_Test_Site_216445_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231201_seq_AEB_Test_Site_216515_val_4dgt_all_range:
+        sample_interval: 1
+      HBEK016_20231217_seq_AEB_Test_Site_221888_val_critical_manualanno_all_range:
+        sample_interval: 1
+      HBEK016_20231222_seq_AEB_Test_Site_222642_val_critical_manualanno_all_range:
+        sample_interval: 1
+
+v3_2_0_underground_parking_val:
+  4DGT_EK_Parking:
+    HBEK383:
+      HBEK383_20231209_20231212_D_underground_parking_4dgt_small_range:
+        sample_interval: 1
+      HBEK383_20231213_20231216_D_underground_parking_4dgt_small_range:
+        sample_interval: 1
+      HBEK383_20231217_20231220_D_underground_parking_4dgt_small_range:
+        sample_interval: 1
+
+v3_2_0_ground_parking_val:
+  4DGT_EK_Parking:
+    HBEK383:
+      HBEK383_20231209_20231219_D_ground_parking_4dgt_small_range:
+        sample_interval: 1

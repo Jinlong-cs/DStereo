@@ -1,0 +1,59 @@
+base_classname: common_box # 一级类型名称
+num_classes: 50 # 类别数量
+allow_multi_match: true # 允许一个instance进行多次匹配
+default_ignore_full_image: true # 未定义的类别使用全图ignore
+remove_empty_images: false # 删除空图片
+shuffle: true # 打乱图片顺序
+class_mappers: # 目标类别转换器
+  - id: null # 空类, 用于删除样本
+    match_condiction:
+      or:
+        - contains: { attrs: { ignore: "yes" } }
+        - contains: { attrs: { occlusion: "invisible" } }
+        - contains: { attrs: { type: "OtherBollard" } }
+        - contains: { attrs: { type: "unknown" } }
+        - contains: { attrs: { type: "FP" } }
+      # - contains: {attrs: {"occlusion":"heavily_occluded"}}
+      # - contains: {attrs: {"type":"IsolationBollard"}}
+
+  - id: 9
+    name: CONE
+    match_condiction:
+      and:
+        - not:
+            or:
+              - contains: { attrs: { occlusion: "invisible" } }
+              - contains: { attrs: { ignore: "yes" } }
+        - and:
+            - range: { field: $BBOX_HEIGHT, gt: 10 }
+            - range: { field: $BBOX_WIDTH, gt: 5 }
+            - or:
+                - contains: { attrs: { type: "TrafficCone" } }
+                - contains: { attrs: { type: "IsolationBollard" } }
+                - contains: { attrs: { type: "TrafficBollard" } }
+                - contains: { attrs: { type: "CrashBarrel" } }
+                - contains: { attrs: { type: "Tripod" } } # triangle plate
+              # - contains: {attrs: {"cn_sub_type": "W_Tripod"}}  # triangle plate
+
+    ignore_condiction: # 为真值, 则判定为ignore区域
+      and:
+        - or:
+            - contains: { attrs: { ignore: "yes" } } # 包含{"attrs": {"ignore": "yes"}}
+            - and: # 过滤掉ignore框误标为目标框(默认为路锥)
+                - contains: { attrs: { ignore: "no" } }
+                - contains: { field: $BBOX_ASPECT_RATIO, gt: 2.5 }
+                - contains: { field: $BBOX_HEIGHT, gt: 100 }
+                - not:
+                    contains: { attrs: { type: "CrashBarrel" } }
+            - and:
+                - contains: { attrs: { ignore: "no" } }
+                - contains: { field: $BBOX_ASPECT_RATIO, gt: 3.5 }
+                - contains: { field: $BBOX_HEIGHT, gt: 50 }
+
+    hard_condiction: # 为真值, 则判定为hard样本
+      and: # 以下所有条件为真, 则输出真
+        - not: # 条件为假, 则输出真
+            contains: { attrs: { ignore: "yes" } } # 包含{"attrs": {"ignore": "yes"}}
+            # contains: {attrs: {type: "IsolationBollard"}}
+        - or: # 以下任一条件为真, 则输出真
+            - contains: { attrs: { occlusion: heavily_occluded } } # 包含{"attrs": {"occlusion": "heavily_occluded"}}

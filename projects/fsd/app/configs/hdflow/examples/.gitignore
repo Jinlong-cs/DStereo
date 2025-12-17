@@ -1,0 +1,13 @@
+test.sh
+debug.sh
+outputs
+tmp
+log
+data
+deps
+debug.py
+test.py
+*.log
+
+!*.yaml
+!configs/cls_anno_check/label_tasks_vehicle_category_20210312.json

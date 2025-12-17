@@ -1,0 +1,273 @@
+num_classes: 2                                          # 类别数量
+default_ignore_full_image: true                         # 其余类别全图ignore
+remove_empty_images: true                               # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+default_inter_over_minwidth_threshold: 0.85
+default_bbox_height_rel_ratio_upperbound: 0.35
+default_center_axis_pixel_gap_upperbound: 12
+ignore_parent_assist: false
+parent_box_classname: traffic_sign
+parent_box_remove_condiction:
+  or:
+    - contains: {attrs: {cn_medium_type: GSWB_Other}}
+    - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+    - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+    - contains: {attrs: {cn_medium_type: C_Other}}
+    - contains: {attrs: {cn_medium_type: C_Unknown}}
+    - contains: {attrs: {cn_medium_type: sign_Construction}}
+    - contains: {attrs: {cn_medium_type: Sign_Construction}}
+    - contains: {attrs: {cn_medium_type: RSBW_Other}}
+    - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+    - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+    - contains: {attrs: {cn_medium_type: GSGW_Other}}
+    - contains: {attrs: {cn_medium_type: GSGW_Unknown}}
+    - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+    - contains: {attrs: {cn_medium_type: TSBW_Other}}
+    - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+    - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+    - contains: {attrs: {cn_medium_type: RouteID}}
+    - contains: {attrs: {cn_medium_type: RouteID_Other}}
+    - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+    - contains: {attrs: {cn_medium_type: O_Other}}
+    - contains: {attrs: {cn_medium_type: U_Unknow}}
+    - contains: {attrs: {cn_medium_type: U_Unknown}}
+    - contains: {attrs: {cn_medium_type: Unknow}}
+    - contains: {attrs: {cn_medium_type: Unknown}}
+    - contains: {attrs: {cn_medium_type: False_Positive}}
+    - contains: {attrs: {cn_medium_type: sign_back}}
+    - contains: {attrs: {cn_medium_type: Other_GuideSign_WhiteBlack}}
+    - contains: {attrs: {cn_medium_type: G_GuideSign_WhiteBlack}}
+    - contains: {attrs: {cn_sub_type: GSWB_Other}}
+    - contains: {attrs: {cn_sub_type: GSWB_Unknown}}
+    - contains: {attrs: {cn_sub_type: GuideSign_WhiteBlack}}
+    - contains: {attrs: {cn_sub_type: G_GuideSign_WhiteBlack}}
+    - contains: {attrs: {cn_sub_type: Other_GuideSign_WhiteBlack}}
+    - contains: {attrs: {cn_sub_type: FP_Accessory_Arrow}}
+    - contains: {attrs: {cn_sub_type: FP_Building}}
+    - contains: {attrs: {cn_sub_type: FP_Head}}
+    - contains: {attrs: {cn_sub_type: FP_Light_Arrow}}
+    - contains: {attrs: {cn_sub_type: FP_Light_Shell}}
+    - contains: {attrs: {cn_sub_type: FP_Light_Time}}
+    - contains: {attrs: {cn_sub_type: FP_Mirror}}
+    - contains: {attrs: {cn_sub_type: FP_Polygon_Marker}}
+    - contains: {attrs: {cn_sub_type: FP_Twig}}
+    - contains: {attrs: {cn_sub_type: FP_Vehicle_Wheel}}
+    - contains: {attrs: {cn_sub_type: FP_Other}}
+    - contains: {attrs: {cn_sub_type: FP_Unknown}}
+    - contains: {attrs: {cn_sub_type: FP_IncompleteSign}}
+    - contains: {attrs: {cn_sub_type: FP_SignWithContext}}
+    - contains: {attrs: {cn_sub_type: sign_back}}
+
+children_box_classname: traffic_sign
+children_box_allow_multi_match: false
+children_class_mappers:
+  - id: 1
+    name: IR_Ramp
+    children_box_remove_condiction:
+      or:
+        - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+        - contains: {attrs: {cn_medium_type: PSL_Other}}
+        - contains: {attrs: {cn_medium_type: PSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+        - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: P_Unknow_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+        - contains: {attrs: {cn_medium_type: PR_Other}}
+        - contains: {attrs: {cn_medium_type: PR_Unknown}}
+        - contains: {attrs: {cn_medium_type: Prohibit_I}}
+        - contains: {attrs: {cn_medium_type: P_Other1}}
+        - contains: {attrs: {cn_medium_type: P_Unknown1}}
+        - contains: {attrs: {cn_medium_type: W_Warning}}
+        - contains: {attrs: {cn_medium_type: W_Other}}
+        - contains: {attrs: {cn_medium_type: W_Unknown}}
+        - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+        - contains: {attrs: {cn_medium_type: MSL_Other}}
+        - contains: {attrs: {cn_medium_type: MSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+        - contains: {attrs: {cn_medium_type: I_Other_circle}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_circle}}
+        - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+        - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_rectangle}}
+        - contains: {attrs: {cn_medium_type: C_Other}}
+        - contains: {attrs: {cn_medium_type: C_Unknown}}
+        - contains: {attrs: {cn_medium_type: sign_Construction}}
+        - contains: {attrs: {cn_medium_type: Sign_Construction}}
+        - contains: {attrs: {cn_medium_type: RSBW_Other}}
+        - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+        - contains: {attrs: {cn_medium_type: GSGW_Other}}
+        - contains: {attrs: {cn_medium_type: TSBW_Other}}
+        - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+        - contains: {attrs: {cn_medium_type: RouteID}}
+        - contains: {attrs: {cn_medium_type: RouteID_Other}}
+        - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+        - contains: {attrs: {cn_medium_type: False_Positive}}
+        - contains: {attrs: {cn_sub_type: GSWB_Misc}}
+        - contains: {attrs: {Inside: outside}}
+        - contains: {attrs: {nested_outside: "yes"}}
+    children_box_ignore_condiction:
+      or:
+        - contains: {attrs: {ignore: "yes"}}
+        - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+        - contains: {attrs: {cn_medium_type: Other_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: G_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: GSWB_Unknown}}
+        - contains: {attrs: {cn_sub_type: Other_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: G_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: GSGW_Unknown}}
+        - contains: {attrs: {cn_sub_type: IR_SpecificRamp}}
+        - contains: {attrs: {cn_medium_type: U_Unknow}}
+        - contains: {attrs: {cn_medium_type: U_Unknown}}
+        - contains: {attrs: {cn_medium_type: Unknow}}
+        - contains: {attrs: {cn_medium_type: Unknown}}
+        - contains: {attrs: {cn_sub_type: U_Unknown}}
+    children_box_hard_condiction:
+      and:
+        - or:
+            - contains: {attrs: {cn_sub_type: IR_Ramp}}
+            - contains: {attrs: {cn_sub_type: IR_RampArrow}}
+            - contains: {attrs: {cn_sub_type: IR_RampAhead}}
+            - contains: {attrs: {cn_sub_type: IR_RampDirection}}
+            - contains: {attrs: {cn_sub_type: IR_RampInternal}}
+            - contains: {attrs: {cn_sub_type: IR_RampOut}}
+            - contains: {attrs: {cn_sub_type: IR_RampExit}}
+            - contains: {attrs: {cn_medium_type: Ramp}}
+            - contains: {attrs: {cn_medium_type: RampArrow}}
+        - and:
+            - range: {field: $BBOX_HEIGHT, lt: 10}
+            - range: {field: $BBOX_WIDTH, lt: 13}
+    children_box_positive_condiction:
+      or:
+        - contains: {attrs: {cn_sub_type: IR_Ramp}}
+        - contains: {attrs: {cn_sub_type: IR_RampArrow}}
+        - contains: {attrs: {cn_sub_type: IR_RampAhead}}
+        - contains: {attrs: {cn_sub_type: IR_RampDirection}}
+        - contains: {attrs: {cn_sub_type: IR_RampInternal}}
+        - contains: {attrs: {cn_sub_type: IR_RampOut}}
+        - contains: {attrs: {cn_sub_type: IR_RampExit}}
+        - contains: {attrs: {cn_medium_type: Ramp}}
+        - contains: {attrs: {cn_medium_type: RampArrow}}
+    match_mode: matching_with_overlaps_assist
+    inter_over_minwidth_threshold: 0.85
+    bbox_height_rel_ratio_upperbound: 0.35
+    center_axis_pixel_gap_upperbound: 12
+  - id: 2
+    name: Other_GuideSign_WhiteBlack
+    children_box_remove_condiction:
+      or:
+        - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+        - contains: {attrs: {cn_medium_type: PSL_Other}}
+        - contains: {attrs: {cn_medium_type: PSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+        - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: P_Unknow_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+        - contains: {attrs: {cn_medium_type: PR_Other}}
+        - contains: {attrs: {cn_medium_type: PR_Unknown}}
+        - contains: {attrs: {cn_medium_type: Prohibit_I}}
+        - contains: {attrs: {cn_medium_type: P_Other1}}
+        - contains: {attrs: {cn_medium_type: P_Unknown1}}
+        - contains: {attrs: {cn_medium_type: W_Warning}}
+        - contains: {attrs: {cn_medium_type: W_Other}}
+        - contains: {attrs: {cn_medium_type: W_Unknown}}
+        - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+        - contains: {attrs: {cn_medium_type: MSL_Other}}
+        - contains: {attrs: {cn_medium_type: MSL_Unknown}}
+        - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+        - contains: {attrs: {cn_medium_type: I_Other_circle}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_circle}}
+        - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+        - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+        - contains: {attrs: {cn_medium_type: I_Unknown_rectangle}}
+        - contains: {attrs: {cn_medium_type: C_Other}}
+        - contains: {attrs: {cn_medium_type: C_Unknown}}
+        - contains: {attrs: {cn_medium_type: sign_Construction}}
+        - contains: {attrs: {cn_medium_type: Sign_Construction}}
+        - contains: {attrs: {cn_medium_type: TSBW_Other}}
+        - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+        - contains: {attrs: {cn_medium_type: RouteID}}
+        - contains: {attrs: {cn_medium_type: RouteID_Other}}
+        - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+        - contains: {attrs: {cn_medium_type: False_Positive}}
+        - contains: {attrs: {cn_sub_type: GSWB_Misc}}
+        - contains: {attrs: {Inside: outside}}
+        - contains: {attrs: {nested_outside: "yes"}}
+    children_box_ignore_condiction:
+      or:
+        - contains: {attrs: {ignore: "yes"}}
+        - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+        - contains: {attrs: {cn_medium_type: Other_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: G_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: GSWB_Unknown}}
+        - contains: {attrs: {cn_sub_type: Other_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: U_Unknow}}
+        - contains: {attrs: {cn_medium_type: U_Unknown}}
+        - contains: {attrs: {cn_medium_type: Unknow}}
+        - contains: {attrs: {cn_medium_type: Unknown}}
+        - contains: {attrs: {cn_sub_type: U_Unknown}}
+    children_box_hard_condiction:
+      and:
+        - or:
+            - contains: {attrs: {cn_sub_type: IR_PassingTime}}
+            - contains: {attrs: {cn_sub_type: IR_VehicleType}}
+            - contains: {attrs: {cn_sub_type: IR_Area}}
+            - contains: {attrs: {cn_sub_type: IR_DistanceArea}}
+            - contains: {attrs: {cn_sub_type: IR_WarningReason}}
+            - contains: {attrs: {cn_sub_type: IR_DrivingDirection}}
+            - contains: {attrs: {cn_sub_type: IR_CombinationAuxiliary}}
+            - contains: {attrs: {cn_sub_type: IR_RampHighwayExit}}
+            - contains: {attrs: {cn_sub_type: IR_AuxiliaryRoad}}
+            - contains: {attrs: {cn_sub_type: IR_RightLane}}
+            - contains: {attrs: {cn_sub_type: GSWB_Other}}
+            - contains: {attrs: {cn_sub_type: G_GuideSign_WhiteBlack}}
+            - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+        - not:
+            contains: {attrs: {ignore: "yes"}}
+        - or:
+            - contains: {attrs: {occlusion: heavily_occluded}}
+            - contains: {attrs: {occlusion: invisible}}
+            - and:
+                - range: {field: $BBOX_HEIGHT, lt: 10}
+                - range: {field: $BBOX_WIDTH, lt: 13}
+    children_box_positive_condiction:
+      or:
+        - contains: {attrs: {cn_sub_type: IR_PassingTime}}
+        - contains: {attrs: {cn_sub_type: IR_VehicleType}}
+        - contains: {attrs: {cn_sub_type: IR_Area}}
+        - contains: {attrs: {cn_sub_type: IR_DistanceArea}}
+        - contains: {attrs: {cn_sub_type: IR_WarningReason}}
+        - contains: {attrs: {cn_sub_type: IR_DrivingDirection}}
+        - contains: {attrs: {cn_sub_type: IR_CombinationAuxiliary}}
+        - contains: {attrs: {cn_sub_type: IR_RampHighwayExit}}
+        - contains: {attrs: {cn_sub_type: IR_AuxiliaryRoad}}
+        - contains: {attrs: {cn_sub_type: IR_RightLane}}
+        - contains: {attrs: {cn_sub_type: GSWB_Other}}
+        - contains: {attrs: {cn_sub_type: G_GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_sub_type: GSGW_Other}}
+        - contains: {attrs: {cn_sub_type: GSGW_Unknown}}
+        - contains: {attrs: {cn_sub_type: G_GuideSign_GreenWhite}}
+        - contains: {attrs: {cn_sub_type: RSBW_Other}}
+        - contains: {attrs: {cn_sub_type: RSBW_Unknown}}
+        - contains: {attrs: {cn_sub_type: R_RoadSign_BlueWhite}}
+        - contains: {attrs: {cn_sub_type: O_Other}}
+        - contains: {attrs: {cn_medium_type: GSWB_Other}}
+        - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: GSGW_Other}}
+        - contains: {attrs: {cn_medium_type: GSGW_Unknown}}
+        - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+        - contains: {attrs: {cn_medium_type: RSBW_Other}}
+        - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+        - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+        - contains: {attrs: {cn_medium_type: O_Other}}
+    match_mode: matching_with_overlaps_assist
+    inter_over_minwidth_threshold: 0.85
+    bbox_height_rel_ratio_upperbound: 0.35
+    center_axis_pixel_gap_upperbound: 12

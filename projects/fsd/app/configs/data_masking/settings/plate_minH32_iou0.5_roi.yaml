@@ -1,0 +1,25 @@
+classname: plate
+clip_to_image: true
+lower_overlap_for_small: true
+default_type: normal
+default_overlap: 0.5
+normal_iou_type: iou
+hard_iou_type: iou
+ignore_iou_type: iod
+rois:
+  - bbox_min_shortside: 32
+attrs:
+  ignore:
+    - value: 'yes'
+      type: ignore
+      overlap: 0.3
+  occlusion:
+    - value: 'full_visible'
+      type: normal
+      overlap: 0.5
+    - value: 'occluded'
+      type: normal
+      overlap: 0.5
+    - value: 'heavily_occluded'
+      type: hard
+      overlap: 0.3

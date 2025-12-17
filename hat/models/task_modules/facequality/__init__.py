@@ -1,0 +1,1 @@
+from .facequality_mtl_head import FacequalityMultiHead

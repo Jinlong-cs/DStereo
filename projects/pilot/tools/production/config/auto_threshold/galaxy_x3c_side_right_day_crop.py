@@ -1,0 +1,63 @@
+task_threshold = dict(
+    # 4PE
+    vehicle_detection=dict(
+        threshold=dict(
+            report_type="DetEvalReport",
+            metric_type="ThresholdAtMaxDetRate",
+            metric_kwargs=dict(),
+        ),
+        datasets=[
+            dict(
+                dataset_id=6036225,
+                setting_names=[
+                    "crop_region-det-veh-full_pinhole_right_rear_forward40m_80",  # noqa
+                ],
+            ),
+        ],
+    ),
+    rear_detection=dict(
+        threshold=dict(
+            report_type="DetEvalReport",
+            metric_type="ThresholdAtMaxDetRate",
+            metric_kwargs=dict(),
+        ),
+        datasets=[
+            dict(
+                dataset_id=6036219,
+                setting_names=[
+                    "crop_region-det-veh-rear_pinhole_right_rear_forward40m_80",  # noqa
+                ],
+            ),
+        ],
+    ),
+    person_detection=dict(
+        threshold=dict(
+            report_type="DetEvalReport",
+            metric_type="ThresholdAtMaxDetRate",
+            metric_kwargs=dict(),
+        ),
+        datasets=[
+            dict(
+                dataset_id=6036182,
+                setting_names=[
+                    "crop_region-det-ped_pinhole_right_rear_forward0m_60",
+                ],
+            ),
+        ],
+    ),
+    cyclist_detection=dict(
+        threshold=dict(
+            report_type="DetEvalReport",
+            metric_type="ThresholdAtMaxDetRate",
+            metric_kwargs=dict(),
+        ),
+        datasets=[
+            dict(
+                dataset_id=6036201,
+                setting_names=[
+                    "crop_region-det-cyclist_pinhole_right_rear_forward0m_60",
+                ],
+            ),
+        ],
+    ),
+)

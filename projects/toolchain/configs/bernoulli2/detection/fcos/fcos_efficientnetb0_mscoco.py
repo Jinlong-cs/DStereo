@@ -1,0 +1,665 @@
+import copy
+import os
+
+import torch
+from horizon_plugin_pytorch.march import March
+
+from hat.data.collates.collates import collate_2d
+from hat.utils.config import ConfigVersion
+
+VERSION = ConfigVersion.v2
+training_step = os.environ.get("HAT_TRAINING_STEP", "float")
+
+task_name = "fcos_efficientnetb0_mscoco"
+num_classes = 80
+batch_size_per_gpu = 24
+device_ids = [0, 1, 2, 3]
+ckpt_dir = "./tmp_models/%s" % task_name
+cudnn_benchmark = True
+seed = None
+log_rank_zero_only = True
+bn_kwargs = {}
+march = March.BERNOULLI2
+convert_mode = "fx"
+
+model = dict(
+    type="FCOS",
+    backbone=dict(
+        type="efficientnet",
+        bn_kwargs=bn_kwargs,
+        model_type="b0",
+        num_classes=1000,
+        include_top=False,
+        activation="relu",
+        use_se_block=False,
+    ),
+    neck=dict(
+        type="BiFPN",
+        in_strides=[2, 4, 8, 16, 32],
+        out_strides=[8, 16, 32, 64, 128],
+        stride2channels=dict({2: 16, 4: 24, 8: 40, 16: 112, 32: 320}),
+        out_channels=64,
+        num_outs=5,
+        stack=3,
+        start_level=2,
+        end_level=-1,
+        fpn_name="bifpn_sum",
+        upsample_type="function",
+        use_fx=True,
+    ),
+    head=dict(
+        type="FCOSHead",
+        num_classes=num_classes,
+        in_strides=[8, 16, 32, 64, 128],
+        out_strides=[8, 16, 32, 64, 128],
+        stride2channels=dict({8: 64, 16: 64, 32: 64, 64: 64, 128: 64}),
+        upscale_bbox_pred=False,
+        feat_channels=64,
+        stacked_convs=4,
+        int8_output=False,
+        dequant_output=True,
+        bbox_relu=False,
+    ),
+    targets=dict(
+        type="DynamicFcosTarget",
+        strides=[8, 16, 32, 64, 128],
+        cls_out_channels=80,
+        background_label=80,
+        topK=10,
+        loss_cls=dict(
+            type="FocalLoss",
+            loss_name="cls",
+            num_classes=80 + 1,
+            alpha=0.25,
+            gamma=2.0,
+            loss_weight=1.0,
+            reduction="none",
+        ),
+        loss_reg=dict(
+            type="GIoULoss", loss_name="reg", loss_weight=2.0, reduction="none"
+        ),
+        bbox_relu=True,
+    ),
+    post_process=dict(
+        type="FCOSDecoder",
+        num_classes=80,
+        strides=[8, 16, 32, 64, 128],
+        nms_use_centerness=True,
+        nms_sqrt=True,
+        transforms=[dict(type="Resize")],
+        inverse_transform_key=["scale_factor"],
+        test_cfg=dict(
+            score_thr=0.05,
+            nms_pre=1000,
+            nms=dict(name="nms", iou_threshold=0.6, max_per_img=100),
+        ),
+        upscale_bbox_pred=True,
+        bbox_relu=True,
+    ),
+    loss_cls=dict(
+        type="FocalLoss",
+        loss_name="cls",
+        num_classes=80 + 1,
+        alpha=0.25,
+        gamma=2.0,
+        loss_weight=1.0,
+    ),
+    loss_centerness=dict(
+        type="CrossEntropyLoss", loss_name="centerness", use_sigmoid=True
+    ),
+    loss_reg=dict(
+        type="GIoULoss",
+        loss_name="reg",
+        loss_weight=1.0,
+    ),
+)
+
+deploy_model = dict(
+    type="FCOS",
+    backbone=dict(
+        type="efficientnet",
+        bn_kwargs=bn_kwargs,
+        model_type="b0",
+        num_classes=1000,
+        include_top=False,
+        activation="relu",
+        use_se_block=False,
+    ),
+    neck=dict(
+        type="BiFPN",
+        in_strides=[2, 4, 8, 16, 32],
+        out_strides=[8, 16, 32, 64, 128],
+        stride2channels=dict({2: 16, 4: 24, 8: 40, 16: 112, 32: 320}),
+        out_channels=64,
+        num_outs=5,
+        stack=3,
+        start_level=2,
+        end_level=-1,
+        fpn_name="bifpn_sum",
+        upsample_type="function",
+        use_fx=True,
+    ),
+    head=dict(
+        type="FCOSHead",
+        num_classes=num_classes,
+        in_strides=[8, 16, 32, 64, 128],
+        out_strides=[8, 16, 32, 64, 128],
+        stride2channels=dict({8: 64, 16: 64, 32: 64, 64: 64, 128: 64}),
+        upscale_bbox_pred=False,
+        feat_channels=64,
+        stacked_convs=4,
+        int8_output=False,
+        dequant_output=True,
+        bbox_relu=False,
+    ),
+)
+deploy_inputs = dict(img=torch.randn((1, 3, 512, 512)))
+
+deploy_model_convert_pipeline = dict(
+    type="ModelConvertPipeline",
+    qat_mode="fuse_bn",
+    converters=[
+        dict(type="Float2QAT", convert_mode=convert_mode),
+        dict(type="QAT2Quantize", convert_mode=convert_mode),
+    ],
+)
+
+data_loader = dict(
+    type=torch.utils.data.DataLoader,
+    dataset=dict(
+        type="Coco",
+        data_path="./tmp_data/mscoco/train_lmdb/",
+        transforms=[
+            dict(
+                type="Resize",
+                img_scale=(512, 512),
+                ratio_range=(0.5, 2.0),
+                keep_ratio=True,
+            ),
+            dict(type="RandomCrop", size=(512, 512)),
+            dict(
+                type="Pad",
+                divisor=512,
+            ),
+            dict(
+                type="RandomFlip",
+                px=0.5,
+                py=0,
+            ),
+            dict(type="AugmentHSV", hgain=0.015, sgain=0.7, vgain=0.4),
+            dict(
+                type="ToTensor",
+                to_yuv=True,
+                use_yuv_v2=False,
+            ),
+            dict(
+                type="Normalize",
+                mean=128.0,
+                std=128.0,
+            ),
+        ],
+    ),
+    sampler=dict(type=torch.utils.data.DistributedSampler),
+    batch_size=batch_size_per_gpu,
+    shuffle=True,
+    num_workers=8,
+    pin_memory=True,
+    collate_fn=collate_2d,
+)
+
+qat_data_loader = dict(
+    type=torch.utils.data.DataLoader,
+    dataset=dict(
+        type="Coco",
+        data_path="./tmp_data/mscoco/train_lmdb/",
+        transforms=[
+            dict(
+                type="Resize",
+                img_scale=(512, 512),
+                ratio_range=(1.0, 1.5),
+                keep_ratio=True,
+            ),
+            dict(type="RandomCrop", size=(512, 512)),
+            dict(
+                type="Pad",
+                divisor=512,
+            ),
+            dict(
+                type="RandomFlip",
+                px=0.5,
+                py=0,
+            ),
+            dict(type="AugmentHSV", hgain=0.015, sgain=0.7, vgain=0.4),
+            dict(
+                type="ToTensor",
+                to_yuv=True,
+                use_yuv_v2=False,
+            ),
+            dict(
+                type="Normalize",
+                mean=128.0,
+                std=128.0,
+            ),
+        ],
+    ),
+    sampler=dict(type=torch.utils.data.DistributedSampler),
+    batch_size=batch_size_per_gpu,
+    shuffle=True,
+    num_workers=8,
+    pin_memory=True,
+    collate_fn=collate_2d,
+)
+
+val_data_loader = dict(
+    type=torch.utils.data.DataLoader,
+    dataset=dict(
+        type="Coco",
+        data_path="./tmp_data/mscoco/val_lmdb/",
+        transforms=[
+            dict(
+                type="Resize",
+                img_scale=(512, 512),
+                keep_ratio=True,
+            ),
+            dict(
+                type="Pad",
+                size=(512, 512),
+            ),
+            dict(
+                type="ToTensor",
+                to_yuv=True,
+                use_yuv_v2=False,
+            ),
+            dict(
+                type="Normalize",
+                mean=128.0,
+                std=128.0,
+            ),
+        ],
+    ),
+    sampler=dict(type=torch.utils.data.DistributedSampler),
+    batch_size=batch_size_per_gpu,
+    shuffle=False,
+    num_workers=8,
+    pin_memory=True,
+    collate_fn=collate_2d,
+)
+
+
+def loss_collector(outputs: dict):
+    losses = []
+    for _, loss in outputs.items():
+        losses.append(loss)
+    return losses
+
+
+def update_loss(metrics, batch, model_outs):
+    for metric in metrics:
+        metric.update(model_outs)
+
+
+loss_show_update = dict(
+    type="MetricUpdater",
+    metric_update_func=update_loss,
+    step_log_freq=1000,
+    epoch_log_freq=1,
+    log_prefix="loss_ " + task_name,
+)
+
+batch_processor = dict(
+    type="MultiBatchProcessor",
+    need_grad_update=True,
+    loss_collector=loss_collector,
+)
+val_batch_processor = dict(
+    type="MultiBatchProcessor",
+    need_grad_update=False,
+)
+
+
+def update_metric(metrics, batch, model_outs):
+    for metric in metrics:
+        metric.update(model_outs)
+
+
+val_metric_updater = dict(
+    type="MetricUpdater",
+    metric_update_func=update_metric,
+    step_log_freq=500,
+    epoch_log_freq=1,
+    log_prefix="Validation " + task_name,
+)
+
+stat_callback = dict(
+    type="StatsMonitor",
+    log_freq=1,
+)
+
+trace_callback = dict(
+    type="SaveTraced",
+    save_dir=ckpt_dir,
+    trace_inputs=deploy_inputs,
+)
+
+ckpt_callback = dict(
+    type="Checkpoint",
+    save_dir=ckpt_dir,
+    name_prefix=training_step + "-",
+    save_interval=1,
+    strict_match=True,
+    mode="max",
+    monitor_metric_key="mAP",
+)
+
+val_callback = dict(
+    type="Validation",
+    data_loader=val_data_loader,
+    batch_processor=val_batch_processor,
+    callbacks=[val_metric_updater],
+    val_model=None,
+    init_with_train_model=False,
+    val_interval=1,
+    val_on_train_end=False,
+)
+
+float_trainer = dict(
+    type="distributed_data_parallel_trainer",
+    model=model,
+    data_loader=data_loader,
+    optimizer=dict(
+        type=torch.optim.SGD,
+        params={"weight": dict(weight_decay=4e-5)},
+        lr=0.14,
+        momentum=0.937,
+        nesterov=True,
+    ),
+    batch_processor=batch_processor,
+    num_epochs=300,
+    device=None,
+    callbacks=[
+        stat_callback,
+        loss_show_update,
+        dict(type="ExponentialMovingAverage"),
+        dict(
+            type="CosLrUpdater",
+            warmup_len=2,
+            warmup_by="epoch",
+            step_log_interval=1,
+        ),
+        val_callback,
+        ckpt_callback,
+    ],
+    train_metrics=dict(
+        type="LossShow",
+    ),
+    sync_bn=True,
+    val_metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+)
+
+# Note: The transforms of the dataset during calibration can be
+# consistent with that during training or validation, or customized.
+# Default used `val_batch_processor`.
+calibration_data_loader = copy.deepcopy(data_loader)
+calibration_data_loader.pop("sampler")  # Calibration do not support DDP or DP
+calibration_data_loader["batch_size"] = batch_size_per_gpu * 4
+calibration_data_loader["dataset"]["transforms"] = val_data_loader["dataset"][
+    "transforms"
+]
+calibration_batch_processor = copy.deepcopy(val_batch_processor)
+calibration_step = 100
+
+calibration_trainer = dict(
+    type="Calibrator",
+    model=model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "float-checkpoint-best.pth.tar"
+                ),
+            ),
+            dict(type="Float2Calibration", convert_mode=convert_mode),
+        ],
+    ),
+    data_loader=calibration_data_loader,
+    batch_processor=calibration_batch_processor,
+    num_steps=calibration_step,
+    device=None,
+    callbacks=[
+        stat_callback,
+        val_callback,
+        ckpt_callback,
+    ],
+    val_metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+    log_interval=calibration_step / 10,
+)
+
+
+qat_trainer = dict(
+    type="distributed_data_parallel_trainer",
+    model=model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        qconfig_params=dict(
+            activation_qat_qkwargs=dict(
+                averaging_constant=0,
+            ),
+            weight_qat_qkwargs=dict(
+                averaging_constant=1,
+            ),
+        ),
+        converters=[
+            dict(type="Float2QAT", convert_mode=convert_mode),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "calibration-checkpoint-best.pth.tar"
+                ),
+            ),
+        ],
+    ),
+    data_loader=qat_data_loader,
+    optimizer=dict(
+        type=torch.optim.SGD,
+        params={"weight": dict(weight_decay=4e-5)},
+        lr=0.001,
+        momentum=0.9,
+    ),
+    batch_processor=batch_processor,
+    num_epochs=15,
+    device=None,
+    callbacks=[
+        stat_callback,
+        loss_show_update,
+        dict(
+            type="StepDecayLrUpdater",
+            lr_decay_id=[2, 5, 10],
+            step_log_interval=500,
+        ),
+        val_callback,
+        ckpt_callback,
+    ],
+    train_metrics=dict(
+        type="LossShow",
+    ),
+    val_metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+)
+
+# just for saving int_infer pth and pt
+int_infer_trainer = dict(
+    type="Trainer",
+    model=deploy_model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            dict(type="Float2QAT", convert_mode=convert_mode),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "qat-checkpoint-best.pth.tar"
+                ),
+                ignore_extra=True,
+            ),
+            dict(type="QAT2Quantize", convert_mode=convert_mode),
+        ],
+    ),
+    data_loader=None,
+    optimizer=None,
+    batch_processor=None,
+    num_epochs=0,
+    device=None,
+    callbacks=[
+        ckpt_callback,
+        trace_callback,
+    ],
+)
+
+compile_dir = os.path.join(ckpt_dir, "compile")
+compile_cfg = dict(
+    march=march,
+    name=task_name,
+    out_dir=compile_dir,
+    hbm=os.path.join(compile_dir, "model.hbm"),
+    layer_details=True,
+    input_source=["pyramid"],
+    opt="O3",
+)
+
+# predictor
+float_predictor = dict(
+    type="Predictor",
+    model=model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        converters=[
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "float-checkpoint-best.pth.tar"
+                ),
+            ),
+        ],
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+    callbacks=[
+        val_metric_updater,
+    ],
+    log_interval=50,
+)
+
+calibration_predictor = dict(
+    type="Predictor",
+    model=model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            dict(type="Float2QAT", convert_mode=convert_mode),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "calibration-checkpoint-best.pth.tar"
+                ),
+            ),
+        ],
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+    callbacks=[
+        val_metric_updater,
+    ],
+    log_interval=100,
+)
+
+qat_predictor = dict(
+    type="Predictor",
+    model=model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            dict(type="Float2QAT", convert_mode=convert_mode),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "qat-checkpoint-best.pth.tar"
+                ),
+                ignore_extra=True,
+            ),
+        ],
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+    callbacks=[
+        val_metric_updater,
+    ],
+    log_interval=50,
+)
+
+int_infer_predictor = dict(
+    type="Predictor",
+    model=model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            dict(type="Float2QAT", convert_mode=convert_mode),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=os.path.join(
+                    ckpt_dir, "qat-checkpoint-best.pth.tar"
+                ),
+                ignore_extra=True,
+            ),
+            dict(type="QAT2Quantize", convert_mode=convert_mode),
+        ],
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=dict(
+        type="COCODetectionMetric",
+        ann_file="./tmp_data/mscoco/instances_val2017.json",
+    ),
+    callbacks=[
+        val_metric_updater,
+    ],
+    log_interval=50,
+)
+
+onnx_cfg = dict(
+    model=deploy_model,
+    stage="qat",
+    inputs=deploy_inputs,
+    model_convert_pipeline=qat_predictor["model_convert_pipeline"],
+)

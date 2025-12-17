@@ -1,0 +1,43 @@
+task_name: cone_bollard_classification
+annokey_first_layer: common_box
+annokey_second_layer: type
+eval_categorys: # 实际进行评测的类别
+- TrafficCone
+- TrafficBollard
+- IsolationBollard
+- CrashBarrel
+- Tripod
+- Unknown
+
+full_image_as_bbox: false # 如果全图分类, 则设置为true
+
+# 6 classification
+gt_to_eval_category: # 将标注属性转换为实际评测类别
+  TrafficCone: TrafficCone
+  TrafficBollard: TrafficBollard
+  IsolationBollard: IsolationBollard
+  CrashBarrel: CrashBarrel
+  Tripod: Tripod
+  FP: Unknown
+  unknown: Unknown
+
+ignores: # 如果gt中某个样本的attrs字典中包含以下任一字典, 则该样本将不要参与评测
+- ignore: 'yes'
+- hard_sample: 'yes'
+- occlusion: invisible
+- occlusion: heavily_occluded
+
+min_height: 29.3738
+min_width: 10
+
+# 6 classification
+pred_to_eval_category: # 将模型不同位置输出值映射到实际评测类别
+  0: TrafficCone
+  1: TrafficBollard
+  2: IsolationBollard
+  3: CrashBarrel
+  4: Tripod
+  5: Unknown
+
+with_scores: true
+score_process: raw # score处理方式, 支持softmax和raw两种方式, 其中raw为不进行处理

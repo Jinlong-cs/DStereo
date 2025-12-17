@@ -1,0 +1,156 @@
+base_classname: traffic_sign
+medium_type_key: cn_medium_type
+sub_type_key: cn_sub_type
+num_classes: 20
+allow_multi_match: true
+default_ignore_full_image: true
+remove_empty_images: false
+shuffle: true
+
+default_object_attrs:
+  is_merge_parent: 'no'
+  is_merge_children: 'no'
+  Inside: 'no'
+  ignore: 'no'
+  occlusion: 'full_visible'
+  is_ramp: 'no'
+
+# for visualization
+visualization_mappers:
+  - id: 3
+    legend_name: merge_parent
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [0, 255, 0]
+    thickness: 4
+    match_condiction:
+      or:
+        - contains: {attrs: {is_merge_parent: "yes"}}
+  - id: 3
+    legend_name: merge_children
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [0, 0, 255]
+    thickness: 2
+    match_condiction:
+      or:
+        - contains: {attrs: {is_merge_children: "yes"}}
+  - id: 3
+    legend_name: common
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [255, 0, 0]
+    thickness: 2
+    match_condiction:
+      and: []
+
+#for merge bbox
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: {attrs: {cn_medium_type: sign_back}}
+        - contains: {attrs: {cn_medium_type: False_Positive}}
+        - contains: {attrs: {cn_medium_type: Other_Detfp}}
+        - contains: {attrs: {cn_medium_type: Other_Exit}}
+        - contains: {attrs: {cn_medium_type: Other_LightArrow}}
+        - contains: {attrs: {cn_medium_type: Other_Mirror}}
+        - contains: {attrs: {cn_medium_type: Other_RedCircleLight}}
+        - contains: {attrs: {cn_medium_type: mirror}}
+        - and:
+            - contains: {attrs: {ignore: "no"}}
+            - contains: {attrs: {cn_medium_type: U_Unknown}}
+  - id: 3
+    name: O_Other
+    match_condiction:
+      or:
+        - and:
+          - or:
+            - contains: {attrs: {cn_medium_type: O_Other}}
+          - range: {field: $BBOX_WIDTH, lt: 500}
+#          not:
+#            contains: {attrs: {Inside: inside}}
+  - id: 3
+    name: W_Other
+    match_condiction:
+      or:
+        - and:
+          - or:
+            - contains: {attrs: {cn_medium_type: W_Other}}
+            - contains: {attrs: {cn_medium_type: W_Unknown}}
+#          not:
+#            contains: {attrs: {Inside: inside}}
+  - id: 3
+    name: GSWB_Other
+    match_condiction:
+      or:
+        - and:
+          - or:
+            - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+            - contains: {attrs: {cn_medium_type: GSWB_Other}}
+            - contains: {attrs: {cn_medium_type: U_Unknown}}
+          - range: {field: $BBOX_ASPECT_RATIO, lt: 1.0}
+  - id: 3
+    name: G_GuideSign_WhiteBlack
+    match_condiction:
+      or:
+        - and:
+          - or:
+            - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+            - contains: {attrs: {cn_medium_type: GSWB_Other}}
+            - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+          - range: {field: $BBOX_ASPECT_RATIO, lt: 1.0}
+          - not:
+              or:
+                - contains: {attrs: {occlusion: heavily_occluded}}
+                - contains: {attrs: {occlusion: invisible}}
+  - id: 3
+    name: I_IndicationRectangle
+    match_condiction:
+      or:
+        - and:
+          - or:
+            - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+            - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+            - contains: {attrs: {cn_medium_type: I_Unknown_rectangle}}
+            - and:
+              - or:
+                  - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+                  - contains: {attrs: {cn_medium_type: GSWB_Other}}
+                  - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+              - range: {field: $BBOX_ASPECT_RATIO, lt: 1.0}
+  - id: 3
+    name: RouteSign_Misc
+    match_condiction:
+      or:
+        - and:
+          - or:
+            - and:
+              - or:
+                - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+                - contains: {attrs: {cn_medium_type: GSWB_Other}}
+                - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+              - range: {field: $BBOX_ASPECT_RATIO, lt: 0.8}
+            - and:
+              - or:
+                - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+                - contains: {attrs: {cn_medium_type: RSBW_Other}}
+                - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+                - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+                - contains: {attrs: {cn_medium_type: GSGW_Other}}
+                - contains: {attrs: {cn_medium_type: GSGW_Unknown}}
+                - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+                - contains: {attrs: {cn_medium_type: TSBW_Other}}
+                - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+                - contains: {attrs: {cn_medium_type: RouteID}}
+                - contains: {attrs: {cn_medium_type: RouteID_Other}}
+                - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+                - contains: {attrs: {cn_medium_type: W_Other}}
+                - contains: {attrs: {cn_medium_type: W_Unknown}}
+              - range: {field: $BBOX_WIDTH, lt: 1000}
+            - and:
+              - or:
+                - contains: {attrs: {cn_medium_type: O_Other}}
+              - range: {field: $BBOX_WIDTH, lt: 500}
+          - not:
+              or:
+                - contains: {attrs: {occlusion: heavily_occluded}}
+                - contains: {attrs: {occlusion: invisible}}
+          - range: {field: $BBOX_WIDTH, lt: 1000}

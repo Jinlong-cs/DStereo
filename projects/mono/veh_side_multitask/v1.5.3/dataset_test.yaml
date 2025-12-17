@@ -1,0 +1,12 @@
+face:
+- /horizon-bucket/matrix/users/jinchuan01.xiao/data/face/pilot_person_face_5v_X8B_all_4pe_2022-11-06_2022-12-15/20221216-200426/data.rec
+- /horizon-bucket/mono_3d_data/detection2d/pbrec/face/4pe_face_154585/train.rec
+plate:
+- /horizon-bucket/matrix/users/yuanzhuo.peng/tmp/pilot_rear_plate_5v_X8B_all_2pe_2022-07-16_2022-08-16/20220818-205449/data.rec
+- /horizon-bucket/mono_3d_data/detection2d/pbrec/plate/0820/v220305/4pe/train.rec
+real3d:
+- /horizon-bucket/mono_3d_data/real3d/rec_out/close_range_cross_v2/GL888/0001.rec
+- /horizon-bucket/mono_3d_data/real3d/rec_out/close_range_cross_v2/GL888/0000.rec
+vehicle_side:
+- /horizon-bucket/mono/data/vehicle_side_4pe_REMOVE_add_veh_type/vehicle_side_4pe_0820_jn/20230506-033229/data.rec
+- /horizon-bucket/mono/data/vehicle_side_4pe_REMOVE_add_veh_type_v2_fake_veh/vehicle_side_4pe_x8b_jn/20230601-212045/data.rec

@@ -1,0 +1,172 @@
+###################################
+# makefile for multitask training #
+###################################
+include Makefile
+
+SP_PROJECT_DIR:=projects/superparking
+
+# change to your own bucket path
+HAT_BUCKET=/horizon-bucket
+
+config=projects/superparking/app/fisheye/multitask.py
+# config=projects/superparking/app/ipm/multitask.py
+
+train:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/train.py --config ${config} --stage float
+
+qat:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/train.py --config ${config} --stage qat
+
+val_ckpt="http://fm-fangquan-hu.alitrain.hogpu.cc/plat_gpu/mono-resize-multitask-align_2dvdvru_full_steps-20230202_094746/output/models/mono_multitask/float-checkpoint-step-39999-626b30f3.pth.tar"
+val_step="float"
+val:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/predict.py --config ${config} --stage ${val_step} --ckpt ${val_ckpt} --hat-val-only 1 --hat-aidi-eval 1
+
+qat_ckpt=""
+int_val:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/predict.py --config ${config} --stage int_infer --hat-infer-model-ckpt ${qat_ckpt} --hat-val-only 1 --hat-aidi-eval 1
+
+int_infer:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	export INT_INFER_STAGE=${stage_one}; \
+	python3 tools/train.py --config ${config} --stage int_infer
+
+int_infer_fisheye:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/train.py --config ${config} --stage int_infer --hat-infer-stage stage_one
+	python3 tools/train.py --config ${config} --stage int_infer --hat-infer-stage stage_two
+
+
+visualize_ckpt="http://fm-xiang-hu.tcloud.hogpu.cc/plat_gpu/hobot-dag-2574141_Parking-FE-Real3D-Vehicle-b-64-20230505-235324/output/models/fisheye_multitask/qat-checkpoint-step-4999-6db8bc14.pth.tar"
+visualize:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/predict.py --config ${config} --stage visualize --hat-infer-model-ckpt ${visualize_ckpt} --hat-val-only 1
+
+
+hbm_path="tmp_output/fisheye_multitask_sod/compile/model-feeb92b1.hbm"
+pb_path="tmp_output/fisheye_multitask_sod/compile/model.pt"
+input_path="verify.png"
+verify:
+	# hbdk-model-verifier --hbm ${hbm_path} --model-pt ${pb_path} --model-input ${input_path} --skip-bpu
+	hbdk-model-verifier --hbm ${hbm_path} --model-input ${input_path} --skip-bpu --no-predictor
+
+pipeline:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	rm -rf ${HOME}/.cache/torch/hub/checkpoints; \
+	python3 tools/train.py --config ${config} --stage float --pipeline-test
+	python3 tools/train.py --config ${config} --stage qat --pipeline-test
+	python3 tools/train.py --config ${config} --stage int_infer --pipeline-test
+
+fps:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/deploy/compile_perf.py --config ${config} --opt 3
+
+compile_pt_file="tmp_output/fisheye_multitask/pipelinetest-deploy-checkpoint-last.pt"
+compile_out_dir="tmp_output/fisheye_multitask/pipeline_test"
+compile_input_shape="1x3x576x704"
+compile_opt="O3"
+compile_march="bernoulli2"
+compile:
+	python3 tools/deploy/compile_standalone.py ${compile_pt_file} --output ${compile_out_dir} --input-size ${compile_input_shape} --opt ${compile_opt} --march "bernoulli2" --debug
+
+
+fisheye_compile_pt_file="tmp_output/fisheye_multitask/int_infer-deploy-checkpoint-last-f208a4ec.pt"
+fisheye_compile_out_dir="tmp_output/fisheye_multitask/pipeline_test"
+compile-fisheye:
+	python3 tools/deploy/compile_standalone.py ${compile_pt_file} \
+		--output ${compile_out_dir} \
+		--input-size "1x3x576x704" \
+		--opt "O3" \
+		--march ${compile_march} \
+		--debug
+
+
+ipm_compile_pt_file="tmp_output/ipm_multitask/int_infer-deploy-checkpoint-last-f208a4ec.pt"
+ipm_compile_out_dir="tmp_output/ipm_multitask/V11.0.0"
+compile-ipm:
+	python3 tools/deploy/compile_standalone.py ${ipm_compile_pt_file} \
+		--output ${ipm_compile_out_dir} \
+		--input-size 1x3x896x896 \
+		--opt O3 \
+		--march bernoulli2 \
+		--output-layout NCHW \
+		--name IPM_Multitask \
+		--debug
+
+
+perf-dataloader:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/analyze/perf_dataloader.py --config ${config} --step float --iter-nums 1000
+
+perf-model-training:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	python3 tools/analyze/perf_model_training.py --config ${config} --step float --iter-nums 1000
+
+
+# get pretrain model
+pretrain:
+	-mkdir tmp_pretrain
+	hadoop fs -get hdfs://hobot-bigdata/user/zhigang.yang/HdltModelZoo/float/classification/vargnetv2_05.pth.tar
+	mv vargnetv2_05.pth.tar tmp_pretrain/
+
+# set to your cluster, refer to $HOME/.hobot/gpucluster.yaml
+cluster=share-2080ti-aliyun
+
+submit:
+	export PYTHONPATH=`pwd`; \
+	export HAT_BUCKET=${HAT_BUCKET}; \
+	cd plugins/k8s_submit ; \
+	python3 submit.py --config ../../$(config) --cluster $(cluster)
+
+calops:
+	python3 tools/calops.py --config $(config) --input-shape 1,576,704,3
+
+data_perf:
+	python3 tools/analyze/perf_dataloader.py --config $(config) --stage float --num-workers 0 --allow-all-rank -ids "0"
+
+
+# infer pack and generate video with perception results
+
+# set your own file path, belowing is an example
+pt_file:="./tmp_output/ipm_multitask/int_infer-deploy-checkpoint-last-6416a1b4.pt"
+pack_file:=${HAT_BUCKET}/auto_tmp_2/da.chen/demo_data/ADAS_20230418-205533_693_4.pack
+save_dir:="./tmp_output/pack2video"
+
+pack2video:
+	export PYTHONPATH=`pwd`; \
+	python3 ${SP_PROJECT_DIR}/tools/pack2video.py \
+		--video_save_dir ${save_dir} \
+		--pack_path ${pack_file} \
+		--model_path ${pt_file} \
+		--gpu_ids 3
+
+
+# set USER_BASE=--user if you meant to use 'pip3 install --user'
+USER_BASE=
+PIP_EXT:=-i https://pypi.hobot.cc/simple --extra-index-url=https://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc
+extra-packages:
+	pip3 install --use-deprecated=legacy-resolver ${USER_BASE} https://pypi.hobot.cc/hobot-local/packages/matrix_gluon/0.5.0b202211071558+3c658c4/matrix_gluon-0.5.0b202211071558+3c658c4-py3-none-any.whl#md5=4501e21f58870b8e9e0cccfd1c4fbcce "opencv-python >= 4.6"  ${PIP_EXT}
+	pip3 install --use-deprecated=legacy-resolver ${USER_BASE} mxnet-horizon-cu111==1.5.1.2.4 "opencv-python >= 4.6"  ${PIP_EXT}
+	pip3 install --use-deprecated=legacy-resolver ${USER_BASE} numpy==1.23.5  ${PIP_EXT}
+	pip3 install --use-deprecated=legacy-resolver ${USER_BASE} scikit-learn==0.22  ${PIP_EXT}
+	
+	

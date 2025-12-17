@@ -1,0 +1,107 @@
+vectornet_traj:
+  model_name: release_vectornet_trajpred
+  train: 
+    entry: projects/prediction/configs/vectornet_traj.py
+    stages:
+      - float
+      - qat
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+      max_jobtime: 7200
+
+vectornet_traj_debug:
+  model_name: release_vectornet_trajpred_debug
+  train: 
+    entry: projects/prediction/configs/vectornet_traj.py
+    stages:
+      - float
+      - qat
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 2
+      max_jobtime: 60
+
+vectornet_behav:
+  model_name: release_vectornet_behav
+  train: 
+    entry: projects/prediction/configs/vectornet_behav.py
+    stages:
+      - float
+      - qat
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+      max_jobtime: 7200
+
+vectornet_behav_debug:
+  model_name: release_vectornet_behav_debug
+  train: 
+    entry: projects/prediction/configs/vectornet_behav.py
+    stages:
+      - float
+      - qat
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 2
+      max_jobtime: 60
+
+densetnt_debug:
+  model_name: densetnt_debug
+  train: 
+    entry: projects/prediction/configs/densetnt_traj.py
+    stages:
+      - float
+    resource:
+      num_machines: 1
+      num_gpus_per_machine: 2
+      max_jobtime: 60
+
+densetnt_traj_stage1:
+  model_name: densetnt_traj_stage1
+  train: 
+    entry: projects/prediction/configs/densetnt_traj.py
+    stages:
+      - float
+      - calibration
+      - qat
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+      max_jobtime: 14400
+
+densetnt_traj_stage1_qat:
+  model_name: densetnt_traj_stage1_qat
+  train: 
+    entry: projects/prediction/configs/densetnt_traj.py
+    stages:
+      - calibration
+      - qat
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+      max_jobtime: 7200
+      
+densetnt_traj_stage2:
+  model_name: densetnt_traj_stage2
+  train: 
+    entry: projects/prediction/configs/densetnt_traj.py
+    stages:
+      - float
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+      max_jobtime: 7200
+
+densetnt_traj_stage2_qat:
+  model_name: densetnt_traj_stage2_qat
+  train: 
+    entry: projects/prediction/configs/densetnt_traj.py
+    stages:
+      - float
+      - calibration
+      - qat
+    resource:
+      num_machines: 2
+      num_gpus_per_machine: 8
+      max_jobtime: 7200

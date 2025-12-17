@@ -1,0 +1,45 @@
+# packed in 2022
+person:
+  train:
+    - ["/horizon-bucket/NeuralISP/user/cuilian.zuo/dataset/x8b_day_train_lmdb_data/det_day_raw_lmdb/train_org/train", 102000]
+  val:
+    - ["/horizon-bucket/NeuralISP/user/cuilian.zuo/dataset/x8b_day_val_lmdb_data/det_day_raw_lmdb/val_org/val", 6000]
+  eval:
+    - ["/horizon-bucket/NeuralISP/user/cuilian.zuo/dataset/x8b_day_eval_lmdb_data/det_day_raw_lmdb/eval_org/val", 12000]
+  val_anno_path: "/horizon-bucket/NeuralISP/user/cuilian.zuo/dataset/x8b_day_val_lmdb_data/det_day_raw_lmdb/val_org/val"
+  cam_info:
+    camera_x: 0
+    camera_y: 0
+    camera_z: 1.5151082277297974
+    center_u: 1881.60400390625
+    center_v: 1073.8338623046875
+    distort: 
+      param: [
+        12.167403221130371,
+        5.128448009490967,
+        -0.000023616899852640927,
+        0.00003534913412295282,
+        0.3568347692489624,
+        12.568809509277344,
+        12.304301261901855,
+        1.8894002437591553,
+      ]
+    focal_u: 2402.112060546875
+    focal_v: 2402.112060546875
+    fov: 120
+    pitch: -0.005434500519186258
+    roll: -0.01486244983971119
+    type: 0
+    valid_height: 
+      left_y: 2160
+      right_y: 2160
+    vcs:
+      rotation: [0, 0, 0]
+      translation: [
+        1.9941065311431885,
+        -0.006753512658178806,
+        0
+      ]
+    vendor: "X8B"
+    version: 1
+    yaw: -0.000048785965191200376

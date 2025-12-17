@@ -1,0 +1,86 @@
+base_classname: Traffic_light_shell                     # 一级类型名称
+num_classes: 20                                         # 类别数量
+allow_multi_match: false                                # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: false                              # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+online_roilist: true
+class_mappers:                                          # 目标类别转换器
+- id: null                                              # 空类, 用于删除样本
+  match_condiction:                                     # 为真值, 则匹配成功
+    or:                                                 # 以下任一条件为真, 则输出真
+    - and:
+         - not:
+              contains: {attrs: {direction: front}}
+         - not:                                         # 无此字段时也为负样本,如果确定包含此字段也可以用下面注释掉的两行替换
+              contains: {attrs: {direction: side}}
+#   - contains: {attrs: {direction: unknown}}
+#   - contains: {attrs: {direction: back}}
+    - contains: {attrs: {NonTarget: 'Yes'}}
+    - contains: {attrs: {NonTarget: "plate"}}
+    - contains: {attrs: {NonTarget: "shiner"}}
+    - contains: {attrs: {NonTarget: "balck"}}
+    - contains: {attrs: {NonTarget: "other"}}
+    - contains: {attrs: {NonTarget: "unknown"}}
+    # - not:
+    #     contains: {attrs: {NonTarget: 'No'}}
+    - contains: {attrs: {occlusion: invisible}}
+    - not:                                              # 此处主要为表达无此字段时为负样本,如果确定所有样本均包含该字段，可以删除此语句
+        or:
+          - contains: {attrs: {Type: 'on'}}
+          - contains: {attrs: {Type: 'off'}}
+          - contains: {attrs: {Type: 'unknown'}}
+
+- id: 2
+  name: Traffic_light_shell
+  match_condiction:                                     # 为真值, 则匹配为该类别
+    and: []
+
+  ignore_condiction:                                    # 为真值, 则判定为ignore区域
+    contains: {attrs: {ignore: "yes"}}                  # 包含{"attrs": {"ignore": "yes"}}
+
+  hard_condiction:
+    and:
+    - not:
+        contains: {attrs: {ignore: "yes"}}
+
+    - or:
+      - contains: {attrs: {Type: 'off'}}
+      - contains: {attrs: {Type: 'unknown'}} # 这2句表明只将状态为on的灯箱打包为正样本，否则为hard
+
+      - contains: {attrs: {direction: side}}
+
+      - range: {field: $BBOX_SHORTSIDE, lt: 6}
+      - range: {field: $BBOX_SHORTSIDE, gt: 500}
+
+      - contains: {attrs: {occlusion: heavily_occluded}}
+
+      - and:
+        - contains: {attrs: {direction: front}}
+        - or:
+          - contains: {attrs: {indicateType: unknown}} #指示类型未知
+          - and:
+            - contains: {attrs: {indicateType: vehicle}}
+            - and:
+              - and:
+                - range: {field: $BBOX_ASPECT_RATIO, gt: 0.9}
+                - range: {field: $BBOX_ASPECT_RATIO, lt: 1.1}
+              - or:
+                - range: {field: $BBOX_SHORTSIDE, lt: 8}
+                - and:
+                  - or:
+                    - contains: {attrs: {Type: 'off'}}
+                    - contains: {attrs: {Type: unknown}}
+                  - and:
+                    - range: {field: $BBOX_SHORTSIDE, gt: 8}
+                    - range: {field: $BBOX_SHORTSIDE, lt: 20}
+          - and:
+            - or:
+              - contains: {attrs: {Type: 'on'}}
+              - contains: {attrs: {Type: 'off'}}
+              - contains: {attrs: {Type: unknown}}
+            - or:
+              - contains: {attrs: {indicateType: pedestrian}}
+              - contains: {attrs: {indicateType: other}}
+              - contains: {attrs: {indicateType: bicycle}}
+            - range: {field: $BBOX_SHORTSIDE, lt: 8}

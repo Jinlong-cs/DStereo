@@ -1,0 +1,68 @@
+base_classname: road_arrow # 一级类型名称
+num_classes: 50 # 类别数量
+allow_multi_match: true # 允许一个instance进行多次匹配
+default_ignore_full_image: true # 未定义的类别使用全图ignore
+remove_empty_images: false # 删除空图片
+shuffle: true # 打乱图片顺序
+class_mappers: # 目标类别转换器
+  - id: null # 空类, 用于删除样本
+    match_condiction:
+      or:
+        - contains: { attrs: { occlusion: invisible } }
+        - contains: { attrs: { paint: paint_off } }
+        - contains: { attrs: { ArrowSort: Unknown } } # 未知类别暂时不加入训练
+        - contains: { attrs: { ArrowSort: ManholeCover } }
+        - contains: { attrs: { ArrowSort: FP } }
+        - contains: { attrs: { ArrowSort: FP_Mismatched } } # 发版4pe diff GT
+        - contains: { attrs: { ArrowSort: FP_Mismatched_BigModel_IG } } # 发版4pe diff GT diff 大模型
+        - contains: { attrs: { ArrowSort: Word } } # Badcase标注数据 66175, 66174, 66173, 66169, 66131 中临时加入了Word文字误报
+
+  - id: 8 # 类别ID
+    name: RA # 类名，只用于展示
+    match_condiction: # 以下条件为真值，则目标匹配到该类别
+      or:
+        # 国内类
+        - contains: { attrs: { ArrowSort: Straight } }
+        - contains: { attrs: { ArrowSort: LeftTurn } }
+        - contains: { attrs: { ArrowSort: RightTurn } }
+        - contains: { attrs: { ArrowSort: LeftTurnOrStraight } }
+        - contains: { attrs: { ArrowSort: RightTurnOrStraight } }
+        - contains: { attrs: { ArrowSort: U_turn } }
+        - contains: { attrs: { ArrowSort: StraightOrU_turn } }
+        - contains: { attrs: { ArrowSort: LeftTurnOrU_turn } }
+        - contains: { attrs: { ArrowSort: LeftTurnOrRightTurn } }
+        - contains: { attrs: { ArrowSort: LeftMerge } }
+        - contains: { attrs: { ArrowSort: RightMerge } }
+        - contains: { attrs: { ArrowSort: StraightOrLeftTurnOrRightTurn } }
+        - contains: { attrs: { ArrowSort: "No" } }
+        - contains: { attrs: { ArrowSort: Diamond } }
+        - contains: { attrs: { ArrowSort: SlowDownTriangle } }
+        - contains: { attrs: { ArrowSort: DistanceConfirmationLine } }
+        - contains: { attrs: { ArrowSort: Other } } #可以考虑去除
+        # 北美类
+        - contains: { attrs: { ArrowSort: LaneReductionToLeft } }
+        - contains: { attrs: { ArrowSort: LaneReductionToRight } }
+        - contains: { attrs: { ArrowSort: RailwayAhead } }
+        - contains: { attrs: { ArrowSort: Bike } }
+        - contains: { attrs: { ArrowSort: SpeedHump } }
+    ignore_condiction: # 以下条件为真值，则目标为该类的ignore区域
+      or:
+        - contains: { attrs: { ignore: "yes" } }
+        # 北美类
+        - contains: { attrs: { ArrowSort: LaneReductionToLeft } }
+        - contains: { attrs: { ArrowSort: LaneReductionToRight } }
+        - contains: { attrs: { ArrowSort: RailwayAhead } }
+        - contains: { attrs: { ArrowSort: Bike } }
+        - contains: { attrs: { ArrowSort: SpeedHump } }
+        - contains: { attrs: { ArrowSort: RailwayAhead } }
+        - contains: { attrs: { ArrowSort: RailwayAhead } }
+    hard_condiction: # 以下条件为真值，则目标为该类的hard目标
+      and:
+        - not:
+            contains: { attrs: { ignore: "yes" } }
+        - or:
+            - contains: { attrs: { occlusion: heavily_occluded } }
+            - contains: { attrs: { paint: heavily_paint_off } }
+            - or:
+                - range: { field: $BBOX_HEIGHT, lt: 5 } # 高度 < 5
+                - range: { field: $BBOX_WIDTH, lt: 5 } # 宽度 < 5

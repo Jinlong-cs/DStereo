@@ -1,0 +1,3 @@
+# INSTALL by "pip install -r requirements.txt -i https://pypi.hobot.cc/simple --extra-index-url=https://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc"
+-r requirements/build.txt
+-r requirements/develop.txt

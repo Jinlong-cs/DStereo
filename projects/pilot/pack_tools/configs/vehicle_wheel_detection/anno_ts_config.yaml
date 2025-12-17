@@ -1,0 +1,24 @@
+num_classes: 10                                         # 类别数量
+current_class_id: 6
+default_ignore_full_image: true                         # 其余类别全图ignore
+remove_empty_images: false                              # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: false                                           # 打乱图片顺序
+parent_box_classname: vehicle
+parent_box_remove_condiction:
+children_box_classname: common_box
+children_box_remove_condiction:                                         # 为真值, 则删除
+children_box_ignore_condiction:
+  contains: {attrs: {ignore: "yes"}}
+children_box_hard_condiction:
+  or:                                                       # 以下任一条件为真, 则输出真
+  - contains: {attrs: {occlusion: heavily_occluded}}            # 包含{"attrs": {"occlusion": "heavily_occluded"}}
+  - contains: {attrs: {occlusion: heavily_occluded_c}}          # 包含{"attrs": {"occlusion": "heavily_occluded_c"}}
+  - contains: {attrs: {occlusion: invisible}}                   # 包含{"attrs": {"occlusion": "invisible"}}
+  - contains: {attrs: {occlusion: invisible_d}}                 # 包含{"attrs": {"occlusion": "invisible_d"}}
+    #- range: {field: $BBOX_HEIGHT, lt: 12}                          # 高度 < 12
+  - range: {field: $BBOX_WIDTH, lt: 3 }                           # 宽度 < 12
+children_box_positive_condiction:
+  and: []
+match_mode: matching_with_belongto_attr
+#match_overlap_threshold: 0.6

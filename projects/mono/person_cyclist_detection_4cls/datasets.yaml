@@ -1,0 +1,50 @@
+person_2PE:
+- batch_size: 44.8
+  train_json: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/0323_820_10652_0220_quad_multicls_v3_v20210517_20230327/recover/train.anno.pb_rec
+  train_rec: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/0323_820_10652_0220_quad_multicls_v3_v20210517_20230327/train.rec
+  train_roi_list: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/0323_820_10652_0220_quad_multicls_v3_v20210517_20230327/recover/train.roi.roilist.pb_rec
+  val_json: null
+  val_rec: null
+
+- batch_size: 43.2
+  train_json: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/10652_820_AEB_multicls_v20210805_adjRainNight_20230327/recover/train.anno.pb_rec
+  train_rec: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/10652_820_AEB_multicls_v20210805_adjRainNight_20230327/train.rec
+  train_roi_list: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/10652_820_AEB_multicls_v20210805_adjRainNight_20230327/recover/train.roi.roilist.pb_rec
+  val_json: null
+  val_rec: null
+
+- batch_size: 99.7
+  train_json: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/20220304_20220412_release_20230329/recover/train.anno.pb_rec
+  train_rec: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/20220304_20220412_release_20230329/train.rec
+  # train_roi_list: null
+  val_json: null
+  val_rec: null
+
+- batch_size: 31.1
+  train_json: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/20220412_release_20230329/recover/train.anno.pb_rec
+  train_rec: /data/2pe_ped_cyc_motorcyc_tricyc_det/train_20230327/20220412_release_20230329/train.rec
+  # train_roi_list: null
+  val_json: null
+  val_rec: null
+
+- batch_size: 16.4
+  train_json: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20220701_20221117/20230326-031336/data.anno.pb_rec
+  train_rec: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20220701_20221117/20230326-031336/data.rec
+  train_roi_list: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20220701_20221117/20230326-031336/data_roilist.roilist.pb_rec
+  val_json: null
+  val_rec: null
+
+- batch_size: 27.9
+  train_json: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20221117_20230428/20230429-090701/data.anno.pb_rec
+  train_rec: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20221117_20230428/20230429-090701/data.rec
+  train_roi_list: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20221117_20230428/20230429-090701/data_roilist.roilist.pb_rec
+  val_json: null
+  val_rec: null
+ 
+- batch_size: 8.4
+  train_json: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20230428_20230619/20230619-200434/data.anno.pb_rec
+  train_rec: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20230428_20230619/20230619-200434/data.rec
+  train_roi_list: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20230428_20230619/20230619-200434/data_roilist.roilist.pb_rec
+  val_json: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20220701_20221117/20230326-031336/data.anno.pb_rec
+  val_rec: /data/cyclist_det_multitask/pede_cyc_morotcyc_tricyc_2pe_det_online_packing_20220701_20221117/20230326-031336/data.rec
+  

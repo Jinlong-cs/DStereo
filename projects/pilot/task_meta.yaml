@@ -1,0 +1,46 @@
+
+# vehicle
+vehicle_category_classification: vehicle_detection
+vehicle_occlusion_classification: vehicle_detection
+vehicle_truncation_classification: vehicle_detection
+vehicle_wheel_detection: vehicle_detection
+vehicle_wheel_kps: vehicle_detection
+vehicle_ground_line: vehicle_detection
+vehicle_flank: vehicle_detection
+
+# rear
+rear_plate_detection: rear_detection
+rear_occlusion_classification: rear_detection
+rear_part_classification: rear_detection
+
+# person
+person_face_detection: person_detection
+person_occlusion_classification: person_detection
+person_orientation_classification: person_detection
+person_pose_classification: person_detection
+cyclist_category_classification: cyclist_detection
+cyclist_classification: cyclist_detection
+
+# 3d
+vehicle_heatmap_3d_detection:
+  - vehicle_detection
+
+ped_cyc_heatmap_3d_detection:
+  - person_detection
+  - cyclist_detection
+
+vehicle_roi_3d:
+  - vehicle_detection
+  - vehicle_heatmap_3d_detection
+
+person_roi_3d:
+  - person_detection
+  - cyclist_detection
+  - ped_cyc_heatmap_3d_detection
+  - cyclist_roi_3d
+
+cyclist_roi_3d:
+  - cyclist_detection
+  - person_detection
+  - ped_cyc_heatmap_3d_detection
+  - person_roi_3d

@@ -1,0 +1,2846 @@
+base_classname: traffic_sign
+num_classes: 241
+remove_empty_images: true
+shuffle: true
+
+class_mappers:
+- id: null
+  match_condiction:
+    or:
+    - contains: {attrs: {ignore: "yes"}}
+    - contains: {attrs: {occlusion: invisible}}
+    - contains: {attrs: {cn_sub_type: ""}}
+    - contains: {attrs: {cn_sub_type: "0"}}
+    - contains: {attrs: {cn_sub_type: W_Unknown}}
+    - contains: {attrs: {cn_sub_type: P_Unknown1}}
+    - contains: {attrs: {cn_sub_type: P_Unknown2}}
+    - contains: {attrs: {cn_sub_type: P_Unknown3}}
+    - contains: {attrs: {cn_sub_type: P_Unknow_SpeedLimele}}
+    - contains: {attrs: {cn_sub_type: PSL_Unknown}}
+    - contains: {attrs: {cn_sub_type: PR_Unknown}}
+    - contains: {attrs: {cn_sub_type: MSL_Unknown}}
+    - contains: {attrs: {cn_sub_type: I_Unknown}}
+    - contains: {attrs: {cn_sub_type: I_Unknown_circle}}
+    - contains: {attrs: {cn_sub_type: I_Unknown_rectangle}}
+    - contains: {attrs: {cn_sub_type: GSWB_Unknown}}
+    - contains: {attrs: {cn_sub_type: C_Unknown}}
+    - contains: {attrs: {cn_sub_type: RSBW_Unknown}}
+    - contains: {attrs: {cn_sub_type: GSBW_Unknown}}
+    - contains: {attrs: {cn_sub_type: GSGW_Unknown}}
+    - contains: {attrs: {cn_sub_type: TSBW_Unknown}}
+    - contains: {attrs: {cn_sub_type: RouteID_Unknown}}
+    - contains: {attrs: {cn_sub_type: RRW_Unknown}}
+    - contains: {attrs: {cn_sub_type: RYB_Unknown}}
+    - contains: {attrs: {cn_sub_type: U_Unknow}}
+    - contains: {attrs: {cn_sub_type: U_Unknown}}
+    - contains: {attrs: {cn_sub_type: Unknown}}
+    - contains: {attrs: {cn_sub_type: NoName}}
+    - contains: {attrs: {cn_sub_type: "null"}}
+    - contains: {attrs: {cn_sub_type: IGNORE}}
+    - contains: {attrs: {cn_sub_type: W_Misc}}
+    - contains: {attrs: {cn_sub_type: P_Misc1}}
+    - contains: {attrs: {cn_sub_type: P_Misc2}}
+    - contains: {attrs: {cn_sub_type: P_Misc3}}
+    - contains: {attrs: {cn_sub_type: I_Misc}}
+    - contains: {attrs: {cn_sub_type: M_Misc}}
+    - contains: {attrs: {cn_sub_type: Sign_Misc}}
+    - contains: {attrs: {cn_sub_type: M_Other}}
+    - contains: {attrs: {cn_sub_type: O_Other}}
+    - contains: {attrs: {cn_sub_type: Other}}
+    - contains: {attrs: {cn_sub_type: GuideSign_MultiMisc}}
+    - contains: {attrs: {cn_sub_type: IR_ETCLanes}}
+    - contains: {attrs: {cn_sub_type: IR_ElectricalETC}}
+    - contains: {attrs: {cn_sub_type: IR_HighwayETCTollStationsNotice}}
+    - contains: {attrs: {cn_sub_type: W_Slash}}
+    - contains: {attrs: {cn_sub_type: W_CrossLaneRail}}
+    - contains: {attrs: {cn_medium_type: W_Unknown}}
+    - contains: {attrs: {cn_medium_type: P_Unknown1}}
+    - contains: {attrs: {cn_medium_type: P_Unknow_SpeedLimele}}
+    - contains: {attrs: {cn_medium_type: PSL_Unknown}}
+    - contains: {attrs: {cn_medium_type: PR_Unknown}}
+    - contains: {attrs: {cn_medium_type: MSL_Unknown}}
+    - contains: {attrs: {cn_medium_type: I_Unknown_circle}}
+    - contains: {attrs: {cn_medium_type: I_Unknown_rectangle}}
+    - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+    - contains: {attrs: {cn_medium_type: C_Unknown}}
+    - contains: {attrs: {cn_medium_type: RSBW_Unknown}}
+    - contains: {attrs: {cn_medium_type: GSGW_Unknown}}
+    - contains: {attrs: {cn_medium_type: TSBW_Unknown}}
+    - contains: {attrs: {cn_medium_type: RouteID_Unknown}}
+    - contains: {attrs: {cn_medium_type: U_Unknow}}
+    - contains: {attrs: {cn_medium_type: U_Unknown}}
+    - contains: {attrs: {cn_medium_type: Unknown}}
+    - contains: {attrs: {cn_fp_type: Sign}}
+    - contains: {attrs: {sub_match_pred: "no"}}
+    - and:
+      - contains: {attrs: {sub_match_medium: "no"}}
+      - not:
+          contains: {attrs: {fix_medium: "yes"}}
+    - and:
+      - or:
+        - contains: {attrs: {Inside: outside}}
+        - contains: {attrs: {nested_outside: "yes"}}
+      - or:
+        - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+        - contains: {attrs: {cn_medium_type: PSL_Other}}
+        - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+        - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+        - contains: {attrs: {cn_medium_type: PR_Other}}
+        - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+        - contains: {attrs: {cn_medium_type: MSL_Other}}
+        - contains: {attrs: {cn_medium_type: Prohibit_I}}
+        - contains: {attrs: {cn_medium_type: P_Other1}}
+        - contains: {attrs: {cn_medium_type: W_Warning}}
+        - contains: {attrs: {cn_medium_type: W_Other}}
+        - contains: {attrs: {cn_medium_type: sign_Construction}}
+        - contains: {attrs: {cn_medium_type: C_Other}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+        - and:
+          - or:
+            - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+            - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+            - contains: {attrs: {cn_medium_type: I_Other_circle}}
+            - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+          - not:
+              contains: {attrs: {cn_sub_type: I_SplitDriveLine}}
+    - range: {field: $BBOX_HEIGHT, lt: 8}
+    - range: {field: $BBOX_WIDTH, lt: 14}
+    - and:
+      - or:
+        - contains: {attrs: {cn_medium_type: sign_Construction}}
+        - contains: {attrs: {cn_medium_type: C_Other}}
+      - or:
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 2}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.2}
+    - and:
+      - or:
+        - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+        - contains: {attrs: {cn_medium_type: GSWB_Other}}
+        - contains: {attrs: {cn_medium_type: GSWB_Unknown}}
+      - or:
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 4}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.2}
+    - and:
+      - or:
+        - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+        - contains: {attrs: {cn_medium_type: PSL_Other}}
+        - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+        - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+        - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+        - contains: {attrs: {cn_medium_type: PR_Other}}
+        - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+        - contains: {attrs: {cn_medium_type: MSL_Other}}
+        - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+        - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+        - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+        - contains: {attrs: {cn_medium_type: RSBW_Other}}
+        - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+        - contains: {attrs: {cn_medium_type: GSGW_Other}}
+        - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+        - contains: {attrs: {cn_medium_type: TSBW_Other}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+      - or:
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 4}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.25}
+    - and:
+      - or:
+        - contains: {attrs: {cn_medium_type: W_Warning}}
+        - contains: {attrs: {cn_medium_type: W_Other}}
+        - contains: {attrs: {cn_medium_type: Prohibit_I}}
+        - contains: {attrs: {cn_medium_type: P_Other1}}
+        - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+        - contains: {attrs: {cn_medium_type: I_Other_circle}}
+      - or:
+        - range: {field: $BBOX_ASPECT_RATIO, gt: 3}
+        - range: {field: $BBOX_ASPECT_RATIO, lt: 0.3}
+- id: 1
+  name: P_Custom
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_Custom}}
+- id: 2
+  name: P_GiveWay
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_GiveWay}}
+- id: 3
+  name: P_HeightLim
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_HeightLim}}
+- id: 4
+  name: P_MultiVehicle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_MultiVehicle}}
+- id: 5
+  name: P_NoAnimalVehicle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoAnimalVehicle}}
+- id: 6
+  name: P_NoBikeDownSlope
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoBikeDownSlope}}
+- id: 7
+  name: P_NoBikeUpSlope
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoBikeUpSlope}}
+- id: 8
+  name: P_NoBus
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoBus}}
+- id: 9
+  name: P_NoCar
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoCar}}
+- id: 10
+  name: P_NoCargoTricycle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoCargoTricycle}}
+- id: 11
+  name: P_NoDangerous
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoDangerous}}
+- id: 12
+  name: P_NoEntry
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoEntry}}
+- id: 13
+  name: P_NoForward
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoForward}}
+- id: 14
+  name: P_NoForwardLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoForwardLeft}}
+- id: 15
+  name: P_NoForwardRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoForwardRight}}
+- id: 16
+  name: P_NoHorning
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoHorning}}
+- id: 17
+  name: P_NoHuman
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoHuman}}
+- id: 18
+  name: P_NoHumanCargoTriangle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoHumanCargoTriangle}}
+- id: 19
+  name: P_NoHumanPassengerTriangle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoHumanPassengerTriangle}}
+- id: 20
+  name: P_NoHumanVehicle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoHumanVehicle}}
+- id: 21
+  name: P_NoLeftRightTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoLeftRightTurn}}
+- id: 22
+  name: P_NoLeftTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoLeftTurn}}
+- id: 23
+  name: P_NoLongParking
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoLongParking}}
+- id: 24
+  name: P_NoMinibus
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoMinibus}}
+- id: 25
+  name: P_NoMotor
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoMotor}}
+- id: 26
+  name: P_NoMotorcycle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoMotorcycle}}
+- id: 27
+  name: P_NoNonMotor
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoNonMotor}}
+- id: 28
+  name: P_NoParking
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoParking}}
+- id: 29
+  name: P_NoPassing
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoPassing}}
+- id: 30
+  name: P_NoPassingRev
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoPassingRev}}
+- id: 31
+  name: P_NoReturn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoReturn}}
+- id: 32
+  name: P_NoRightTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoRightTurn}}
+- id: 33
+  name: P_NoSpecificLeftTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoSpecificLeftTurn}}
+- id: 34
+  name: P_NoSpecificRightTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoSpecificRightTurn}}
+- id: 35
+  name: P_NoTractor
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoTractor}}
+- id: 36
+  name: P_NoTrailer
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoTrailer}}
+- id: 37
+  name: P_NoTricycle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoTricycle}}
+- id: 38
+  name: P_NoTruck
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_NoTruck}}
+- id: 39
+  name: P_Noway
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_Noway}}
+- id: 40
+  name: P_ParkingCheck
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_ParkingCheck}}
+- id: 41
+  name: P_SlowFor
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SlowFor}}
+- id: 42
+  name: P_StopFor
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_StopFor}}
+- id: 43
+  name: P_VehicleOther
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_VehicleOther}}
+- id: 44
+  name: P_WeightLim
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_WeightLim}}
+- id: 45
+  name: P_WeightLimWheel
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_WeightLimWheel}}
+- id: 46
+  name: P_WidthLim
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Prohibit_I}}
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_WidthLim}}
+- id: 47
+  name: P_Other1
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_Other1}}
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_Other1}}
+      - contains: {attrs: {cn_sub_type: P_NoLongParkingRev}}
+      - contains: {attrs: {cn_sub_type: P_NoParkingRev}}
+- id: 48
+  name: W_AccidentProne
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_AccidentProne}}
+- id: 49
+  name: W_BadWeather
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_BadWeather}}
+- id: 50
+  name: W_Bump
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Bump}}
+- id: 51
+  name: W_Bumpy
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Bumpy}}
+- id: 52
+  name: W_Children
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Children}}
+- id: 53
+  name: W_Circle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Circle}}
+- id: 54
+  name: W_ContinuousDown
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_ContinuousDown}}
+- id: 55
+  name: W_ContinuousTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_ContinuousTurn}}
+- id: 56
+  name: W_Cross
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Cross}}
+- id: 57
+  name: W_CrossIntersection
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_CrossIntersection}}
+- id: 58
+  name: W_Cycle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Cycle}}
+- id: 59
+  name: W_DamLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_DamLeft}}
+- id: 60
+  name: W_DamRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_DamRight}}
+- id: 61
+  name: W_Danger
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Danger}}
+- id: 62
+  name: W_DetourAround
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_DetourAround}}
+- id: 63
+  name: W_DetourLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_DetourLeft}}
+- id: 64
+  name: W_DetourRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_DetourRight}}
+- id: 65
+  name: W_Disabled
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Disabled}}
+- id: 66
+  name: W_Down
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Down}}
+- id: 67
+  name: W_Ferry
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Ferry}}
+- id: 68
+  name: W_Fog
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Fog}}
+- id: 69
+  name: W_Ford
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Ford}}
+- id: 70
+  name: W_GuardedRailway
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_GuardedRailway}}
+- id: 71
+  name: W_HumpBridge
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_HumpBridge}}
+- id: 72
+  name: W_Ice
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Ice}}
+- id: 73
+  name: W_KeepDistance
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_KeepDistance}}
+- id: 74
+  name: W_LRNarrow
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_LRNarrow}}
+- id: 75
+  name: W_LRTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_LRTurn}}
+- id: 76
+  name: W_LeftFalling
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_LeftFalling}}
+- id: 77
+  name: W_LeftNarrow
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_LeftNarrow}}
+- id: 78
+  name: W_LeftTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_LeftTurn}}
+- id: 79
+  name: W_LowLying
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_LowLying}}
+- id: 80
+  name: W_MergeLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_MergeLeft}}
+- id: 81
+  name: W_MergeRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_MergeRight}}
+- id: 82
+  name: W_MountLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_MountLeft}}
+- id: 83
+  name: W_MountRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_MountRight}}
+- id: 84
+  name: W_NarrowBridge
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_NarrowBridge}}
+- id: 85
+  name: W_Pedestrian
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Pedestrian}}
+- id: 86
+  name: W_RLTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_RLTurn}}
+- id: 87
+  name: W_Railway
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Railway}}
+- id: 88
+  name: W_Rain
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Rain}}
+- id: 89
+  name: W_RightFalling
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_RightFalling}}
+- id: 90
+  name: W_RightNarrow
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_RightNarrow}}
+- id: 91
+  name: W_RightTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_RightTurn}}
+- id: 92
+  name: W_SideWind
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_SideWind}}
+- id: 93
+  name: W_Slip
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Slip}}
+- id: 94
+  name: W_Slow
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Slow}}
+- id: 95
+  name: W_SlowDown
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_SlowDown}}
+- id: 96
+  name: W_SplitLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_SplitLeft}}
+- id: 97
+  name: W_SplitRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_SplitRight}}
+- id: 98
+  name: W_TIntersection
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_TIntersection}}
+- id: 99
+  name: W_TShapLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_TShapLeft}}
+- id: 100
+  name: W_TShapRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_TShapRight}}
+- id: 101
+  name: W_Tidal
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Tidal}}
+- id: 102
+  name: W_TrafficLight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_TrafficLight}}
+- id: 103
+  name: W_Tripod
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Tripod}}
+- id: 104
+  name: W_Tshape
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Tshape}}
+- id: 105
+  name: W_Tshaps
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Tshaps}}
+- id: 106
+  name: W_Tunnel
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Tunnel}}
+- id: 107
+  name: W_TunnelHeadlight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_TunnelHeadlight}}
+- id: 108
+  name: W_TwoWay
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_TwoWay}}
+- id: 109
+  name: W_Up
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Up}}
+- id: 110
+  name: W_VehicleQueue
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_VehicleQueue}}
+- id: 111
+  name: W_Village
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Village}}
+- id: 112
+  name: W_Working
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Working}}
+- id: 113
+  name: W_YBLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_YBLeft}}
+- id: 114
+  name: W_YBRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_YBRight}}
+- id: 115
+  name: W_YLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_YLeft}}
+- id: 116
+  name: W_YRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Warning}}
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_YRight}}
+- id: 117
+  name: W_Other
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: W_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: W_Other}}
+      - contains: {attrs: {cn_sub_type: W_Animal}}
+      - contains: {attrs: {cn_sub_type: W_Domestic}}
+      - contains: {attrs: {cn_sub_type: W_EmergencyLane}}
+- id: 118
+  name: I_Circle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Circle}}
+- id: 119
+  name: I_Forward
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Forward}}
+- id: 120
+  name: I_ForwardLeft
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_ForwardLeft}}
+- id: 121
+  name: I_ForwardRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_ForwardRight}}
+- id: 122
+  name: I_Honk
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Honk}}
+- id: 123
+  name: I_Left
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Left}}
+- id: 124
+  name: I_LeftRight
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_LeftRight}}
+- id: 125
+  name: I_LeftTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_LeftTurn}}
+- id: 126
+  name: I_Motors
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Motors}}
+- id: 127
+  name: I_NonMotors
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_NonMotors}}
+- id: 128
+  name: I_Right
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Right}}
+- id: 129
+  name: I_RightTurn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_RightTurn}}
+- id: 130
+  name: I_Uturn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Uturn}}
+- id: 131
+  name: I_Walk
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationCircle}}
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Walk}}
+- id: 132
+  name: I_Other_circle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_Other_circle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Other_circle}}
+      - contains: {attrs: {cn_sub_type: I_ForwardLeftStereo}}
+      - contains: {attrs: {cn_sub_type: I_ForwardRightStereo}}
+- id: 133
+  name: I_AllowUturn
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_AllowUturn}}
+- id: 134
+  name: I_FastBusLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_FastBusLane}}
+- id: 135
+  name: I_ForwardLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_ForwardLane}}
+- id: 136
+  name: I_ForwardLeftLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_ForwardLeftLane}}
+- id: 137
+  name: I_ForwardRightLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_ForwardRightLane}}
+- id: 138
+  name: I_LeftBusLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_LeftBusLane}}
+- id: 139
+  name: I_LeftLine
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_LeftLine}}
+- id: 140
+  name: I_LeftTurnLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_LeftTurnLane}}
+- id: 141
+  name: I_MotorsLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MotorsLane}}
+- id: 142
+  name: I_MultiOccupantMotorsLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MultiOccupantMotorsLane}}
+- id: 143
+  name: I_NonMotorsLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_NonMotorsLane}}
+- id: 144
+  name: I_ParkingSpace
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_ParkingSpace}}
+- id: 145
+  name: I_PedestrianCross
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_PedestrianCross}}
+- id: 146
+  name: I_PriorityIntereesction
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_PriorityIntereesction}}
+- id: 147
+  name: I_RightLine
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_RightLine}}
+- id: 148
+  name: I_RightTurnLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_RightTurnLane}}
+- id: 149
+  name: I_SplitDriveLine
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+          - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+        - or:
+          - contains: {attrs: {cn_sub_type: I_SplitDriveLine}}
+        - or:
+          - contains: {attrs: {Inside: outside}}
+          - contains: {attrs: {nested_outside: "yes"}}
+      - contains: {attrs: {recommend_subtype: I_SplitDriveLine}}
+- id: 150
+  name: I_StraightLine
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_StraightLine}}
+- id: 151
+  name: I_UTurnAndLeftLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_UTurnAndLeftLane}}
+- id: 152
+  name: I_UTurnLane
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_IndicationRectangle}}
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_UTurnLane}}
+- id: 153
+  name: I_Other_rectangle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: I_Other_rectangle}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_Other_rectangle}}
+      - contains: {attrs: {cn_sub_type: I_Passingfirst}}
+- id: 154
+  name: G_GuideSign_WhiteBlack
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+      - contains: {attrs: {cn_medium_type: GSWB_Other}}
+      - contains: {attrs: {cn_sub_type: IR_Parking}}
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {cn_sub_type: GSWB_Other}}
+          - contains: {attrs: {cn_sub_type: G_GuideSign_WhiteBlack}}
+          - contains: {attrs: {cn_sub_type: GuideSign_WhiteBlack}}
+          - contains: {attrs: {cn_sub_type: IR_CombinationAuxiliary}}
+          - contains: {attrs: {cn_sub_type: IR_DistanceArea}}
+          - contains: {attrs: {cn_sub_type: IR_DrivingDirection}}
+          - contains: {attrs: {cn_sub_type: IR_PassingTime}}
+          - contains: {attrs: {cn_sub_type: IR_VehicleType}}
+          - contains: {attrs: {cn_sub_type: IR_WarningReason}}
+          - contains: {attrs: {cn_sub_type: IR_Area}}
+          - contains: {attrs: {cn_sub_type: IR_Parking}}
+          - contains: {attrs: {cn_sub_type: Other_GuideSign_WhiteBlack}}
+        - not:
+            or:
+            - contains: {attrs: {Inside: outside}}
+            - contains: {attrs: {nested_outside: "yes"}}
+      - contains: {attrs: {recommend_subtype: G_GuideSign_WhiteBlack}}
+    - not:
+        or:
+        - contains: {attrs: {cn_fp_type: sign_back}}
+        - contains: {attrs: {cn_fp_type: FP_Route_Number}}
+        - contains: {attrs: {cn_fp_type: FP_Mirror}}
+        - contains: {attrs: {cn_fp_type: FP_Circular_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Polygon_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Vehicle_Wheel}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Shell}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Circle}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Time}}
+        - contains: {attrs: {cn_fp_type: FP_Building}}
+        - contains: {attrs: {cn_fp_type: FP_Twig}}
+        - contains: {attrs: {cn_fp_type: FP_Head}}
+        - contains: {attrs: {cn_fp_type: FP_Accessory_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Other}}
+        - contains: {attrs: {cn_fp_type: FP_Unknown}}
+- id: 155
+  name: IR_Ramp
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+      - contains: {attrs: {cn_medium_type: GSWB_Other}}
+      - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+      - contains: {attrs: {cn_medium_type: GSGW_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: IR_Ramp}}
+- id: 156
+  name: IR_RampArrow
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: GuideSign_WhiteBlack}}
+      - contains: {attrs: {cn_medium_type: GSWB_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: IR_RampArrow}}
+- id: 157
+  name: IR_Zones
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: sign_Construction}}
+      - contains: {attrs: {cn_medium_type: C_Other}}
+      - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+      - contains: {attrs: {cn_medium_type: RSBW_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: IR_Zones}}
+- id: 158
+  name: IR_ZonesII
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: sign_Construction}}
+      - contains: {attrs: {cn_medium_type: C_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: IR_ZonesII}}
+- id: 159
+  name: R_RoadSign_BlueWhite
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: RoadSign_BlueWhite}}
+      - contains: {attrs: {cn_medium_type: RSBW_Other}}
+      - contains: {attrs: {cn_medium_type: GuideSign_BlueWhite}}
+      - contains: {attrs: {cn_medium_type: GSBW_Other}}
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {cn_sub_type: R_RoadSign_BlueWhite}}
+          - contains: {attrs: {cn_sub_type: RoadSign_BlueWhite}}
+          - contains: {attrs: {cn_sub_type: RSBW_Other}}
+          - contains: {attrs: {cn_sub_type: G_GuideSign_BlueWhite}}
+          - contains: {attrs: {cn_sub_type: GuideSign_BlueWhite}}
+          - contains: {attrs: {cn_sub_type: GSBW_Other}}
+          - contains: {attrs: {cn_sub_type: IR_AccidentPronePoint}}
+          - contains: {attrs: {cn_sub_type: IR_Airport}}
+          - contains: {attrs: {cn_sub_type: IR_AvoidLine}}
+          - contains: {attrs: {cn_sub_type: IR_BifurcationMark}}
+          - contains: {attrs: {cn_sub_type: IR_BigCarRight}}
+          - contains: {attrs: {cn_sub_type: IR_Blocked}}
+          - contains: {attrs: {cn_sub_type: IR_CarRepair}}
+          - contains: {attrs: {cn_sub_type: IR_CarWash}}
+          - contains: {attrs: {cn_sub_type: IR_CateringServices}}
+          - contains: {attrs: {cn_sub_type: IR_ContinuousDownhill}}
+          - contains: {attrs: {cn_sub_type: IR_CrossIntersection}}
+          - contains: {attrs: {cn_sub_type: IR_DisabledSpecial}}
+          - contains: {attrs: {cn_sub_type: IR_FamousPlaceName}}
+          - contains: {attrs: {cn_sub_type: IR_Ferry}}
+          - contains: {attrs: {cn_sub_type: IR_FerryPier}}
+          - contains: {attrs: {cn_sub_type: IR_FirstAidStation}}
+          - contains: {attrs: {cn_sub_type: IR_Foggy}}
+          - contains: {attrs: {cn_sub_type: IR_GasStation}}
+          - contains: {attrs: {cn_sub_type: IR_Interchange}}
+          - contains: {attrs: {cn_sub_type: IR_IntersectionNotice}}
+          - contains: {attrs: {cn_sub_type: IR_LocationDistance}}
+          - contains: {attrs: {cn_sub_type: IR_LongDistanceBusStation}}
+          - contains: {attrs: {cn_sub_type: IR_ParkingLot}}
+          - contains: {attrs: {cn_sub_type: IR_PedestrianTunnel}}
+          - contains: {attrs: {cn_sub_type: IR_PedestrianUnderpass}}
+          - contains: {attrs: {cn_sub_type: IR_PlaceName}}
+          - contains: {attrs: {cn_sub_type: IR_ProtectAnimals}}
+          - contains: {attrs: {cn_sub_type: IR_RailwayStation}}
+          - contains: {attrs: {cn_sub_type: IR_SceneryBrowseArea}}
+          - contains: {attrs: {cn_sub_type: IR_SlowRoad}}
+          - contains: {attrs: {cn_sub_type: IR_SoftFoundation}}
+          - contains: {attrs: {cn_sub_type: IR_SteepSlope}}
+          - contains: {attrs: {cn_sub_type: IR_SubwayStation}}
+          - contains: {attrs: {cn_sub_type: IR_Tcorssing}}
+          - contains: {attrs: {cn_sub_type: IR_TransverseWind}}
+          - contains: {attrs: {cn_sub_type: IR_Tunnel}}
+          - contains: {attrs: {cn_sub_type: R_CircularIntersection}}
+          - contains: {attrs: {cn_sub_type: IR_Accommodation}}
+          - contains: {attrs: {cn_sub_type: IR_AdministrativeBoundary}}
+          - contains: {attrs: {cn_sub_type: IR_BusStation}}
+          - contains: {attrs: {cn_sub_type: IR_Drink}}
+          - contains: {attrs: {cn_sub_type: IR_EmergencyShelter}}
+          - contains: {attrs: {cn_sub_type: IR_FootBridge}}
+          - contains: {attrs: {cn_sub_type: IR_LanesDecrease}}
+          - contains: {attrs: {cn_sub_type: IR_LanesIncrease}}
+          - contains: {attrs: {cn_sub_type: IR_MilePost}}
+          - contains: {attrs: {cn_sub_type: IR_Nameplate}}
+          - contains: {attrs: {cn_sub_type: IR_Police}}
+          - contains: {attrs: {cn_sub_type: IR_Port}}
+          - contains: {attrs: {cn_sub_type: IR_Quarantine}}
+          - contains: {attrs: {cn_sub_type: IR_RestArea}}
+          - contains: {attrs: {cn_sub_type: IR_RoadManageBoundary}}
+          - contains: {attrs: {cn_sub_type: IR_Snack}}
+          - contains: {attrs: {cn_sub_type: IR_StreetName}}
+          - contains: {attrs: {cn_sub_type: IR_Taxi}}
+          - contains: {attrs: {cn_sub_type: IR_TrafficSupervisory}}
+          - contains: {attrs: {cn_sub_type: IR_TransferCenter}}
+          - contains: {attrs: {cn_sub_type: IR_TunnelNextExitNotice}}
+          - contains: {attrs: {cn_sub_type: IR_ViewingPoint}}
+          - contains: {attrs: {cn_sub_type: IR_Ycorssing}}
+          - contains: {attrs: {cn_sub_type: RSBW_Misc}}
+          - contains: {attrs: {cn_sub_type: Other_GuideSign_BlueWhite}}
+        - not:
+            or:
+            - contains: {attrs: {Inside: outside}}
+            - contains: {attrs: {nested_outside: "yes"}}
+      - contains: {attrs: {recommend_subtype: R_RoadSign_BlueWhite}}
+    - not:
+        or:
+        - contains: {attrs: {cn_fp_type: sign_back}}
+        - contains: {attrs: {cn_fp_type: FP_Route_Number}}
+        - contains: {attrs: {cn_fp_type: FP_Mirror}}
+        - contains: {attrs: {cn_fp_type: FP_Circular_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Polygon_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Vehicle_Wheel}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Shell}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Circle}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Time}}
+        - contains: {attrs: {cn_fp_type: FP_Building}}
+        - contains: {attrs: {cn_fp_type: FP_Twig}}
+        - contains: {attrs: {cn_fp_type: FP_Head}}
+        - contains: {attrs: {cn_fp_type: FP_Accessory_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Other}}
+        - contains: {attrs: {cn_fp_type: FP_Unknown}}
+- id: 160
+  name: G_GuideSign_GreenWhite
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: GuideSign_GreenWhite}}
+      - contains: {attrs: {cn_medium_type: GSGW_Other}}
+      - contains: {attrs: {cn_sub_type: IR_HighwayHundredCard}}
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {cn_sub_type: GSGW_Other}}
+          - contains: {attrs: {cn_sub_type: G_GuideSign_GreenWhite}}
+          - contains: {attrs: {cn_sub_type: GuideSign_GreenWhite}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayCarDistanceConfirmation}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayClimbingLine}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayEmergencyParkingBelt}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayEnd}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayEndNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayEntrance}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayEntranceNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayExit}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayExitNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayGasStation}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayLocationDirection}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayLocationDistance}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayMileageCard}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayNextExitNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayParkinAreaNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayParkingLotNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayRoadTrafficInformation}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayServiceNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayStart}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayTollStationsNotice}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayDirection}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayETCLanes}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayEmergencyPhone}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayName}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayOverloadCheck}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayRescueCall}}
+          - contains: {attrs: {cn_sub_type: IR_HighwaySlowDown}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayTicket}}
+          - contains: {attrs: {cn_sub_type: IR_WeightCharge}}
+          - contains: {attrs: {cn_sub_type: IR_HighwayHundredCard}}
+          - contains: {attrs: {cn_sub_type: Other_GuideSign_GreenWhite}}
+        - not:
+            or:
+            - contains: {attrs: {Inside: outside}}
+            - contains: {attrs: {nested_outside: "yes"}}
+      - contains: {attrs: {recommend_subtype: G_GuideSign_GreenWhite}}
+    - not:
+        or:
+        - contains: {attrs: {cn_fp_type: sign_back}}
+        - contains: {attrs: {cn_fp_type: FP_Route_Number}}
+        - contains: {attrs: {cn_fp_type: FP_Mirror}}
+        - contains: {attrs: {cn_fp_type: FP_Circular_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Polygon_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Vehicle_Wheel}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Shell}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Circle}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Time}}
+        - contains: {attrs: {cn_fp_type: FP_Building}}
+        - contains: {attrs: {cn_fp_type: FP_Twig}}
+        - contains: {attrs: {cn_fp_type: FP_Head}}
+        - contains: {attrs: {cn_fp_type: FP_Accessory_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Other}}
+        - contains: {attrs: {cn_fp_type: FP_Unknown}}
+- id: 161
+  name: T_TravelSign_BrownWhite
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: TravelSign_BrownWhite}}
+      - contains: {attrs: {cn_medium_type: TSBW_Other}}
+    - or:
+      - and:
+        - or:
+          - contains: {attrs: {cn_sub_type: TSBW_Other}}
+          - contains: {attrs: {cn_sub_type: T_TravelSign_BrownWhite}}
+          - contains: {attrs: {cn_sub_type: IR_TouristAreaDirectionDistance}}
+          - contains: {attrs: {cn_sub_type: IR_TravelSymbols}}
+          - contains: {attrs: {cn_sub_type: Other_TravelSign_BrownWhite}}
+        - not:
+            or:
+            - contains: {attrs: {Inside: outside}}
+            - contains: {attrs: {nested_outside: "yes"}}
+      - contains: {attrs: {recommend_subtype: T_TravelSign_BrownWhite}}
+    - not:
+        or:
+        - contains: {attrs: {cn_fp_type: sign_back}}
+        - contains: {attrs: {cn_fp_type: FP_Route_Number}}
+        - contains: {attrs: {cn_fp_type: FP_Mirror}}
+        - contains: {attrs: {cn_fp_type: FP_Circular_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Polygon_Marker}}
+        - contains: {attrs: {cn_fp_type: FP_Vehicle_Wheel}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Shell}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Circle}}
+        - contains: {attrs: {cn_fp_type: FP_Light_Time}}
+        - contains: {attrs: {cn_fp_type: FP_Building}}
+        - contains: {attrs: {cn_fp_type: FP_Twig}}
+        - contains: {attrs: {cn_fp_type: FP_Head}}
+        - contains: {attrs: {cn_fp_type: FP_Accessory_Arrow}}
+        - contains: {attrs: {cn_fp_type: FP_Other}}
+        - contains: {attrs: {cn_fp_type: FP_Unknown}}
+- id: 162
+  name: RouteID_RedWhite
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: RouteID}}
+      - contains: {attrs: {cn_medium_type: RouteID_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: RouteID_RedWhite}}
+- id: 163
+  name: RouteID_YellowBlack
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: RouteID}}
+      - contains: {attrs: {cn_medium_type: RouteID_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: RouteID_YellowBlack}}
+- id: 164
+  name: RouteID_Other
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: RouteID}}
+      - contains: {attrs: {cn_medium_type: RouteID_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: IR_CountryRoadNumMark}}
+      - contains: {attrs: {cn_sub_type: RouteID_TownRoadMark}}
+- id: 165
+  name: I_MinSpeedLim40
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim40}}
+- id: 166
+  name: I_MinSpeedLim50
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim50}}
+- id: 167
+  name: I_MinSpeedLim60
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim60}}
+- id: 168
+  name: I_MinSpeedLim70
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim70}}
+- id: 169
+  name: I_MinSpeedLim80
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim80}}
+- id: 170
+  name: I_MinSpeedLim90
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim90}}
+- id: 171
+  name: I_MinSpeedLim100
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim100}}
+- id: 172
+  name: I_MinSpeedLim110
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: Min_SpeedLim}}
+      - contains: {attrs: {cn_medium_type: MSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: I_MinSpeedLim110}}
+- id: 173
+  name: P_SpeedLim5
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim5}}
+      - contains: {attrs: {cn_sub_type: P_SpeedLim5ele}}
+- id: 174
+  name: P_SpeedLim10
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim10}}
+      - contains: {attrs: {cn_sub_type: P_SpeedLim10ele}}
+- id: 175
+  name: P_SpeedLim15
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim15}}
+- id: 176
+  name: P_SpeedLim20
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim20}}
+      - contains: {attrs: {cn_sub_type: P_SpeedLim20ele}}
+- id: 177
+  name: P_SpeedLim25
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim25}}
+- id: 178
+  name: P_SpeedLim30
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim30}}
+      - contains: {attrs: {cn_sub_type: P_SpeedLim30ele}}
+- id: 179
+  name: P_SpeedLim35
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim35}}
+- id: 180
+  name: P_SpeedLim40
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim40}}
+- id: 181
+  name: P_SpeedLim45
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim45}}
+- id: 182
+  name: P_SpeedLim50
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim50}}
+- id: 183
+  name: P_SpeedLim55
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim55}}
+- id: 184
+  name: P_SpeedLim60
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim60}}
+- id: 185
+  name: P_SpeedLim65
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim65}}
+- id: 186
+  name: P_SpeedLim70
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim70}}
+- id: 187
+  name: P_SpeedLim75
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim75}}
+- id: 188
+  name: P_SpeedLim80
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim80}}
+- id: 189
+  name: P_SpeedLim85
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim85}}
+- id: 190
+  name: P_SpeedLim90
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim90}}
+- id: 191
+  name: P_SpeedLim95
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim95}}
+- id: 192
+  name: P_SpeedLim100
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim100}}
+- id: 193
+  name: P_SpeedLim105
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim105}}
+- id: 194
+  name: P_SpeedLim110
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim110}}
+- id: 195
+  name: P_SpeedLim115
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim115}}
+- id: 196
+  name: P_SpeedLim120
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_SpeedLimit}}
+      - contains: {attrs: {cn_medium_type: PSL_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim120}}
+- id: 197
+  name: P_SpeedLimRev5
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev5}}
+- id: 198
+  name: P_SpeedLimRev10
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev10}}
+- id: 199
+  name: P_SpeedLimRev15
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev15}}
+- id: 200
+  name: P_SpeedLimRev20
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev20}}
+- id: 201
+  name: P_SpeedLimRev25
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev25}}
+- id: 202
+  name: P_SpeedLimRev30
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev30}}
+- id: 203
+  name: P_SpeedLimRev35
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev35}}
+- id: 204
+  name: P_SpeedLimRev40
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev40}}
+- id: 205
+  name: P_SpeedLimRev45
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev45}}
+- id: 206
+  name: P_SpeedLimRev50
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev50}}
+- id: 207
+  name: P_SpeedLimRev55
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev55}}
+- id: 208
+  name: P_SpeedLimRev60
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev60}}
+- id: 209
+  name: P_SpeedLimRev65
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev65}}
+- id: 210
+  name: P_SpeedLimRev70
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev70}}
+- id: 211
+  name: P_SpeedLimRev75
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev75}}
+- id: 212
+  name: P_SpeedLimRev80
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev80}}
+- id: 213
+  name: P_SpeedLimRev85
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev85}}
+- id: 214
+  name: P_SpeedLimRev90
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev90}}
+- id: 215
+  name: P_SpeedLimRev95
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev95}}
+- id: 216
+  name: P_SpeedLimRev100
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev100}}
+- id: 217
+  name: P_SpeedLimRev105
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev105}}
+- id: 218
+  name: P_SpeedLimRev110
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev110}}
+- id: 219
+  name: P_SpeedLimRev115
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev115}}
+- id: 220
+  name: P_SpeedLimRev120
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: ProhibitRemove}}
+      - contains: {attrs: {cn_medium_type: PR_Other}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLimRev120}}
+- id: 221
+  name: P_SpeedLim40ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim40ele}}
+- id: 222
+  name: P_SpeedLim50ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim50ele}}
+- id: 223
+  name: P_SpeedLim60ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim60ele}}
+- id: 224
+  name: P_SpeedLim70ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim70ele}}
+- id: 225
+  name: P_SpeedLim80ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim80ele}}
+- id: 226
+  name: P_SpeedLim90ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim90ele}}
+- id: 227
+  name: P_SpeedLim100ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim100ele}}
+- id: 228
+  name: P_SpeedLim110ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim110ele}}
+- id: 229
+  name: P_SpeedLim120ele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_SpeedLim120ele}}
+- id: 230
+  name: P_Other_SpeedLimele
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: P_ElectricalSpeedLimit}}
+      - contains: {attrs: {cn_medium_type: P_Other_SpeedLimele}}
+    - or:
+      - contains: {attrs: {cn_sub_type: P_Other_SpeedLimele}}
+- id: 231
+  name: RouteSign_Misc
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {Inside: outside}}
+      - contains: {attrs: {nested_outside: "yes"}}
+    - or:
+      - contains: {attrs: {recommend_subtype: RouteSign_Misc}}
+      - contains: {attrs: {cn_sub_type: RouteSign_Misc}}
+- id: 232
+  name: GSWB_Misc
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {Inside: outside}}
+      - contains: {attrs: {nested_outside: "yes"}}
+    - or:
+      - contains: {attrs: {recommend_subtype: GSWB_Misc}}
+      - contains: {attrs: {cn_sub_type: GSWB_Misc}}
+      - contains: {attrs: {cn_sub_type: I_RectangleMisc}}
+      - contains: {attrs: {cn_sub_type: W_Misc}}
+      - contains: {attrs: {cn_sub_type: IR_Announcement}}
+      - contains: {attrs: {cn_sub_type: P_RegionSpeedLim}}
+      - contains: {attrs: {cn_sub_type: P_RegionSpeedLimRev}}
+      - contains: {attrs: {cn_sub_type: P_RampSpeedLim}}
+      - contains: {attrs: {cn_sub_type: P_RegionNoParking}}
+      - contains: {attrs: {cn_sub_type: P_RegionNoParkingRev}}
+      - contains: {attrs: {cn_sub_type: P_RegionNoLongParking}}
+      - contains: {attrs: {cn_sub_type: P_RegionNoLongParkingRev}}
+- id: 233
+  name: Multi_Misc
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {Inside: outside}}
+      - contains: {attrs: {nested_outside: "yes"}}
+    - or:
+      - contains: {attrs: {recommend_subtype: Multi_Misc}}
+      - contains: {attrs: {cn_sub_type: Multi_Misc}}
+- id: 234
+  name: FP_Circular_Marker
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: False_Positive}}
+    - or:
+      - contains: {attrs: {cn_sub_type: FP_Circular_Marker}}
+      - contains: {attrs: {cn_sub_type: FP_Vehicle_Wheel}}
+      - contains: {attrs: {cn_sub_type: FP_Head}}
+      - contains: {attrs: {cn_fp_type: FP_Circular_Marker}}
+      - contains: {attrs: {cn_fp_type: FP_Vehicle_Wheel}}
+      - contains: {attrs: {cn_fp_type: FP_Head}}
+      - contains: {attrs: {cn_sub_type: Other_Circular_Marker}}
+- id: 235
+  name: FP_Light_Arrow
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: False_Positive}}
+    - or:
+      - contains: {attrs: {cn_sub_type: Other_LightArrow}}
+      - contains: {attrs: {cn_sub_type: FP_Light_Arrow}}
+      - contains: {attrs: {cn_fp_type: FP_Light_Arrow}}
+      - contains: {attrs: {cn_sub_type: FP_Light_Time}}
+      - contains: {attrs: {cn_fp_type: FP_Light_Time}}
+- id: 236
+  name: FP_Light_Circle
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: False_Positive}}
+    - or:
+      - contains: {attrs: {cn_sub_type: Other_RedCircleLight}}
+      - contains: {attrs: {cn_sub_type: FP_Light_Circle}}
+      - contains: {attrs: {cn_fp_type: FP_Light_Circle}}
+- id: 237
+  name: FP_Mirror
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: False_Positive}}
+    - or:
+      - contains: {attrs: {cn_sub_type: Other_Mirror}}
+      - contains: {attrs: {cn_sub_type: FP_Mirror}}
+      - contains: {attrs: {cn_fp_type: FP_Mirror}}
+- id: 238
+  name: FP_Route_Number
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: False_Positive}}
+    - or:
+      - contains: {attrs: {cn_sub_type: Other_Exit}}
+      - contains: {attrs: {cn_sub_type: FP_Route_Number}}
+      - contains: {attrs: {cn_fp_type: FP_Route_Number}}
+- id: 239
+  name: FP_Other
+  upsample: 1.0
+  match_condiction:
+    and:
+    - or:
+      - contains: {attrs: {cn_medium_type: False_Positive}}
+    - or:
+      - contains: {attrs: {cn_sub_type: Other_Detfp}}
+      - contains: {attrs: {cn_sub_type: FP_Other}}
+      - contains: {attrs: {cn_sub_type: FP_Unknown}}
+      - contains: {attrs: {cn_sub_type: FP_Polygon_Marker}}
+      - contains: {attrs: {cn_sub_type: FP_Light_Shell}}
+      - contains: {attrs: {cn_sub_type: FP_Building}}
+      - contains: {attrs: {cn_sub_type: FP_Twig}}
+      - contains: {attrs: {cn_sub_type: FP_Accessory_Arrow}}
+      - contains: {attrs: {cn_fp_type: FP_Other}}
+      - contains: {attrs: {cn_fp_type: FP_Unknown}}
+      - contains: {attrs: {cn_fp_type: FP_Polygon_Marker}}
+      - contains: {attrs: {cn_fp_type: FP_Light_Shell}}
+      - contains: {attrs: {cn_fp_type: FP_Building}}
+      - contains: {attrs: {cn_fp_type: FP_Twig}}
+      - contains: {attrs: {cn_fp_type: FP_Accessory_Arrow}}
+- id: 240
+  name: sign_back
+  upsample: 0.1
+  match_condiction:
+    or:
+    - and:
+      - or:
+        - contains: {attrs: {cn_medium_type: sign_back}}
+      - or:
+        - contains: {attrs: {cn_sub_type: sign_back}}
+        - contains: {attrs: {cn_medium_type: sign_back}}
+    - contains: {attrs: {cn_fp_type: sign_back}}
+- id: 241
+  name: IR_Linearguide
+  match_condiction:
+    or:
+    - and:
+      - or:
+        - contains: {attrs: {cn_medium_type: O_Other}}
+      - or:
+        - contains: {attrs: {cn_sub_type: IR_Linearguide}}
+        - contains: {attrs: {cn_sub_type: IR_LinearguideIndicate}}
+        - contains: {attrs: {cn_sub_type: IR_LinearguideHighway}}
+        - contains: {attrs: {cn_sub_type: IR_LinearguideWarning}}

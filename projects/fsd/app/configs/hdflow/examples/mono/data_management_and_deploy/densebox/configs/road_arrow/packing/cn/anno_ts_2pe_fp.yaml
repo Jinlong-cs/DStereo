@@ -1,0 +1,58 @@
+base_classname: road_arrow # 一级类型名称
+num_classes: 2 # 类别数量
+allow_multi_match: false # 允许一个instance进行多次匹配
+default_ignore_full_image: true # 未定义的类别使用全图ignore
+remove_empty_images: true # 删除空图片
+shuffle: true # 打乱图片顺序
+class_mappers: # 目标类别转换器
+  - id: null # 空类, 用于过滤去除样本
+    match_condiction: # 为真值, 则匹配成功
+      or: # 以下任一条件为真, 则输出真
+        - contains: { attrs: { ArrowSort: Unknown } }
+        - range: { field: $BBOX_WIDTH, lt: 3 }
+        - range: { field: $BBOX_HEIGHT, lt: 3 }
+        # 北美的类去除 2pe模型只加载roi，因此 remove 和 ignore 效果一样
+        - contains: { attrs: { ArrowSort: LaneReductionToLeft } }
+        - contains: { attrs: { ArrowSort: LaneReductionToRight } }
+        - contains: { attrs: { ArrowSort: RailwayAhead } }
+        - contains: { attrs: { ArrowSort: Bike } }
+        - contains: { attrs: { ArrowSort: SpeedHump } }
+  - id: 1
+    name: pos
+    match_condiction: # 为真值, 则匹配成功
+      or:
+        - contains: { attrs: { ArrowSort: Straight } }
+        - contains: { attrs: { ArrowSort: LeftTurn } }
+        - contains: { attrs: { ArrowSort: RightTurn } }
+        - contains: { attrs: { ArrowSort: LeftTurnOrStraight } }
+        - contains: { attrs: { ArrowSort: RightTurnOrStraight } }
+        - contains: { attrs: { ArrowSort: U_turn } }
+        - contains: { attrs: { ArrowSort: StraightOrU_turn } }
+        - contains: { attrs: { ArrowSort: LeftTurnOrU_turn } }
+        - contains: { attrs: { ArrowSort: LeftTurnOrRightTurn } }
+        - contains: { attrs: { ArrowSort: LeftMerge } }
+        - contains: { attrs: { ArrowSort: RightMerge } }
+        - contains: { attrs: { ArrowSort: StraightOrLeftTurnOrRightTurn } }
+        - contains: { attrs: { ArrowSort: "No" } }
+        - contains: { attrs: { ArrowSort: Diamond } }
+        - contains: { attrs: { ArrowSort: SlowDownTriangle } }
+        - contains: { attrs: { ArrowSort: DistanceConfirmationLine } }
+        - contains: { attrs: { ArrowSort: Other } }
+    ignore_condiction:
+      or:
+        - range: { field: $BBOX_WIDTH, lt: 8 }
+        - range: { field: $BBOX_HEIGHT, lt: 8 }
+        - contains: { attrs: { ignore: "yes" } }
+        - contains: { attrs: { occlusion: "invisible" } }
+        - contains: { attrs: { occlusion: "heavily_occluded" } }
+        - contains: { attrs: { paint: paint_off } }
+  - id: 2
+    name: fp
+    upsample: 1
+    match_condiction: # 为真值, 则匹配成功
+      or:
+        - contains: { attrs: { ArrowSort: FP } }
+        - contains: { attrs: { ArrowSort: ManholeCover } }
+        - contains: { attrs: { ArrowSort: FP_Mismatched } } # 发版4pe diff GT
+        - contains: { attrs: { ArrowSort: FP_Mismatched_BigModel_IG } } # 发版4pe diff GT diff 大模型
+        - contains: { attrs: { ArrowSort: Word } } # Badcase标注数据 66175, 66174, 66173, 66169, 66131 中临时加入了Word文字误报

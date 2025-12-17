@@ -1,0 +1,51 @@
+base:
+  job_password: "6150"
+  framework: "pytorch"
+  task_label: "densetnt_new_full_data_stage2"
+  input_bucket: "SD_Algorithm,matrix2"
+  priority: 5
+  docker_image: "docker.hobot.cc/imagesys/hat:runtime-py3.8-torch1.13.0-cu116-hatbc0.10.0"
+  max_jobtime: 7200
+  # max_jobtime: 60
+  job_type: "debug"
+  launcher: "mpi"
+  upload_folder_name: "k8s_job"
+  folder_list:
+    [
+      "../../hat",
+      "../../tools",
+      "../../projects/prediction",
+      "url2IP.py",
+    ]
+  custom_cmds_before_job_list: []
+
+  # For stage-1 qat training
+  # custom_cmds_before_job_list: 
+  #   [
+  #     "echo '########## Custom commands start ##########'",
+  #     "export CKPTDIR='/job_data/models/checkpoint' && mkdir -p ${CKPTDIR}",
+  #     "pip3 install Cython -i https://pypi.hobot.cc/simple --extra-index-url=https://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc",
+  #     "cd ${WORKING_PATH} && hdfs dfs -get hdfs://hobot-bigdata/user/shengzhe.dai/DenseTNT-argoverse2.zip ./",
+  #     "cd ${WORKING_PATH} && unzip DenseTNT-argoverse2.zip",
+  #     "cd ${WORKING_PATH}/DenseTNT-argoverse2/src/ && cython -a utils_cython.pyx && python3 setup.py build_ext --inplace",
+  #     # "cd ${CKPTDIR} && hdfs dfs -get hdfs://hobot-bigdata/user/shengzhe.dai/aidi_tasks/densetnt_stage_1_fulldata_qat_head_use_qint16_enable_compile/calibrator-checkpoint-best.pth.tar ./ && cd ${WORKING_PATH}",
+  #     "cd ${CKPTDIR} && wget http://svcspawner.bcloud-2nd.hobot.cc/user/homespace/shengzhe.dai/plat_gpu/hobot-dag-4328358_densetnt-traj-stage2-densetnt-new-dataset-stage2-remove-centric-20230928-174947/output/models/checkpoint/float-checkpoint-best.pth.tar && cd ${WORKING_PATH}",
+  #     "echo '########## Custom commands end ##########'",
+  #     "cd ${WORKING_PATH}",
+  #   ]
+
+  # For stage-2 float and qat training
+  # custom_cmds_before_job_list: 
+  #   [
+  #     "echo '########## Custom commands start ##########'",
+  #     "export CKPTDIR='/job_data/models/checkpoint' && mkdir -p ${CKPTDIR}",
+  #     "pip3 install Cython -i https://pypi.hobot.cc/simple --extra-index-url=https://pypi.hobot.cc/hobot-local/simple --trusted-host pypi.hobot.cc",
+  #     # "cd ${WORKING_PATH} && hdfs dfs -get hdfs://hobot-bigdata/user/shengzhe.dai/DenseTNT-argoverse2.zip ./",
+  #     "cd ${WORKING_PATH} && hdfs dfs -get hdfs://hobot-bigdata/user/shengzhe.dai/set_predictor_5/DenseTNT-argoverse2.zip ./",
+  #     "cd ${WORKING_PATH} && unzip DenseTNT-argoverse2.zip",
+  #     "cd ${WORKING_PATH}/DenseTNT-argoverse2/src/ && cython -a utils_cython.pyx && python3 setup.py build_ext --inplace",
+  #     "cd ${CKPTDIR} && wget http://svcspawner.bcloud-2nd.hobot.cc/user/homespace/yujun.zhang/plat_gpu/hobot-dag-4573078_densetnt-traj-stage1-full-densetnt-stage-1-fulldata-AllChanges-DecoderWithAdd-20231016-192646/output/models/checkpoint/float-checkpoint-best.pth.tar && mv float-checkpoint-best.pth.tar float-checkpoint-best_stage1.pth.tar && cd ${WORKING_PATH}",
+  #     "cd ${CKPTDIR} && wget http://svcspawner.bcloud-2nd.hobot.cc/user/homespace/yujun.zhang/plat_gpu/hobot-dag-4573078_densetnt-traj-stage1-full-densetnt-stage-1-fulldata-AllChanges-DecoderWithAdd-20231016-192646/output/models/checkpoint/qat-checkpoint-best.pth.tar && mv qat-checkpoint-best.pth.tar qat-checkpoint-best_stage1.pth.tar && cd ${WORKING_PATH}",
+  #     "echo '########## Custom commands end ##########'",
+  #     "cd ${WORKING_PATH}",
+  #   ]

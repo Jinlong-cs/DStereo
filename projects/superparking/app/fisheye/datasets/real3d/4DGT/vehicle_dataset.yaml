@@ -1,0 +1,503 @@
+SD_BJ_11V_4V_4DGT_PV1.0.0:
+  UT126:
+    UT126_20230103:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230103
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230104:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230104
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230105:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230105
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230106:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230106
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230107:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230107
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230108:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230108
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230109:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230109
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230108:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230108
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230109:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230109
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230110:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230110
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230111:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230111
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230112:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230112
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230113:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230113
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230114:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230114
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230115:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230115
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230116:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230116
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230117:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230117
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230118:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230118
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230119:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230119
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230128:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230128
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230129:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230129
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230130:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230130
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230201:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230201
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230202:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230202
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230203:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230203
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230204:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230204
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230206:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230206
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230207:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230207
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230208:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230208
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230209:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230209
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230210:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230210
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230212:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230212
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230213:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230213
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230214:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230214
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT126_20230216:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT126-20230216
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+  UT1R3:
+    UT1R3_20230104:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230104
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230107:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230107
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230108:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230107
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230109:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230107
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230201:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230201
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230205:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230205
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230206:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230206
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230208:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230208
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230209:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230209
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230210:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230210
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230211:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230211
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230212:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230212
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230213:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230213
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230214:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230214
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right
+    UT1R3_20230215:
+      root: SuperParking/VWVersion/Dataset/3DVDVRU/4DGT/PV1.0.0/UT1R3-20230215
+      sample_interval: 1
+      sync_file_lmdb: sync_file_lmdb/wide_range/vehicle
+      multi_view_lmdb_path: real3d_infos
+      img_data_path:
+        - fisheye_front
+        - fisheye_left
+        - fisheye_rear
+        - fisheye_right

@@ -1,0 +1,12 @@
+# Neural ISP1.0  Mono Segmentation Datasets V1.0.0
+parsing:
+- local:
+  train_num_samples: 100
+  val_num_samples: 20
+  train_lmdb: BasicAlgorithm/Neural_ISP/J3_Mono/segmentation/rgb/lmdb_merge/train
+  val_lmdb: BasicAlgorithm/Neural_ISP/J3_Mono/segmentation/rgb/lmdb_merge/val
+- aidi:
+  train_num_samples: 10931
+  val_num_samples: 3051
+  train_lmdb: BasicAlgorithm/Neural_ISP/J3_Mono/segmentation/rgb/lmdb_merge/train
+  val_lmdb: BasicAlgorithm/Neural_ISP/J3_Mono/segmentation/rgb/lmdb_merge/val

@@ -1,0 +1,50 @@
+base_classname: common_box
+num_classes: 4
+remove_empty_images: true
+shuffle: true
+class_mappers:
+  - id: null
+    match_condiction:
+      or:
+        - contains: { attrs: { ignore: yes } }
+        - contains: { attrs: { bad_image: bad_imaging } }
+        - contains: { attrs: { bad_image: blur_len } }
+        - contains: { attrs: { bad_image: mud_len } }
+        - contains: { attrs: { cameraset: fisheye_view } }
+        - contains: { attrs: { camera_direction: side } }
+        - contains: { attrs: { camera_direction: side_view } } # camera and image quality
+        - and:
+            - contains: { attrs: { Time: Night } }
+            - contains: { attrs: { light_status: Hard_Light } }
+  - id: null
+    match_condiction:
+      contains: { attrs: { scene_status: traffic_jam } }
+    upsample: 0.3
+  - id: 1
+    name: natural_light
+    match_condiction:
+      or:
+        - contains: { attrs: { light_status: natural_light } }
+        - contains: { attrs: { light_status: sunshine } }
+        - contains: { attrs: { light_status: not_sure_back_light } }
+    upsample: 1
+  - id: 2
+    name: lamplight
+    match_condiction:
+      or:
+        - contains: { attrs: { light_status: lamplight } }
+        - contains: { attrs: { light_status: bright_lamplight } }
+    upsample: 1
+  - id: 3
+    name: Hard_Light
+    match_condiction:
+      or:
+        - contains: { attrs: { light_status: Hard_Light } }
+        - contains: { attrs: { light_status: Low_Sun } }
+        - contains: { attrs: { light_status: back_light } }
+    upsample: 2
+  - id: 4
+    name: dark
+    match_condiction:
+      or:
+        - contains: { attrs: { light_status: dark } }

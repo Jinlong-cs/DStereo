@@ -1,0 +1,367 @@
+base_classname: traffic_sign
+medium_type_key: cn_medium_type
+sub_type_key: cn_sub_type
+refine_sub_type_key: recommend_subtype
+num_classes: 20
+allow_multi_match: true
+default_ignore_full_image: true
+remove_empty_images: false
+shuffle: true
+
+default_object_attrs:
+  is_merge_parent: 'no'
+  is_merge_children: 'no'
+  Inside: 'no'
+  ignore: 'no'
+  occlusion: 'full_visible'
+  is_ramp: 'no'
+
+default_unknown_type: U_Unknown
+
+fp_sub_types:
+  - FP_Accessory_Arrow
+  - FP_Building
+  - FP_Circular_Marker
+  - FP_Head
+  - FP_IncompleteSign
+  - FP_Light_Arrow
+  - FP_Light_Circle
+  - FP_Light_Shell
+  - FP_Light_Time
+  - FP_Mirror
+  - FP_Other
+  - FP_Polygon_Marker
+  - FP_Route_Number
+  - FP_SignWithContext
+  - FP_Twig
+  - FP_Unknown
+  - FP_Vehicle_Wheel
+  - sign_back
+
+fp_medium_types:
+  - False_Positive
+  - sign_back
+
+# 用于统计嵌套内框各个类别的数量，这个数量在为嵌套外框的属性赋值进行修正时是重要参考,
+# 以下专为中国标志牌设计，其他属性请自行设计
+count_inside_types:
+  direction_lane_types:
+    - I_RightTurnLane
+    - I_LeftTurnLane
+    - I_ForwardLane
+    - I_ForwardRightLane
+    - I_ForwardLeftLane
+    - I_UTurnLane
+    - I_UTurnAndLeftLane
+  indication_types:
+    - Min_SpeedLim
+    - MSL_Other
+    - MSL_Unknown
+    - I_IndicationCircle
+    - I_Other_circle
+    - I_Unknown_circle
+    - I_IndicationRectangle
+    - I_Other_rectangle
+    - I_Unknown_rectangle
+  indication_circle_types:
+    - Min_SpeedLim
+    - MSL_Other
+    - MSL_Unknown
+    - I_IndicationCircle
+    - I_Other_circle
+    - I_Unknown_circle
+  indication_rectangle_types:
+    - I_IndicationRectangle
+    - I_Other_rectangle
+    - I_Unknown_rectangle
+  prohibit_types:
+    - Prohibit_I
+    - P_Other1
+    - P_Unknown1
+    - P_ElectricalSpeedLimit
+    - P_Other_SpeedLimele
+    - P_Unknow_SpeedLimele
+    - P_SpeedLimit
+    - PSL_Other
+    - PSL_Unknown
+    - ProhibitRemove
+    - PR_Other
+    - PR_Unknown
+  pwi_types: &pwi_types
+    - Prohibit_I
+    - P_Other1
+    - P_Unknown1
+    - P_ElectricalSpeedLimit
+    - P_Other_SpeedLimele
+    - P_Unknow_SpeedLimele
+    - P_SpeedLimit
+    - PSL_Other
+    - PSL_Unknown
+    - ProhibitRemove
+    - PR_Other
+    - PR_Unknown
+    - W_Warning
+    - W_Other
+    - W_Unknown
+    - Min_SpeedLim
+    - MSL_Other
+    - MSL_Unknown
+    - I_IndicationCircle
+    - I_Other_circle
+    - I_Unknown_circle
+    - I_IndicationRectangle
+    - I_Other_rectangle
+    - I_Unknown_rectangle
+  warning_types:
+    - W_Warning
+    - W_Other
+    - W_Unknown
+  white_black_types: &white_black_types
+    - GuideSign_WhiteBlack
+    - GSWB_Other
+    - GSWB_Unknown
+  route_types: &route_types
+    - RoadSign_BlueWhite
+    - RSBW_Other
+    - RSBW_Unknown
+    - GuideSign_GreenWhite
+    - GSGW_Other
+    - GSGW_Unknown
+    - TravelSign_BrownWhite
+    - TSBW_Other
+    - TSBW_Unknown
+    - RouteID
+    - RouteID_Other
+    - RouteID_Unknown
+  other_types:
+    - O_Other
+  unknown_types:
+    - U_Unknown
+  fp_types:
+    - False_Positive
+    - FP_Other
+    - FP_Unknown
+    - sign_back
+
+# 用于统计嵌套内框各个类别的index，这个index在为嵌套外框的属性赋值进行修正时是重要参考
+# 以下专为中国标志牌设计，其他属性请自行设计
+count_inside_ids:
+  I_SplitDriveLine:
+    - I_SplitDriveLine
+  direction_lane_types:
+    - I_RightTurnLane
+    - I_LeftTurnLane
+    - I_ForwardLane
+    - I_ForwardRightLane
+    - I_ForwardLeftLane
+    - I_UTurnLane
+    - I_UTurnAndLeftLane
+
+# 用于对不同类型的嵌套外框进行属性修正，其策略需要参考
+# count_inside_types 和 count_inside_ids，
+# 本设置主要为中国标志牌检测/分类模型调优过程中总结出来的经验，专为中国标志牌设计。
+# 该设置为非必选向，其他国家标志牌如果使用需要自行总结
+class_mappers:
+    # 1.嵌套内框数量==1，
+    # 2.嵌套外框与嵌套内框的iou>0.3，
+    # 3.嵌套外框与嵌套内框的中心像素距离<7，
+    # 4.嵌套内框的类型属于 pwi_types(禁止，警告，指示类)
+    # 满足条件1-4时，嵌套外框的属性与嵌套内框的属性保持一致
+    - id: 0
+      name: null
+      name_source_key: matched_bigest_inside_subtype
+      name_source_default: U_Unknown
+      match_condiction:
+        and:
+          - length:
+              field: attrs.inside_ids
+              eq: 1
+          - range:
+              field: attrs.iou_between_outside_bigest_inside
+              gt: 0.3
+          - range:
+              field: attrs.euclid_between_outside_bigest_inside
+              lt: 7
+          - scope:
+              field: attrs.matched_bigest_inside_medtype
+              in: *pwi_types
+    # 1.多级嵌套内框 nested_outside_ids ==0，
+    # 2.嵌套内框 prohibit_types(禁止类) >0，
+    # 3.嵌套内框 warning_types(警告类) >0，
+    # 4.嵌套内框 route_types(指路类) ==0
+    # 5.嵌套内框 white_black_types(白底黑字类) ==0
+    # 6.所有嵌套内框面积与嵌套外框面积比例>0.8
+    # 满足条件1-6时，嵌套外框的属性为 Multi_Misc(复杂嵌套框)
+    - id: 1
+      name: Multi_Misc
+      name_source_key: null
+      name_source_default: U_Unknown
+      match_condiction:
+        and:
+          - length:
+              field: attrs.matched_nested_outside_ids
+              eq: 0
+          - range:
+              field: attrs.inside_count_types_dict.prohibit_types
+              gt: 0
+          - range:
+              field: attrs.inside_count_types_dict.warning_types
+              gt: 0
+          - range:
+              field: attrs.inside_count_types_dict.route_types
+              eq: 0
+          - range:
+              field: attrs.inside_count_types_dict.white_black_types
+              eq: 0
+          - range:
+              field: attrs.nested_ratio
+              gt: 0.8
+    # 1-1.嵌套内框 indication_rectangle_types(方形指示类) >0，
+    # 1-2.嵌套内框 I_SplitDriveLine(分向行驶车道) >0，
+    # 1-3.嵌套内框 I_SplitDriveLine(分向行驶车道) 与嵌套外框的面积比例 >0.5，
+    # 1-4.嵌套外框 中类别属于route_types(指路类)
+    # 2-1.嵌套内框 indication_rectangle_types(方形指示类) >1，
+    # 2-2.嵌套内框 direction_lane_types(各方向行驶车道类) >1，
+    # 2-3.嵌套外框 中类别属于route_types(指路类) 或 white_black_types(白底黑字类)
+    # 满足条件1-x 或者满足2-x 时，嵌套外框的属性为 I_SplitDriveLine(分向行驶车道)
+    - id: 2
+      name: I_SplitDriveLine
+      name_source_key: null
+      name_source_default: U_Unknown
+      match_condiction:
+        or:
+          - and:
+            - range:
+                field: attrs.inside_count_types_dict.indication_rectangle_types
+                gt: 0
+            - length:
+                field: attrs.inside_count_ids_dict.I_SplitDriveLine
+                gt: 0
+            - range:
+                field: attrs.inside_type_nested_ratio_dict.I_SplitDriveLine
+                gt: 0.5
+            - scope:
+                field: attrs.cn_medium_type
+                in: *route_types
+          - and:
+              - range:
+                  field: attrs.inside_count_types_dict.indication_rectangle_types
+                  gt: 1
+              - range:
+                  field: attrs.inside_count_types_dict.direction_lane_types
+                  gt: 1
+              - or:
+                - scope:
+                    field: attrs.cn_medium_type
+                    in: *route_types
+                - scope:
+                    field: attrs.cn_medium_type
+                    in: *white_black_types
+    # 1.嵌套内框 pwi_types(禁止/警告/指示类) >0，
+    # 2.嵌套外框中类别属于 route_types(指路类)
+    # 满足条件1-2时，嵌套外框的属性为 RouteSign_Misc(指路类嵌套框)
+    - id: 3
+      name: RouteSign_Misc
+      name_source_key: null
+      name_source_default: U_Unknown
+      match_condiction:
+        and:
+          - range:
+              field: attrs.inside_count_types_dict.pwi_types
+              gt: 0
+          - scope:
+              field: attrs.cn_medium_type
+              in: *route_types
+    # 1.嵌套内框 prohibit_types(禁止类) >0，
+    # 2.嵌套内框 route_types(指路类) ==0
+    # 3.嵌套外框中类别属于 white_black_types(白底黑字类)
+    # 满足条件1-3时，嵌套外框的属性为 GSWB_Misc(白底黑字嵌套框)
+    - id: 4
+      name: GSWB_Misc
+      name_source_key: null
+      name_source_default: U_Unknown
+      match_condiction:
+        and:
+          - range:
+              field: attrs.inside_count_types_dict.pwi_types
+              gt: 0
+          - range:
+              field: attrs.inside_count_types_dict.route_types
+              eq: 0
+          - scope:
+              field: attrs.cn_medium_type
+              in: *white_black_types
+    # 1.嵌套内框 white_black_types(白底黑字类) ==0，
+    # 2.嵌套内框 route_types(指路类) >0
+    # 3.嵌套内框 unknown_types(未知类) >0
+    # 满足条件1-3时，嵌套外框的属性为保持不变(name_source_key: cn_sub_type)
+    - id: 5
+      name: null
+      name_source_key: cn_sub_type
+      name_source_default: U_Unknown
+      match_condiction:
+        and:
+          - range:
+              field: attrs.inside_count_types_dict.white_black_types
+              eq: 0
+          - range:
+              field: attrs.inside_count_types_dict.route_types
+              gt: 0
+          - range:
+              field: attrs.inside_count_types_dict.unknown_types
+              eq: 0
+    # 1.嵌套内框 pwi_types(禁止/警告/指示类) ==0，
+    # 2.嵌套内框 route_types(指路类) >0
+    # 3.嵌套内框 white_black_types(白底黑字类) > 0
+    # 满足条件1-3时，嵌套外框的属性为面积最大的嵌套内框的属性
+    - id: 6
+      name: null
+      name_source_key: matched_bigest_inside_medtype
+      name_source_default: U_Unknown
+      match_condiction:
+        or:
+          - range:
+              field: attrs.inside_count_types_dict.pwi_types
+              le: 0
+          - range:
+              field: attrs.inside_count_types_dict.route_types
+              gt: 0
+          - range:
+              field: attrs.inside_count_types_dict.white_black_types
+              gt: 0
+
+# for visualization
+visualization_mappers:
+  - id: 3
+    legend_name: outside
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [0, 255, 0]
+    thickness: 4
+    match_condiction:
+      and:
+        - contains: {attrs: {Inside: "outside"}}
+  - id: 3
+    legend_name: multi_level_inside
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [0, 255, 255]
+    thickness: 2
+    match_condiction:
+      and:
+        - contains: {attrs: {Inside: "inside"}}
+        - contains: {attrs: {nested_outside: "yes"}}
+  - id: 3
+    legend_name: inside
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [0, 0, 255]
+    thickness: 2
+    match_condiction:
+      and:
+        - contains: {attrs: {Inside: "inside"}}
+  - id: 3
+    legend_name: normal
+    class_name_source_key: cn_sub_type
+    color: !!python/tuple [255, 0, 0]
+    thickness: 2
+    match_condiction:
+      and:
+        - contains: {attrs: {Inside: "no"}}

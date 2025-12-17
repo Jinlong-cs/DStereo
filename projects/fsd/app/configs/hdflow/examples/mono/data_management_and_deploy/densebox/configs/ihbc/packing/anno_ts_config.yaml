@@ -1,0 +1,50 @@
+base_classname: vehicle                                 # 一级类型名称
+num_classes: 20                                         # 类别数量
+allow_multi_match: false                                # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: false                              # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+  - id: 11
+    name: ihbc_headlight
+    upsample: 5.
+    match_condiction:
+      or:
+      - contains: {attrs: {Light_source: Headlight}}
+    ignore_condiction:
+      contains: {attrs: {ignore: "yes"}}
+    hard_condiction:
+      and:
+      - not:
+          contains: {attrs: {ignore: "yes"}}
+      - or:
+         - contains: {attrs: {special_position: True}}
+  - id: 12
+    name: ihbc_taillight
+    upsample: 3.
+    match_condiction:
+      or:
+      - contains: {attrs: {Light_source: Taillight}}
+    ignore_condiction:
+      contains: {attrs: {ignore: "yes"}}
+    hard_condiction:
+      and:
+      - not:
+          contains: {attrs: {ignore: "yes"}}
+      - or:
+         - contains: {attrs: {special_position: True}}
+  - id: 13
+    name: ihbc_streetlight
+    upsample: 1.
+    match_condiction:
+      or:
+      - contains: {attrs: {Light_source: Streetlight}}
+    ignore_condiction:
+      contains: {attrs: {ignore: "yes"}}
+    hard_condiction:
+      and:
+      - not:
+          contains: {attrs: {ignore: "yes"}}
+      - or:
+         - contains: {attrs: {special_position: True}}

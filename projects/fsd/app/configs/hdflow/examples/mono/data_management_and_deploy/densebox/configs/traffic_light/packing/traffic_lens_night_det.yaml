@@ -1,0 +1,85 @@
+num_classes: 10                                         # 类别数量
+current_class_id: 6
+default_ignore_full_image: true                         # 其余类别全图ignore
+remove_empty_images: true                               # 删除空图片
+# remove_zh_image_path: true                              # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+parent_box_classname: Traffic_light_shell
+children_box_classname: common_box
+online_roilist: true
+#random_bg_drop_ratio: 0.5
+
+#parent_box_remove_condiction:
+#children_box_remove_condiction:
+
+parent_box_ignore_condiction:
+  or:
+    - contains: {attrs: {lens_ignore: 'yes'}}
+
+children_box_ignore_condiction:
+  or:
+    - contains: {attrs: {ignore: 'yes'}}
+
+children_box_hard_condiction:
+  or:
+    - contains: {attrs: {hard_sample: 'yes'}}
+    - contains: {attrs: {hard: 'yes'}}
+
+    - contains: {attrs: {occlusion: heavily_occluded}}
+    - contains: {attrs: {occlusion: invisible}}
+
+    #- range: {field: attrs.avg_brightness, lt: 55}
+    - range: {field: $BBOX_HEIGHT, lt: 8}
+    - range: {field: $BBOX_WIDTH, lt: 8}
+
+children_box_positive_condiction:
+  and:
+    - or: #如下小灯指示类别
+        - contains: {attrs: {traffic_lights_style: L_Circle}}
+        - contains: {attrs: {traffic_lights_style: L_Forward}}
+        - contains: {attrs: {traffic_lights_style: L_Left}}
+        - contains: {attrs: {traffic_lights_style: L_Right}}
+        - contains: {attrs: {traffic_lights_style: L_Return}}
+        - contains: {attrs: {traffic_lights_style: L_Pedestrain}}
+        - contains: {attrs: {traffic_lights_style: L_Non_Motor}}
+        - contains: {attrs: {traffic_lights_style: L_Time}}
+        - contains: {attrs: {traffic_lights_style: L_left_and_return}}
+        - contains: {attrs: {traffic_lights_style: L_Forward_and_Left}}
+        - contains: {attrs: {traffic_lights_style: L_Forward_and_Right}}
+        - contains: {attrs: {traffic_lights_style: L_No_Drive_into}}
+        - contains: {attrs: {traffic_lights_style: L_Allow_Drive_into}}
+        #如下小灯颜色
+        - contains: {attrs: {traffic_lights_type: green}}
+        - contains: {attrs: {traffic_lights_type: yellow}}
+        - contains: {attrs: {traffic_lights_type: red}}
+
+class_attribute_styles_map:
+    L_Circle: 0
+    L_Forward: 1
+    L_Left: 2
+    L_Right: 3
+    L_Return: 4
+    L_Pedestrain: 5
+    L_Non_Motor: 6
+    L_Time: 7
+    #'L_Other': 8,
+    L_left_and_return: 8
+    L_Forward_and_Left: 9
+    L_Forward_and_Right: 10
+    L_No_Drive_into: 11
+    L_Allow_Drive_into: 12
+    #'L_unknown': 14
+    # text_of_allow_ped: 15
+    # sign_of_allow_ped: 16
+    # text_of_forbid_ped: 17
+    # sign_of_forbid_ped: 18
+
+class_attribute_types_map:
+    green: 0
+    yellow: 1
+    red: 2
+
+match_mode: matching_with_belongto_attr
+
+#match_mode: matching_with_overlaps
+#match_overlap_threshold: 0.8

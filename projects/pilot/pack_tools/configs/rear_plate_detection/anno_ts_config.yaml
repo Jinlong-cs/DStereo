@@ -1,0 +1,30 @@
+num_classes: 50                                         # 类别数量
+current_class_id: 2
+parent_class_id: 5
+default_ignore_full_image: true                         # 其余类别全图ignore
+remove_empty_images: true                               # 删除空图片
+remove_zh_image_path: false                             # 删除中文路径图片
+shuffle: true                                           # 打乱图片顺序
+parent_box_classname: vehicle
+parent_box_remove_condiction:
+parent_box_ignore_condiction:
+  or:
+    - contains: {attrs: {ignore: "yes"}}
+
+children_box_classname: plate_keypoint_4
+children_box_remove_condiction:
+children_box_ignore_condiction:
+  or:
+    - contains: {attrs: {ignore: "yes"}}
+
+children_box_hard_condiction:
+  or:
+    - range: {field: $BBOX_ASPECT_RATIO, gt: 1.5}        # 高宽比>1.5
+    - range: {field: $BBOX_HEIGHT, lt: 8}                # 高度<8
+    - range: {field: $BBOX_WIDTH, lt: 8}                 # 宽度<8
+    - contains: {attrs: {occlusion: heavily_occluded}}
+    - contains: {attrs: {occlusion: invisible}}
+
+children_box_positive_condiction:
+  and: []
+match_mode: matching_with_belongto_attr_and_remove_unmatched_parent

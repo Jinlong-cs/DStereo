@@ -1,0 +1,20 @@
+base:
+  job_password: "6150"
+  framework: "pytorch"
+  task_label: "traffic_light_multitask"
+  input_bucket: "mono"
+  priority: 5
+  docker_image: "docker.hobot.cc/imagesys/hat:pilot-runtime-cu111-hdflow-20230616-torch1102-aidisdk0111-py38"
+  max_jobtime: 20160
+  launcher: "mpi"
+  upload_folder_name: "k8s_job"
+  folder_list:
+    [
+      "../../hat",
+      "../../tools",
+      "../../projects",
+      "url2IP.py",
+    ]
+compile:
+  num_machines: 1
+  num_gpus_per_machine: 1

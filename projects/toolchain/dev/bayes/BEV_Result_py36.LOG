@@ -1,0 +1,6 @@
+configs/bev/bev_mt_ipm.py       bev_mt_ipm: NDS[0.3068], MeanIOU[0.5145]
+configs/bev/bev_mt_lss.py       bev_mt_lss: NDS[0.2990], MeanIOU[0.5160]
+configs/bev/bev_mt_gkt.py	bev_mt_gkt: NDS[0.2809], MeanIOU[0.4803]
+configs/bev/bev_mt_ipm_temporal.py	bev_mt_ipm4d: NDS[0.3724], MeanIOU[0.5408]
+configs/bev/detr3d_efficientnetb3_nuscenes.py    detr3d_efficientnetb3: NDS[33.23]
+configs/bev/petr_efficientnetb3_nuscenes.py    detr3d_efficientnetb3: NDS[32.14]

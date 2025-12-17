@@ -1,0 +1,50 @@
+pipeline_test:
+  SD_BJ_11V_4V_4DGT_PV1.0.0:
+    UT126:
+      UT126_20230103: null
+      UT126_20230104: null
+
+4DGT_SD:
+  SD_BJ_11V_4V_4DGT_PV1.0.0:
+    UT126:
+      UT126_20230103: null
+      UT126_20230104: null
+      UT126_20230105: null
+      UT126_20230106: null
+      UT126_20230107: null
+      UT126_20230108: null
+      UT126_20230109: null
+      UT126_20230110: null
+      UT126_20230111: null
+      UT126_20230112: null
+      UT126_20230113: null
+      UT126_20230114: null
+      UT126_20230115: null
+      UT126_20230116: null
+      UT126_20230117: null
+      UT126_20230118: null
+      UT126_20230119: null
+      UT126_20230128: null
+      UT126_20230129: null
+      UT126_20230130: null
+      UT126_20230201: null
+      UT126_20230202: null
+      UT126_20230203: null
+      UT126_20230204: null
+      UT126_20230206: null
+      UT126_20230207: null
+    UT1R3:
+      UT1R3_20230104: null
+      UT1R3_20230107: null
+      UT1R3_20230108: null
+      UT1R3_20230109: null
+      UT1R3_20230201: null
+      UT1R3_20230205: null
+      UT1R3_20230208: null
+      UT1R3_20230209: null
+      UT1R3_20230210: null
+      UT1R3_20230211: null
+      UT1R3_20230212: null
+      UT1R3_20230213: null
+      UT1R3_20230214: null
+      UT1R3_20230215: null

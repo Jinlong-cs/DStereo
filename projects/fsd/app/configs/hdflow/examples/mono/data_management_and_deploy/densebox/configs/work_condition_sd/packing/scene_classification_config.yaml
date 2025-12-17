@@ -1,0 +1,135 @@
+base_classname: common_box
+num_classes: 13
+remove_empty_images: true
+allow_multi_match: false                         # 允许一个instance进行多次匹配
+shuffle: true
+class_mappers:
+- id: null
+  match_condiction:
+    or:
+      - contains: {attrs: {ignore: yes}}
+      - contains: {attrs: {bad_image: bad_imaging}}
+      - contains: {attrs: {bad_image: blur_len}}
+      - contains: {attrs: {bad_image: mud_len}}
+      - contains: {attrs: {cameraset: fisheye_view}}
+      - contains: {attrs: {camera_direction: side}}
+      - contains: {attrs: {camera_direction: side_view}}  # camera and image quality
+      #- contains: {attrs: {Time: Day}}  # time
+      - contains: {attrs: {scene: Urban_Opening}}  # scene
+      - contains: {attrs: {scene: City_Opening}}
+      - contains: {attrs: {scene: City_Other}}
+      - contains: {attrs: {scene: suburban}}
+      # - contains: {attrs: {scene: Bridge}}
+      - contains: {attrs: {scene: flyover_bridge}}
+      - contains: {attrs: {scene: Highway_like}}
+      - contains: {attrs: {scene: highway_like}}
+      - contains: {attrs: {scene: Gas_station}}
+      - contains: {attrs: {scene: River_side}}
+      - contains: {attrs: {scene: Forest}}
+      - contains: {attrs: {scene: Desert}}
+      - contains: {attrs: {scene: Others}}
+      - contains: {attrs: {scene: Other}}
+      - contains: {attrs: {scene: other}}
+      - contains: {attrs: {scene: Unknown}}
+      - contains: {attrs: {scene: Mountain}}  # 代表忽略山区数据
+      # - contains: {attrs: {scene: under_bridge}}
+      # - contains: {attrs: {scene: Roof_Parking_Lot}}
+      - contains: {attrs: {light_status: Other}}  # light_status
+      - contains: {attrs: {light_status: Unknown}}
+      - contains: {attrs: {light_status: other}}
+- id: null
+  match_condiction:
+    contains: {attrs: {scene_status: traffic_jam}}
+  upsample: 0.3
+- id: 1
+  name: Highway
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Highway}}
+      - contains: {attrs: {scene: City_expressway}}
+      - contains: {attrs: {scene: ring_road_entry}}
+- id: 2
+  name: National_road
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: National_road}}
+  upsample: 1
+- id: 3
+  name: Urban
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Urban}}
+      # - contains: {attrs: {scene: Park}}
+      - contains: {attrs: {scene: urban_crossroad}}
+      # - contains: {attrs: {scene: Cross_Roads}}
+      - contains: {attrs: {scene: Round_Cross}}
+  upsample: 1
+- id: 4
+  name: Rural
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Rural}}
+      - contains: {attrs: {scene: Rural_Opening}}
+      - contains: {attrs: {scene: Rural_Other}}
+      - contains: {attrs: {scene: contry_crossroad}}
+  upsample: 2
+- id: 5
+  name: Tunnel
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Tunnel}}
+      - contains: {attrs: {scene: Tunnel_Exit}}
+  upsample: 3
+- id: 6
+  name: Tunnel_Entry
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Tunnel_Entry}}
+  upsample: 6
+- id: 7
+  name: Charge_Station
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Charge_Station}}
+      # - contains: {attrs: {scene: urban_charge}}
+  upsample: 10
+- id: 8
+  name: Bridge
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: under_bridge}}
+      - contains: {attrs: {scene: Bridge}}
+  upsample: 10
+- id: 9
+  name: Indoor_Parking_Lot_Entrance
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Indoor_Parking_Lot_Entrance}}
+  upsample: 1000
+- id: 10
+  name: Indoor_Parking_Lot
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Indoor_Parking_Lot}}
+      - contains: {attrs: {scene: Underground_Parking_Lot}}
+  upsample: 10
+- id: 11
+  name: Parking_Lot_Ramp
+  match_condiction:
+    contains: {attrs: {scene: Parking_Lot_Ramp}}
+  upsample: 1000
+- id: 12
+  name: Openair_Parking_Lot_Entrance
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Openair_Parking_Lot_Entrance}}
+      - contains: {attrs: {scene: urban_charge}}
+  upsample: 100
+- id: 13
+  name: Openair_Parking_Lot
+  match_condiction:
+    or:
+      - contains: {attrs: {scene: Openair_Parking_Lot}}
+      - contains: {attrs: {scene: Ground_Parking_Lot}}
+      - contains: {attrs: {scene: Roof_Parking_Lot}}
+  upsample: 10

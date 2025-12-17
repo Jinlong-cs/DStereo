@@ -1,0 +1,47 @@
+base_classname: vehicle                                 # 一级类型名称
+num_classes: 5                                          # 类别数量
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null                                                  # 空类, 用于删除样本
+  match_condiction:                                         # 为真值, 则匹配成功
+    or:                                                         # 以下任一条件为真, 则输出真
+    - contains: {attrs: {ignore: "yes"}}                            # 包含{"attrs": {"ignore": "yes"}}
+    - contains: {attrs: {negative_type: normal}}
+    - contains: {attrs: {negative_type: unknown}}
+    - contains: {attrs: {negative_type: Vehicle_light}}
+    - contains: {attrs: {negative_type: Local_vehicle}}
+    #- not:
+        #has_path: 'attrs.negative_type'
+- id: 5
+  name: Negative
+  match_condiction:
+    or:
+    - contains: {attrs: {negative_type: other}}
+    - contains: {attrs: {negative_type: light}}
+- id: 5
+  name: Negative
+  upsample: 3.
+  match_condiction:
+    or:
+    - contains: {attrs: {negative_type: sign}}
+- id: 5
+  name: Negative
+  upsample: 5.
+  match_condiction:
+    or:
+    - contains: {attrs: {negative_type: fence}}
+    - contains: {attrs: {negative_type: wall}}
+    - contains: {attrs: {negative_type: building}}
+    - contains: {attrs: {negative_type: background}}
+- id: 5
+  name: Negative
+  upsample: 30.
+  match_condiction:
+    or:
+    - contains: {attrs: {negative_type: stone}}
+    - contains: {attrs: {negative_type: tunnel_portal}}
+    - contains: {attrs: {negative_type: flower_bed}}
+    - contains: {attrs: {negative_type: rubbish_bin}}
+    - contains: {attrs: {negative_type: bus_shelter}}
+    - contains: {attrs: {negative_type: Hole_portal}}

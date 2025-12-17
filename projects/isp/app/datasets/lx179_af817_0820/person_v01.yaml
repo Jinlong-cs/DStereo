@@ -1,0 +1,9 @@
+# packed in 2023
+person:
+  train:
+    - ["/horizon-bucket/NeuralISP/user/run.wang/packing_data/det/ar0820_day/lmdb/train", 98416]
+  val:
+    - ["/horizon-bucket/NeuralISP/user/run.wang/packing_data/det/ar0820_day/lmdb/val", 10000]
+  eval:
+    - ["/horizon-bucket/NeuralISP/user/run.wang/packing_data/det/ar0820_day/lmdb/eval", 19998] 
+  val_anno_path: "/horizon-bucket/NeuralISP/user/run.wang/packing_data/det/ar0820_day/annotations/val"

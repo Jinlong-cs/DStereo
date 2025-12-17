@@ -1,0 +1,717 @@
+superparking:
+  mini:
+    train:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/mini_trainsets/Depth/UT363_20220711/plate_UT363_20220711_view_0.rec
+            - SuperParking/mini_trainsets/Depth/UT363_20220711/plate_UT363_20220711_view_1.rec
+            - SuperParking/mini_trainsets/Depth/UT363_20220711/plate_UT363_20220711_view_2.rec
+            - SuperParking/mini_trainsets/Depth/UT363_20220711/plate_UT363_20220711_view_3.rec
+    val:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/mini_trainsets/Depth/UT363_20220711/plate_UT363_20220711_view_3.rec
+  v04:
+    train:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/train_rec/depth_0.4.0/UT363_20220706_20220716_blacklst_v2_parsing.rec
+        UT370:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/train_rec/depth_0.4.0/UT370_20220609_20220610_blacklst_parsing.rec
+        UTF76:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/train_rec/depth_0.4.0/UTF76_20220609_20220610_parsing.rec
+    val:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/val_rec/depth_0.4.0/UT363_20220706_20220716_blacklst_v2_parsing.rec
+        UT370:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/val_rec/depth_0.4.0/UT370_20220609_20220610_blacklst_parsing.rec
+        UTF76:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/val_rec/depth_0.4.0/UTF76_20220609_20220610_parsing.rec
+  v05:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/train_rec/depth_0.5.0/JL661_20220806_20220818_parsing.rec
+        UT363:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/train_rec/depth_0.5.0/UT363_20220819_20220831_parsing.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/val_rec/depth_0.5.0/JL661_20220806_20220818_parsing.rec
+        UT363:
+          rec:
+            - SuperParking/LastVersion/Dataset/Depth/sp_depth_data/val_rec/depth_0.5.0/UT363_20220819_20220831_parsing.rec
+  all_rear_view:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_0.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_0.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_0.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220813/plate_JL661_20220813_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220817/plate_JL661_20220817_view_0.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220609/plate_UT299_20220609_view_0.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220709/plate_UT363_20220709_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220711/plate_UT363_20220711_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220829/plate_UT363_20220829_view_0.rec
+  all_front_view:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_1.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_1.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_1.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220813/plate_JL661_20220813_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220817/plate_JL661_20220817_view_1.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220609/plate_UT299_20220609_view_1.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220709/plate_UT363_20220709_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220711/plate_UT363_20220711_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220829/plate_UT363_20220829_view_1.rec
+  all_left_view:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_2.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_2.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_2.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220813/plate_JL661_20220813_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220817/plate_JL661_20220817_view_2.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220609/plate_UT299_20220609_view_2.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220709/plate_UT363_20220709_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220711/plate_UT363_20220711_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220829/plate_UT363_20220829_view_2.rec
+  all_right_view:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_3.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_3.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_3.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220813/plate_JL661_20220813_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220817/plate_JL661_20220817_view_3.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220609/plate_UT299_20220609_view_3.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220709/plate_UT363_20220709_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220711/plate_UT363_20220711_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220829/plate_UT363_20220829_view_3.rec
+  1/4_allview:
+    train:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_3.rec
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_3.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_3.rec
+  all_front+rear:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_1.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_1.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_1.rec
+  all_left+right:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220806/plate_JL661_20220806_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220809/plate_JL661_20220809_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220811/plate_JL661_20220811_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220815/plate_JL661_20220815_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_3.rec
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_3.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220712/plate_UT363_20220712_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220713/plate_UT363_20220713_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220714/plate_UT363_20220714_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220715/plate_UT363_20220715_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220819/plate_UT363_20220819_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220820/plate_UT363_20220820_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220822/plate_UT363_20220822_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220825/plate_UT363_20220825_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220826/plate_UT363_20220826_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220827/plate_UT363_20220827_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_3.rec
+  1/4_front+rear:
+    train:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_1.rec
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_1.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_0.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_1.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_1.rec
+  1/4_left+right:
+    train:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT299/UT299_20220610/plate_UT299_20220610_view_3.rec
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220808/plate_JL661_20220808_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220810/plate_JL661_20220810_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/JL661/JL661_20220818/plate_JL661_20220818_view_3.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_2.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220706/plate_UT363_20220706_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220707/plate_UT363_20220707_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220708/plate_UT363_20220708_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220716/plate_UT363_20220716_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220823/plate_UT363_20220823_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220824/plate_UT363_20220824_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220830/plate_UT363_20220830_view_3.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/UT363/UT363_20220831/plate_UT363_20220831_view_3.rec
+  camera_6cm_dataset_1:
+    train:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT299/plate_UT299_20220610_view_1_underground.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220706_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220707_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220708_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220709_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220712_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220713_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220714_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220715_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220716_view_1_underground.rec
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220809_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220810_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220813_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220815_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220817_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220818_view_1_underground.rec
+    val:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT299/plate_UT299_20220609_view_1_underground.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220711_view_1_underground.rec
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220811_view_1_underground.rec
+  camera_6cm_dataset_2:
+    train:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT299/plate_UT299_20220610_view_0_underground.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220706_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220707_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220708_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220709_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220712_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220713_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220714_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220715_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220716_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220819_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220820_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220822_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220824_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220825_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220826_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220827_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220829_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220830_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220831_view_0_underground.rec
+    val:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT299/plate_UT299_20220609_view_0_underground.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220711_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220823_view_0_underground.rec
+  camera_10cm_dataset_1:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220806_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220808_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220809_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220810_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220811_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220813_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220815_view_0_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220818_view_0_underground.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220817_view_0_underground.rec
+  camera_10cm_dataset_2:
+    train:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220706_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220707_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220708_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220709_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220711_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220712_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220713_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220714_view_1_underground.rec
+    val:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220715_view_1_underground.rec
+  camera_2cm_dataset_1:
+    train:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT299/plate_UT299_20220610_view_1_underground.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220819_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220820_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220822_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220831_view_1_underground.rec
+    val:
+      plate:
+        UT299:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT299/plate_UT299_20220609_view_1_underground.rec
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220820_view_1_underground.rec
+  camera_2cm_dataset_2:
+    train:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220707_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220708_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220709_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220713_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220714_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220715_view_1_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220716_view_1_underground.rec
+    val:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220712_view_1_underground.rec
+  pitch_1.2_dataset_1:
+    train:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220706_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220707_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220708_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220709_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220711_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220712_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220713_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220715_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220716_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220819_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220820_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220822_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220823_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220824_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220825_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220826_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220829_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220830_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220831_view_3_underground.rec
+    val:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220714_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220827_view_3_underground.rec
+  pitch_1.2_dataset_2:
+    train:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220706_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220707_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220708_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220709_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220711_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220712_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220713_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220715_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220716_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220819_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220820_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220822_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220823_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220824_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220825_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220826_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220829_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220830_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220831_view_2_underground.rec
+    val:
+      plate:
+        UT363:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220714_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/UT363/plate_UT363_20220827_view_2_underground.rec
+  pitch_2_dataset_1:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220806_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220808_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220809_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220810_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220811_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220813_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220815_view_2_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220818_view_2_underground.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220817_view_2_underground.rec
+  pitch_2_dataset_2:
+    train:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220806_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220808_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220809_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220810_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220811_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220813_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220815_view_3_underground.rec
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220818_view_3_underground.rec
+    val:
+      plate:
+        JL661:
+          rec:
+            - SuperParking/hui.wei/datasets/sp_depth/depth_rec/scene/JL661/plate_JL661_20220817_view_3_underground.rec

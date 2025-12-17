@@ -1,0 +1,9 @@
+horizon-hdflow==0.8.4b202312210650+788a69a
+aidisdk==0.14.2b20230822161638+bb0f02d
+hat-sim==1.0.1.dev202304040619+534727
+# model production workflow
+streamlit==1.21.0
+hatbc[all]==0.10.0b202307101231+29a1cc0
+# HOTFIX
+typing-extensions==4.7.1
+pydantic<=1.10.9

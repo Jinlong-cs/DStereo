@@ -1,0 +1,63 @@
+# 以图像的左右区分车门的左右
+base_classname: vehicle                                  # 一级类型名称
+num_classes: 2                                         # 类别数量
+allow_multi_match: false                                 # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+class_mappers:                                          # 目标类别转换器
+- id: null
+  match_condiction:
+    or:
+      - contains: {attrs: {ignore: "yes"}}
+      - contains: {attrs: {hard_sample: "yes"}}
+
+- id: 1
+  name: LeftDoorOpen
+  match_condiction:
+    or:
+    - and:
+      - or:
+          - contains: {attrs: {Orientation: 'facade'}}
+          - contains: {attrs: {Orientation: 'slant_left'}}
+          - contains: {attrs: {Orientation: 'slant_right'}}
+          - contains: {attrs: {Orientation: 'facade_slant_left'}}
+          - contains: {attrs: {Orientation: 'facade_slant_right'}}
+      - or:
+          - contains: {attrs: {left_door_status: 'open'}}
+          - contains: {attrs: {left_door_status: 'semi_open'}}
+    - and:
+      - or:
+          - contains: {attrs: {Orientation: 'opposite'}}
+          - contains: {attrs: {Orientation: 'opposite_slant_left'}}
+          - contains: {attrs: {Orientation: 'opposite_slant_right'}}
+      - or:
+          - contains: {attrs: {right_door_status: 'open'}}
+          - contains: {attrs: {right_door_status: 'semi_open'}}
+  upsample: 20
+- id: 2
+  name: LeftDoorClose
+  match_condiction:
+    or:
+    - and:
+      - or:
+          - contains: {attrs: {Orientation: 'facade'}}
+          - contains: {attrs: {Orientation: 'slant_left'}}
+          - contains: {attrs: {Orientation: 'slant_right'}}
+          - contains: {attrs: {Orientation: 'facade_slant_left'}}
+          - contains: {attrs: {Orientation: 'facade_slant_right'}}
+      - or:
+          - contains: {attrs: {left_door_status: 'close'}}
+          - contains: {attrs: {left_door_status: 'not_exist'}}
+    - and:
+      - or:
+          - contains: {attrs: {Orientation: 'opposite'}}
+          - contains: {attrs: {Orientation: 'opposite_slant_left'}}
+          - contains: {attrs: {Orientation: 'opposite_slant_right'}}
+      - or:
+          - contains: {attrs: {right_door_status: 'close'}}
+          - contains: {attrs: {right_door_status: 'not_exist'}}
+  upsample: 1
+- id: null
+  match_condiction:
+    and: []

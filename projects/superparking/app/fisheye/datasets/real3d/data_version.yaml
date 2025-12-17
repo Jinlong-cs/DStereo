@@ -1,0 +1,455 @@
+fisheye:
+  v0.0.1:
+    train:
+      data_version:
+        - unit-test-data
+    val:
+      data_version:
+        - unit-test-data
+    test:
+  v1.0.0:
+    train:
+      data_version:
+        # - v00
+        - v04
+        - v05
+    val:
+      data_version:
+        # - v00
+        - v04
+        - v05
+    test:
+
+  # add params
+  v2.0.0:
+    train:
+      data_version:
+        - v04_v05
+    val:
+      data_version:
+        - v04_v05
+    test:
+
+superparking:
+  v1.0.0:
+    train:
+      data_version:
+        - v01
+        - v02
+    val:
+      data_version:
+        - v01
+        - v02
+    test:
+
+  v1.1.0:
+    train:
+      data_version:
+        - v00
+        - v01
+        - v02
+    val:
+      data_version:
+        - v00
+        - v01
+        - v02
+    test:
+
+  JL661:
+    train:
+      data_version:
+        - JL661_v00
+
+    val:
+      data_version:
+        - JL661_v00
+    test:
+
+  v1.1.1:
+    train:
+      data_version:
+        - v00
+        - v01
+        - v02
+        - v03
+
+    val:
+      data_version:
+        - v00
+        - v01
+        - v02
+
+  v1.1.2:
+    train:
+      data_version:
+        - JL661_v00
+        - v00
+        - v01
+        - v02
+        - v03
+    val:
+      data_version:
+        - v00
+        - v01
+        - v02
+
+  # WIP
+  fushion:
+    train:
+      data_version:
+        - JL661_v00
+        - v00
+        - v01
+        - v02
+        - v03
+        - DG201_v04_v05
+    val:
+      data_version:
+        - v00
+        - v01
+        - v02
+        - DG201_v04_v05
+
+  senyun:
+    train:
+      data_version:
+        - v00
+    val:
+      data_version:
+        - v00
+    test:
+
+vehicle:
+  v1.1.2:
+    train:
+      data_version:
+        - JL661_v00
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+    val:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+  v1.1.3:
+    train:
+      data_version:
+        - JL661_v00
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - UT299_v00
+        - UT363_v00
+        # - UT370_v04
+        - UTF76_v00
+    val:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+
+  v1.1.4:
+    train:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - JL661_v00
+        - UT299_v00
+        - UT299_v01
+        - UT363_v00
+        - UT363_v01
+        - UTF76_v00
+        - UTF76_v02
+    val:
+      data_version:
+        - UT299_v01
+        - UT363_v01
+        - UTF76_v02
+
+  v1.1.5:
+    train:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - JL661_v00
+        - UT299_v00
+        - UT299_v01
+        - UT363_v00
+        - UT363_v01
+        - UTF76_v00
+        - UTF76_v02
+
+        - UT299_v02
+        - UT299_v03
+        - UT299_v04
+        - UT299_v05
+
+        - UT363_v02
+        - UT363_v03
+        - UT363_v05
+
+        - UTF76_v01
+        - UTF76_v03
+        - UTF76_v04
+        - UTF76_v05
+
+        - UT370_v05
+        - 3M96H_v05
+    val:
+      data_version:
+        - UT299_v01
+        - UT363_v01
+        - UTF76_v02
+
+  v1.1.6:
+    train:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - JL661_v00
+        - UT299_v00
+        - UT299_v01
+        - UT363_v00
+        - UT363_v01
+        - UTF76_v00
+        - UTF76_v02
+
+        - UT299_v02
+        - UT299_v03
+        - UT299_v04
+        - UT299_v05
+
+        - UT363_v02
+        - UT363_v03
+        - UT363_v05
+
+        - UTF76_v01
+        - UTF76_v03
+        - UTF76_v04
+        - UTF76_v05
+
+        - UT370_v05
+        - 3M96H_v05
+    val:
+      data_version:
+        - lastest
+  
+  ci_test:
+    train:
+      data_version:
+        - mini
+    val:
+      data_version:
+        - mini
+
+person:
+  v1.1.2:
+    train:
+      data_version:
+        - JL661_v00
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+    val:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+  v1.1.3:
+    train:
+      data_version:
+        - JL661_v00
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - UT299_v00
+        - UT363_v00
+        # - UT370_v04
+        - UTF76_v00
+    val:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+  v1.1.4:
+    train:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - JL661_v00
+        - UT299_v00
+        - UT299_v01
+        - UT363_v00
+        - UT363_v01
+        - UTF76_v00
+        - UTF76_v02
+    val:
+      data_version:
+        - UT299_v01
+        - UT363_v01
+        - UTF76_v02
+  
+  v1.1.5:
+    train:
+      data_version:
+        - final
+    val:
+      data_version:
+        - UT299_v01
+        - UT363_v01
+        - UTF76_v02
+
+  ci_test:
+    train:
+      data_version:
+        - mini
+    val:
+      data_version:
+        - mini
+
+  v1.1.6:
+    train:
+      data_version:
+        - final
+    val:
+      data_version:
+        - final
+
+cyclist:
+  v1.1.2:
+    train:
+      data_version:
+        - JL661_v00
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+    val:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+
+  v1.1.3:
+    train:
+      data_version:
+        - JL661_v00
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - UT299_v00
+        - UT363_v00
+        # - UT370_v04
+        - UTF76_v00
+    val:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+  v1.1.4:
+    train:
+      data_version:
+        - 3M96H_v00
+        - 3M96H_v01
+        - 3M96H_v02
+        - 3M96H_v03
+        - JL661_v00
+        - UT299_v00
+        - UT299_v01
+        - UT363_v00
+        - UT363_v01
+        - UTF76_v00
+        - UTF76_v02
+    val:
+      data_version:
+        - UT299_v01
+        - UT363_v01
+        - UTF76_v02
+
+  v1.1.5:
+    train:
+      data_version:
+        - final
+    val:
+      data_version:
+        - UT299_v01
+        - UT363_v01
+        - UTF76_v02
+
+  ci_test:
+    train:
+      data_version:
+        - mini
+    val:
+      data_version:
+        - mini
+
+  v1.1.6:
+    train:
+      data_version:
+        - final
+    val:
+      data_version:
+        - final
+
+generalization:
+  camera_z_5cm_1:
+    train:
+      data_version:
+        - UT363_z-5cm_1
+        - UT299_z-5cm_1
+    val:
+      data_version:
+        - UT363_z-5cm_1
+        - UT299_z-5cm_1
+
+  camera_z_5cm_2:
+    train:
+      data_version:
+        - UT363_z-5cm_2
+        - UT299_z-5cm_2
+
+    val:
+      data_version:
+        - UT363_z-5cm_2
+        - UT299_z-5cm_2
+
+  camera_z_10cm_1:
+    train:
+      data_version:
+        - 3M96H_z-10cm_1
+
+    val:
+      data_version:
+        - 3M96H_z-10cm_1
+
+  camera_z_10cm_2:
+    train:
+      data_version:
+        - JL661_z-10cm_2
+    val:
+      data_version:
+        - JL661_z-10cm_2
+
+  camera_z_10cm_3:
+    train:
+      data_version:
+        - JL661_z-10cm_3
+    val:
+      data_version:
+        - JL661_z-10cm_3
+        

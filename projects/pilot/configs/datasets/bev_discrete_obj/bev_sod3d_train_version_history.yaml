@@ -1,0 +1,20 @@
+# group data version
+pipeline_test:
+  BJ:
+    4GD36:
+      000_bj_4GD36_1_site:
+
+train_auto_gt_v1_0_0_small:
+  multi_tensors_4d_prelable_gt_v2.2.0_small:
+    UT126:
+      012_train_UT126_50_sites:
+      013_train_UT126_56_sites:
+    UT263:
+      014_train_UT263_101_sites:
+      015_train_UT263_2_sites:
+      016_train_UT263_1_sites:
+      017_train_UT263_3_sites:
+    UTHS6:
+      018_train_UTHS6_58_sites:
+      019_train_UTHS6_28_sites:
+      020_train_UTHS6_19_sites:

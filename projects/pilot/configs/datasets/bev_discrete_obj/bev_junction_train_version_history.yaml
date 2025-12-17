@@ -1,0 +1,1513 @@
+# group data version
+
+# bev_junction
+pipeline_test:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+
+HDE-lidar_v1.1.0:
+  BJ:
+    H3165:
+      0728_691310_FSD_Site_H3165_20220426_v5a:
+      0728_691310_FSD_Site_H3165_20220427_v5a:
+      0728_691310_FSD_Site_H3165_20220428_v5a:
+    # 08/12 anno data
+    UT0Q9:
+      0804_694674_1_FSD_Site_UT0Q9_20220609_v5a:
+      0804_694674_1_FSD_Site_UT0Q9_20220611_v5a:
+      0804_694674_1_FSD_Site_UT0Q9_20220615_v5a:
+      0804_694674_1_FSD_Site_UT0Q9_20220618_v5a:
+    # 08/15 anno data
+    UT1R3:
+      0804_694687_1_FSD_Site_UT1R3_20220505_v5a:
+      0804_694687_1_FSD_Site_UT1R3_20220506_v5a:
+
+# merged v1.1.0 at 08/26
+HDE-lidar_v1.1.1:
+  BJ:
+    H3165:
+      merge_H3165_0826_v5a:
+      merge_H3165_0902_v5a_4:
+    UT0Q9:
+      merge_UT0Q9_0826_v5a:
+      merge_UT0Q9_0902_v5a_4:
+    UT1R3:
+      merge_UT1R3_0826_v5a:
+    4GD36:
+      merge_4GD36_0902_v5a_4:
+
+# merged with extra data at 09/30
+HDE-lidar_v1.1.2:
+  BJ:
+    H3165:
+      merge_H3165_0826_v5a:
+      merge_H3165_0902_v5a_4:
+      merge_H3165_0915_v5a_5:
+    UT0Q9:
+      merge_UT0Q9_0826_v5a:
+      merge_UT0Q9_0902_v5a_4:
+      merge_UT0Q9_0915_v5a_5:
+      merge_UT0Q9_0930_v5a_v6:
+    UT1R3:
+      merge_UT1R3_0826_v5a:
+    4GD36:
+      merge_4GD36_0902_v5a_4:
+      merge_4GD36_0915_v5a_5:
+      merge_4GD36_0930_v5a_v6:
+    UV083:
+      merge_UV083_0915_v5a_5:
+      merge_UV083_0930_v5a_v6:
+    UTHS6:
+      merge_UTHS6_0930_v5a_v6:
+
+# add parking data at 11/01
+HDE-lidar_v1.1.3:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0019_UT126_20221010_ml_5map:
+      0028_UT126_20221027_ml_5map:
+    NC109:
+      0027_NC109_20221021_ml_6map:
+      0030_NC109_20221027_ml_7map:
+      0032_NC109_20221028_ml_9map:
+
+HDE-lidar_v1.1.4_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+  # 11v driving data
+  11v_driving_data_small:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+
+
+release_v4.10.0_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+                sample_interval: 3
+      0006_UT126_20220830_ml_17map:
+                sample_interval: 3
+      0008_UT126_20220906_ml_13map:
+                sample_interval: 3
+      0010_UT126_20220909_ml_14map:
+                sample_interval: 3
+      0011_UT126_20220916_ml_31map:
+                sample_interval: 3
+      0012_UT126_20220920_ml_12map:
+                sample_interval: 3
+      0017_UT126_20220930_ml_34map:
+                sample_interval: 3
+      0019_UT126_20221010_ml_5map:
+                sample_interval: 3
+      0021_UT126_20221013_ml_20map:
+                sample_interval: 3
+      0025_UT126_20221021_ml_33map:
+                sample_interval: 3
+      0028_UT126_20221027_ml_5map:
+                sample_interval: 3
+  # 11v driving data
+  11v_driving_data_small:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+                sample_interval: 3
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+                sample_interval: 3
+      20221110_717586_1_FSD_Site_UT263_20221016:
+                sample_interval: 3
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+                sample_interval: 3
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+                sample_interval: 3
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+                sample_interval: 3
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+                sample_interval: 3
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+                sample_interval: 3
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+                sample_interval: 3
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+                sample_interval: 3
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+                sample_interval: 3
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+                sample_interval: 3
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+                sample_interval: 3
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+                sample_interval: 3
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+                sample_interval: 3
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+                sample_interval: 3
+
+HDE-lidar_v1.1.4_wide:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+  # 11v driving data
+  11v_driving_data_wide:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+        
+release_v4.10.0:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+        sample_interval: 5
+      0006_UT126_20220830_ml_17map:
+        sample_interval: 5
+      0008_UT126_20220906_ml_13map:
+        sample_interval: 5
+      0010_UT126_20220909_ml_14map:
+        sample_interval: 5
+      0011_UT126_20220916_ml_31map:
+        sample_interval: 5
+      0012_UT126_20220920_ml_12map:
+        sample_interval: 5
+      0017_UT126_20220930_ml_34map:
+        sample_interval: 5
+      0019_UT126_20221010_ml_5map:
+        sample_interval: 5
+      0021_UT126_20221013_ml_20map:
+        sample_interval: 5
+      0025_UT126_20221021_ml_33map:
+        sample_interval: 5
+      0028_UT126_20221027_ml_5map:
+        sample_interval: 5
+  # 11v driving data
+  11v_driving_data_wide:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+        sample_interval: 5
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+        sample_interval: 5
+      20221110_717586_1_FSD_Site_UT263_20221016:
+        sample_interval: 5
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+        sample_interval: 5
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+        sample_interval: 5
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+        sample_interval: 5
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+        sample_interval: 5
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+        sample_interval: 5
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+        sample_interval: 5
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+        sample_interval: 5
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+        sample_interval: 5
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+        sample_interval: 5
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+        sample_interval: 5
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+        sample_interval: 5
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      #   sample_interval: 5
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+        sample_interval: 5
+
+HDE-lidar_v1.1.5_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+    
+  # 11v driving data
+  11v_driving_data_small:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+HDE-lidar_v1.1.5_wide:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+  # 11v driving data
+  11v_driving_data_wide:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+HDE-lidar_v1.1.6_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+    
+  # 11v driving data
+  11v_driving_data_small:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_small:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+
+HDE-lidar_v1.1.6_wide:
+  # 11v parking data
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+  # 11v driving data
+  11v_driving_data_wide:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_wide:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+
+HDE-lidar_v1.1.7_small:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+    
+  11v_driving_data_small:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+      merge_UT263_det_v5a_20221223_20221224_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_small:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+
+  byd_7v_driving_data_small:
+    BYD72:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+
+  11v_driving_background_autoshow:
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+  11v_driving_background:
+    UT263:
+      20230112_732484_1_FSD_Site_UT263_20221223:
+    UT1R3:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+  byd7v_background:
+    BYD72:
+      merge_BYD72_det_v5a_20221123_20221209_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221123_20221212_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221208_20221208_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221122_20221208_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221116_20221213_BYD19_7v:
+
+HDE-lidar_v1.1.7_wide:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+
+  11v_driving_data_wide:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+      merge_UT263_det_v5a_20221223_20221224_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_wide:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+
+  byd_7v_driving_data_wide:
+    BYD72:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+  
+  11v_driving_background_autoshow:
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+
+  11v_driving_background:
+    UT263:
+      20230112_732484_1_FSD_Site_UT263_20221223:
+    UT1R3:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+
+  byd7v_background:
+    BYD72:
+      merge_BYD72_det_v5a_20221123_20221209_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221123_20221212_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221208_20221208_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221122_20221208_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221116_20221213_BYD19_7v:
+
+HDE-lidar_v1.1.8_small:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+    
+  11v_driving_data_small:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+      merge_UT263_det_v5a_20221223_20221224_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_small:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+
+  byd_7v_driving_data_small:
+    BYD72:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+
+  11v_driving_background_autoshow:
+    LX165:
+      merge_LX165_det_v5a_20230228_20230301_LX165_11v:
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+  11v_driving_background:
+    UT263:
+      20230112_732484_1_FSD_Site_UT263_20221223:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT1R3:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221224_UT1R3_11v:
+    UT0Q9:
+      merge_UT0Q9_det_v5a_20221217_20221218_UT0Q9_11v:
+    UT126:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+
+  byd7v_background:
+    BYD72:
+      merge_BYD72_det_v5a_20221123_20221209_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221123_20221212_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221208_20221208_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221122_20221208_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221116_20221213_BYD19_7v:
+
+HDE-lidar_v1.1.8_wide:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+
+  11v_driving_data_wide:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+      merge_UT263_det_v5a_20221223_20221224_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v_v2:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v_v2:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221217_20221218_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+      merge_NC110_det_v5a_20221213_20221214_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_wide:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+
+  byd_7v_driving_data_wide:
+    BYD72:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+  
+  11v_driving_background_autoshow:
+    LX165:
+      merge_LX165_det_v5a_20230228_20230301_LX165_11v:
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+
+  11v_driving_background:
+    UT263:
+      20230112_732484_1_FSD_Site_UT263_20221223:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT1R3:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221224_UT1R3_11v:
+    UT0Q9:
+      merge_UT0Q9_det_v5a_20221217_20221218_UT0Q9_11v:
+    UT126:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+
+  byd7v_background:
+    BYD72:
+      merge_BYD72_det_v5a_20221123_20221209_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221123_20221212_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221208_20221208_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221122_20221208_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221116_20221213_BYD19_7v:
+
+HDE-lidar_v1.1.8_autoshow_wide:
+  11v_driving_auto_show_wide:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v_v1:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v_v2:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+  11v_driving_background_autoshow:
+    LX165:
+      merge_LX165_det_v5a_20230228_20230301_LX165_11v:
+        sample_interval: 2
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+        sample_interval: 2
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+        sample_interval: 2
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+        sample_interval: 2
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+        sample_interval: 2
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+        sample_interval: 2
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+        sample_interval: 2
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+        sample_interval: 2
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+        sample_interval: 2
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+        sample_interval: 2
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+        sample_interval: 2
+    
+HDE_lidar_v1_1_9_small:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+    
+  11v_driving_data_small:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+      merge_UT263_det_v5a_20221223_20221224_UT263_11v:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_small:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+      20230308_742574_1_background_0_FSD_Site_LX165_20230227:
+      merge_LX165_det_v5a_20230304_20230308_LX165_11v:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230308_742574_1_background_0_FSD_Site_UT1R3_20230213:
+
+  byd_7v_driving_data_small:
+    BYD72:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+
+  11v_driving_background_autoshow:
+    LX165:
+      merge_LX165_det_v5a_20230228_20230301_LX165_11v:
+      20230308_742574_1_background_1_FSD_Site_LX165_20230227:
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+      20230308_742574_1_background_1_FSD_Site_UT1R3_20230213:
+  11v_driving_background:
+    UT263:
+      20230112_732484_1_FSD_Site_UT263_20221223:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT1R3:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221224_UT1R3_11v:
+    UT0Q9:
+      merge_UT0Q9_det_v5a_20221217_20221218_UT0Q9_11v:
+    UT126:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+
+  byd7v_background:
+    BYD72:
+      merge_BYD72_det_v5a_20221123_20221209_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221123_20221212_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221208_20221208_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221122_20221208_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221116_20221213_BYD19_7v:
+
+HDE_lidar_v1_1_9_wide:
+  BJ:
+    UT126:
+      0005_UT126_20220825_ml_41map:
+      0006_UT126_20220830_ml_17map:
+      0008_UT126_20220906_ml_13map:
+      0010_UT126_20220909_ml_14map:
+      0011_UT126_20220916_ml_31map:
+      0012_UT126_20220920_ml_12map:
+      0017_UT126_20220930_ml_34map:
+      0019_UT126_20221010_ml_5map:
+      0021_UT126_20221013_ml_20map:
+      0025_UT126_20221021_ml_33map:
+      0028_UT126_20221027_ml_5map:
+      0080_UT126_20221228_ml_40map:
+    UT263:
+      0078_UT263_20221228_ml_66map:
+    UT1R3:
+      0076_UT1R3_20221228_ml_70map:
+    UTHS6:
+      0077_UTHS6_20221228_ml_66map:
+    UT3J5:
+      0081_UT3J5_20221228_ml_96map:
+
+  11v_driving_data_wide:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+    UT263:
+      merge_UT263_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT263_freespace_v5a_20221016_20221016_UT263_11v:
+      20221110_717586_1_FSD_Site_UT263_20221016:
+      merge_UT263_freespace_v5a_20221026_20221031_UT263_11v:
+      merge_UT263_freespace_v5a_20221025_20221025_UT263_11v:
+      merge_UT263_det_v5a_20221215_20221215_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_val_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+      merge_UT263_det_v5a_20221223_20221224_UT263_11v:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v_v2:
+    UT126:
+      merge_UT126_freespace_v5a_20221116_junction_ut126_ut263_11v:
+      merge_UT126_freespace_v5a_20221016_20221030_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v_v2:
+    UT1R3:
+      merge_UT1R3_freespace_v5a_20221108_1109_UT1R3_11v:
+      merge_UT1R3_freespace_v5a_20221028_20221030_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221215_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+    UTHS6:
+      merge_UTHS6_freespace_v5a_20221018_20221025_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221024_20221026_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221028_20221031_UTHS6_11v:
+      merge_UTHS6_freespace_v5a_20221101_20221108_UTHS6_11v:
+      20221111_718177_1_FSD_Site_UTHS6_20221101:
+      merge_UTHS6_det_v5a_20221213_20221215_UTHS6_11v:
+    UT0Q9:
+      # 20221110_717585_1_FSD_Site_UT0Q9_20221013:
+      merge_UT0Q9_freespace_v5a_20221010_20221020_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_val_11v:
+      merge_UT0Q9_det_v5a_20221216_20221218_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221026_20221027_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221024_20221024_UT0Q9_11v:
+      merge_UT0Q9_det_v5a_20221217_20221218_UT0Q9_11v:
+    UT3J5:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_11v:
+      merge_UT3J5_det_v5a_20221210_20221212_UT3J5_val_11v:
+    NC110:
+      merge_NC110_det_v5a_20221213_20221218_NC110_val_11v:
+      merge_NC110_det_v5a_20221213_20221218_NC110_11v:
+      merge_NC110_det_v5a_20221213_20221214_NC110_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+
+  11v_driving_auto_show_wide:
+    LX165:
+      20230308_742574_1_background_0_FSD_Site_LX165_20230227:
+      merge_LX165_det_v5a_20230304_20230308_LX165_11v:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230308_742574_1_background_0_FSD_Site_UT1R3_20230213:
+  11v_driving_auto_show_wide_resample:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+
+  byd_7v_driving_data_wide:
+    BYD72:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+  
+  11v_driving_background_autoshow:
+    LX165:
+      merge_LX165_det_v5a_20230228_20230301_LX165_11v:
+      20230308_742574_1_background_1_FSD_Site_LX165_20230227:
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+      20230308_742574_1_background_1_FSD_Site_UT1R3_20230213:
+
+  11v_driving_background:
+    UT263:
+      20230112_732484_1_FSD_Site_UT263_20221223:
+      merge_UT263_det_v5a_20221217_20221221_UT263_11v:
+    UT1R3:
+      merge_UT1R3_det_v5a_20221217_20221220_UT1R3_11v:
+      merge_UT1R3_det_v5a_20221213_20221224_UT1R3_11v:
+    UT0Q9:
+      merge_UT0Q9_det_v5a_20221217_20221218_UT0Q9_11v:
+    UT126:
+      merge_UT126_det_v5a_20221213_20221220_UT126_11v:
+    LS912:
+      merge_LS912_det_v5a_20221211_20221215_LS912_11v:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v:
+
+  byd7v_background:
+    BYD72:
+      merge_BYD72_det_v5a_20221123_20221209_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221225_20230107_BYD72_7v:
+      merge_BYD72_det_v5a_20221217_20221227_BYD72_7v:
+      merge_BYD72_det_v5a_20221123_20221212_BYD72_7v:
+    BYD18:
+      merge_BYD18_det_v5a_20221208_20221208_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221203_20221203_BYD18_7v:
+      merge_BYD18_det_v5a_20230102_20230105_BYD18_7v:
+      merge_BYD18_det_v5a_20221228_20221230_BYD18_7v:
+      merge_BYD18_det_v5a_20221122_20221208_BYD18_7v:
+    BYD19:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221127_20221127_BYD19_7v:
+      merge_BYD19_det_v5a_20221218_20230104_BYD19_7v:
+      merge_BYD19_det_v5a_20221219_20221230_BYD19_7v:
+      merge_BYD19_det_v5a_20221116_20221213_BYD19_7v:
+
+HDE-lidar_v1.1.9_autoshow_wide:
+  11v_driving_auto_show_wide:
+    LX165:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v_v1:
+      merge_LX165_det_v5a_20230226_20230301_LX165_11v_v2:
+      20230308_742574_1_background_0_FSD_Site_LX165_20230227:
+      merge_LX165_det_v5a_20230304_20230308_LX165_11v:
+    UT1R3:
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+      20230308_742574_1_background_0_FSD_Site_UT1R3_20230213:
+  11v_driving_background_autoshow:
+    LX165:
+      merge_LX165_det_v5a_20230228_20230301_LX165_11v:
+        sample_interval: 2
+      20230308_742574_1_background_1_FSD_Site_LX165_20230227:
+        sample_interval: 2
+    UT1R3:
+      20230220_738832_1_FSD_Site_UT1R3_20230205:
+        sample_interval: 2
+      20230220_738832_1_FSD_Site_UT1R3_20230206:
+        sample_interval: 2
+      20230220_738832_1_FSD_Site_UT1R3_20230204:
+        sample_interval: 2
+      20230220_738836_1_FSD_Site_UT1R3_20230208:
+        sample_interval: 2
+      20230220_738836_1_FSD_Site_UT1R3_20230205:
+        sample_interval: 2
+      20230220_738836_1_FSD_Site_UT1R3_20230207:
+        sample_interval: 2
+      20230220_738837_1_FSD_Site_UT1R3_20230209:
+        sample_interval: 2
+      merge_UT1R3_det_v5a_20230209_20230209_UT1R3_11v:
+        sample_interval: 2
+      merge_UT1R3_det_v5a_20230205_20230209_UT1R3_11v:
+        sample_interval: 2
+      merge_UT1R3_det_v5a_20230205_20230205_UT1R3_11v:
+        sample_interval: 2
+      20230308_742574_1_background_1_FSD_Site_UT1R3_20230213:
+        sample_interval: 2

@@ -1,0 +1,171 @@
+# group data version
+pipeline_test:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_driving:
+    UT263:
+      driving_017_train_UT263_3_sites:
+  
+val_auto_gt_v1_0_0_small:
+  multi_tensors_4d_prelable_gt_v2.3.0_small:
+    UT126:
+      007_val_UT126_19_sites:
+      008_val_UT126_6_sites:
+    UT263:
+      009_val_UT263_3_sites:
+      010_val_UT263_8_sites:
+    UTHS6:
+      011_val_UTHS6_15_sites:
+
+val_auto_gt_v1_0_1_small:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_driving:
+    UT126:
+      driving_007_val_UT126_19_sites:
+        sample_interval: 2
+      driving_008_val_UT126_6_sites:
+        sample_interval: 2
+    UT263:
+      driving_009_val_UT263_3_sites:
+        sample_interval: 2
+      driving_010_val_UT263_8_sites:
+        sample_interval: 2
+    UTHS6:
+      driving_011_val_UTHS6_15_sites:
+        sample_interval: 2
+
+val_auto_gt_v1_0_1_small_sequence:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_driving_sequence:
+    UT126:
+      driving_007_val_UT126_19_sites:
+      driving_008_val_UT126_6_sites:
+    UT263:
+      driving_009_val_UT263_3_sites:
+      driving_010_val_UT263_8_sites:
+    UTHS6:
+      driving_011_val_UTHS6_15_sites:
+
+val_auto_gt_v1_0_2_small:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_driving:
+    UT126:
+      driving_007_val_UT126_19_sites:
+        sample_interval: 2
+      driving_008_val_UT126_6_sites:
+        sample_interval: 2
+    UT263:
+      driving_009_val_UT263_3_sites:
+        sample_interval: 2
+      driving_010_val_UT263_8_sites:
+        sample_interval: 2
+    UTHS6:
+      driving_011_val_UTHS6_15_sites:
+        sample_interval: 2
+
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    LS830:
+      parking_001_val_LS830_4_packs:
+        sample_interval: 2
+    UT1R3:
+      parking_002_val_UT1R3_5_packs:
+        sample_interval: 2
+    UT263:
+      parking_003_val_UT263_9_packs:
+        sample_interval: 2
+    UT3J5:
+      parking_004_val_UT3J5_6_packs:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_parking:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    LS830:
+      parking_001_val_LS830_4_packs:
+        sample_interval: 2
+    UT1R3:
+      parking_002_val_UT1R3_5_packs:
+        sample_interval: 2
+    UT263:
+      parking_003_val_UT263_9_packs:
+        sample_interval: 2
+    UT3J5:
+      parking_004_val_UT3J5_6_packs:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_parking_ground:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    LS830:
+      parking_001_val_LS830_4_packs:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_parking_underground:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    UT1R3:
+      parking_002_val_UT1R3_5_packs:
+        sample_interval: 2
+    UT263:
+      parking_003_val_UT263_9_packs:
+        sample_interval: 2
+    UT3J5:
+      parking_004_val_UT3J5_6_packs:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_parking_filtered:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    LS830:
+      parking_001_val_LS830_4_packs_filtered:
+        sample_interval: 2
+    UT1R3:
+      parking_002_val_UT1R3_5_packs_filtered:
+        sample_interval: 2
+    UT263:
+      parking_003_val_UT263_9_packs_filtered:
+        sample_interval: 2
+    UT3J5:
+      parking_004_val_UT3J5_6_packs_filtered:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_parking_ground_filtered:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    LS830:
+      parking_001_val_LS830_4_packs_filtered:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_parking_underground_filtered:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking:
+    UT1R3:
+      parking_002_val_UT1R3_5_packs_filtered:
+        sample_interval: 2
+    UT263:
+      parking_003_val_UT263_9_packs_filtered:
+        sample_interval: 2
+    UT3J5:
+      parking_004_val_UT3J5_6_packs_filtered:
+        sample_interval: 2
+
+val_auto_gt_v1_0_2_small_sequence:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_driving_sequence:
+    UT126:
+      driving_007_val_UT126_19_sites:
+      driving_008_val_UT126_6_sites:
+    UT263:
+      driving_009_val_UT263_3_sites:
+      driving_010_val_UT263_8_sites:
+    UTHS6:
+      driving_011_val_UTHS6_15_sites:
+
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking_sequence:
+    LS830:
+      parking_001_val_LS830_4_packs:
+    UT1R3:
+      parking_002_val_UT1R3_5_packs:
+    UT263:
+      parking_003_val_UT263_9_packs:
+    UT3J5:
+      parking_004_val_UT3J5_6_packs:
+
+val_auto_gt_v1_0_2_small_sequence_parking:
+  multi_tensors_4d_prelable_gt_v2.5.0_small_parking_sequence:
+    LS830:
+      parking_001_val_LS830_4_packs:
+    UT1R3:
+      parking_002_val_UT1R3_5_packs:
+    UT263:
+      parking_003_val_UT263_9_packs:
+    UT3J5:
+      parking_004_val_UT3J5_6_packs:

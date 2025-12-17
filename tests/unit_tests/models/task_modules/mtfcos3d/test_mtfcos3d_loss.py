@@ -1,0 +1,52 @@
+import torch
+
+from hat.models.losses.mask_l1_loss import MaskL1Loss
+
+
+def test_l1_loss():
+    pred = torch.Tensor(
+        [
+            [
+                [0.9140, 0.3939, 0.8436, 0.8709, 0.3387],
+                [0.7222, 0.1991, 0.7227, 0.0187, 0.8135],
+                [0.5644, 0.7513, 0.0774, 0.3974, 0.2366],
+            ],
+            [
+                [0.8459, 0.2419, 0.1675, 0.3813, 0.7049],
+                [0.2227, 0.8864, 0.8276, 0.9101, 0.4410],
+                [0.6678, 0.2443, 0.5320, 0.6253, 0.0654],
+            ],
+        ]
+    )
+    target = torch.Tensor(
+        [
+            [
+                [0.4135, 0.6855, 0.8427, 0.3257, 0.9094],
+                [0.1176, 0.4234, 0.7032, 0.2256, 0.4893],
+                [0.4502, 0.8952, 0.6433, 0.0331, 0.3308],
+            ],
+            [
+                [0.9196, 0.7138, 0.6535, 0.2618, 0.0073],
+                [0.3535, 0.3894, 0.0118, 0.0079, 0.0777],
+                [0.0233, 0.7960, 0.5167, 0.4476, 0.1777],
+            ],
+        ]
+    )
+    weight = torch.Tensor(
+        [
+            [
+                [True, True, True, True, True],
+                [True, True, True, True, True],
+                [True, True, True, True, True],
+            ],
+            [
+                [True, True, True, True, True],
+                [True, True, True, True, True],
+                [True, True, True, True, True],
+            ],
+        ]
+    )
+    target_loss = torch.FloatTensor([10.6302]).squeeze()
+    l1_loss = MaskL1Loss(reduction="mean")
+    loss = l1_loss(pred, target, avg_factor=1, weight=weight)
+    assert torch.all(torch.abs(target_loss - loss) < 1e-4)

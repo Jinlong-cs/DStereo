@@ -1,0 +1,453 @@
+# -------------------------- validation --------------------------
+# v0.0.1 using for pipeline_test
+
+pipeline_test:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+pipeline_testV2:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+v0.0.1_11v:
+  BEIJING:
+    UTHS6:
+      UTHS6_20220611:
+        sample_interval: 5
+    UT126:
+      UT126_20220803_D:
+# group data version
+v1.0.1:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+
+v1.1.0_10v:
+  BEIJING:
+    DG201:
+      DG201_20210518:
+      DG201_20210522:
+
+# 存在标定参数不准以及GT有错误
+v1.0.2_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220907_20220914:
+    UT263:
+      UT263_20221015_20221018:
+
+v1.0.3_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.4_11v_e2e:
+  BEIJING_11v:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+    JL773:
+      JL773_20220225:
+    DG201:
+      DG201_20220304:
+    UT1R3:
+      UT1R3_20220311:
+    DG102:
+      DG102_20220301:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.5_11v_e2e:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+    JL773:
+      JL773_20220225:
+    DG201:
+      DG201_20220304:
+    UT1R3:
+      UT1R3_20220311:
+    DG102:
+      DG102_20220301:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.5_11v_e2e_without_6v:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.6_11v_e2e_without_6v:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_5v:
+    BYD19:
+      data_BYD19_20221114_v03:
+      data_BYD19_20221115_v03:
+      data_BYD19_20221116_v03:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+
+v1.0.9_11v_e2e_without_6v:
+  BEIJING_11v:
+    UTHS6:
+      UTHS6_20220810_20220815:
+    UT0Q9:
+      UT0Q9_20220922:
+    UT126:
+      UT126_20220922-20220924:
+    LS912:
+      LS912_20221111:
+  BEIJING_5v:
+    BYD19:
+      data_BYD19_20221114_v03:
+      data_BYD19_20221115_v03:
+      data_BYD19_20221116_v03:
+  BEIJING_11v_Parking:
+    UT126:
+      UT126_20220814-20220816:
+      UT126_20221102:
+        sample_interval: 1
+      UT126_20221105:
+        sample_interval: 1
+      UT126_20221114:
+        sample_interval: 1
+    UT263:
+      UT263_20220922:
+      UT263_20221010: 
+      UT263_20221106:
+        sample_interval: 1
+      UT263_20221116:
+        sample_interval: 1
+      UT263_20221206:
+        sample_interval: 1
+
+v1.2.0_10v:
+  BEIJING:
+    UT1R3:
+      UT1R3_20220624:
+    UTHS6:
+      UTHS6_20220608:
+      UTHS6_20220618:
+
+v1.0.2:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+
+v1.0.3:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211030:
+
+v1.0.4:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211030:
+    30C1G:
+      30C1G_20211101:
+
+v1.0.5:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211030:
+    30C1G:
+      30C1G_20211101:
+      30C1G_20211122:
+    H3165:
+      H3165_20211201:
+
+v1.0.6:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20210608_20210610:
+      65U3D_20211030:
+    30C1G:
+      30C1G_20211101:
+      30C1G_20211122:
+    H3165:
+      H3165_20211201:
+v1.0.7:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+    30C1G:
+      30C1G_20211122:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+
+v1.0.8:
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+
+v2.0.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# add RX633_20211221
+#
+#------ [update ] ------
+
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+
+v2.1.0:
+#------ [remove] ------
+#
+#------ [add ] ------
+# Add JL773、DG201、DG102、UT1R3
+#------ [update ] ------
+  # location_name
+  IC:
+    # plat_name
+    4GD36:
+      # data_name and its difference from origin data
+      4GD36_20210629:
+  AT:
+    DG202:
+      DG202_20210703:
+  BEIJING:
+    65U3D:
+      65U3D_20211007:
+      65U3D_20220126:
+    30C1G:
+      30C1G_20211122:
+      30C1G_20220206:
+    H3165:
+      H3165_20211201:
+    25U7C:
+      25U7C_20211208:
+    RX141:
+      RX141_20211107:
+    RX444:
+      RX444_20211117:
+    RX633:
+      RX633_20211221:
+    JL773:
+      JL773_20220225:
+    DG201:
+      DG201_20220304:
+    UT1R3:
+      UT1R3_20220311:
+    DG102:
+      DG102_20220301:
+
+v3.0.0:
+  MOTR:
+    30C1G:
+      30C1G_20211102_20211102:
+    65U3D:
+      65U3D_20211108_20211108:
+    H3165:
+      H3165_20211101_20211101:

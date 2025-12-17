@@ -1,0 +1,228 @@
+# group data version
+
+# bev_parking
+pipeline_test:
+  BJ_mapping2.0_val:
+    UT0F3:
+      merged__281_288__20230624_20230627:
+        sample_interval: 50 # 0.1m pose interval
+
+pipeline_test_temporal:
+  BJ_val_temporal:
+      UT126:
+        merged__37_37__20221028_20221103_v2:
+          sample_interval: 500 # 0.1m pose interval
+          
+psd_v1.5.0:
+  BJ_V3:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+      0019_UT126_20221010_ml_5map:
+  BJ_val:
+    UT1R3:
+      merged__122~122__20230209:
+
+rod_v1.3.0:
+  BJ_V3:
+    UT126:
+      0037_UT126_20221111_ml_20map:
+
+rod_v1.4.0:
+  BJ_val:
+    UT126:
+      merged__37_37__20221028_20221103:
+    UT0F3:
+      merged__137_137__20230207_20230213:
+      merged__112_113__20230105_20230116:
+      merged__103_103__20221210_20230104:
+
+rod_v1.5.0_underground:
+  BJ_val_parkingrod:
+    UT263:
+      merged__342_342__20230905_20230907:
+    LS830:
+      merged__347_347__20230904_20230908:
+
+rod_v1.5.0_outdoor:
+  BJ_val_parkingrod:
+    LS830:
+      merged__347_347__20230906_20230908:
+
+rod_v1.5.1_ground:
+  BJ_mapping2.0_val:
+    UT0T1:
+      merged__341_341__20230902_20230905:
+    UT263:
+      merged__346_346__20230828:
+    LS830:
+      merged__347_347__20230906_20230908:
+
+v1_0_0_temporal_temp:
+  BJ_pipeline2.0_mult: 
+      UT126: 
+        merged__0_141__20220803_20220829:
+
+psd_parking_v1_5_0:
+  BJ_psd_parking_val:
+    UT126:
+      merged__19_160__20220927_20221103:
+        sample_interval: 1 # 0.1m pose interval
+
+psd_v1_6_0:
+  BJ_val:
+    UT126:
+      merged__37_37__20221028_20221103_v2:
+      merged__19_19__20220927:
+    UT1R3:
+      merged__122_122__20230209_v2:
+    UT0Q9:      
+      merged__256_256__20230610:  
+      merged__269_269__20230616_20230617:       
+    UT3J5:
+      merged__264_264__20230608_20230613:      
+    UT0F3:
+      merged__271_271__20230614_20230620:
+
+psd_v1_6_0_temporal:
+  BJ_val_temporal:
+    UT126:
+      merged__37_37__20221028_20221103_v2:
+      merged__19_19__20220927:
+    UT1R3:
+      merged__122_122__20230209_v2:
+    UT0Q9:      
+      merged__256_256__20230610:  
+      merged__269_269__20230616_20230617:       
+    UT3J5:
+      merged__264_264__20230608_20230613:      
+    UT0F3:
+      merged__271_271__20230614_20230620:
+
+psd_v1_6_0_parking:
+  BJ_psd_parking_val:
+    UT126:
+      merged__19_160__20220927_20221103:
+        sample_interval: 1 # 0.1m pose interval
+  BJ_val:        
+    UT3J5:
+      merged__236_236__20230524_20230526:
+    UT263:
+      merged__277_277__20230616_parallel:      
+    UT370:
+      merged__266_266__20230613_20230616:
+
+psd_test:
+  BJ_val:        
+    UT263:
+      merged__277_277__20230616: 
+        sample_interval: 1
+    UT0F3:
+      merged__278_278__20230619_20230628:
+        sample_interval: 1
+
+psd_v1_7_0_parking:
+  BJ_mapping2.0_val:
+    UT0F3:
+      merged__281_288__20230624_20230627:
+        sample_interval: 1 # 0.1m pose interval
+
+psd_v1_8_0_parking:
+  BJ_mapping2.0_val:
+    UT0F3:
+      merged__281_288__20230624_20230627:
+        sample_interval: 1 # 0.1m pose interval
+    LS830:
+      merged__341_347__20230906_20230908:
+    UT0T1:
+      merged__341_347__20230902_20230905:
+    UT263:
+      merged__341_347__20230828:
+
+psd_v1_8_0_parking_outdoor:
+  BJ_mapping2.0_val:
+    LS830:
+      merged__341_347__20230906_20230908:
+    UT0T1:
+      merged__341_347__20230902_20230905:
+    UT263:
+      merged__341_347__20230828:
+    
+psd_ek_v1_0_0_outdoor:
+  BJ_mapping2.0_val:
+    HBEK383:
+      merged__1389_1389__20231206_20231207:
+      merged__394_394__20231209_20231210:
+
+psd_ek_v1_0_0_underground:
+  BJ_mapping2.0_val:
+    HBEK383:
+      merged__2389_2389__20231207:
+      merged__393_393__20231210_20231216:
+
+psd_ek_v1_0_0_parking_outdoor:
+  BJ_mapping2.0_parkingrod_val:
+    HBEK383:
+      merged__1389_1389__20231206_20231207:
+      merged__394_394__20231209_20231210:
+
+        
+psd_ek_v1_0_0_parking_underground:
+  BJ_mapping2.0_val:
+    HBEK383:
+      merged__2389_2389__20231207:
+      merged__393_393__20231210_20231216:
+
+### EK test site & demo parkinglot
+psd_ek_demo_v1_0_0_outdoor:          
+  EK_DEMO:
+    HBEK342:
+      merged__419_419__20240106_20240108:
+        sample_interval: 5
+
+psd_ek_demo_v1_0_0_underground: 
+  EK_DEMO:
+    HBEK342:
+      merged__420_420__20240106_20240108:
+        sample_interval: 18
+        
+psd_ek_demo_v1_0_0_underground_hotel: 
+  EK_DEMO:
+    HBEK342:
+      merged__421_421__20240112:
+        sample_interval: 1
+
+psd_ek_demo_v1_0_0_parking_outdoor:          
+  EK_DEMO_parking:
+    HBEK342:
+      merged__419_419__20240106_20240108:
+        sample_interval: 9
+
+psd_ek_demo_v1_0_0_parking_underground: 
+  EK_DEMO_parking:
+    HBEK342:
+      merged__420_420__20240106_20240108:
+        sample_interval: 9
+
+psd_ek_demo_v1_0_0_parking_underground_hotel: 
+  EK_DEMO_parking:
+    HBEK342:
+      merged__421_421__20240112:
+        sample_interval: 1
+
+psd_ek_demo_v1_0_0_parkingrod_outdoor:          
+  EK_DEMO_parkingrod:
+    HBEK342:
+      merged__419_419__20240107_20240108:
+        sample_interval: 2
+
+psd_ek_demo_v1_0_0_parkingrod_underground: 
+  EK_DEMO_parkingrod:
+    HBEK342:
+      merged__420_420__20240106_20240108:
+        sample_interval: 9
+
+psd_ek_demo_v1_0_0_parkingrod_underground_hotel: 
+  EK_DEMO_parkingrod:
+    HBEK342:
+      merged__421_421__20240112:
+        sample_interval: 1

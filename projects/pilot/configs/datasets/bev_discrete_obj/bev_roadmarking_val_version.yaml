@@ -1,0 +1,416 @@
+# group data version
+
+# bev_roadmarking
+pipeline_test:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 10
+pipeline_testV2:
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 1000
+
+HDE-lidar_v1.1.0:
+  BJ:
+    4GD36:
+      0730_692373_FSD_Site_4GD36_20220616_v5a:
+        sample_interval: 4
+    UT0Q9:
+      0803_693685_FSD_Site_UT0Q9_20220622_v5a:
+        sample_interval: 4
+    # add stoplines test data from stopline
+    30C1G:
+      0314_636396_FSD_Site_30C1G_20220214_v4:
+      0314_636396_FSD_Site_30C1G_20220225_v4:
+    UT1R3:
+      0321_bj_2_FSD_Site_UT1R3_20220317_v4:
+        sample_interval: 12
+    H3165:
+      0304_FSD_Site_H3165_20220221_v4:
+        sample_interval: 4
+
+        
+# add parking data at 11/01
+HDE-lidar_v1.1.1:  
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+
+# add 11v data at 11/14
+HDE-lidar_v1.1.2_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 4
+
+  # 11v driving data
+  11v_driving_data_small:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+      20221125_721390_1_FSD_Site_UT126_20221103:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+
+HDE-lidar_v1.1.2_wide:
+  # 11v parking data
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+
+  # 11v driving data
+  11v_driving_data_wide:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+      20221125_721390_1_FSD_Site_UT126_20221103:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+
+HDE-lidar_v1.1.3_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 4
+
+  # 11v driving data
+  11v_driving_data_small:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+
+HDE-lidar_v1.1.3_wide:
+  # 11v parking data
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+
+  # 11v driving data
+  11v_driving_data_wide:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+
+HDE-lidar_v1.1.4_small:
+  # 11v parking data
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+        sample_interval: 4
+  # 11v driving data
+  11v_driving_data_small:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+    LS912:
+      merge_LS912_det_v5a_20221201_LS912_11v:
+
+HDE-lidar_v1.1.4_wide:
+  # 11v parking data
+  BJ:
+    UT126:
+      0014_UT126_20220920_ml_5map:
+
+  # 11v driving data
+  11v_driving_data_wide:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+    LS912:
+      merge_LS912_det_v5a_20221201_LS912_11v:
+
+
+HDE-lidar_v1.1.5_small:
+  # 11v parking data
+  BJ:
+    LS912:
+      merged__0_180__20221113:
+    LS830:
+      merged__181_204__20230410_20230414:
+      merged__181_204__20230415:
+      merged__181_204__20230321:
+    UT0Q9:
+      merged__0_180__20230316_20230321:
+    UTHS6:
+      merged__0_180__20221031:
+      merged__0_180__20221208_20230128:
+    UT1R3:
+      merged__0_180__20230107_20230110:
+    
+
+  # delete driving data in small vcs model
+  # 11v_driving_data_small:
+  #   UT126:
+  #     merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+  #     20221116_719153_1_FSD_Site_UT126_20221102:
+  #   UT263:
+  #     merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+  #     20221125_721390_1_FSD_Site_UT263_20221106:
+  #   UTHS6:
+  #     20221111_718172_1_FSD_Site_UTHS6_20221103:
+  #   LS912:
+  #     merge_LS912_det_v5a_20221201_LS912_11v:
+
+# delete parking val data in wide vcs range model
+HDE-lidar_v1.1.5_wide:
+  # 11v parking data
+  # BJ:
+  #   LS912:
+  #     merged__0_180__20221113:
+
+  # 11v driving data
+  11v_driving_data_wide:
+    UT126:
+      merge_UT126_det_v5a_20221116_det_ut126_val_11v:
+      20221116_719153_1_FSD_Site_UT126_20221102:
+    UT263:
+      merge_UT263_det_v5a_20221116_det_ut263_val_11v:
+      20221125_721390_1_FSD_Site_UT263_20221106:
+    UTHS6:
+      20221111_718172_1_FSD_Site_UTHS6_20221103:
+    LS912:
+      merge_LS912_det_v5a_20221201_LS912_11v:
+
+HDE-lidar_v1.1.6_small:
+  # 11v parking data
+  BJ:
+    LS912:
+      merged__0_180__20221113:
+    LS830:
+      merged__181_204__20230410_20230414:
+      merged__181_204__20230415:
+      merged__181_204__20230321:
+    UT0Q9:
+      merged__0_180__20230316_20230321:
+    UTHS6:
+      merged__0_180__20221208_20230128:
+    UT1R3:
+      merged__0_180__20230107_20230110:
+HDE-lidar_v1.1.7_small:
+  # 11v parking data
+  BJ:
+    LS912:
+      merged__0_180__20221113:
+    LS830:
+      merged__181_204__20230410_20230414:
+      # merged__181_204__20230415:  # debase data
+      # merged__181_204__20230321:  # debase data
+      LS830_20230524:
+      LS830_20230528:
+      LS830_20230529:
+      LS830_20230531:
+    UT0Q9:
+      merged__0_180__20230316_20230321:
+    UTHS6:
+      merged__0_180__20221208_20230128:
+    UT1R3:
+      merged__0_180__20230107_20230110:
+
+# sample_interval=2 gets similiar evaluation result as sample_interval=1
+junction_testset_v1.0.0_wide_roadmarking:
+  byd_7v_driving_data_wide:
+    BYD18:
+      junction_testset_merge_BYD18_20230531_20230531_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_BYD18_20230611_20230614_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_BYD18_20230807_20230812_single_posefilter_2p0:
+        sample_interval: 2
+    BYD19:
+      junction_testset_merge_BYD19_20230531_20230531_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_BYD19_20230604_20230613_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_BYD19_20230629_20230629_single_posefilter_2p0:
+        sample_interval: 2
+  11v_driving_data_wide:
+    LS830:
+      junction_testset_merge_LS830_20230420_20230423_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_LS830_20230515_20230520_single_posefilter_2p0:
+        sample_interval: 2
+    LS912:
+      junction_testset_merge_LS912_20230331_20230519_single_posefilter_2p0:
+        sample_interval: 2
+    UT0F3:
+      junction_testset_merge_UT0F3_20230331_20230331_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT0F3_20230418_20230511_single_posefilter_2p0:
+        sample_interval: 2
+    UT0Q9:
+      junction_testset_merge_UT0Q9_20230423_20230511_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT0Q9_20230619_20230624_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT0Q9_20230712_20230712_single_posefilter_2p0:
+        sample_interval: 2
+    UT126:
+      junction_testset_merge_UT126_20230419_20230419_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT126_20230522_20230523_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT126_20230624_20230626_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT126_20230712_20230712_single_posefilter_2p0:
+        sample_interval: 2
+    UT1R3:
+      junction_testset_merge_UT1R3_20230426_20230522_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT1R3_20230624_20230627_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT1R3_20230630_20230630_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT1R3_20230712_20230717_single_posefilter_2p0:
+        sample_interval: 2
+    UT263:
+      junction_testset_merge_UT263_20230504_20230515_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT263_20230519_20230519_single_posefilter_2p0:
+        sample_interval: 2
+    UT370:
+      junction_testset_merge_UT370_20230520_20230523_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT370_20230613_20230613_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT370_20230712_20230713_single_posefilter_2p0:
+        sample_interval: 2
+    UT3J5:
+      junction_testset_merge_UT3J5_20230628_20230629_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UT3J5_20230630_20230712_single_posefilter_2p0:
+        sample_interval: 2
+    UTHS6:
+      junction_testset_merge_UTHS6_20230413_20230413_single_posefilter_2p0:
+        sample_interval: 2
+      junction_testset_merge_UTHS6_20230512_20230520_single_posefilter_2p0:
+        sample_interval: 2
+  6v_driving_data_wide:
+    LX066:
+      junction_testset_merge_LX066_20230728_20230816_single_posefilter_2p0:
+        sample_interval: 2
+
+crossroad_wt_crosswalk_testset_v1.0.0_wide_roadmarking:
+  byd_7v_driving_data_wide:
+    BYD18:
+      crossroad_wt_crosswalk_testset_merge_BYD18_20230531_20230531_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_BYD18_20230611_20230614_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_BYD18_20230807_20230812_single_posefilter_2p0:
+    BYD19:
+      crossroad_wt_crosswalk_testset_merge_BYD19_20230531_20230531_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_BYD19_20230604_20230613_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_BYD19_20230629_20230629_single_posefilter_2p0:
+  11v_driving_data_wide:
+    LS830:
+      crossroad_wt_crosswalk_testset_merge_LS830_20230420_20230423_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_LS830_20230515_20230519_single_posefilter_2p0:
+    LS912:
+      crossroad_wt_crosswalk_testset_merge_LS912_20230331_20230519_single_posefilter_2p0:
+    UT0F3:
+      crossroad_wt_crosswalk_testset_merge_UT0F3_20230331_20230331_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT0F3_20230418_20230507_single_posefilter_2p0:
+    UT0Q9:
+      crossroad_wt_crosswalk_testset_merge_UT0Q9_20230423_20230511_single_posefilter_2p0:
+    UT126:
+      crossroad_wt_crosswalk_testset_merge_UT126_20230419_20230419_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT126_20230522_20230523_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT126_20230626_20230626_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT126_20230712_20230712_single_posefilter_2p0:
+    UT1R3:
+      crossroad_wt_crosswalk_testset_merge_UT1R3_20230426_20230522_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT1R3_20230624_20230624_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT1R3_20230630_20230630_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT1R3_20230712_20230717_single_posefilter_2p0:
+    UT263:
+      crossroad_wt_crosswalk_testset_merge_UT263_20230504_20230515_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT263_20230519_20230519_single_posefilter_2p0:
+    UT370:
+      crossroad_wt_crosswalk_testset_merge_UT370_20230520_20230523_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT370_20230613_20230616_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT370_20230712_20230722_single_posefilter_2p0:
+    UT3J5:
+      crossroad_wt_crosswalk_testset_merge_UT3J5_20230628_20230629_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UT3J5_20230630_20230717_single_posefilter_2p0:
+    UTHS6:
+      crossroad_wt_crosswalk_testset_merge_UTHS6_20230413_20230413_single_posefilter_2p0:
+      crossroad_wt_crosswalk_testset_merge_UTHS6_20230511_20230710_single_posefilter_2p0:
+  6v_driving_data_wide:
+    LX066:
+      crossroad_wt_crosswalk_testset_merge_LX066_20230728_20230816_single_posefilter_2p0:
+
+crossroad_wo_crosswalk_testset_v1.0.0_wide_roadmarking:
+  byd_7v_driving_data_wide:
+    BYD18:
+      crossroad_wo_crosswalk_testset_merge_BYD18_20230531_20230531_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_BYD18_20230807_20230812_single_posefilter_2p0:
+    BYD19:
+      crossroad_wo_crosswalk_testset_merge_BYD19_20230531_20230531_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_BYD19_20230613_20230613_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_BYD19_20230629_20230629_single_posefilter_2p0:
+  11v_driving_data_wide:
+    LS830:
+      crossroad_wo_crosswalk_testset_merge_LS830_20230420_20230423_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_LS830_20230515_20230519_single_posefilter_2p0:
+    LS912:
+      crossroad_wo_crosswalk_testset_merge_LS912_20230422_20230720_single_posefilter_2p0:
+    UT0F3:
+      crossroad_wo_crosswalk_testset_merge_UT0F3_20230331_20230331_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT0F3_20230418_20230426_single_posefilter_2p0:
+    UT0Q9:
+      crossroad_wo_crosswalk_testset_merge_UT0Q9_20230423_20230511_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT0Q9_20230619_20230619_single_posefilter_2p0:
+    UT126:
+      crossroad_wo_crosswalk_testset_merge_UT126_20230419_20230419_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT126_20230522_20230523_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT126_20230626_20230626_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT126_20230712_20230713_single_posefilter_2p0:
+    UT1R3:
+      crossroad_wo_crosswalk_testset_merge_UT1R3_20230516_20230522_single_posefilter_2p0:
+      # crossroad_wo_crosswalk_testset_merge_UT1R3_20230624_20230624_single_posefilter_2p0:  # no data after posefilter_2.0
+      crossroad_wo_crosswalk_testset_merge_UT1R3_20230630_20230630_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT1R3_20230712_20230717_single_posefilter_2p0:
+    UT263:
+      crossroad_wo_crosswalk_testset_merge_UT263_20230504_20230515_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT263_20230519_20230519_single_posefilter_2p0:
+    UT370:
+      crossroad_wo_crosswalk_testset_merge_UT370_20230520_20230522_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT370_20230613_20230613_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT370_20230712_20230713_single_posefilter_2p0:
+    UT3J5:
+      crossroad_wo_crosswalk_testset_merge_UT3J5_20230628_20230629_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UT3J5_20230710_20230718_single_posefilter_2p0:
+    UTHS6:
+      crossroad_wo_crosswalk_testset_merge_UTHS6_20230413_20230413_single_posefilter_2p0:
+      crossroad_wo_crosswalk_testset_merge_UTHS6_20230511_20230624_single_posefilter_2p0:
+  # 6v_driving_data_wide:  # no data after posefilter_2.0
+  #   LX066:
+  #     crossroad_wo_crosswalk_testset_merge_LX066_20230728_20230728_single_posefilter_2p0:

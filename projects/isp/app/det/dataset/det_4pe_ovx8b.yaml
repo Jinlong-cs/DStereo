@@ -1,0 +1,113 @@
+# person
+person:
+  day:
+    train_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/raw/lmdb/train
+        sample_nums: 108976
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/raw/annotations/train.json
+    val_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/yuv/lmdb/val
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/raw/lmdb/val
+        sample_nums: 8847
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/raw/annotations/val.json
+    eval_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/yuv/lmdb/eval
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/raw/lmdb/eval
+        sample_nums: 19217
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/day/raw/annotations/eval.json
+    leaderboard_id: 6043267
+  night:
+    train_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/raw/lmdb/train
+        sample_nums: 19775
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/raw/annotations/train.json
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX086/ovx8b/night/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX086/ovx8b/night/raw/lmdb/train
+        sample_nums: 4482
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX086/ovx8b/night/raw/annotations/train.json
+    val_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/yuv/lmdb/val
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/raw/lmdb/val
+        sample_nums: 2477
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/raw/annotations/val.json
+    eval_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/yuv/lmdb/eval
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/raw/lmdb/eval
+        sample_nums: 4799
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/person/LX179/ovx8b/night/raw/annotations/eval.json
+    leaderboard_id: 6043277
+# vehicle
+vehicle:
+  day:
+    train_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/raw/lmdb/train
+        sample_nums: 100000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/raw/annotations/train.json
+    val_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/yuv/lmdb/val
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/raw/lmdb/val
+        sample_nums: 6000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/raw/annotations/val.json
+    eval_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/yuv/lmdb/eval
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/raw/lmdb/eval
+        sample_nums: 12000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/day/raw/annotations/eval.json
+    leaderboard_id: 6043798
+  night:
+    train_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/raw/lmdb/train
+        sample_nums: 100173
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/raw/annotations/train.json
+    val_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/yuv/lmdb/val
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/raw/lmdb/val
+        sample_nums: 5823
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/raw/annotations/val.json
+    eval_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/yuv/lmdb/eval
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/raw/lmdb/eval
+        sample_nums: 12004
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/vehicle/LX179/ovx8b/night/raw/annotations/eval.json
+    leaderboard_id: 6043756
+# traffic light
+traffic_light:
+  day:
+    train_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/raw/lmdb/train
+        sample_nums: 100000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/raw/annotations/train.json
+    val_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/yuv/lmdb/val
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/raw/lmdb/val
+        sample_nums: 6000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/raw/annotations/val.json
+    eval_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/yuv/lmdb/eval
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/raw/lmdb/eval
+        sample_nums: 12000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/day/raw/annotations/eval.json
+    leaderboard_id: 6044125
+  night:
+    train_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/yuv/lmdb/train
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/raw/lmdb/train
+        sample_nums: 100000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/raw/annotations/train.json
+    val_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/yuv/lmdb/val
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/raw/lmdb/val
+        sample_nums: 6000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/raw/annotations/val.json
+    eval_data:
+      - yuv_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/yuv/lmdb/eval
+        raw_lmdb_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/raw/lmdb/eval
+        sample_nums: 12000
+        coco_json_path: /horizon-bucket/NeuralISP/user/kai01.li/data_pack/det/traffic_light/LX179/ovx8b/night/raw/annotations/eval.json
+    leaderboard_id: 6044119
+

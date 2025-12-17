@@ -1,0 +1,35 @@
+[tool.mypy]
+files = ["hat"]
+disallow_untyped_defs = "True"
+ignore_missing_imports = "True"
+show_error_codes = "True"
+warn_redundant_casts = "True"
+warn_unused_configs = "True"
+warn_unused_ignores = "True"
+allow_redefinition = "True"
+follow_imports = "silent"
+follow_imports_for_stubs = "True"
+
+# TODO: Fix typing for these modules
+[[tool.mypy.overrides]]
+module = [
+    "hat.callbacks.*",
+    "hat.core.*",
+    "hat.data.*",
+    "hat.engine.*",
+    "hat.metrics.*",
+    "hat.models.*",
+    "hat.profiler.*",
+    "hat.utils.*",
+    "hat.visualize.*",
+    "hat.evaluation.*",
+    "hat.optimizers.*",
+]
+ignore_errors = "True"
+
+
+[[tool.mypy.overrides]]
+module = [
+    "hat.utils.filesystem",
+]
+ignore_errors = "False"

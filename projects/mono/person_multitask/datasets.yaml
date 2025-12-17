@@ -1,0 +1,272 @@
+# #src_img/#croped_roi
+# ############################################
+# person_age_classification
+# ############################################
+person_age_classification:
+  - batch_size: 80
+    # 279173
+    train_rec: /data/hao.chen/2pe_person_multitask/person_age_classification/train_adult.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_age_classification_train_adult.anno.pb_rec
+    val_rec: /data/hao.chen/2pe_person_multitask/history_data/zhixuan.chen/person_age_classification/val/cls_person_age_haokai_v8_Adult-20191012-val/data.rec
+    val_json: /data/hao.chen/2pe_person_multitask/history_data/zhixuan.chen/person_age_classification/val/cls_person_age_haokai_v8_Adult-20191012-val/data.anno.pb_rec
+  - batch_size: 40
+    # 11834
+    train_rec: /data/hao.chen/2pe_person_multitask/person_age_classification/train_child.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_age_classification_train_child.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 40
+    # 12.7586
+    train_rec: /user/shu.zhang/data/2pe_person_age_classification/adult/from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_age_classification_adult_from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 36
+    # 10.7294
+    train_rec: /user/shu.zhang/data/2pe_person_age_classification/adult/from_kaijun01_zhang_data_2021_origin_20220412_220812.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_age_classification_adult_from_kaijun01_zhang_data_2021_origin_20220412_220812.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 10
+    # 3017
+    train_rec: /user/shu.zhang/data/2pe_person_age_classification/child/from_kaijun01_zhang_data_2021_origin_20220412_220812.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_age_classification_child_from_kaijun01_zhang_data_2021_origin_20220412_220812.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 8
+    # 2436
+    train_rec: /user/shu.zhang/data/2pe_person_age_classification/child/from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_age_classification_child_from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812.anno.pb_rec
+    val_rec: null
+    val_json: null
+# ############################################
+# person_pos_occ_classification
+# ############################################
+person_pos_occ_classification:
+  - batch_size: 156
+    # 112021 / 433099
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/occ_with_small_cyc_0829/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_occ_with_small_cyc_0829_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 48
+    # 112021 / 433099
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/occ_with_small_cyc_unknown_aug_0829/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_occ_with_small_cyc_unknown_aug_0829_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 48
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ov10652_2pe_unknown_10564to10621_1124/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ov10652_2pe_unknown_10564to10621_1124_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 16
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/2021_11_29/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_2021_11_29_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+#  # FP DONE
+  - batch_size: 48
+    #  2779 ar820
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_s820_20210531/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_s820_20210531_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 48
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ar820_5055to8138_210906_night/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ar820_5055to8138_210906_night_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 48
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ar820_rainy_10745to12167_211214/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ar820_rainy_10745to12167_211214_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+    #  ov10652
+  - batch_size: 32
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ov10652_to7261_0712_v2_day/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ov10652_to7261_0712_v2_day_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 32
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ov10652_to7261_0712_v2_night/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ov10652_to7261_0712_v2_night_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 16
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ov10652_7261to9599_1214_day/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ov10652_7261to9599_1214_day_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 16
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pos_occ_classification/person_posneg_ov10652_7261to9640_1214_night/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pos_occ_classification_person_posneg_ov10652_7261to9640_1214_night_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  # fp from bad case packs
+  - batch_size: 64
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_person_posneg_occ_classification_repacking_0621_0725_train_tunnel_badcase_aeb_220511_3rec_20220818-155344_data.anno.pb_rec
+    train_rec: /data/person_posneg_occ_classification/repacking_0621_0725_train_tunnel_badcase_aeb_220511_3rec/20220818-155344/data.rec
+    val_json: null
+    val_rec: null
+# # new 1939 -> 3322(221014) -> 3484
+  - batch_size: 16
+    train_rec: /data/person_posneg_occ_classification/person_posocc_classification_bc_230531/20230531-193637/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posocc_classification_bc_230531/20230531-193637/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+# supplementary
+  - batch_size: 24 # 45187
+    train_rec: /user/shu.zhang/data/2pe_person_posneg_classification/supplementary_220816.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_posneg_classification_supplementary_220816.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 64 # 249702
+    train_rec: /user/shu.zhang/data/2pe_person_posneg_classification/from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_posneg_classification_from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 64 # 264604
+    train_rec: /user/shu.zhang/data/2pe_person_posneg_classification/from_kaijun01_zhang_data_2021_origin_20220412_220812.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_posneg_classification_from_kaijun01_zhang_data_2021_origin_20220412_220812.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 58  # 142854 -> 154392  -> 209399 -> 237434 -> 275841 -> 292484
+    train_rec: /data/person_posneg_occ_classification/person_posocc_classification_220801-230322/20230323-052948/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posocc_classification_220801-230322/20230323-052948/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 12  # 40948 -> 114934
+    train_rec: /data/person_posneg_occ_classification/person_posocc_classification_230322-230530/20230530-192520/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posocc_classification_230322-230530/20230530-192520/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 7 # new 21438 -> 21502 -> 45598 -> 66227
+    train_rec: /data/person_posneg_occ_classification/person_posocc_classification_230531-231017/20231110-041224/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posocc_classification_230531-231017/20231110-041224/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  # posneg
+  - batch_size: 16  # 10169 -> 19553 -> 39170 -> 39950
+    train_rec: /data/person_posneg_occ_classification/person_posneg_classification_220801-230531/20230531-182053/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posneg_classification_220801-230531/20230531-182053/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 8  # 34932
+    train_rec: /data/person_posneg_occ_classification/person_posneg_occ_classification_20220501_20221031_aeb_20221109/20221111-152417/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posneg_occ_classification_20220501_20221031_aeb_20221109/20221111-152417/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 8  # 34932
+    train_rec: /data/person_posneg_occ_classification/person_posneg_occ_classification_20220501_20221031_aeb_coordinate_jitter_20221117/20221117-192319/data.rec
+    train_json: /data/person_posneg_occ_classification/person_posneg_occ_classification_20220501_20221031_aeb_coordinate_jitter_20221117/20221117-192319/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+# ############################################
+# person_pose_classification
+# ############################################
+person_pose_classification:
+  - batch_size: 96
+    train_rec: /data/hao.chen/2pe_person_multitask/person_pose_classification/0323_quad_10635_0220_multiclass_v3_20201214_pose_5cls_v20210411/0323_quad_10635_0220_multiclass_v3_20201214_pose_5cls_v20210411.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_pose_classification_0323_quad_10635_0220_multiclass_v3_20201214_pose_5cls_v20210411_0323_quad_10635_0220_multiclass_v3_20201214_pose_5cls_v20210411.anno.pb_rec
+    val_rec: /data/hao.chen/2pe_person_multitask/history_data/weizhen.wu/data/ped_data_cls/person_pose_v1-20190628-val/data.rec
+    val_json: /data/hao.chen/2pe_person_multitask/history_data/weizhen.wu/data/ped_data_cls/person_pose_v1-20190628-val/data.anno.pb_rec
+  # temp data, 10652
+  - batch_size: 64
+    train_rec: /data/hao.chen/cache_data_dir/temp_train_data/rec/person_pose_classification/2021_06_01/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_cache_data_dir_temp_train_data_rec_person_pose_classification_2021_06_01_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 12  # 12.2848 (266070, 144069, 131400, 191850, 259585)=992974 Bended、Cyclist、Lier、Pedestrian、Sitter
+    train_rec: /user/shu.zhang/data/2pe_person_pose_classification/from_kaijun01_zhang_data_2021_origin_20220412_220812_221010.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_pose_classification_from_kaijun01_zhang_data_2021_origin_20220412_220812_221010.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 12 # 15.1121 (59200, 253824,  51700, 253336,  84355)=702415
+    train_rec: /user/shu.zhang/data/2pe_person_pose_classification/from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812_221010.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/user_shu.zhang_data_2pe_person_pose_classification_from_kaijun01_zhang_data_2021_origin_20220304_20220808_220812_221010.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 12 # 16.7230
+    train_rec: /data/person_pose_classification/person_pose_classification_220801-230302/20230303-145325/data.rec
+    train_json: /data/person_pose_classification/person_pose_classification_220801-230302/20230303-145325/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+# ############################################
+# person_orientation_classification
+# ############################################
+person_orientation_classification:
+  - batch_size: 32
+    # 42413 / 126005
+    train_rec: /data/hao.chen/2pe_person_multitask/history_data/jing.li/data/ped_data/cls_person_orientation_v11_upsample-20191204_1-train/data.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_history_data_jing.li_data_ped_data_cls_person_orientation_v11_upsample-20191204_1-train_data.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 30
+    # 82031 / 96282 -> 100317 / xxx -> 101411 / xxx
+    train_rec: /data/person_orientation_classification/aeb_person_orientation_cls_20220501_20230731/20230823-025739/data.rec
+    train_json: /data/person_orientation_classification/aeb_person_orientation_cls_20220501_20230731/20230823-025739/data.anno.pb_rec
+    val_rec: null
+    val_json: null
+person_head_detection:
+  # human labeled
+  - batch_size: 40
+    # 40606/209301/70786/70965
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210128/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210128_train_train.anno.pb_rec
+    val_rec: /data/hao.chen/cache_data_dir/person_head_detection/kedi01.liu/cache.rec
+    val_json: /data/hao.chen/cache_data_dir/person_head_detection/kedi01.liu/cached.json
+  - batch_size: 4
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210202/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210202_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 16
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210226_day/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210226_day_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 16
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210409_day/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210409_day_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 8
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210226_night/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210226_night_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 8
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210324_night/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210324_night_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  - batch_size: 8
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210329_night/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210329_night_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  # AEB data for 820 and 10652
+  - batch_size: 8
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/person_head_detection_20210705_AEB_10652_820/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_person_head_detection_20210705_AEB_10652_820_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  # 820
+  - batch_size: 8
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/personhead_ar0820_7074to7296_210906/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_personhead_ar0820_7074to7296_210906_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  # 10652
+  - batch_size: 8
+    train_rec: /data/hao.chen/2pe_person_multitask/person_head_detection/personhead_ov10652_7071to9676_210906/train/train.rec
+    train_json: /user/shu.zhang/legacy_data/whole_image_pbrec/data_hao.chen_2pe_person_multitask_person_head_detection_personhead_ov10652_7071to9676_210906_train_train.anno.pb_rec
+    val_rec: null
+    val_json: null
+  # 202311
+  - batch_size: 2
+    train_rec: /data/person_head_detection/person_head_detection_202311/20231110-171409/data.rec
+    train_json: /data/person_head_detection/person_head_detection_202311/20231110-171409/data.anno.pb_rec
+    val_rec: null
+    val_json: null

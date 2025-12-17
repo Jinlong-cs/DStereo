@@ -1,0 +1,61 @@
+base_classname: common_box                                  # 一级类型名称
+num_classes: 6                                         # 类别数量
+allow_multi_match: false                                 # 允许一个instance进行多次匹配
+default_ignore_full_image: true                         # 未定义的类别使用全图ignore
+remove_empty_images: true                               # 删除空图片
+shuffle: true                                           # 打乱图片顺序
+attribute_names: ['traffic_cone_classification']
+class_mappers:                                          # 目标类别转换器
+- id: null
+  match_condiction:
+    or:
+      - contains: {attrs: {ignore: "yes"}}
+      - contains: {attrs: {"occlusion": "heavily_occluded"}}
+      - contains: {attrs: {"occlusion": "invisible"}}
+      - range: {field: $BBOX_HEIGHT, lt: 10}             # bbox高度 < 55
+
+- id: 1
+  name: TrafficCone
+  match_condiction:
+    and:
+    - contains: {attrs: {"type": "TrafficCone"}}
+
+- id: 2
+  name: TrafficBollard
+  match_condiction:
+    and:
+      - contains: {attrs: {"type": "TrafficBollard"}}
+  upsample: 3
+
+- id: 3
+  name: IsolationBollard
+  match_condiction:
+    and:
+      - contains: {attrs: {"type": "IsolationBollard"}}
+
+- id: 4
+  name: CrashBarrel
+  match_condiction:
+    and:
+      - contains: {attrs: {"type": "CrashBarrel"}}
+  upsample: 3
+
+- id: 5
+  name: Tripod
+  match_condiction:
+    or:                                                         # 以下任一条件为真, 则输出真
+      - contains: {attrs: {'type': "Tripod"}}
+  upsample: 10
+
+- id: 6
+  name: Unknown
+  match_condiction:
+    and:
+      - or:
+        - contains: {attrs: {"type": "FP"}}  # infer by release multitask model
+        - contains: {attrs: {"type": "unknown"}}
+  upsample: 1.5
+
+- id: null
+  match_condiction:
+    and: []
