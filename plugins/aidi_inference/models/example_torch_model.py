@@ -46,9 +46,7 @@ class HatModel(InferModel):
             self.preprocess_runner,
             self.predict_runner,
             self.postprocess_runner,
-        ) = self.split_runner_step(
-            config.get("split_dataprocess_on_aidi", False)
-        )
+        ) = self.split_runner_step(config.get("split_dataprocess_on_aidi", False))
 
         logger.info(f"[{self.__class__.__name__}]Init model Success!")
 

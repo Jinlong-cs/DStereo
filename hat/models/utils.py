@@ -83,9 +83,9 @@ def _get_paddings_indicator(
     actual_num = torch.unsqueeze(actual_num, axis + 1)
     max_num_shape = [1] * len(actual_num.shape)
     max_num_shape[axis + 1] = -1
-    max_num = torch.arange(
-        max_num, dtype=torch.int, device=actual_num.device
-    ).view(max_num_shape)
+    max_num = torch.arange(max_num, dtype=torch.int, device=actual_num.device).view(
+        max_num_shape
+    )
     paddings_indicator = actual_num.int() > max_num
     return paddings_indicator
 

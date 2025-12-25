@@ -84,9 +84,7 @@ def check_tracking_status(aidi_client=None):
     if aidi_client is None:
         aidi_client = get_aidi_client()
 
-    enable_tracking = bool(
-        int(os.environ.get("HAT_ENABLE_MODEL_TRACKING", "0"))
-    )
+    enable_tracking = bool(int(os.environ.get("HAT_ENABLE_MODEL_TRACKING", "0")))
 
     try:
         enabled = aidi_client.experiment.enabled

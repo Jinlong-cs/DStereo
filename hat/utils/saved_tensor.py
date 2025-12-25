@@ -39,10 +39,7 @@ class SavedTensor:
         SavedTensor.index = SavedTensor.index + 1
 
     def __del__(self):
-        if (
-            self.key in SavedTensor.tensors
-            and self._version == SavedTensor.version
-        ):
+        if self.key in SavedTensor.tensors and self._version == SavedTensor.version:
             SavedTensor.tensors.pop(self.key)
 
     def data(self):
@@ -130,10 +127,7 @@ def checkpoint_convbn_with_saved_tensor(conv, bn, act=None):
                 ):
                     # save input, dtype and forward function
                     return SavedTensor((data, t.dtype, _fn1))
-                elif (
-                    t.grad_fn is not None
-                    and t.grad_fn.name() == conv_grad_fn_2
-                ):
+                elif t.grad_fn is not None and t.grad_fn.name() == conv_grad_fn_2:
                     # save input, dtype and forward function
                     return SavedTensor((data, t.dtype, _fn1))
                 return SavedTensor((t, t.dtype, None))

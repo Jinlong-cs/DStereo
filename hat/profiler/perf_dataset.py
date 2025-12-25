@@ -45,9 +45,7 @@ class PerfDataset(object):
         self.ncalls = 0
         self.perf_time = False
 
-        assert isinstance(
-            self.profiler, (PythonProfiler, StageCPUMemoryProfiler)
-        ), (
+        assert isinstance(self.profiler, (PythonProfiler, StageCPUMemoryProfiler)), (
             f"Unsupported profiler: {self.profiler}, ",
             "expected PythonProfiler or StageCPUMemoryProfiler",
         )

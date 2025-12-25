@@ -186,9 +186,7 @@ class Cropper(nn.Module):
         - Output: agent_num x sum(C_i) x size x size.
     """
 
-    def __init__(
-        self, size: int, strides: List[int], heading_norm: bool = False
-    ):
+    def __init__(self, size: int, strides: List[int], heading_norm: bool = False):
         super(Cropper, self).__init__()
         self.size = size
         self.strides = strides
@@ -204,9 +202,7 @@ class Cropper(nn.Module):
         crop_features = []
         for i, f in enumerate(feature_maps):
             crop_features.append(
-                self.crop_single_stride(
-                    f, pixel / self.strides[i], batch_index, angle
-                )
+                self.crop_single_stride(f, pixel / self.strides[i], batch_index, angle)
             )
         crop_feature = torch.cat(crop_features, dim=1)
         return crop_feature
@@ -266,13 +262,9 @@ class Cropper(nn.Module):
             weight = torch.stack(
                 [
                     tr_weight,
-                    torch.stack(
-                        [tr_weight[..., 0], bl_weight[..., 1]], axis=-1
-                    ),
+                    torch.stack([tr_weight[..., 0], bl_weight[..., 1]], axis=-1),
                     bl_weight,
-                    torch.stack(
-                        [bl_weight[..., 0], tr_weight[..., 1]], axis=-1
-                    ),
+                    torch.stack([bl_weight[..., 0], tr_weight[..., 1]], axis=-1),
                 ],
                 axis=-2,
             )
@@ -299,15 +291,11 @@ class Cropper(nn.Module):
         index = torch.reshape(
             batch_index[:, None] + (pixel[:, :, 0] * W + pixel[:, :, 1]), (-1,)
         )
-        agent_feature = torch.index_select(
-            feature, dim=0, index=index.to(torch.int32)
-        )
+        agent_feature = torch.index_select(feature, dim=0, index=index.to(torch.int32))
 
         if angle is not None and self.heading_norm:
             agent_feature = agent_feature.reshape(N, S, S, 4, channel)
-            agent_feature = torch.sum(
-                agent_feature * weight[..., None], axis=-2
-            )
+            agent_feature = torch.sum(agent_feature * weight[..., None], axis=-2)
         else:
             agent_feature = torch.reshape(agent_feature, [N, S, S, channel])
         agent_feature = torch.movedim(agent_feature, 3, 1)
@@ -359,9 +347,7 @@ class RoiResize(nn.Module):
         self.resize_modules = nn.ModuleList()
         for roi_resize_cfg in roi_resize_cfgs:
             self.resize_modules.append(
-                hnn.Interpolate(
-                    size=roi_resize_cfg["output_size"], mode=resize_mode
-                )
+                hnn.Interpolate(size=roi_resize_cfg["output_size"], mode=resize_mode)
             )
 
     def _crop_feature(self, feature, crop_box):
@@ -423,9 +409,7 @@ class RoiCropResize(nn.Module):
         self.in_strides = in_strides
         self.target_stride = target_stride
         self.roi_box = roi_box
-        self.resize_module = hnn.Interpolate(
-            size=output_size, mode=resize_mode
-        )
+        self.resize_module = hnn.Interpolate(size=output_size, mode=resize_mode)
 
     def _crop_feature(self, feature, crop_box):
         r"""Crop feature.

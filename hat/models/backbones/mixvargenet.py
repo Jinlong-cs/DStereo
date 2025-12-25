@@ -141,9 +141,7 @@ class MixVarGENet(nn.Module):
             stride=2,
             padding=1,
             bias=bias,
-            norm_layer=nn.BatchNorm2d(
-                net_config[0][0].in_channels, **bn_kwargs
-            ),
+            norm_layer=nn.BatchNorm2d(net_config[0][0].in_channels, **bn_kwargs),
         )
 
         self.net_config = net_config
@@ -176,9 +174,7 @@ class MixVarGENet(nn.Module):
                         stride=1,
                         padding=0,
                         bias=bias,
-                        norm_layer=nn.BatchNorm2d(
-                            self.num_classes, **bn_kwargs
-                        ),
+                        norm_layer=nn.BatchNorm2d(self.num_classes, **bn_kwargs),
                     ),
                 ]
             )
@@ -191,9 +187,7 @@ class MixVarGENet(nn.Module):
         def _get_fusion_channels(fusion_strides):
             if len(fusion_strides) == 0:
                 return []
-            strides_ids = map(
-                lambda stride: int(math.log2(stride) - 1), fusion_strides
-            )
+            strides_ids = map(lambda stride: int(math.log2(stride) - 1), fusion_strides)
             fusion_channels = map(
                 lambda idx: self.net_config[idx][0].out_channels, strides_ids
             )
@@ -213,9 +207,7 @@ class MixVarGENet(nn.Module):
                         stack_factor=config_i.stack_factor,
                         stride=config_i.stride,
                         bias=self.bias,
-                        fusion_channels=_get_fusion_channels(
-                            config_i.fusion_strides
-                        ),
+                        fusion_channels=_get_fusion_channels(config_i.fusion_strides),
                         downsample_num=config_i.extra_downsample_num,
                         bn_kwargs=self.bn_kwargs,
                     )
@@ -314,9 +306,9 @@ class MixVarGENet(nn.Module):
 
         if self.include_top:
             # disable output quantization for last quanti layer.
-            getattr(
-                self.output, "2"
-            ).qconfig = qconfig_manager.get_default_qat_out_qconfig()
+            getattr(self.output, "2").qconfig = (
+                qconfig_manager.get_default_qat_out_qconfig()
+            )
 
         if self.warping_module is not None:
             self.warping_module.set_qconfig()
@@ -336,9 +328,7 @@ class MixVarGENet(nn.Module):
 
 
 def get_mixvargenet_stride2channels(
-    net_config: Union[
-        List[List[MixVarGENetConfig]], List[List[IdentityConfig]]
-    ],
+    net_config: Union[List[List[MixVarGENetConfig]], List[List[IdentityConfig]]],
     strides: Optional[List[int]] = None,
 ) -> Dict:
     """

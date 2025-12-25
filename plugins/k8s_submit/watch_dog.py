@@ -105,9 +105,7 @@ def read_pattern(pattern_files, target_pattern_types):
 
             if patterns:
                 if len(exit_codes) < len(patterns):
-                    exit_codes += [exit_code] * (
-                        len(patterns) - len(exit_codes)
-                    )
+                    exit_codes += [exit_code] * (len(patterns) - len(exit_codes))
                 pattern_with_code = dict(zip(patterns, exit_codes))
         return pattern_with_code
 
@@ -163,9 +161,7 @@ def run_nccl_test():
             env=os.environ.copy(),
         )
     except subprocess.CalledProcessError as e:
-        logger.warning(
-            f"subprocess({e.cmd}) failed({e.returncode})! {e.output}.\n"
-        )
+        logger.warning(f"subprocess({e.cmd}) failed({e.returncode})! {e.output}.\n")
         result = None
 
     return result
@@ -230,9 +226,7 @@ class LogMonitorHandler(FileSystemEventHandler):
             logger.debug(f"Find: {line}")
             # check -> exit -> restart
             for pattern_type in sorted(self.pattern_types):
-                for pattern, exitcode in self.patterns.get(
-                    pattern_type, {}
-                ).items():
+                for pattern, exitcode in self.patterns.get(pattern_type, {}).items():
                     ret = regex_search(line, pattern)
                     if ret:
                         logger.warning(
@@ -270,9 +264,7 @@ def find_log_files(log_path: str, regex: str):
         all_files = [log_path]
 
     pattern = re.compile(regex)
-    matched_files = [
-        f for f in all_files if pattern.match(os.path.basename(f))
-    ]
+    matched_files = [f for f in all_files if pattern.match(os.path.basename(f))]
 
     return matched_files
 

@@ -98,9 +98,7 @@ class EvalMetric(Metric, ABC):
         dist_sync_fn: Callable = gather_all_tensors,
         process_group: Optional[Any] = None,
     ) -> None:
-        input_dict = {
-            attr: getattr(self, attr) for attr in self._reductions.keys()
-        }
+        input_dict = {attr: getattr(self, attr) for attr in self._reductions.keys()}
 
         for attr, reduction_fn in self._reductions.items():
             # pre-concatenate metric states that are lists
@@ -186,9 +184,7 @@ class EvalMetric(Metric, ABC):
 
         values = self.compute()
         if isinstance(values, list):
-            assert isinstance(self.name, list) and len(self.name) == len(
-                values
-            )
+            assert isinstance(self.name, list) and len(self.name) == len(values)
 
         return self.name, values
 

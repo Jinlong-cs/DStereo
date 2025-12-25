@@ -411,9 +411,7 @@ class SetCameraParam(object):
     @property
     def poseMat_local2vcs(self):
         if self.param_dict is None:
-            rotMat_adascam2vcs = Rotation.from_matrix(
-                self.poseMat_adascam2vcs[:3, :3]
-            )
+            rotMat_adascam2vcs = Rotation.from_matrix(self.poseMat_adascam2vcs[:3, :3])
             # absolute angle for local coord z axis
             # has a eps value < 1 deg
             ypr_adascam2vcs = rotMat_adascam2vcs.as_euler("zyx")
@@ -635,9 +633,7 @@ class CameraParam(SetCameraParam):
     @classmethod
     def init_cam_param_by_file(camera, calib_path, is_virtual=False):
         """Init Camera object from a Horizon Camera Calib json file."""
-        assert os.path.exists(
-            calib_path
-        ), f"{calib_path} not exist, please check!!"
+        assert os.path.exists(calib_path), f"{calib_path} not exist, please check!!"
         with open(calib_path) as f:
             config = json.load(f)
         return camera.init_cam_param_by_dict(config, is_virtual)
@@ -678,13 +674,9 @@ class CameraParam(SetCameraParam):
             and not (poseMat_vcs2cam == np.eye(4)).all()
             and not camera().is_virtual
         ):
-            poseMat_vcs2adascam = np.dot(
-                camera().poseMat_cam2adascam, poseMat_vcs2cam
-            )
+            poseMat_vcs2adascam = np.dot(camera().poseMat_cam2adascam, poseMat_vcs2cam)
             poseMat_adascam2vcs = np.linalg.inv(poseMat_vcs2adascam)
-            rotMat_adascam2vcs = Rotation.from_matrix(
-                poseMat_adascam2vcs[:3, :3]
-            )
+            rotMat_adascam2vcs = Rotation.from_matrix(poseMat_adascam2vcs[:3, :3])
             # absolute angle for local coord z axis
             # has a eps value < 1 deg
             ypr_adascam2vcs = rotMat_adascam2vcs.as_euler("zyx")
@@ -912,9 +904,7 @@ class CameraBase(CameraParam):
             assert len(depth) == len(
                 cam_points
             ), "depth nums must equal to input point nums"
-            scale = np.expand_dims(
-                cam_points[:, 2] / (depth.reshape(-1) + EPS), axis=1
-            )
+            scale = np.expand_dims(cam_points[:, 2] / (depth.reshape(-1) + EPS), axis=1)
             cam_points = cam_points / (scale + EPS)
         return cam_points
 
@@ -1021,15 +1011,11 @@ class CameraBase(CameraParam):
             bboxes_prj.append(bbox)
         return np.array(bboxes_prj).reshape(-1, 4)
 
-    def generate_mapping(
-        self, dst_cam, concatenate=False, return_offset=False
-    ):
+    def generate_mapping(self, dst_cam, concatenate=False, return_offset=False):
         """Generate mapping from dst_cam to src_camera."""
         points = dst_cam.image_grid.reshape((-1, 2))
         projected_points = dst_cam.project_pixel2vcs(points)
-        _, valid_index = self.filter_points_by_fov(
-            projected_points, coord_system="vcs"
-        )
+        _, valid_index = self.filter_points_by_fov(projected_points, coord_system="vcs")
         source_points = self.project_vcs2pixel(projected_points)
         source_points[~valid_index] = -1
         source_points = source_points.reshape(dst_cam.image_grid.shape)

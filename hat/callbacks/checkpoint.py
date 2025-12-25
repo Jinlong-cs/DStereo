@@ -49,13 +49,9 @@ def get_valid_state_dict(model: nn.Module, only_save_ddp=False) -> dict:
     Returns:
         Dict of param names and values
     """
-    if isinstance(
-        model, (nn.parallel.DistributedDataParallel, nn.DataParallel)
-    ):
+    if isinstance(model, (nn.parallel.DistributedDataParallel, nn.DataParallel)):
         return model.module.state_dict()
-    elif deepspeed is not None and isinstance(
-        model, deepspeed.DeepSpeedEngine
-    ):
+    elif deepspeed is not None and isinstance(model, deepspeed.DeepSpeedEngine):
         return model.module.state_dict()
     elif apex is not None and isinstance(
         model, apex.parallel.distributed.DistributedDataParallel
@@ -215,9 +211,11 @@ class Checkpoint(CallbackMixin):  # noqa: D205,D400
                 TRAIN_CHECKPOINT_FORMAT
                 % (
                     self.name_prefix,
-                    "step-%d" % step_id
-                    if save_type == "step"
-                    else "epoch-%04d" % epoch_id,
+                    (
+                        "step-%d" % step_id
+                        if save_type == "step"
+                        else "epoch-%04d" % epoch_id
+                    ),
                 ),
             )
             torch.save(state, ckpt_file)
@@ -347,25 +345,19 @@ class Checkpoint(CallbackMixin):  # noqa: D205,D400
             "step": step_id,
             "devices": get_device_count(),
             "grad_scaler": grad_scaler_state,
-            "state_dict": get_valid_state_dict(
-                contiguous_model, self.only_save_ddp
-            ),
+            "state_dict": get_valid_state_dict(contiguous_model, self.only_save_ddp),
             "horizon-plugin-version": __version__,
         }
         if ema_model is not None:
             ema_c_model = ema_model.to(memory_format=torch.contiguous_format)
-            state["ema_model"] = get_valid_state_dict(
-                ema_c_model, self.only_save_ddp
-            )
+            state["ema_model"] = get_valid_state_dict(ema_c_model, self.only_save_ddp)
 
         if deepspeed is not None and isinstance(
             contiguous_model, deepspeed.DeepSpeedEngine
         ):
             tag = "%s-ds-ckpt-%s" % (
                 self.name_prefix,
-                "step-%d" % step_id
-                if save_type == "step"
-                else "epoch-%04d" % epoch_id,
+                "step-%d" % step_id if save_type == "step" else "epoch-%04d" % epoch_id,
             )
             contiguous_model.save_checkpoint(
                 save_dir=self.save_dir,
@@ -452,9 +444,7 @@ class Checkpoint(CallbackMixin):  # noqa: D205,D400
     ):
         # ckp_model = self._get_ckp_model(model, ema_model)
 
-        if self.interval_by == "epoch" and (
-            (epoch_id + 1) % self.save_interval == 0
-        ):
+        if self.interval_by == "epoch" and ((epoch_id + 1) % self.save_interval == 0):
             self.do_checkpoint(
                 model,
                 optimizer,
@@ -491,7 +481,7 @@ class Checkpoint(CallbackMixin):  # noqa: D205,D400
                     names, values = val_metric.get()
                 if self.monitor_metric_key is None:
                     values = _as_list(values)
-                    print("values",values)
+                    print("values", values)
                     if len(values) != 1:
                         raise KeyError(
                             "Cannot resolve more than one metric values"

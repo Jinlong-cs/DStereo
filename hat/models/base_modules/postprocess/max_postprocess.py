@@ -56,9 +56,7 @@ class MaxPostProcess(torch.nn.Module):
                 if self.return_indices:
                     pred_dict[self.out_names[idx][1]] = classes
             else:
-                raise TypeError(
-                    "only support torch.tensor or list[torch.tensor]"
-                )
+                raise TypeError("only support torch.tensor or list[torch.tensor]")
         return pred_dict
 
     def set_qconfig(self):

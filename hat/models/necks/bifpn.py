@@ -287,9 +287,7 @@ class BifpnLayer(nn.Module):
                 fnode["upsample_type"],
             ):
                 in_ch = (
-                    in_channels[offset]
-                    if offset < level
-                    else offset2inchannels[offset]
+                    in_channels[offset] if offset < level else offset2inchannels[offset]
                 )
                 out_ch = offset2out_channels[offset][sampling]
                 node.append(
@@ -359,9 +357,7 @@ class BifpnLayer(nn.Module):
         return all_outs
 
 
-def get_fpn_config(
-    fpn_name="bifpn_sum", out_channels=64, upsample_type="module"
-):
+def get_fpn_config(fpn_name="bifpn_sum", out_channels=64, upsample_type="module"):
     assert fpn_name in ["bifpn_sum", "bifpn_fa"]
     fpn_config = edict()
     fpn_config.out_channels = out_channels
@@ -475,9 +471,7 @@ class BiFPN(nn.Module):
         self.num_outs = num_outs
 
         # assert in_strides in stride2channels
-        self.in_strides = _check_strides(
-            in_strides, self.stride2channels.keys()
-        )
+        self.in_strides = _check_strides(in_strides, self.stride2channels.keys())
 
         assert len(self.out_strides) <= num_outs
         assert stack >= 1
@@ -501,9 +495,7 @@ class BiFPN(nn.Module):
         self.end_level = end_level
         # add extra downsample layers (stride-2 pooling or conv + pooling)
         # to build extra input features that are not from backbone.
-        extra_levels = (
-            self.num_outs - self.backbone_end_level + self.start_level
-        )
+        extra_levels = self.num_outs - self.backbone_end_level + self.start_level
         # channels for multi-level feature-map used in bifpn
         self.fpn_config.in_channels = self.in_channels[
             self.start_level : self.backbone_end_level

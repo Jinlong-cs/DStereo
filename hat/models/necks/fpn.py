@@ -97,9 +97,11 @@ class FPN(nn.Module):
                         padding=0,
                         stride=1,
                         bias=True,
-                        norm_layer=None
-                        if bn_kwargs is None
-                        else nn.BatchNorm2d(out_channels[-1], **bn_kwargs),
+                        norm_layer=(
+                            None
+                            if bn_kwargs is None
+                            else nn.BatchNorm2d(out_channels[-1], **bn_kwargs)
+                        ),
                     )
                 )
             else:
@@ -112,10 +114,10 @@ class FPN(nn.Module):
                             padding=0,
                             stride=1,
                             bias=True,
-                            norm_layer=None
-                            if bn_kwargs is None
-                            else nn.BatchNorm2d(
-                                out_channels[-1 - idx], **bn_kwargs
+                            norm_layer=(
+                                None
+                                if bn_kwargs is None
+                                else nn.BatchNorm2d(out_channels[-1 - idx], **bn_kwargs)
                             ),
                         )
                     )
@@ -137,10 +139,10 @@ class FPN(nn.Module):
                         padding=0,
                         stride=1,
                         bias=True,
-                        norm_layer=None
-                        if bn_kwargs is None
-                        else nn.BatchNorm2d(
-                            out_channels[-1 - idx], **bn_kwargs
+                        norm_layer=(
+                            None
+                            if bn_kwargs is None
+                            else nn.BatchNorm2d(out_channels[-1 - idx], **bn_kwargs)
                         ),
                     )
                 )
@@ -158,9 +160,11 @@ class FPN(nn.Module):
                         padding=0,
                         stride=1,
                         bias=True,
-                        norm_layer=None
-                        if bn_kwargs is None
-                        else nn.BatchNorm2d(fix_out_channel, **bn_kwargs),
+                        norm_layer=(
+                            None
+                            if bn_kwargs is None
+                            else nn.BatchNorm2d(fix_out_channel, **bn_kwargs)
+                        ),
                     )
                 )
 
@@ -190,9 +194,7 @@ class FPN(nn.Module):
 
             fpn_fuse[stride] = self.conv_extract[idx](in_features[idx])
             if idx > 0:
-                fpn_fuse[stride] = self.conv_add[idx].add(
-                    fpn_fuse[stride], cur_feat
-                )
+                fpn_fuse[stride] = self.conv_add[idx].add(fpn_fuse[stride], cur_feat)
 
         if hasattr(self, "conv1x1"):
             for idx, stride in enumerate(strides):

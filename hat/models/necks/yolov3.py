@@ -47,9 +47,7 @@ class InputModule(nn.Sequential):
                     3,
                     padding=1,
                     bias=bias,
-                    norm_layer=nn.BatchNorm2d(
-                        output_channels * 2, **bn_kwargs
-                    ),
+                    norm_layer=nn.BatchNorm2d(output_channels * 2, **bn_kwargs),
                     act_layer=nn.ReLU(inplace=True),
                 )
             )
@@ -131,14 +129,10 @@ class YOLOV3Neck(nn.Module):
             )
 
             if i < len(self.backbone_idx) - 1:
-                self.add_module(
-                    "concat%d" % (i), nn.quantized.FloatFunctional()
-                )
+                self.add_module("concat%d" % (i), nn.quantized.FloatFunctional())
                 self.add_module(
                     "resize%d" % (i),
-                    horizon.nn.Interpolate(
-                        scale_factor=2, recompute_scale_factor=True
-                    ),
+                    horizon.nn.Interpolate(scale_factor=2, recompute_scale_factor=True),
                 )
                 self.add_module(
                     "trans_conv%d" % (i),

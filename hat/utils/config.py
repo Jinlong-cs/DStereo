@@ -89,8 +89,7 @@ class Config(object):
                 cfg_dict = yaml.load(fid, Loader=yaml.Loader)
         else:
             raise IOError(
-                "Only py/yml/yaml type are supported now, "
-                f"but found {filename}!"
+                "Only py/yml/yaml type are supported now, " f"but found {filename}!"
             )
         return Config(cfg_dict, filename=filename)
 
@@ -194,9 +193,7 @@ class Config(object):
 
     def dump_json(self, skip_keys=False):
         if skip_keys:
-            logger.warning(
-                "Some non compliant keys will be changed to null and saved."
-            )
+            logger.warning("Some non compliant keys will be changed to null and saved.")
             cfg_dict = self._cfg_dict
         else:
             cfg_dict = strify_keys(self._cfg_dict)
@@ -213,9 +210,7 @@ class Config(object):
         return self._text
 
     def __repr__(self):
-        return "Config (path: {}): {}".format(
-            self.filename, self._cfg_dict.__repr__()
-        )
+        return "Config (path: {}): {}".format(self.filename, self._cfg_dict.__repr__())
 
     def __len__(self):
         return len(self._cfg_dict)
@@ -408,7 +403,7 @@ def _check_and_coerce_cfg_value_type(replacement, original, key, full_key):
     # list <-> tuple
     casts = [(tuple, list), (list, tuple)]
 
-    for (from_type, to_type) in casts:
+    for from_type, to_type in casts:
         converted, converted_value = conditional_cast(from_type, to_type)
         if converted:
             return converted_value

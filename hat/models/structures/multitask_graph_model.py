@@ -142,9 +142,7 @@ class MultitaskGraphModel(nn.Module):
         task_inputs: Dict[str, Dict[str, Any]],
         task_modules: Dict[str, nn.Module],
         opt_inputs: Optional[Dict[str, Any]] = None,
-        funnel_modules: Optional[
-            Dict[Tuple[Tuple[str], str], nn.Module]
-        ] = None,
+        funnel_modules: Optional[Dict[Tuple[Tuple[str], str], nn.Module]] = None,
         flatten_outputs: bool = True,
         lazy_forward: Optional[bool] = True,
         force_cpu_init: Optional[bool] = False,
@@ -229,13 +227,9 @@ class MultitaskGraphModel(nn.Module):
             self._graph = group(*symbols)
             merge_map = merge_symbol_nodes(self._graph)
 
-            nodes2indices = {
-                node: i for i, node in enumerate(self._graph._outputs)
-            }
+            nodes2indices = {node: i for i, node in enumerate(self._graph._outputs)}
             for out_name in self._cached_graphs:
-                out_nodes = [
-                    merge_map.get(node, node) for node in name2nodes[out_name]
-                ]
+                out_nodes = [merge_map.get(node, node) for node in name2nodes[out_name]]
                 self._name2inds_fmts[out_name] = (
                     [nodes2indices[node] for node in out_nodes],
                     name2fmts[out_name],
@@ -265,9 +259,9 @@ class MultitaskGraphModel(nn.Module):
     def _set_flat_conditions(self):
         self._output_names2flat_conditions = {}
         for name in self._output_names:
-            self._output_names2flat_conditions[
-                name
-            ] = lambda _, v: not is_list_of_type(v, torch.Tensor)
+            self._output_names2flat_conditions[name] = lambda _, v: not is_list_of_type(
+                v, torch.Tensor
+            )
 
     def _register_nodes(self, node2name):
         def _register(node):
@@ -309,15 +303,11 @@ class MultitaskGraphModel(nn.Module):
                     p in _params_n_buffers
                 ), f"Parameter {name} of task {t} not covered"
             for name, b in m.named_buffers():
-                assert (
-                    b in _params_n_buffers
-                ), f"Buffer {name} of task {t} not covered"
+                assert b in _params_n_buffers, f"Buffer {name} of task {t} not covered"
         return
 
     @staticmethod
-    def _build_variables(
-        inputs, opt_inputs, task_inputs, lazy_forward, device=None
-    ):
+    def _build_variables(inputs, opt_inputs, task_inputs, lazy_forward, device=None):
         def _to_device(value, device):
             return apply_to_collection(
                 value,
@@ -329,9 +319,7 @@ class MultitaskGraphModel(nn.Module):
             set(opt_inputs.keys())
         ), "No repeated keys in inputs and opt_inputs allowed"
 
-        inputs_var = {
-            k: Variable(k, _to_device(v, device)) for k, v in inputs.items()
-        }
+        inputs_var = {k: Variable(k, _to_device(v, device)) for k, v in inputs.items()}
         inputs_var.update(
             {
                 k: OptionalVariable(k, _to_device(v, device))
@@ -340,8 +328,7 @@ class MultitaskGraphModel(nn.Module):
         )
 
         task_inputs_var = {
-            k: Variable(k, _to_device(v, device))
-            for k, v in task_inputs.items()
+            k: Variable(k, _to_device(v, device)) for k, v in task_inputs.items()
         }
 
         return inputs_var, task_inputs_var
@@ -358,9 +345,7 @@ class MultitaskGraphModel(nn.Module):
                 A sub graph of `self._graph` .
         """
         assert self._cached_graphs, "build graph topology first"
-        return group(
-            *[self._cached_graphs[name] for name in _as_list(out_names)]
-        )
+        return group(*[self._cached_graphs[name] for name in _as_list(out_names)])
 
     def forward(
         self,
@@ -393,9 +378,7 @@ class MultitaskGraphModel(nn.Module):
         assert self._graph is not None, "init graph first"
         assert isinstance(
             inputs, dict
-        ), "MultitaskGraphModel inputs should be a dict but get %s" % type(
-            inputs
-        )
+        ), "MultitaskGraphModel inputs should be a dict but get %s" % type(inputs)
 
         if out_names is None:
             out_names = self._output_names
@@ -406,34 +389,24 @@ class MultitaskGraphModel(nn.Module):
             assert len(out_names) and len(set(out_names)) == len(out_names)
             result_idxs = []
             for i, n in enumerate(out_names):
-                assert (
-                    n in self._output_names
-                ), "%s not in output names: %s" % (
+                assert n in self._output_names, "%s not in output names: %s" % (
                     n,
                     self._output_names,
                 )
                 result_idxs.append((i, self._output_names.index(n)))
 
-            result_idxs = [
-                v[0] for v in sorted(result_idxs, key=lambda x: x[1])
-            ]
+            result_idxs = [v[0] for v in sorted(result_idxs, key=lambda x: x[1])]
 
             # sort names to get cached graph, executor, so that
             # ['name1', 'name2'], ['name2', 'name1'] share the same executor.
             out_names = [out_names[i] for i in result_idxs]
 
         # 1. make sure it's not in DataParallel mode
-        assert not getattr(
-            self, "_is_replica", False
-        ), "Don't use DataParallel"
+        assert not getattr(self, "_is_replica", False), "Don't use DataParallel"
 
         # 2. get executor
         sort_names = out_names
-        tag = (
-            ">".join(sort_names)
-            if isinstance(sort_names, Sequence)
-            else sort_names
-        )
+        tag = ">".join(sort_names) if isinstance(sort_names, Sequence) else sort_names
         if tag not in self._cached_execs:
             if tag not in self._cached_graphs:
                 self._cached_graphs[tag] = self.get_sub_graph(sort_names)
@@ -492,9 +465,7 @@ class MultitaskGraphModel(nn.Module):
 
                 # torch.jit.trace() recommend us to convert dict to namedtuple
                 try:
-                    OrderedOutput = namedtuple(
-                        "OrderedOutput", name2out.keys()
-                    )
+                    OrderedOutput = namedtuple("OrderedOutput", name2out.keys())
                 except SyntaxError as e:
                     logger.error("name2out keys: {name2out.keys()}")
                     raise e
@@ -619,9 +590,7 @@ class MultitaskGraphModel(nn.Module):
                 return None, None, None, None
         graph = self.get_sub_graph(out_names)
         if not split_node_name:
-            split_node = get_split_node_v2(
-                graph, start_node_name=start_node_name
-            )
+            split_node = get_split_node_v2(graph, start_node_name=start_node_name)
             split_node_name = split_node.name
         common_graph, split_graph = split_by_node_name(graph, split_node_name)
         common_name2inds_fmts = OrderedDict()

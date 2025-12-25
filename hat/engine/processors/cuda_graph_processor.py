@@ -110,9 +110,7 @@ class CudaGraphBatchProcessor(BasicBatchProcessor):
             grad_decorator = (
                 torch.enable_grad if self.need_grad_update else torch.no_grad
             )
-            auto_cast = autocast(
-                enabled=self.enable_amp, dtype=self.enable_amp_dtype
-            )
+            auto_cast = autocast(enabled=self.enable_amp, dtype=self.enable_amp_dtype)
 
             with profiler.profile("model_forward"):
                 with auto_cast:
@@ -128,9 +126,7 @@ class CudaGraphBatchProcessor(BasicBatchProcessor):
                 losses = None
 
             if self.need_grad_update:
-                loss = sum(
-                    [loss for loss in _as_list(losses) if loss is not None]
-                )
+                loss = sum([loss for loss in _as_list(losses) if loss is not None])
                 assert isinstance(loss, torch.Tensor), type(loss)
                 loss_scalar = loss.sum()
 
@@ -148,9 +144,7 @@ class CudaGraphBatchProcessor(BasicBatchProcessor):
             if not self.enable_amp:
                 with profiler.profile("optimizer_step"):
                     if optimizer_step_begin_callback is not None:
-                        optimizer_step_begin_callback(
-                            grad_scaler=self.grad_scaler
-                        )
+                        optimizer_step_begin_callback(grad_scaler=self.grad_scaler)
                     self.grad_scaler.step(optimizer)
                     self.grad_scaler.update()
 
@@ -182,6 +176,4 @@ class CudaGraphBatchProcessor(BasicBatchProcessor):
                 self.grad_scaler.update()
 
         if self.enable_amp:
-            storage.put(
-                "grad_scaler", self.grad_scaler.state_dict(), always_dict=True
-            )
+            storage.put("grad_scaler", self.grad_scaler.state_dict(), always_dict=True)

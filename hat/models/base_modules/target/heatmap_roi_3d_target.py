@@ -141,18 +141,12 @@ class HeatMap3DTargetGenerator(nn.Module):
             wh = np.zeros((output_height, output_width, 2), dtype=np.float32)
             depth = np.zeros((output_height, output_width), dtype=np.float32)
             dim = np.zeros((output_height, output_width, 3), dtype=np.float32)
-            loc_offset = np.zeros(
-                (output_height, output_width, 2), dtype=np.float32
-            )
-            weight_hm = np.zeros(
-                (output_height, output_width), dtype=np.float32
-            )
+            loc_offset = np.zeros((output_height, output_width, 2), dtype=np.float32)
+            weight_hm = np.zeros((output_height, output_width), dtype=np.float32)
             weight_hm_min = 10000 * np.ones(
                 (output_height, output_width), dtype=np.float32
             )
-            point_pos_mask = np.zeros(
-                (output_height, output_width), dtype=np.float32
-            )
+            point_pos_mask = np.zeros((output_height, output_width), dtype=np.float32)
             # sin cos
             ind_ = np.zeros((self.max_objs), dtype=np.int64)
             ind_mask_ = np.zeros((self.max_objs), dtype=np.float32)
@@ -326,12 +320,8 @@ class HeatMap3DTargetGenerator(nn.Module):
                         done_stride_affine,
                         (output_width, output_height),
                     )
-                    depth_u = (
-                        depth * self.focal_length_default / down_strid_eq_fu
-                    )
-                    depth_v = (
-                        depth * self.focal_length_default / down_strid_eq_fv
-                    )
+                    depth_u = depth * self.focal_length_default / down_strid_eq_fu
+                    depth_v = depth * self.focal_length_default / down_strid_eq_fv
                     depth = np.stack([depth_u, depth_v], axis=-1)
                 else:
                     depth *= self.focal_length_default / calib[0, 0]
@@ -344,12 +334,8 @@ class HeatMap3DTargetGenerator(nn.Module):
                 "dimensions": dim.transpose(2, 0, 1),
                 "location_offset": loc_offset.transpose(2, 0, 1),
                 "depth": depth.transpose(2, 0, 1),
-                "heatmap_weight": weight_hm[:, :, np.newaxis].transpose(
-                    2, 0, 1
-                ),
-                "point_pos_mask": point_pos_mask[:, :, np.newaxis].transpose(
-                    2, 0, 1
-                ),
+                "heatmap_weight": weight_hm[:, :, np.newaxis].transpose(2, 0, 1),
+                "point_pos_mask": point_pos_mask[:, :, np.newaxis].transpose(2, 0, 1),
                 "index": ind_,
                 "index_mask": ind_mask_,
                 "location": loc_,

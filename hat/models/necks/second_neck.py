@@ -129,9 +129,9 @@ class SECONDNeck(nn.Module):
                 bias=False,
                 padding=1,
                 norm_layer=nn.BatchNorm2d(out_channels, **self.bn_kwargs),
-                act_layer=nn.ReLU6(inplace=True)
-                if self.use_relu6
-                else nn.ReLU(inplace=True),
+                act_layer=(
+                    nn.ReLU6(inplace=True) if self.use_relu6 else nn.ReLU(inplace=True)
+                ),
             ),
         )
 
@@ -145,9 +145,11 @@ class SECONDNeck(nn.Module):
                     padding=1,
                     bias=False,
                     norm_layer=nn.BatchNorm2d(out_channels, **self.bn_kwargs),
-                    act_layer=nn.ReLU6(inplace=True)
-                    if self.use_relu6
-                    else nn.ReLU(inplace=True),
+                    act_layer=(
+                        nn.ReLU6(inplace=True)
+                        if self.use_relu6
+                        else nn.ReLU(inplace=True)
+                    ),
                 ),
             )
 
@@ -169,9 +171,9 @@ class SECONDNeck(nn.Module):
                 stride=stride,
                 bias=False,
                 norm_layer=nn.BatchNorm2d(out_channels, **self.bn_kwargs),
-                act_layer=nn.ReLU6(inplace=True)
-                if self.use_relu6
-                else nn.ReLU(inplace=True),
+                act_layer=(
+                    nn.ReLU6(inplace=True) if self.use_relu6 else nn.ReLU(inplace=True)
+                ),
             )
         else:
             stride = np.round(1 / stride).astype(np.int64)
@@ -182,9 +184,9 @@ class SECONDNeck(nn.Module):
                 stride=stride,
                 bias=False,
                 norm_layer=nn.BatchNorm2d(out_channels, **self.bn_kwargs),
-                act_layer=nn.ReLU6(inplace=True)
-                if self.use_relu6
-                else nn.ReLU(inplace=True),
+                act_layer=(
+                    nn.ReLU6(inplace=True) if self.use_relu6 else nn.ReLU(inplace=True)
+                ),
             )
         return deblock
 

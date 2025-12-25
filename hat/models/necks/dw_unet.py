@@ -53,9 +53,7 @@ class UpscaleAndFusion(Module):
         if use_deconv:
             raise ValueError("DwUnet do not support use_deconv=True currently")
         else:
-            self.upscale = nnh.Interpolate(
-                scale_factor=2, recompute_scale_factor=True
-            )
+            self.upscale = nnh.Interpolate(scale_factor=2, recompute_scale_factor=True)
 
         self.fuse_conv = SeparableConvModule2d(
             out_channels,
@@ -180,9 +178,9 @@ class DwUnet(Module):
         self.output_layers = nn.ModuleDict()
         for output_scale in output_scales:
             channels = int(base_channels * output_scale)
-            self.output_layers[
-                self._out_layer_scale_to_name(output_scale)
-            ] = self._make_output_layers(channels, channels)
+            self.output_layers[self._out_layer_scale_to_name(output_scale)] = (
+                self._make_output_layers(channels, channels)
+            )
 
     def _out_layer_scale_to_name(self, output_scale):
         return "out_layer_scale_%d" % output_scale
@@ -225,9 +223,7 @@ class DwUnet(Module):
         x = self.conv64_2(x)
         if current_scale in self.output_scales:
             ret_outputs.append(
-                self.output_layers[
-                    self._out_layer_scale_to_name(current_scale)
-                ](x)
+                self.output_layers[self._out_layer_scale_to_name(current_scale)](x)
             )
 
         for stage, mod in enumerate(self.stages):
@@ -236,9 +232,7 @@ class DwUnet(Module):
 
             if current_scale in self.output_scales:
                 ret_outputs.append(
-                    self.output_layers[
-                        self._out_layer_scale_to_name(current_scale)
-                    ](x)
+                    self.output_layers[self._out_layer_scale_to_name(current_scale)](x)
                 )
 
         return list(reversed(ret_outputs))

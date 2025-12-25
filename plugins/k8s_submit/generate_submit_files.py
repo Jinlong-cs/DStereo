@@ -51,12 +51,15 @@ def write_torch_multi_machines_cmd(fn, cfg, job):
     """Write job to fn."""
 
     if job.startswith("python3"):
-        cmd = "./torchrun --nnodes=%d --nproc_per_node=%d --rdzv_id=%d --rdzv_backend=c10d --rdzv_endpoint=$HOST_NODE_ADDR %s %s" % (  # noqa
-            cfg.num_machines,
-            cfg.num_gpus_per_machine,
-            random.randint(0, 100000),
-            job.replace("python3 ", "").replace("-W ignore ", ""),
-            "--launcher torch ",
+        cmd = (
+            "./torchrun --nnodes=%d --nproc_per_node=%d --rdzv_id=%d --rdzv_backend=c10d --rdzv_endpoint=$HOST_NODE_ADDR %s %s"
+            % (  # noqa
+                cfg.num_machines,
+                cfg.num_gpus_per_machine,
+                random.randint(0, 100000),
+                job.replace("python3 ", "").replace("-W ignore ", ""),
+                "--launcher torch ",
+            )
         )
         command_args = " --check --monitor"
     else:
@@ -108,9 +111,7 @@ def generate_bash_file(cfg, upload_folder, run_in_sleep):
             fn.write("cat /job_data/mpi_hosts\n")
             fn.write("dis_url=$(head -n +1 /job_data/mpi_hosts)\n")
 
-            custom_cmds_before_job_list = cfg.get(
-                "custom_cmds_before_job_list", []
-            )
+            custom_cmds_before_job_list = cfg.get("custom_cmds_before_job_list", [])
             if cfg.launcher == "torch":
                 chmod_torchrun = "chmod +x ./torchrun"
                 custom_cmds_before_job_list.append(chmod_torchrun)
@@ -129,9 +130,7 @@ def generate_bash_file(cfg, upload_folder, run_in_sleep):
                 write_multi_machines_cmd(fn, cfg, job, cfg.launcher)
 
             if hasattr(cfg, "custom_cmds_after_job_list"):
-                cmds_file = os.path.join(
-                    upload_folder, "custom_cmds_after_job_list.sh"
-                )
+                cmds_file = os.path.join(upload_folder, "custom_cmds_after_job_list.sh")
                 with open(cmds_file, "w") as cus:
                     for cmd in cfg.custom_cmds_after_job_list:
                         cus.write("%s\n" % cmd)
@@ -232,11 +231,14 @@ def generate_elastic_bash_file(cfg, upload_folder, run_in_sleep):
                 fn.write("%s\n" % cmd)
         for idx, job in enumerate(cfg.job_list):
             if cfg.launcher == "torchrun":
-                job = "python3 elastic_launcher.py --job-idx %d --nnodes %s --nproc_per_node %d '%s'" % (  # noqa E501
-                    idx + 1,
-                    cfg.num_machines,
-                    cfg.num_gpus_per_machine,
-                    job + " --launcher torch",
+                job = (
+                    "python3 elastic_launcher.py --job-idx %d --nnodes %s --nproc_per_node %d '%s'"
+                    % (  # noqa E501
+                        idx + 1,
+                        cfg.num_machines,
+                        cfg.num_gpus_per_machine,
+                        job + " --launcher torch",
+                    )
                 )
             else:
                 raise NotImplementedError

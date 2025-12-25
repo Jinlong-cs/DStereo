@@ -38,9 +38,7 @@ class Inference(object):
         post_processors: Optional[List[Callable]] = None,
     ):
         if march is None:
-            logging.warning(
-                "march not provided, please make sure it's expected"
-            )
+            logging.warning("march not provided, please make sure it's expected")
         else:
             horizon.march.set_march(march)
 
@@ -53,18 +51,14 @@ class Inference(object):
         if len(device_ids) > 1:
             raise NotImplementedError("Current only support single device.")
         if len(device_ids) != 0:
-            device_ids[0] = (
-                int(device_ids[0]) if device_ids[0] is not None else None
-            )
+            device_ids[0] = int(device_ids[0]) if device_ids[0] is not None else None
             self.device = torch.device("cuda", device_ids[0])
         else:
             self.device = torch.device("cpu")
 
         self.set_device(self.device)
         self.preprocessors = [] if pre_processors is None else pre_processors
-        self.postprocessors = (
-            [] if post_processors is None else post_processors
-        )
+        self.postprocessors = [] if post_processors is None else post_processors
 
     def set_device(self, device: torch.device) -> None:
         self.device = device

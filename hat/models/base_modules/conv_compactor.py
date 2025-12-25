@@ -53,9 +53,7 @@ class ConvCompactor2d(torch.nn.Module):
 
     def get_metric_vector(self):
         metric_vector = (
-            torch.sqrt(
-                torch.sum(self.get_pwc_kernel_detach() ** 2, dim=(1, 2, 3))
-            )
+            torch.sqrt(torch.sum(self.get_pwc_kernel_detach() ** 2, dim=(1, 2, 3)))
             .cpu()
             .numpy()
         )
@@ -64,7 +62,6 @@ class ConvCompactor2d(torch.nn.Module):
     def add_penalty_gradients(self):
         self.pwc.weight.grad.data = self.mask * self.pwc.weight.grad.data
         lasso_grad = self.pwc.weight.data * (
-            (self.pwc.weight.data ** 2).sum(dim=(1, 2, 3), keepdim=True)
-            ** (-0.5)
+            (self.pwc.weight.data**2).sum(dim=(1, 2, 3), keepdim=True) ** (-0.5)
         )
         self.pwc.weight.grad.data.add_(1e-4, lasso_grad)

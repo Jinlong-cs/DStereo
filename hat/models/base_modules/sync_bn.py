@@ -88,26 +88,16 @@ class SyncBatchNormFunc(Function):
             dist.all_gather_into_tensor(
                 combined_flat, combined, process_group, async_op=False
             )
-            combined = torch.reshape(
-                combined_flat, (world_size, combined_size)
-            )
+            combined = torch.reshape(combined_flat, (world_size, combined_size))
             # world_size * (2C + 1) -> world_size * C, world_size * C, world_size * 1   # noqa E501
-            mean_all, invstd_all, count_all = torch.split(
-                combined, num_channels, dim=1
-            )
+            mean_all, invstd_all, count_all = torch.split(combined, num_channels, dim=1)
         else:
             # world_size * (2C + 1)
-            combined_list = [
-                torch.empty_like(combined) for _ in range(world_size)
-            ]
-            dist.all_gather(
-                combined_list, combined, process_group, async_op=False
-            )
+            combined_list = [torch.empty_like(combined) for _ in range(world_size)]
+            dist.all_gather(combined_list, combined, process_group, async_op=False)
             combined = torch.stack(combined_list, dim=0)
             # world_size * (2C + 1) -> world_size * C, world_size * C, world_size * 1  # noqa E501
-            mean_all, invstd_all, count_all = torch.split(
-                combined, num_channels, dim=1
-            )
+            mean_all, invstd_all, count_all = torch.split(combined, num_channels, dim=1)
 
         # Note: The following code will cause the training speed to slow down
         # in `torch>=1.13.0`, so remove it.
@@ -139,16 +129,12 @@ class SyncBatchNormFunc(Function):
             count_all.view(-1),
         )
 
-        self.save_for_backward(
-            input, weight, mean, invstd, count_all.to(torch.int32)
-        )
+        self.save_for_backward(input, weight, mean, invstd, count_all.to(torch.int32))
         self.process_group = process_group
 
         # apply element-wise normalization
         if input.numel() > 0:
-            return torch.batch_norm_elemt(
-                input, weight, bias, mean, invstd, eps
-            )
+            return torch.batch_norm_elemt(input, weight, bias, mean, invstd, eps)
         else:
             return torch.empty_like(input)
 
@@ -249,33 +235,6 @@ class SyncBatchNormFunc(Function):
 
 
 class SyncBatchNorm(torch.nn.SyncBatchNorm):
-    r"""Overwrite forward process of `torch.nn.SyncBatchNorm` to train faster.
-
-    Note: Only the forward process is different from `torch.nn.SyncBatchNorm`,
-    the rest of the modules are exactly the same as `torch.nn.SyncBatchNorm`.
-
-    Args:
-        num_features: :math:`C` from an expected input of size
-            :math:`(N, C, +)`
-        eps: a value added to the denominator for numerical stability.
-            Default: ``1e-5``
-        momentum: the value used for the running_mean and running_var
-            computation. Can be set to ``None`` for cumulative moving average
-            (i.e. simple average). Default: 0.1
-        affine: a boolean value that when set to ``True``, this module has
-            learnable affine parameters. Default: ``True``
-        track_running_stats: a boolean value that when set to ``True``, this
-            module tracks the running mean and variance, and when set to
-            ``False``, this module does not track such statistics,
-            and initializes statistics buffers :attr:`running_mean`
-            and :attr:`running_var` as ``None``. When these buffers are
-            ``None``, this module always uses batch statistics.
-            in both training and eval modes. Default: ``True``
-        process_group: synchronization of stats happen within each process
-            group individually. Default behavior is synchronization across the
-            whole world.
-    """
-
     def __init__(
         self,
         num_features: int,
@@ -315,9 +274,7 @@ class SyncBatchNorm(torch.nn.SyncBatchNorm):
             self.num_batches_tracked = self.num_batches_tracked + 1
             # self.num_batches_tracked.add_(1)
             if self.momentum is None:  # use cumulative moving average
-                exponential_average_factor = (
-                    1.0 / self.num_batches_tracked.item()
-                )
+                exponential_average_factor = 1.0 / self.num_batches_tracked.item()
             else:  # use exponential moving average
                 exponential_average_factor = self.momentum
 
@@ -329,9 +286,7 @@ class SyncBatchNorm(torch.nn.SyncBatchNorm):
         if self.training:
             bn_training = True
         else:
-            bn_training = (self.running_mean is None) and (
-                self.running_var is None
-            )
+            bn_training = (self.running_mean is None) and (self.running_var is None)
 
         r"""
         Buffers are only updated if they are to be tracked and we are in
@@ -342,14 +297,10 @@ class SyncBatchNorm(torch.nn.SyncBatchNorm):
         """
         # If buffers are not to be tracked, ensure that they won't be updated
         running_mean = (
-            self.running_mean
-            if not self.training or self.track_running_stats
-            else None
+            self.running_mean if not self.training or self.track_running_stats else None
         )
         running_var = (
-            self.running_var
-            if not self.training or self.track_running_stats
-            else None
+            self.running_var if not self.training or self.track_running_stats else None
         )
 
         # Don't sync batchnorm stats in inference mode (model.eval()).
@@ -363,9 +314,7 @@ class SyncBatchNorm(torch.nn.SyncBatchNorm):
         if need_sync:
             # currently only GPU input is supported
             if not input.is_cuda:
-                raise ValueError(
-                    "SyncBatchNorm expected input tensor to be on GPU"
-                )
+                raise ValueError("SyncBatchNorm expected input tensor to be on GPU")
 
             process_group = torch.distributed.group.WORLD
             if self.process_group:

@@ -27,9 +27,7 @@ class VargNASNetBlock(nn.Module):
         bn_kwargs (dict): Dict for BN layer.
     """
 
-    def __init__(
-        self, in_ch, block_ch, head_op, stack_ops, stride, bias, bn_kwargs
-    ):
+    def __init__(self, in_ch, block_ch, head_op, stack_ops, stride, bias, bn_kwargs):
         super(VargNASNetBlock, self).__init__()
         self.head_layer = BasicVarGBlockV2(
             in_channels=in_ch,

@@ -39,18 +39,14 @@ class HatTensorRTModel(InferModel):
             model = self.runner.model
             from hat.utils.checkpoint import load_state_dict
 
-            load_state_dict(
-                model, path_or_dict=checkpoint_file, ignore_extra=True
-            )
+            load_state_dict(model, path_or_dict=checkpoint_file, ignore_extra=True)
             self.runner.model = model
 
         (
             self.preprocess_runner,
             self.predict_runner,
             self.postprocess_runner,
-        ) = self.split_runner_step(
-            config.get("split_dataprocess_on_aidi", False)
-        )
+        ) = self.split_runner_step(config.get("split_dataprocess_on_aidi", False))
 
         self.warmup(warmup_data)
 
@@ -61,9 +57,7 @@ class HatTensorRTModel(InferModel):
             with torch.no_grad():
                 device = self.runner.device
                 if device.type == "cuda":
-                    warmup_data = to_cuda(
-                        warmup_data, device, non_blocking=True
-                    )
+                    warmup_data = to_cuda(warmup_data, device, non_blocking=True)
                 self.runner.model(warmup_data)
         return
 

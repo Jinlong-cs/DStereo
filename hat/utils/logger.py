@@ -24,7 +24,7 @@ __all__ = [
 
 
 is_local_train = not os.path.exists("/running_package")
-LOG_DIR = "work_dirs/hat_logs" if is_local_train else "/job_log/hat_logs/"
+LOG_DIR = "output/hat_logs" if is_local_train else "/job_log/hat_logs/"
 
 
 class SingleLevelFilter(logging.Filter):
@@ -129,9 +129,7 @@ def init_rank_logger(
     Returns:
         Logger.
     """
-    time_stamp = time.strftime(
-        "%Y%m%d%H%M%S", time.localtime(int(time.time()))
-    )
+    time_stamp = time.strftime("%Y%m%d%H%M%S", time.localtime(int(time.time())))
     cfg_name = os.path.splitext(os.path.basename(cfg_file))[0]
     log_file = os.path.join(
         save_dir, "%s%s-%s-%s" % (prefix, cfg_name, step, time_stamp)

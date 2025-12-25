@@ -39,8 +39,7 @@ def take_row(in_tensor: torch.Tensor, index: torch.Tensor) -> torch.Tensor:
     flatten_target = in_tensor.view(-1, *last_dims)
     if flatten_target.shape[0] == 0:
         flatten_target = (
-            torch.unsqueeze(torch.ones(last_dims, device=index.device), dim=0)
-            * -1
+            torch.unsqueeze(torch.ones(last_dims, device=index.device), dim=0) * -1
         )
     indexed = flatten_target[flatten_index.type(torch.long)].view(
         in_tensor.shape[0], -1, *last_dims
@@ -128,9 +127,7 @@ def mean_with_mask(
         x = torch.sum(x * mask, dim=-1) / torch.clamp(agent_num, min=1.0)
     elif isinstance(x, np.ndarray):
         agent_num = np.sum(mask, axis=-1)
-        x = np.sum(x * mask, axis=-1) / np.clip(
-            agent_num, a_max=None, a_min=1.0
-        )
+        x = np.sum(x * mask, axis=-1) / np.clip(agent_num, a_max=None, a_min=1.0)
     else:
         raise NotImplementedError(f"unspport input type {type(x)}")
     return x

@@ -66,9 +66,7 @@ class BasicVarGBlock(nn.Module):
                 factor=factor,
                 groups=int(in_channels / group_base),
                 stride=stride,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(in_channels * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(in_channels * factor), **bn_kwargs),
                 dw_act_layer=nn.ReLU(inplace=True) if dw_with_relu else None,
                 pw_norm_layer=nn.BatchNorm2d(out_channels, **bn_kwargs),
             )
@@ -83,9 +81,7 @@ class BasicVarGBlock(nn.Module):
                 factor=factor,
                 groups=int(in_channels / group_base),
                 stride=stride,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(in_channels * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(in_channels * factor), **bn_kwargs),
                 dw_act_layer=nn.ReLU(inplace=True) if dw_with_relu else None,
                 pw_norm_layer=nn.BatchNorm2d(mid_channels, **bn_kwargs),
             )
@@ -98,9 +94,7 @@ class BasicVarGBlock(nn.Module):
             factor=factor,
             groups=int(in_channels / group_base),
             stride=stride,
-            dw_norm_layer=nn.BatchNorm2d(
-                int(in_channels * factor), **bn_kwargs
-            ),
+            dw_norm_layer=nn.BatchNorm2d(int(in_channels * factor), **bn_kwargs),
             dw_act_layer=nn.ReLU(inplace=True) if dw_with_relu else None,
             pw_norm_layer=nn.BatchNorm2d(mid_channels, **bn_kwargs),
         )
@@ -113,9 +107,7 @@ class BasicVarGBlock(nn.Module):
             factor=factor,
             groups=int(mid_channels / group_base),
             stride=1,
-            dw_norm_layer=nn.BatchNorm2d(
-                int(mid_channels * factor), **bn_kwargs
-            ),
+            dw_norm_layer=nn.BatchNorm2d(int(mid_channels * factor), **bn_kwargs),
             dw_act_layer=nn.ReLU(inplace=True) if dw_with_relu else None,
             pw_norm_layer=nn.BatchNorm2d(out_channels, **bn_kwargs),
         )
@@ -282,9 +274,7 @@ class OnePathResUnit(nn.Module):
                 bias=use_bias,
                 factor=factor,
                 groups=dw_num_filter // group_base,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(dw_num_filter * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(dw_num_filter * factor), **bn_kwargs),
                 dw_act_layer=nn.ReLU(inplace=True),
                 pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
             )
@@ -299,9 +289,7 @@ class OnePathResUnit(nn.Module):
             factor=factor,
             groups=dw_num_filter // group_base,
             bias=use_bias,
-            dw_norm_layer=nn.BatchNorm2d(
-                int(dw_num_filter * factor), **bn_kwargs
-            ),
+            dw_norm_layer=nn.BatchNorm2d(int(dw_num_filter * factor), **bn_kwargs),
             dw_act_layer=nn.ReLU(inplace=True),
             pw_norm_layer=nn.BatchNorm2d(pw_num_filter, **bn_kwargs),
             pw_act_layer=nn.ReLU(inplace=True),
@@ -316,9 +304,7 @@ class OnePathResUnit(nn.Module):
             factor=factor,
             groups=pw_num_filter // group_base,
             bias=use_bias,
-            dw_norm_layer=nn.BatchNorm2d(
-                int(pw_num_filter * factor), **bn_kwargs
-            ),
+            dw_norm_layer=nn.BatchNorm2d(int(pw_num_filter * factor), **bn_kwargs),
             dw_act_layer=nn.ReLU(inplace=True),
             pw_act_layer=None,
             pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
@@ -415,9 +401,7 @@ class TwoPathResUnit(nn.Module):
                 groups=dw_num_filter // group_base,
                 pw_act_layer=nn.ReLU(inplace=True),
                 bias=use_bias,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(dw_num_filter * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(dw_num_filter * factor), **bn_kwargs),
                 pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
             )
             self.p1_conv2 = None
@@ -434,9 +418,7 @@ class TwoPathResUnit(nn.Module):
                 dw_act_layer=nn.ReLU(inplace=True),
                 pw_act_layer=None,
                 bias=use_bias,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(dw_num_filter * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(dw_num_filter * factor), **bn_kwargs),
                 pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
             )
             self.p1_conv1 = SeparableGroupConvModule2d(
@@ -451,9 +433,7 @@ class TwoPathResUnit(nn.Module):
                 dw_act_layer=nn.ReLU(inplace=True),
                 pw_act_layer=None,
                 bias=use_bias,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(dw_num_filter * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(dw_num_filter * factor), **bn_kwargs),
                 pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
             )
             self.p1_conv2 = SeparableGroupConvModule2d(
@@ -468,9 +448,7 @@ class TwoPathResUnit(nn.Module):
                 dw_act_layer=nn.ReLU(inplace=True),
                 pw_act_layer=None,
                 bias=use_bias,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(dw_num_filter * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(dw_num_filter * factor), **bn_kwargs),
                 pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
             )
             self.qat_add = nn.quantized.FloatFunctional()
@@ -487,9 +465,7 @@ class TwoPathResUnit(nn.Module):
             groups=pw_num_filter // group_base,
             dw_act_layer=nn.ReLU(inplace=True),
             pw_act_layer=None,
-            dw_norm_layer=nn.BatchNorm2d(
-                int(pw_num_filter * factor), **bn_kwargs
-            ),
+            dw_norm_layer=nn.BatchNorm2d(int(pw_num_filter * factor), **bn_kwargs),
             pw_norm_layer=nn.BatchNorm2d(pw_num_filter2, **bn_kwargs),
             bias=use_bias,
         )
@@ -573,9 +549,7 @@ class ExtendVarGNetFeatures(nn.Module):
             self.dropout = nn.Dropout(**dropout_kwargs)
 
         channels = channels if isinstance(channels, Iterable) else [channels]
-        num_units = (
-            num_units if isinstance(num_units, Iterable) else [num_units]
-        )
+        num_units = num_units if isinstance(num_units, Iterable) else [num_units]
 
         for channel_i, num_unit_i in zip(channels, num_units):
             block = []
@@ -583,9 +557,7 @@ class ExtendVarGNetFeatures(nn.Module):
             for n_idx in range(num_unit_i):
                 block.append(
                     OnePathResUnit(
-                        dw_num_filter=prev_channel
-                        if n_idx == 0
-                        else channel_i,
+                        dw_num_filter=prev_channel if n_idx == 0 else channel_i,
                         group_base=group_base,
                         pw_num_filter=channel_i,
                         pw_num_filter2=channel_i,

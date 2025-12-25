@@ -138,29 +138,21 @@ class LossHardNegativeMining(nn.Module):
         )
 
         if self._keep_pos:
-            total_remain = (count / (1 - self._neg_ratio)).to(
-                count.dtype
-            ) - count
+            total_remain = (count / (1 - self._neg_ratio)).to(count.dtype) - count
             selected = count
         else:
             total_remain = torch.clamp_min_(count, 0)
             selected = torch.zeros_like(count)
 
         if self._min_keep_num > 0:
-            total_remain = torch.maximum(
-                self._min_keep_num - selected, total_remain
-            )
+            total_remain = torch.maximum(self._min_keep_num - selected, total_remain)
         if self._max_keep_num > 0:
-            total_remain = torch.minimum(
-                self._max_keep_num - selected, total_remain
-            )
+            total_remain = torch.minimum(self._max_keep_num - selected, total_remain)
 
         total_remain = total_remain.clamp_min_(1)
         total_remain = torch.minimum(total_remain, total_count).clamp_min_(0)
         hard_remain = (
-            (self._hard_ratio * total_remain)
-            .to(total_remain.dtype)
-            .clamp_min_(0)
+            (self._hard_ratio * total_remain).to(total_remain.dtype).clamp_min_(0)
         )
         normal_remain = total_remain - hard_remain
 

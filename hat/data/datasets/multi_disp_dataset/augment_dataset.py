@@ -16,18 +16,19 @@ from torchvision import transforms
 import horizon_plugin_pytorch.nn.bgr_to_yuv444 as b2y
 
 from .list_dataset import ListDataset, DrivingStereoDataset
+
 logger = logging.getLogger(__name__)
-__all__ = ['AugDataset', 'Augmentor', 'Resizor', 'Cropper', 'Normalizor', 'Identity']
+__all__ = ["AugDataset", "Augmentor", "Resizor", "Cropper", "Normalizor", "Identity"]
 
 
 class Augmentor:
     def __init__(
-            self,
-            gray_p,
-            color_p,
-            spatial_p,
-            occlusion_p,
-            seed=0,
+        self,
+        gray_p,
+        color_p,
+        spatial_p,
+        occlusion_p,
+        seed=0,
     ):
         super().__init__()
         self.rng = np.random.RandomState(seed)
@@ -45,7 +46,9 @@ class Augmentor:
         img = enhancer.enhance(random_brightness)
         enhancer = ImageEnhance.Contrast(img)
         img = enhancer.enhance(random_contrast)
-        gamma_map = [255 * 1.0 * pow(ele / 255.0, random_gamma) for ele in range(256)] * 3
+        gamma_map = [
+            255 * 1.0 * pow(ele / 255.0, random_gamma) for ele in range(256)
+        ] * 3
         # use PIL's point-function to accelerate this part
         img = img.point(gamma_map)
         img_ = np.array(img)
@@ -87,7 +90,7 @@ class Augmentor:
             sy = int(self.rng.uniform(3, 20))
             cx = int(self.rng.uniform(sx, right_img.shape[0] - sx))
             cy = int(self.rng.uniform(sy, right_img.shape[1] - sy))
-            right_img[cx - sx: cx + sx, cy - sy: cy + sy] = np.mean(
+            right_img[cx - sx : cx + sx, cy - sy : cy + sy] = np.mean(
                 np.mean(right_img, 0), 0
             )[np.newaxis, np.newaxis]
 
@@ -95,7 +98,9 @@ class Augmentor:
 
 
 class Resizor:
-    def __init__(self, nh, nw, rand_resize=False, scale=1.0, min_scale=None, max_scale=None):
+    def __init__(
+        self, nh, nw, rand_resize=False, scale=1.0, min_scale=None, max_scale=None
+    ):
         assert isinstance(nh, int)
         assert isinstance(nw, int)
         assert isinstance(rand_resize, bool)
@@ -148,32 +153,36 @@ class Normalizor:
         return img
 
     def __init__(self, norm_type=None):
-        assert norm_type in [None, "z-score", "imagenet-rgb", "imagenet-bgr", 'MixVarGENet']
+        assert norm_type in [
+            None,
+            "z-score",
+            "imagenet-rgb",
+            "imagenet-bgr",
+            "MixVarGENet",
+        ]
         self.norm_type = norm_type
-        if self.norm_type == 'imagenet-rgb':
-            normalize = {
-                'mean': [0.485, 0.456, 0.406],
-                'std': [0.229, 0.224, 0.225]
-            }
-            self.T = transforms.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize(**normalize),
-            ])
-        elif self.norm_type == 'imagenet-bgr':
-            normalize = {
-                'mean': [0.406, 0.456, 0.485],
-                'std': [0.225, 0.224, 0.229]
-            }
-            self.T = transforms.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize(**normalize),
-            ])
+        if self.norm_type == "imagenet-rgb":
+            normalize = {"mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]}
+            self.T = transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize(**normalize),
+                ]
+            )
+        elif self.norm_type == "imagenet-bgr":
+            normalize = {"mean": [0.406, 0.456, 0.485], "std": [0.225, 0.224, 0.229]}
+            self.T = transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize(**normalize),
+                ]
+            )
 
     def __call__(self, x):
         left, right, disp = x
         if self.norm_type is None:
             pass
-        elif self.norm_type == 'z-score':
+        elif self.norm_type == "z-score":
             left = self._img_zscore(left)
             right = self._img_zscore(right)
         elif self.norm_type == "imagenet-rgb" or self.norm_type == "imagenet-bgr":
@@ -196,7 +205,7 @@ class Normalizor:
 
 class Cropper:
     def __init__(self, crop_type, crop_height, crop_width):
-        assert crop_type in ['center', 'random']
+        assert crop_type in ["center", "random"]
         self.crop_type = crop_type
         self.crop_size = crop_height, crop_width
 
@@ -215,7 +224,9 @@ class Cropper:
         right, bottom = left + crop_width, top + crop_height
         for i in range(len(inputs)):
             inputs[i] = inputs[i][top:bottom, left:right]
-            assert inputs[i].shape[:2] == self.crop_size, f"{inputs[i].shape[:2]},{self.crop_size}"
+            assert (
+                inputs[i].shape[:2] == self.crop_size
+            ), f"{inputs[i].shape[:2]},{self.crop_size}"
         return inputs
 
     def center_crop(self, inputs):
@@ -249,22 +260,22 @@ class Cropper:
                 xi_shape = list(x[i].shape)
                 xi_shape[0] = crop_height
                 temp = np.zeros(xi_shape, dtype=x[i].dtype)
-                temp[:x[i].shape[0], :x[i].shape[1]] = x[i]
+                temp[: x[i].shape[0], : x[i].shape[1]] = x[i]
                 x[i] = temp
         if w < crop_width:
             for i in range(3):
                 xi_shape = list(x[i].shape)
                 xi_shape[1] = crop_width
                 temp = np.zeros(xi_shape, dtype=x[i].dtype)
-                temp[:x[i].shape[0], :x[i].shape[1]] = x[i]
+                temp[: x[i].shape[0], : x[i].shape[1]] = x[i]
                 x[i] = temp
         return x
 
     def __call__(self, x):
         x = self.padding(x)
-        if self.crop_type == 'center':
+        if self.crop_type == "center":
             x = self.center_crop(x)
-        elif self.crop_type == 'random':
+        elif self.crop_type == "random":
             x = self.random_crop(x)
         return x
 
@@ -275,11 +286,25 @@ class Identity:
 
 
 class AugDataset(Dataset):
-    
-    def __init__(self, base_dataset, test_mode, max_disp, aug_args=None, res_args=None, norm_args=None, crop_args=None, debug=False, img_open_mode='bgr', skip=False):
+
+    def __init__(
+        self,
+        base_dataset,
+        test_mode,
+        max_disp,
+        aug_args=None,
+        res_args=None,
+        norm_args=None,
+        crop_args=None,
+        debug=False,
+        img_open_mode="bgr",
+        skip=False,
+    ):
         super().__init__()
         if isinstance(base_dataset, str):
-            self.base_dataset = ListDataset(base_dataset, debug=debug, img_open_mode=img_open_mode)
+            self.base_dataset = ListDataset(
+                base_dataset, debug=debug, img_open_mode=img_open_mode
+            )
         else:
             self.base_dataset = base_dataset
         self.test_mode = test_mode
@@ -290,7 +315,7 @@ class AugDataset(Dataset):
         self.debug = debug
         self.max_disp = max_disp
 
-    def __getitem__(self, i):    
+    def __getitem__(self, i):
         data = {}
         x = self.base_dataset[i]
         x = self.resizor(x)
@@ -312,13 +337,21 @@ class AugDataset(Dataset):
         right_x5_nv12 = np.ascontiguousarray(right_x5_nv12)
         right = self._nv12Toyuv444(right_x5_nv12, *x[0].shape[:2])
 
-        data["left_img"] = x[0] # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
-        data["right_img"] = x[1] # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
-        data["left_img_yuv"] = left # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
-        data["right_img_yuv"] = right # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
+        data["left_img"] = x[0]  # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
+        data["right_img"] = x[1]  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
+        data["left_img_yuv"] = left  # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
+        data["right_img_yuv"] = right  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
         data["sample_idx"] = i
-        data["left_img_name"] = self.base_dataset.file_list[i][0] if type(self.base_dataset.file_list[i]) == list else self.base_dataset.file_list[i]
-        data["right_img_name"] = self.base_dataset.file_list[i][1] if type(self.base_dataset.file_list[i]) == list else self.base_dataset.file_list[i]
+        data["left_img_name"] = (
+            self.base_dataset.file_list[i][0]
+            if type(self.base_dataset.file_list[i]) == list
+            else self.base_dataset.file_list[i]
+        )
+        data["right_img_name"] = (
+            self.base_dataset.file_list[i][1]
+            if type(self.base_dataset.file_list[i]) == list
+            else self.base_dataset.file_list[i]
+        )
         data["data_root"] = self.base_dataset.root_dir
 
         x = self.normalizer((left, right, x[2]))
@@ -338,7 +371,7 @@ class AugDataset(Dataset):
         data["gt_disp"] = g
         data["mask_flag"] = True
         data["dataset_name"] = self.base_dataset.name
-        
+
         # 判断小于0或大于100的元素
         condition = (g <= 0) | (g > self.max_disp)
 
@@ -405,7 +438,7 @@ class AugDataset(Dataset):
         img_v = np.repeat(img_v, 2, axis=1)
         img_yuv444 = np.concatenate((img_y, img_u, img_v), axis=2)
         return img_yuv444
-    
+
     def _bgr2nv12(self, image):
         image = copy.deepcopy(image)
         image = image.astype(np.uint8)
@@ -445,33 +478,27 @@ class AugDataset(Dataset):
         data = copy.deepcopy(data)
         nv12_data = data.flatten()
         yuv444 = np.empty([height, width, 3], dtype=np.uint8)
-        yuv444[:, :, 0] = nv12_data[:width * height].reshape(
-            height, width)
-        u = nv12_data[width * height::2].reshape(
-            height // 2, width // 2)
-        yuv444[:, :, 1] = Image.fromarray(u).resize((width, height),
-                                                    resample=0)
-        v = nv12_data[width * height + 1::2].reshape(
-            height // 2, width // 2)
-        yuv444[:, :, 2] = Image.fromarray(v).resize((width, height),
-                                                    resample=0)
+        yuv444[:, :, 0] = nv12_data[: width * height].reshape(height, width)
+        u = nv12_data[width * height :: 2].reshape(height // 2, width // 2)
+        yuv444[:, :, 1] = Image.fromarray(u).resize((width, height), resample=0)
+        v = nv12_data[width * height + 1 :: 2].reshape(height // 2, width // 2)
+        yuv444[:, :, 2] = Image.fromarray(v).resize((width, height), resample=0)
         data = yuv444.astype(np.uint8)
         # if yuv444_output_layout == "CHW":
         #     data = np.transpose(data, (2, 0, 1))
         return data
-    
+
     def _rgb2nv12(self, data):
         image = copy.deepcopy(data)
         image = image.astype(np.uint8)
         height, width = image.shape[0], image.shape[1]
         yuv420p = cv2.cvtColor(image, cv2.COLOR_RGB2YUV_I420).reshape(
-            (height * width * 3 // 2, ))
-        y = yuv420p[:height * width]
-        uv_planar = yuv420p[height * width:].reshape(
-            (2, height * width // 4))
-        uv_packed = uv_planar.transpose((1, 0)).reshape(
-            (height * width // 2, ))
+            (height * width * 3 // 2,)
+        )
+        y = yuv420p[: height * width]
+        uv_planar = yuv420p[height * width :].reshape((2, height * width // 4))
+        uv_packed = uv_planar.transpose((1, 0)).reshape((height * width // 2,))
         nv12 = np.zeros_like(yuv420p)
-        nv12[:height * width] = y
-        nv12[height * width:] = uv_packed
+        nv12[: height * width] = y
+        nv12[height * width :] = uv_packed
         return nv12

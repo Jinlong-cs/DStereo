@@ -42,7 +42,6 @@ elif LooseVersion(horizon.__version__) >= LooseVersion("1.0.3"):
 
         return wrap
 
-
 else:
 
     def _empty_fx_wrapper(obj):
@@ -201,9 +200,7 @@ def fuse_norm_recursively(
     for module_name in model._modules:
 
         if hasattr(model._modules[module_name], "fuse_norm"):
-            model._modules[module_name] = model._modules[
-                module_name
-            ].fuse_norm(inplace)
+            model._modules[module_name] = model._modules[module_name].fuse_norm(inplace)
         else:
             model._modules[module_name] = fuse_norm_in_list(
                 model._modules[module_name], fuse_list=fuse_list

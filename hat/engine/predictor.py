@@ -95,9 +95,7 @@ class Predictor(LoopBase):
         super(Predictor, self).on_epoch_begin(**kwargs)
 
     def fit(self):
-        for data_loader, callbacks in zip(
-            self.data_loaders, self.multi_callbacks
-        ):
+        for data_loader, callbacks in zip(self.data_loaders, self.multi_callbacks):
             self.data_loader = data_loader
             self.set_callbacks(callbacks)
             super().fit()

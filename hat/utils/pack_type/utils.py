@@ -23,9 +23,7 @@ def get_packtype_from_path(path: Union[str, Path]):
 
     assert os.path.exists(path), f"{path} does not exist!"
 
-    if os.path.isdir(path) and {"data.mdb", "lock.mdb"}.issubset(
-        os.listdir(path)
-    ):
+    if os.path.isdir(path) and {"data.mdb", "lock.mdb"}.issubset(os.listdir(path)):
         return Lmdb
     elif path.endswith(".rec"):
         return MXRecord

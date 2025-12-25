@@ -232,9 +232,10 @@ class DistributedDataParallelTrainer(Trainer):
             compiler=None,
             **kwargs,
         )
-        assert isinstance(self.device, int), (
-            "%s, run `DistributedDataParallel` model"
-            " only on one gpu" % type(self.device)
+        assert isinstance(
+            self.device, int
+        ), "%s, run `DistributedDataParallel` model" " only on one gpu" % type(
+            self.device
         )
         current_device = torch.cuda.current_device()
         assert current_device == self.device, "%d vs. %d" % (
@@ -302,9 +303,7 @@ class DistributedDataParallelTrainer(Trainer):
         else:
             cuda_graph = bool(int(os.environ.get("HAT_USE_CUDAGRAPH", "0")))
             stream_context = (
-                torch.cuda.stream(torch.cuda.Stream())
-                if cuda_graph
-                else localcontext()
+                torch.cuda.stream(torch.cuda.Stream()) if cuda_graph else localcontext()
             )
             with stream_context:
                 if LooseVersion(torch_version) >= LooseVersion("1.10.2"):
@@ -336,23 +335,15 @@ class DistributedDataParallelTrainer(Trainer):
         strategy = {}
         strategy["sync_bn"] = self.sync_bn
         strategy["sync_bn_by_host"] = self.sync_bn_by_host
-        strategy["checkpoint"] = bool(
-            int(os.environ.get("HAT_USE_CHECKPOINT", "0"))
-        )
-        strategy["saved_tensor"] = bool(
-            int(os.environ.get("HAT_USE_SAVEDTENSOR", "0"))
-        )
+        strategy["checkpoint"] = bool(int(os.environ.get("HAT_USE_CHECKPOINT", "0")))
+        strategy["saved_tensor"] = bool(int(os.environ.get("HAT_USE_SAVEDTENSOR", "0")))
         strategy["amp"] = self.batch_processor.enable_amp
         strategy["amp_dtype"] = str(self.batch_processor.enable_amp_dtype)
-        strategy["channels_last"] = str(
-            self.batch_processor.enable_channels_last
-        )
+        strategy["channels_last"] = str(self.batch_processor.enable_channels_last)
         strategy["grad_accumulation"] = self.batch_processor.ga_step
 
         for key, value in strategy.items():
-            self.strategy.append(
-                {"name": str(key), "usage_detail": str(value)}
-            )
+            self.strategy.append({"name": str(key), "usage_detail": str(value)})
 
 
 def launch(
@@ -373,8 +364,7 @@ def launch(
         assert num_processes > 0
         if num_processes == num_devices and backend != "NCCL":
             logger.warning(
-                "NCCL is the best choice in case of single "
-                "process on single gpu."
+                "NCCL is the best choice in case of single " "process on single gpu."
             )
 
         # Note: if device_ids=[1, 3], then after setting
@@ -491,21 +481,15 @@ def _main_func(
             world_size=num_processes,
             rank=local_rank,
             timeout=timedelta(
-                seconds=int(
-                    os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800")
-                )
+                seconds=int(os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800"))
             ),
         )
     except Exception as e:
-        logger.error(
-            f"init process group({local_rank}:{dist_url}) error!" + str(e)
-        )
+        logger.error(f"init process group({local_rank}:{dist_url}) error!" + str(e))
         raise e
 
     if num_devices is not None:
-        local_rank = (
-            int(os.environ["LOCAL_RANK"]) if local_rank == -1 else local_rank
-        )
+        local_rank = int(os.environ["LOCAL_RANK"]) if local_rank == -1 else local_rank
         torch.cuda.set_device(local_rank % num_devices)
         _wrap(main_func)(local_rank % num_devices, *args)
     else:
@@ -531,9 +515,7 @@ def _main_mpi(main_func, dist_url, backend, num_devices, num_processes, args):
             world_size=world_size,
             rank=local_rank,
             timeout=timedelta(
-                seconds=int(
-                    os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800")
-                )
+                seconds=int(os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800"))
             ),
         )
     except Exception as e:

@@ -97,13 +97,9 @@ def load_pretrained(
         state_dict["pos_embed"] = new_pos_embed
 
     # Resizing time embeddings in case they don't match
-    if "time_embed" in state_dict and num_frames != state_dict[
-        "time_embed"
-    ].size(1):
+    if "time_embed" in state_dict and num_frames != state_dict["time_embed"].size(1):
         time_embed = state_dict["time_embed"].transpose(1, 2)
-        new_time_embed = F.interpolate(
-            time_embed, size=(num_frames), mode="nearest"
-        )
+        new_time_embed = F.interpolate(time_embed, size=(num_frames), mode="nearest")
         state_dict["time_embed"] = new_time_embed.transpose(1, 2)
 
     # Initializing temporal attention
@@ -154,7 +150,7 @@ class Attention(nn.Module):
         super().__init__()
         self.num_heads = num_heads
         head_dim = dim // num_heads
-        scale = qk_scale or head_dim ** -0.5
+        scale = qk_scale or head_dim**-0.5
         self.register_buffer("scale", torch.Tensor([scale]))
         self.with_qkv = with_qkv
         if self.with_qkv:
@@ -246,9 +242,7 @@ class SpaceTimeBlock(nn.Module):
             self.temporal_fc = nn.Linear(dim, dim)
 
         # drop path
-        self.drop_path = (
-            DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
-        )
+        self.drop_path = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
         self.norm2 = norm_layer(dim)
         mlp_hidden_dim = int(dim * mlp_ratio)
         self.mlp = MlpModule2d(
@@ -276,9 +270,7 @@ class SpaceTimeBlock(nn.Module):
             xt = x[:, 1:, :]
             C = xt.shape[-1]
             xt = xt.reshape(-1, T, C)
-            res_temporal = self.drop_path(
-                self.temporal_attn(self.temporal_norm1(xt))
-            )
+            res_temporal = self.drop_path(self.temporal_attn(self.temporal_norm1(xt)))
             res_temporal = res_temporal.reshape(B, -1, C)
             res_temporal = self.temporal_fc(res_temporal)
             xt = self.temporal_add.add(x[:, 1:, :], res_temporal)

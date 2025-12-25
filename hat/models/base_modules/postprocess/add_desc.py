@@ -45,23 +45,18 @@ class AddDesc(PostProcessorBase):
         strict: True means this op is in strict mode, and otherwise non-strict.
     """
 
-    def __init__(
-        self, per_tensor_desc: Union[str, Sequence[str]], strict: bool = True
-    ):
+    def __init__(self, per_tensor_desc: Union[str, Sequence[str]], strict: bool = True):
         super(AddDesc, self).__init__()
         per_tensor_desc = _as_list(per_tensor_desc)
         assert is_list_of_type(per_tensor_desc, str), (
-            f"per_tensor_desc should be a list of str, "
-            f"but get {per_tensor_desc}"
+            f"per_tensor_desc should be a list of str, " f"but get {per_tensor_desc}"
         )
         self.per_tensor_desc = per_tensor_desc
         self.strict = strict
 
     def forward(
         self,
-        pred: Union[
-            torch.Tensor, Sequence[torch.Tensor], Dict[str, torch.Tensor]
-        ],
+        pred: Union[torch.Tensor, Sequence[torch.Tensor], Dict[str, torch.Tensor]],
         *args,
     ) -> Union[torch.Tensor, Sequence[torch.Tensor], Dict[str, torch.Tensor]]:
         """Add desc str for each tensor in `pred`.

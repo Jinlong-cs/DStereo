@@ -41,9 +41,7 @@ def rewrite_file(file, func_lists, pluginpackages, packagedir):
                     )
                     has_pluginpackage = True
             elif "from {}".format(pluginpackage) in old_line.strip():
-                old_line = old_line.replace(
-                    pluginpackage, packagedir + pluginpackage
-                )
+                old_line = old_line.replace(pluginpackage, packagedir + pluginpackage)
                 has_pluginpackage = True
         old_lines.append(old_line)
     assert len(old_lines) == len(ori_lines)

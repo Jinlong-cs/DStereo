@@ -64,9 +64,7 @@ class VargConvNetBlock(nn.Module):
                 factor=factor,
                 groups=groups // 2 if stride == 2 and groups > 1 else groups,
                 stride=stride,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(in_channels * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(in_channels * factor), **bn_kwargs),
                 dw_act_layer=nn.ReLU(inplace=True) if dw_with_relu else None,
                 pw_norm_layer=nn.BatchNorm2d(out_channels, **bn_kwargs),
             ),
@@ -79,9 +77,7 @@ class VargConvNetBlock(nn.Module):
                 factor=factor,
                 groups=groups,
                 stride=1,
-                dw_norm_layer=nn.BatchNorm2d(
-                    int(out_channels * factor), **bn_kwargs
-                ),
+                dw_norm_layer=nn.BatchNorm2d(int(out_channels * factor), **bn_kwargs),
                 dw_act_layer=nn.ReLU(inplace=True) if dw_with_relu else None,
                 pw_norm_layer=nn.BatchNorm2d(out_channels, **bn_kwargs),
             ),

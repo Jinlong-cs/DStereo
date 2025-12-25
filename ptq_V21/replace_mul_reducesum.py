@@ -127,7 +127,7 @@ def checker(origin_path, target_path):
             print("depth mean_diff:", mean_diff)
         
 if __name__ == "__main__":
-    origin_path = "ptq_V21/float.onnx"
+    origin_path = "input/float.onnx"
     target_path = "ptq_V21/float_modify.onnx"
     replace_reducesum_to_gemm(origin_path, target_path)
     checker(origin_path, target_path)

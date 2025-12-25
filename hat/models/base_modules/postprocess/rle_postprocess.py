@@ -45,9 +45,7 @@ class RLEPostprocess(torch.nn.Module):
                 rle_datas.append(rle(each_data, self.dtype)[0])
             pred_dict[self.data_name] = rle_datas
         elif isinstance(pred_dict[self.data_name], torch.Tensor):
-            pred_dict[self.data_name] = rle(
-                pred_dict[self.data_name], self.dtype
-            )[0]
+            pred_dict[self.data_name] = rle(pred_dict[self.data_name], self.dtype)[0]
         else:
             raise TypeError("only support torch.tensor or list[torch.tensor]")
         return pred_dict

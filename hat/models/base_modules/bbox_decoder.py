@@ -32,26 +32,18 @@ class XYWHBBoxDecoder(nn.Module):
 
         assert len(reg_mean) == 4 and len(reg_std) == 4
 
-        self.register_buffer(
-            "reg_mean", torch.tensor(reg_mean), persistent=False
-        )
-        self.register_buffer(
-            "reg_std", torch.tensor(reg_std), persistent=False
-        )
+        self.register_buffer("reg_mean", torch.tensor(reg_mean), persistent=False)
+        self.register_buffer("reg_std", torch.tensor(reg_std), persistent=False)
 
         self._legacy_bbox = legacy_bbox
 
-    def forward(
-        self, boxes: torch.Tensor, boxes_delta: torch.Tensor
-    ) -> torch.Tensor:
+    def forward(self, boxes: torch.Tensor, boxes_delta: torch.Tensor) -> torch.Tensor:
 
         box_cx, box_cy, box_w, box_h = box_corner_to_center(
             boxes, split=True, legacy_bbox=self._legacy_bbox
         )
 
-        boxes_delta = (
-            boxes_delta.detach().clone() * self.reg_std + self.reg_mean
-        )
+        boxes_delta = boxes_delta.detach().clone() * self.reg_std + self.reg_mean
 
         dx, dy, dw, dh = torch.split(boxes_delta, 1, dim=-1)
 

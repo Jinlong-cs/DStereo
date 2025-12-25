@@ -71,12 +71,8 @@ class MatchLabelSepEncoder(nn.Module):
         pos_match = match_pos_flag > 0
         # regress on any positive match even when label is negative
         # (hard inst) or only on moderate cases
-        reg_label_mask = (
-            pos_match if self.reg_on_hard else pos_match * (cls_label > 0)
-        )
-        reg_label_mask = reg_label_mask[..., None].flatten(
-            start_dim=1, end_dim=-2
-        )
+        reg_label_mask = pos_match if self.reg_on_hard else pos_match * (cls_label > 0)
+        reg_label_mask = reg_label_mask[..., None].flatten(start_dim=1, end_dim=-2)
 
         out_dict = OrderedDict()
 
@@ -138,18 +134,12 @@ class XYWHBBoxEncoder(nn.Module):
 
         assert len(reg_mean) == 4 and len(reg_std) == 4
 
-        self.register_buffer(
-            "reg_mean", torch.tensor(reg_mean), persistent=False
-        )
-        self.register_buffer(
-            "reg_std", torch.tensor(reg_std), persistent=False
-        )
+        self.register_buffer("reg_mean", torch.tensor(reg_mean), persistent=False)
+        self.register_buffer("reg_std", torch.tensor(reg_std), persistent=False)
 
         self._legacy_bbox = legacy_bbox
 
-    def forward(
-        self, boxes: torch.Tensor, gt_boxes: torch.Tensor
-    ) -> torch.Tensor:
+    def forward(self, boxes: torch.Tensor, gt_boxes: torch.Tensor) -> torch.Tensor:
 
         gt_boxes = gt_boxes[..., :4]
 
@@ -163,16 +153,10 @@ class XYWHBBoxEncoder(nn.Module):
         target_dx = (gt_cx - box_cx) / box_w
         target_dy = (gt_cy - box_cy) / box_h
 
-        target_dw = torch.where(
-            gt_w > 0, torch.log(gt_w / box_w), boxes.new_zeros(1)
-        )
-        target_dh = torch.where(
-            gt_h > 0, torch.log(gt_h / box_h), boxes.new_zeros(1)
-        )
+        target_dw = torch.where(gt_w > 0, torch.log(gt_w / box_w), boxes.new_zeros(1))
+        target_dh = torch.where(gt_h > 0, torch.log(gt_h / box_h), boxes.new_zeros(1))
 
-        boxes_delta = torch.cat(
-            [target_dx, target_dy, target_dw, target_dh], dim=-1
-        )
+        boxes_delta = torch.cat([target_dx, target_dy, target_dw, target_dh], dim=-1)
 
         return (boxes_delta - self.reg_mean) / self.reg_std
 
@@ -267,12 +251,8 @@ class RCNNKPSLabelFromMatch(nn.Module):
         bin_y_int, bin_x_int = torch.meshgrid(bin_y_int, bin_x_int)
 
         # generate index
-        self.register_buffer(
-            "bin_x_int", bin_x_int.flatten(), persistent=False
-        )
-        self.register_buffer(
-            "bin_y_int", bin_y_int.flatten(), persistent=False
-        )
+        self.register_buffer("bin_x_int", bin_x_int.flatten(), persistent=False)
+        self.register_buffer("bin_y_int", bin_y_int.flatten(), persistent=False)
 
         self.expand_param = roi_expand_param
         self.gauss_threshold = gauss_threshold
@@ -294,8 +274,8 @@ class RCNNKPSLabelFromMatch(nn.Module):
         x0, y0 = center[:2]
         gauss_map = torch.exp(
             -(
-                (self.bin_x_int + bin_offset - x0) ** 2 / (2 * sigma_x ** 2)
-                + (self.bin_y_int + bin_offset - y0) ** 2 / (2 * sigma_y ** 2)
+                (self.bin_x_int + bin_offset - x0) ** 2 / (2 * sigma_x**2)
+                + (self.bin_y_int + bin_offset - y0) ** 2 / (2 * sigma_y**2)
             )
         )
 
@@ -310,7 +290,7 @@ class RCNNKPSLabelFromMatch(nn.Module):
             assert isinstance(self.gauss_threshold, float)
             keep_pos = torch.where(score_map >= self.gauss_threshold)[0]
         else:
-            dis = pos_offset_x ** 2 + pos_offset_y ** 2
+            dis = pos_offset_x**2 + pos_offset_y**2
             keep_pos = torch.where((dis <= 1) & (dis >= 0))[0]
 
         return pos_offset_x[keep_pos], pos_offset_y[keep_pos], keep_pos
@@ -460,9 +440,7 @@ class RCNNKPSLabelFromMatch(nn.Module):
             kps_pos_offset = kps_pos_offset.view(
                 (num_boxes, self.kps_num * 2, self.feat_h, self.feat_w)
             )
-            kps_pos_offset_weight = kps_pos_offset_weight.view_as(
-                kps_pos_offset
-            )
+            kps_pos_offset_weight = kps_pos_offset_weight.view_as(kps_pos_offset)
 
             cls_labels[i] = kps_label
             cls_label_weight[i] = kps_label_weight
@@ -549,9 +527,7 @@ class RCNNBinDetLabelFromMatch(nn.Module):
         """
 
         gt_anchor_box = take_row(gt_boxes, match_gt_id)
-        box_label = torch.reshape(
-            gt_anchor_box[..., [4]], (gt_anchor_box.shape[0], -1)
-        )
+        box_label = torch.reshape(gt_anchor_box[..., [4]], (gt_anchor_box.shape[0], -1))
 
         label_map, offset = self.get_label(boxes, gt_anchor_box)
 
@@ -562,9 +538,7 @@ class RCNNBinDetLabelFromMatch(nn.Module):
         )
 
         mask_one_dim = (
-            pos_match
-            if self.cls_on_hard
-            else pos_match * (non_neg_match_label > 0)
+            pos_match if self.cls_on_hard else pos_match * (non_neg_match_label > 0)
         )
 
         mask = torch.cat(
@@ -697,12 +671,10 @@ class RCNNBinDetLabelFromMatch(nn.Module):
             )
 
             w_term = torch.square(
-                (label_map_position_w - ind_w_feature - 0.5)
-                / w_sigma_for_score
+                (label_map_position_w - ind_w_feature - 0.5) / w_sigma_for_score
             )
             h_term = torch.square(
-                (label_map_position_h - ind_h_feature - 0.5)
-                / h_sigma_for_score
+                (label_map_position_h - ind_h_feature - 0.5) / h_sigma_for_score
             )
 
             gaussian_label_map = torch.exp(-(w_term + h_term))
@@ -720,22 +692,20 @@ class RCNNBinDetLabelFromMatch(nn.Module):
             # return gaussian_label_map
             return gaussian_label_map
 
-        labelmap_onehot_label = gen_gaussian_label_map(
-            ind_w_feature, ind_h_feature
-        )
+        labelmap_onehot_label = gen_gaussian_label_map(ind_w_feature, ind_h_feature)
 
-        label_map_offset_x1 = torch.div(
-            relative_box_xmin, strides_w
-        ).unsqueeze(-1).expand(ind_w_feature.shape) - (ind_w_feature + 0.5)
-        label_map_offset_y1 = torch.div(
-            relative_box_ymin, strides_h
-        ).unsqueeze(-1).expand(ind_h_feature.shape) - (ind_h_feature + 0.5)
-        label_map_offset_x2 = torch.div(
-            relative_box_xmax, strides_w
-        ).unsqueeze(-1).expand(ind_w_feature.shape) - (ind_w_feature + 0.5)
-        label_map_offset_y2 = torch.div(
-            relative_box_ymax, strides_h
-        ).unsqueeze(-1).expand(ind_h_feature.shape) - (ind_h_feature + 0.5)
+        label_map_offset_x1 = torch.div(relative_box_xmin, strides_w).unsqueeze(
+            -1
+        ).expand(ind_w_feature.shape) - (ind_w_feature + 0.5)
+        label_map_offset_y1 = torch.div(relative_box_ymin, strides_h).unsqueeze(
+            -1
+        ).expand(ind_h_feature.shape) - (ind_h_feature + 0.5)
+        label_map_offset_x2 = torch.div(relative_box_xmax, strides_w).unsqueeze(
+            -1
+        ).expand(ind_w_feature.shape) - (ind_w_feature + 0.5)
+        label_map_offset_y2 = torch.div(relative_box_ymax, strides_h).unsqueeze(
+            -1
+        ).expand(ind_h_feature.shape) - (ind_h_feature + 0.5)
 
         offset = torch.cat(
             (
@@ -810,12 +780,8 @@ class RCNNBinDetLabelFromMatch(nn.Module):
             )
             return torch.where(cond, torch.zeros_like(data), data)
 
-        label_map = process_small_stride(
-            strides_w, self.num_classes, label_map
-        )
-        label_map = process_small_stride(
-            strides_h, self.num_classes, label_map
-        )
+        label_map = process_small_stride(strides_w, self.num_classes, label_map)
+        label_map = process_small_stride(strides_h, self.num_classes, label_map)
         offset = process_small_stride(strides_w, 4, offset)
         offset = process_small_stride(strides_h, 4, offset)
 
@@ -888,9 +854,7 @@ class MatchLabelGroundLineEncoder(nn.Module):
             if self.reg_on_hard
             else pos_match * (cls_label > 0)
         )
-        reg_label_mask = reg_label_mask[..., None].flatten(
-            start_dim=1, end_dim=-2
-        )
+        reg_label_mask = reg_label_mask[..., None].flatten(start_dim=1, end_dim=-2)
 
         # set cls label of negative matchings to 0
         gdls_cls[match_pos_flag == 0] = 0
@@ -927,9 +891,7 @@ class MatchLabelGroundLineEncoder(nn.Module):
         if self.limit_reg_length:
             delta_left = coords_y1 - boxes_y1
             delta_right = coords_y2 - boxes_y2
-            delta_mask = torch.logical_and(
-                delta_left > 0, delta_right > 0
-            )  # noqa
+            delta_mask = torch.logical_and(delta_left > 0, delta_right > 0)  # noqa
             mask = torch.logical_and(mask, delta_mask)
             reg_label = torch.log(
                 torch.cat([delta_left, delta_right], dim=-1), boxes_height
@@ -1084,9 +1046,7 @@ class RCNN3DLabelFromMatch(RCNNKPSLabelFromMatch):
                 continue
 
             # pos_num_boxes, 4
-            box = zoom_boxes(
-                boxes[idx], (self.expand_param, self.expand_param)
-            )
+            box = zoom_boxes(boxes[idx], (self.expand_param, self.expand_param))
             pos_gt_roi_boxes = matched_gt_boxes[idx]  # 128,14
             # pos_num_boxes, self.kps_num * 4
             gt_2d_bbox = pos_gt_roi_boxes[:, : self.kps_num * 4]
@@ -1126,9 +1086,7 @@ class RCNN3DLabelFromMatch(RCNNKPSLabelFromMatch):
                 fill_value=-1,
                 dtype=torch.float32,
             )  # noqa
-            kps_label_weight = torch.zeros(
-                kps_label.shape, dtype=torch.float32
-            )
+            kps_label_weight = torch.zeros(kps_label.shape, dtype=torch.float32)
 
             kps_pos_offset = kps_xy.new_zeros(
                 (num_boxes * self.kps_num, 2, self.feat_h * self.feat_w)
@@ -1140,9 +1098,7 @@ class RCNN3DLabelFromMatch(RCNNKPSLabelFromMatch):
             kps_3d_offset = kps_xy.new_zeros(
                 (num_boxes * self.kps_num, 2, self.feat_h * self.feat_w)
             )
-            kps_3d_offset_weight = torch.zeros(
-                kps_3d_offset.shape, dtype=torch.float32
-            )
+            kps_3d_offset_weight = torch.zeros(kps_3d_offset.shape, dtype=torch.float32)
 
             if self.undistort_depth_uv:
                 kps_depth_u = torch.zeros(
@@ -1153,17 +1109,13 @@ class RCNN3DLabelFromMatch(RCNNKPSLabelFromMatch):
                     (num_boxes * self.kps_num, 1, self.feat_h * self.feat_w),
                     dtype=torch.float32,
                 )
-                kps_depth_weight = torch.zeros(
-                    kps_depth_u.shape, dtype=torch.float32
-                )
+                kps_depth_weight = torch.zeros(kps_depth_u.shape, dtype=torch.float32)
             else:
                 kps_depth = torch.zeros(
                     (num_boxes * self.kps_num, 1, self.feat_h * self.feat_w),
                     dtype=torch.float32,
                 )
-                kps_depth_weight = torch.zeros(
-                    kps_depth.shape, dtype=torch.float32
-                )
+                kps_depth_weight = torch.zeros(kps_depth.shape, dtype=torch.float32)
 
             if len(keep) > 0:
                 # 平均到每个proposal
@@ -1233,9 +1185,7 @@ class RCNN3DLabelFromMatch(RCNNKPSLabelFromMatch):
             kps_pos_offset = kps_pos_offset.view(
                 (num_boxes, self.kps_num * 2, self.feat_h, self.feat_w)
             )
-            kps_pos_offset_weight = kps_pos_offset_weight.view_as(
-                kps_pos_offset
-            )
+            kps_pos_offset_weight = kps_pos_offset_weight.view_as(kps_pos_offset)
 
             kps_3d_offset = kps_3d_offset.view(
                 (num_boxes, self.kps_num * 2, self.feat_h, self.feat_w)
@@ -1405,9 +1355,7 @@ class RCNNMultiBinDetLabelFromMatch(RCNNBinDetLabelFromMatch):
         )
         # with shape: (B,num_anchors,num_class,H,W),
         # (B,num_anchors,4,H,W), (B,num_anchors,num_class,H,W)
-        label_map, offset, hard_mask = self.get_label(
-            boxes, gt_boxes, match_pos_flag
-        )
+        label_map, offset, hard_mask = self.get_label(boxes, gt_boxes, match_pos_flag)
 
         # with shape (B*num_anchors,num_class,H,W)
         label_map = label_map.reshape(
@@ -1421,11 +1369,7 @@ class RCNNMultiBinDetLabelFromMatch(RCNNBinDetLabelFromMatch):
         )
         # with shape (B*num_anchors,1,1,1)
         pos_mask = (
-            (match_pos_flag > 0)
-            .flatten()
-            .unsqueeze(-1)
-            .unsqueeze(-1)
-            .unsqueeze(-1)
+            (match_pos_flag > 0).flatten().unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
         )
         # with shape (B*num_anchors,num_class,H,W)
         label_mask = pos_mask.expand_as(label_map)
@@ -1440,9 +1384,7 @@ class RCNNMultiBinDetLabelFromMatch(RCNNBinDetLabelFromMatch):
         if not self.reg_on_hard:
             offset_mask = torch.logical_and(
                 offset_mask,
-                (hard_mask <= 0)
-                .any(dim=1, keepdim=True)
-                .expand_as(offset_mask),
+                (hard_mask <= 0).any(dim=1, keepdim=True).expand_as(offset_mask),
             )
 
         if self.use_ig_region and ig_regions is not None:
@@ -1591,12 +1533,8 @@ class RCNNMultiBinDetLabelFromMatch(RCNNBinDetLabelFromMatch):
             hard_label_mask = (-ori_relatvie_label - 1) == label_inds
             grid_x = torch.div(relative_cx, stride_w)
             grid_y = torch.div(relative_cy, stride_h)
-            grid_x = torch.floor(
-                torch.clamp(grid_x, 0, self.feature_w - 1)
-            ).long()
-            grid_y = torch.floor(
-                torch.clamp(grid_y, 0, self.feature_h - 1)
-            ).long()
+            grid_x = torch.floor(torch.clamp(grid_x, 0, self.feature_w - 1)).long()
+            grid_y = torch.floor(torch.clamp(grid_y, 0, self.feature_h - 1)).long()
             # with shape (B,num_anchors,1,H,W)
             position_mask = torch.logical_and(
                 torch.logical_and(grid_x == xs, grid_y == ys),
@@ -1747,14 +1685,10 @@ class MatchLabelFlankEncoder(nn.Module):
             torch.zeros_like(matched_gt_flanks[..., 0]),
         )
         # [batch_size,num_instance,num_corners,2]
-        reg_label = torch.cat(
-            [horizon_delta[..., None], height_tgt[..., None]], dim=-1
-        )
+        reg_label = torch.cat([horizon_delta[..., None], height_tgt[..., None]], dim=-1)
         reg_label_mask = torch.logical_and(reg_label_mask, height_mask)
         reg_label_mask = reg_label_mask[..., None]
-        dims = [
-            int(x / y) for x, y in zip(reg_label.size(), reg_label_mask.size())
-        ]
+        dims = [int(x / y) for x, y in zip(reg_label.size(), reg_label_mask.size())]
         # with shape [batch_size,num_instance,num_corners,2]
         reg_label_mask = torch.tile(reg_label_mask, dims)
 
@@ -1872,9 +1806,7 @@ class ClassWiseTrackIdEncoder(nn.Module):
         self._num_classes = num_classes
         self._exclude_background = exclude_background
 
-    def forward(
-        self, track_id: torch.Tensor, cls_label: torch.Tensor
-    ) -> torch.Tensor:
+    def forward(self, track_id: torch.Tensor, cls_label: torch.Tensor) -> torch.Tensor:
 
         assert torch.all(cls_label < self._num_classes) and torch.all(
             cls_label > -self._num_classes
@@ -2000,9 +1932,7 @@ class MultiClassMatchLabelSepEncoder(nn.Module):
             if self.bg_in_label:
                 reg_label_weight[:, :, 0] = 0
             reg_label_weight = (
-                reg_label_weight.unsqueeze(-1)
-                .repeat(1, 1, 1, 4)
-                .flatten(start_dim=2)
+                reg_label_weight.unsqueeze(-1).repeat(1, 1, 1, 4).flatten(start_dim=2)
             )
 
             out_dict.update(
@@ -2090,9 +2020,7 @@ class PersonPositionLabelFromMatch(nn.Module):
                 num_bfg = torch.sum(cls_label_dms[i] >= 0)
                 if num_bfg > 0:
                     if self.dms_position_classes_weight is None:
-                        cls_label_weight_dms[cls_label_dms[i] >= 0] = (
-                            1.0 / num_bfg
-                        )
+                        cls_label_weight_dms[cls_label_dms[i] >= 0] = 1.0 / num_bfg
                     else:
                         gt_positive_cls = gt_cls[gt_cls >= 0]
                         gt_positive_cls_int = gt_positive_cls.long()
@@ -2111,9 +2039,7 @@ class PersonPositionLabelFromMatch(nn.Module):
                 num_bfg = torch.sum(cls_label_oms[i] >= 0)
                 if num_bfg > 0:
                     if self.dms_position_classes_weight is None:
-                        cls_label_weight_oms[cls_label_oms >= 0] = (
-                            1.0 / num_bfg
-                        )
+                        cls_label_weight_oms[cls_label_oms >= 0] = 1.0 / num_bfg
                     else:
                         gt_positive_cls = gt_cls[gt_cls >= 0]
                         gt_positive_cls_int = gt_positive_cls.long()

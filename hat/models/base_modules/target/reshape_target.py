@@ -33,9 +33,7 @@ class ReshapeTarget(object):
         elif isinstance(data, Sequence):
             valid_shape_list = []
             for idx in range(len(data)):
-                valid_shape = (
-                    shape[idx] if isinstance(shape[0], Sequence) else shape
-                )
+                valid_shape = shape[idx] if isinstance(shape[0], Sequence) else shape
                 valid_shape_list.append(valid_shape)
             return [
                 self._reshape(sub_data, sub_shape)
@@ -46,7 +44,5 @@ class ReshapeTarget(object):
 
     def __call__(self, label_dict: Mapping, pred_dict: Mapping) -> Mapping:
         shape = self.shape if self.shape else label_dict[self.data_name].shape
-        label_dict[self.data_name] = self._reshape(
-            label_dict[self.data_name], shape
-        )
+        label_dict[self.data_name] = self._reshape(label_dict[self.data_name], shape)
         return label_dict

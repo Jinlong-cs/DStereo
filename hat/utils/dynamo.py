@@ -33,9 +33,7 @@ def disable_compile(
         fn: The function to disable.
         recursive: Whether the disabling should be recursive.
     """
-    if torch_dynamo and check_packages_available(
-        "torch>=2.0", raise_exception=False
-    ):
+    if torch_dynamo and check_packages_available("torch>=2.0", raise_exception=False):
         if recursive:
             return torch_dynamo.disable(fn=fn)
         else:
@@ -74,9 +72,7 @@ class ExplainOutput:
         for idx, break_reason in enumerate(deduped_reasons.values()):
             output += f"  Break Reason {idx+1}:\n"
             output += f"    Reason: {break_reason.reason}\n"
-            formatted_stack = "".join(
-                traceback.format_list(break_reason.user_stack)
-            )
+            formatted_stack = "".join(traceback.format_list(break_reason.user_stack))
             output += f"    User Stack:\n{formatted_stack}\n"
 
         if self.ops_per_graph is not None:
@@ -125,9 +121,7 @@ class GuardFailureOutput:
 
         output = "Torchdynamo Profiler Report:\n"
         if len(self.guard_failures) > 0:
-            max_recompiles = max(
-                [num_recompiles(code) for code in self.guard_failures]
-            )
+            max_recompiles = max([num_recompiles(code) for code in self.guard_failures])
             output += "\n"
             output += (
                 "These subgraphs were recompiled more than once due "
@@ -177,9 +171,7 @@ def _explain_graph_detail(
     """
 
     graphs.append(gm)
-    ops = [
-        node.target for node in gm.graph.nodes if node.op == "call_function"
-    ]
+    ops = [node.target for node in gm.graph.nodes if node.op == "call_function"]
     op_count += len(ops)
     ops_per_graph.append(ops)
     if gm.compile_subgraph_reason is not None:
@@ -223,9 +215,7 @@ class CompileBackendWrapper:
 
         if self.with_explain:
             self.reset()
-            self.backend_ctx_ctor = (
-                lambda: torch_dynamo.utils.disable_cache_limit()
-            )
+            self.backend_ctx_ctor = lambda: torch_dynamo.utils.disable_cache_limit()
             set_value(self.compile_wrapper_name, self)
 
     def __call__(self, gm: "GraphModule", example_inputs) -> Any:

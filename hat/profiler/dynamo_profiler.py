@@ -59,8 +59,7 @@ class DynamoProfiler(BaseProfiler):
     def start(self, action_name: str) -> None:
         if action_name in self.current_actions:
             raise ValueError(
-                f"Attempted to start {action_name} "
-                f"which has already started."
+                f"Attempted to start {action_name} " f"which has already started."
             )
         if self._match_any_record_func(
             action_name=action_name,

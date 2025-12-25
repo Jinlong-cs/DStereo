@@ -279,9 +279,7 @@ class ConvUpsample2d(nn.Module):
         )
         self.norm = norm_layer
         self.act = act_layer
-        self.up = hnn.Interpolate(
-            scale_factor=stride, recompute_scale_factor=True
-        )
+        self.up = hnn.Interpolate(scale_factor=stride, recompute_scale_factor=True)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.conv(x)

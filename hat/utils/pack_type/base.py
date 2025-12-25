@@ -70,11 +70,7 @@ class PackType(ABC):
             self.read_size += sys.getsizeof(res)
             if (
                 time.time() - self.start_time
-                > float(
-                    os.getenv(
-                        "HAT_MONITOR_INTERVAL", self.hat_monitor_interval
-                    )
-                )
+                > float(os.getenv("HAT_MONITOR_INTERVAL", self.hat_monitor_interval))
                 or int(os.getenv("HAT_MONITOR_ALL_TIME", 0)) == 1
             ):
                 read_size = self.read_size / 1024 / 1024

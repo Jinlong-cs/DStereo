@@ -166,9 +166,7 @@ class MultiHeadAttention(nn.Module):
         value = value.view(n_batch, self.head, self.d_k, -1)  # b, h, c, t
         return query, key, value, new_cache
 
-    def _calculate_scores(
-        self, query: torch.Tensor, key: torch.Tensor
-    ) -> torch.Tensor:
+    def _calculate_scores(self, query: torch.Tensor, key: torch.Tensor) -> torch.Tensor:
         r"""计算query和key矩阵乘的得分.
 
         .. math::
@@ -208,9 +206,7 @@ class MultiHeadAttention(nn.Module):
         x = x.view(n_batch, self.d_k * self.head, 1, -1)
         return x
 
-    def trace(
-        self, query: torch.Tensor, key: torch.Tensor, value: torch.Tensor
-    ):
+    def trace(self, query: torch.Tensor, key: torch.Tensor, value: torch.Tensor):
         """trace.
 
         在进行保存 torch.jit.trace 时, 不使用 mask 操作.
@@ -362,9 +358,7 @@ class CausalConvolutionModule(nn.Module):
 
         self.cat = hopp.nn.quantized.FloatFunctional()
 
-    def forward(
-        self, x: torch.Tensor, mask_pad: torch.Tensor, cache
-    ) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, mask_pad: torch.Tensor, cache) -> torch.Tensor:
         # ! pytorch_horizon_plugin 中的 cat 算子需要被训练, 不能单独在预测使用
         # ! 在 trace 过程中, 需要 cat(cache, x)
         # ! 所以这里手动cat一个zero向量, 保证 cat 得到训练

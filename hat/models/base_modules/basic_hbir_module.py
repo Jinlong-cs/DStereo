@@ -53,9 +53,7 @@ class BaseHbirModule(nn.Module):
 
     def forward(self, batched_data):
 
-        hbir_output = self.model.functions[0](
-            *self.flatten_hbir_input(batched_data)
-        )
+        hbir_output = self.model.functions[0](*self.flatten_hbir_input(batched_data))
         hbir_output = self.output_unflattener(hbir_output)
         hbir_output = self.output_to_tensor(hbir_output)
 

@@ -71,9 +71,7 @@ def update_state_dict_by_strip_prefix(
         prefix_len = len(strip_prefix)
         state_dict = {k[prefix_len:]: v for k, v in state_dict.items()}
     else:
-        logger.warning(
-            "{} is not at the beginning of state dict".format(strip_prefix)
-        )
+        logger.warning("{} is not at the beginning of state dict".format(strip_prefix))
     return state_dict
 
 
@@ -193,15 +191,11 @@ def load_checkpoint(
 
             client = aidi.get_aidi_client()
             _, _, model_name, model_version, stage = path.split(os.sep)
-            with TemporaryDirectory(
-                "w", dir=os.path.abspath(".")
-            ) as output_dir:
+            with TemporaryDirectory("w", dir=os.path.abspath(".")) as output_dir:
                 path = client.model.download(
                     output_dir, model_name, model_version, stage
                 )
-                path = get_hash_file_if_hashed_and_local(
-                    path, check_hash=check_hash
-                )
+                path = get_hash_file_if_hashed_and_local(path, check_hash=check_hash)
                 fs = get_filesystem(path)
                 with fs.open(path, "rb") as f:
                     checkpoint = torch.load(f, map_location=map_location)
@@ -223,9 +217,7 @@ def load_checkpoint(
         else:
             if path.startswith("dmpv2://"):
                 path = url_to_local_path(str(path))
-            path = get_hash_file_if_hashed_and_local(
-                path, check_hash=check_hash
-            )
+            path = get_hash_file_if_hashed_and_local(path, check_hash=check_hash)
             fs = get_filesystem(path)
             with fs.open(path, "rb") as f:
                 checkpoint = torch.load(f, map_location=map_location)
@@ -256,43 +248,6 @@ def load_checkpoint(
 def is_module_wrapper(module):
     module_wrappers = (DataParallel, DistributedDataParallel)
     return isinstance(module, module_wrappers)
-
-
-def module_load_state_dict(module, state_dict, strict=False):
-    unexpected_keys = []
-    all_missing_keys = []
-    err_msg = []
-
-    metadata = getattr(state_dict, "_metadata", None)
-    state_dict = state_dict.copy()
-    if metadata is not None:
-        state_dict._metadata = metadata
-
-    def load(module, prefix=""):
-        # recursively check parallel module in case that the model has a
-        # complicated structure, e.g., nn.Module(nn.Module(DDP))
-        if is_module_wrapper(module):
-            module = module.module
-        local_metadata = (
-            {} if metadata is None else metadata.get(prefix[:-1], {})
-        )
-        module._load_from_state_dict(
-            state_dict,
-            prefix,
-            local_metadata,
-            True,
-            all_missing_keys,
-            unexpected_keys,
-            err_msg,
-        )
-        for name, child in module._modules.items():
-            if child is not None:
-                load(child, prefix + name + ".")
-
-    load(module)
-    load = None  # break load->load reference cycle
-
-    return all_missing_keys, unexpected_keys, module
 
 
 def load_state_dict(
@@ -377,9 +332,7 @@ def load_state_dict(
             model, state_dict, strict=False
         )
     else:
-        miss_key, unexpect_key = model.load_state_dict(
-            state_dict, strict=False
-        )
+        miss_key, unexpect_key = model.load_state_dict(state_dict, strict=False)
 
     logger.info("state_dict in checkpoint num: {}".format(len(state_dict)))
     logger.info("state_dict in model num: {}".format(len(model.state_dict())))
@@ -393,7 +346,7 @@ def load_state_dict(
     if len(miss_key) > 0 and not allow_miss:
         raise ValueError("set allow_miss=True to skip this check")
     if len(unexpect_key) > 0 and not ignore_extra:
-        print('error_unexpect_key',unexpect_key)
+        print("error_unexpect_key", unexpect_key)
         raise ValueError("set ignore_extra=True to skip this check")
     return model
 

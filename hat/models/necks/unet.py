@@ -63,9 +63,7 @@ class FusionBlock(nn.Module):
             merge_branch=False,
         )
 
-        self.upsampling = hnn.Interpolate(
-            scale_factor=2, recompute_scale_factor=True
-        )
+        self.upsampling = hnn.Interpolate(scale_factor=2, recompute_scale_factor=True)
         group_num = int(up_c / group_base)
         self.fusion = SeparableGroupConvModule2d(
             in_channels=up_c,
@@ -164,9 +162,7 @@ class OnePathFusionBlock(nn.Module):
             factor=2.0,
         )
 
-        self.upsampling = hnn.Interpolate(
-            scale_factor=2, recompute_scale_factor=True
-        )
+        self.upsampling = hnn.Interpolate(scale_factor=2, recompute_scale_factor=True)
 
         self.fusion = SeparableGroupConvModule2d(
             in_channels=bottom_c,
@@ -268,10 +264,7 @@ class Unet(nn.Module):
         self.src_min_stride_idx = self.in_strides.index(self.out_strides[0])
         self.src_min_stride = self.in_strides[self.src_min_stride_idx]
         last_in_stride = self.in_strides[-1]
-        if (
-            not stride2channels[last_in_stride]
-            == out_stride2channels[last_in_stride]
-        ):
+        if not stride2channels[last_in_stride] == out_stride2channels[last_in_stride]:
             in_c = stride2channels[last_in_stride]
             out_c = out_stride2channels[last_in_stride]
             group_num = int(in_c / group_base)
@@ -316,22 +309,16 @@ class Unet(nn.Module):
 
         fusion_features = {self.in_strides[-1]: features[-1]}
         if hasattr(self, "align_block"):
-            fusion_features[self.in_strides[-1]] = self.align_block(
-                features[-1]
-            )
+            fusion_features[self.in_strides[-1]] = self.align_block(features[-1])
 
         for bottom_feat, stride, block in zip(
             features[:-1][::-1],
             self.in_strides[self.src_min_stride_idx : -1][::-1],
             self.fusion_blocks,
         ):
-            fusion_features[stride] = block(
-                fusion_features[stride * 2], bottom_feat
-            )
+            fusion_features[stride] = block(fusion_features[stride * 2], bottom_feat)
 
-        out_features = [
-            fusion_features[stride_i] for stride_i in self.out_strides
-        ]
+        out_features = [fusion_features[stride_i] for stride_i in self.out_strides]
 
         return out_features
 

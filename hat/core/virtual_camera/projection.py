@@ -64,9 +64,7 @@ class CylindricalProjection(Projection):
 
         lens_points = np.zeros((camera_points.shape[0], 2))
         lens_points.T[0] = theta
-        lens_points.T[1] = camera_points.T[1] * np.divide(
-            1, chi, where=(chi != 0)
-        )
+        lens_points.T[1] = camera_points.T[1] * np.divide(1, chi, where=(chi != 0))
         lens_points[chi == 0] = -1
         return lens_points
 
@@ -187,8 +185,7 @@ class FisheyeProjection(Projection):
         theta = np.add(theta, np.pi, where=(theta < 0), out=theta)
         rho = self._theta_to_rho(theta)
         lens_points = (
-            np.divide(rho, chi, where=(chi != 0))[:, np.newaxis]
-            * camera_points[:, 0:2]
+            np.divide(rho, chi, where=(chi != 0))[:, np.newaxis] * camera_points[:, 0:2]
         )
         # set (0, 0, 0) = -1
         lens_points[(chi == 0) & (camera_points[:, 2] == 0)] = -1
@@ -209,10 +206,7 @@ class FisheyeProjection(Projection):
 
     def _theta_to_rho(self, theta):
         # reference:https://docs.opencv.org/3.4/db/d58/group__calib3d__fisheye.html
-        return (
-            np.dot(self.distcoeffs, np.power(np.array([theta]), self.power))
-            + theta
-        )
+        return np.dot(self.distcoeffs, np.power(np.array([theta]), self.power)) + theta
 
     # slow method
     def _rho_to_theta(self, rho):
@@ -227,11 +221,7 @@ class FisheyeProjection(Projection):
             theta = np.real(theta[theta.imag == 0])
             theta = theta[np.where(np.abs(theta) < np.pi)]
             theta = theta[np.where(theta > 0)]
-            theta = (
-                theta[np.argmin(np.abs(theta))]
-                if theta.size > 0
-                else np.array(0)
-            )
+            theta = theta[np.argmin(np.abs(theta))] if theta.size > 0 else np.array(0)
             theta = np.min(theta) if theta.size > 0 else 0
             results[i] = np.array(theta)
         return results

@@ -13,6 +13,7 @@ Release Package Tools, include the following steps:
     8. test(optional).
 
 """
+
 import argparse
 import os
 import subprocess
@@ -53,9 +54,7 @@ def code_strip(code_strip_cmd):
     print("code strip and make docs success!")
 
 
-def build_docker(
-    dockerfile_path, docker_url, workspace=".", create_dockerfile=None
-):
+def build_docker(dockerfile_path, docker_url, workspace=".", create_dockerfile=None):
     """Build docker."""
     # create dockerfile and build docker
 
@@ -117,9 +116,7 @@ def pack_package(package_path, package_dir, password=None, encrypt_type=None):
     print("pack package success!")
 
 
-def unpack_package(
-    package_path, unpackdir=None, password=None, encrypt_type=None
-):
+def unpack_package(package_path, unpackdir=None, password=None, encrypt_type=None):
     """Unpack package."""
     print("start unpack package!")
     if password is not None:
@@ -138,9 +135,7 @@ def unpack_package(
     print("unpack package success!")
 
 
-def run_docker(
-    docker_url, test_package=False, mount_sources=None, mount_targets=None
-):
+def run_docker(docker_url, test_package=False, mount_sources=None, mount_targets=None):
     """Run docker."""
     print("start run docker!")
     cmd = "docker run -it  --gpus all --shm-size 8gb "

@@ -63,17 +63,13 @@ def build_task(name, config: Union[int, Dict]):
     if isinstance(config, int):
         config = {"sampling_factor": config}
     else:
-        assert isinstance(
-            config, dict
-        ), "Task config only support int or dict."
+        assert isinstance(config, dict), "Task config only support int or dict."
     task = Task()
     task.name = name
     for k in config:
         setattr(task, k, config[k])
         if k == "end_epoch" or k == "end_step":
-            logger.warning(
-                f"{k} with max dataloader may cause bug, " f"take careful"
-            )
+            logger.warning(f"{k} with max dataloader may cause bug, " f"take careful")
     # check valid
     assert task.end_epoch < 0 or task.end_epoch > task.start_epoch
     assert task.end_step < 0 or task.end_step > task.start_step
@@ -375,9 +371,7 @@ class TaskSampler:
             else:
                 if self._curr_step >= self._config["end_steps"][-1]:
                     logger.warning(
-                        format_msg(
-                            "Try to sample more than step size", MSGColor.RED
-                        )
+                        format_msg("Try to sample more than step size", MSGColor.RED)
                     )
                 if self._curr_step >= self._config["end_steps"][
                     self._curr_stage
@@ -410,9 +404,7 @@ class TaskSampler:
             task = self._expand_tasks[self._inner_cycle_idx]
 
             # if epoch or step given, update task to valid one.
-            if self.has_step_or_epoch() and (
-                epoch is not None or step is not None
-            ):
+            if self.has_step_or_epoch() and (epoch is not None or step is not None):
                 # TODO(min.du, 0.5): infinite loop #
                 while not self.is_task_valid(task, epoch=epoch, step=step):
                     self._inner_cycle_idx += 1
@@ -426,14 +418,11 @@ class TaskSampler:
     def _update_config_if_parallel(self) -> None:
         """Update task in config if parallel, and assign rank in config."""  # noqa
         if self._gpu_weights:
-            assert isinstance(
-                self._gpu_weights, dict
-            ), "gpu_weights should be dict"
+            assert isinstance(self._gpu_weights, dict), "gpu_weights should be dict"
             if not dist_initialized():
                 self._is_parallel = False
                 logger.warning(
-                    "TaskSampler is set gpu_group, but dist is not "
-                    "initialized, skip"
+                    "TaskSampler is set gpu_group, but dist is not " "initialized, skip"
                 )
                 return
         else:
@@ -442,16 +431,13 @@ class TaskSampler:
 
         # Convert gpu_group and gpu_weights to group_weight_dict
         gpu_groups = [cfg_i["gpu_group"] for _, cfg_i in self._config.items()]
-        group_weight_dict = {
-            group: self._gpu_weights[group] for group in gpu_groups
-        }
+        group_weight_dict = {group: self._gpu_weights[group] for group in gpu_groups}
 
         # Get actual gpu nums for each gpu group
         rank, world_size = get_dist_info()
         weight_sum = sum(group_weight_dict.values())
         gpu_nums = [
-            int(world_size * w / weight_sum)
-            for w in group_weight_dict.values()
+            int(world_size * w / weight_sum) for w in group_weight_dict.values()
         ]
         assert sum(gpu_nums) == world_size
 
@@ -485,9 +471,7 @@ class TaskSampler:
             gpu_group = self._config[task_name]["gpu_group"]
             if gpu_group == current_group:
                 config_in_rank[task_name] = self._config[task_name]
-                config_in_rank[task_name]["rank"] = group_rank_dict[
-                    gpu_group
-                ]  # noqa
+                config_in_rank[task_name]["rank"] = group_rank_dict[gpu_group]  # noqa
         self._config = config_in_rank
         self._is_parallel = True
         self._process_group = group2pg[current_group]
@@ -498,9 +482,7 @@ class TaskSampler:
 
 
 # TODO(min.du, HDLT-299): move to TaskSampler #
-def update_from_white_list(
-    sampler: TaskSampler, white_list: List[str]
-) -> None:
+def update_from_white_list(sampler: TaskSampler, white_list: List[str]) -> None:
     """Ignore the useless task and update the sampler.
 
     Args:
@@ -510,9 +492,7 @@ def update_from_white_list(
     Returns:
         None
     """
-    logger.warning(
-        format_msg("You are setting the task_sampler", MSGColor.RED)
-    )
+    logger.warning(format_msg("You are setting the task_sampler", MSGColor.RED))
     sampler_config = copy.deepcopy(sampler.config)
     sampler_tasks = copy.deepcopy(sampler.tasks)
     for task in list(sampler.config.keys()):

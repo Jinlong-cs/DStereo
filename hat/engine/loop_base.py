@@ -233,9 +233,10 @@ class LoopBase(PipeBase):  # noqa: D205,D400
         compiler: Optional[Dict] = None,
     ):
         super(LoopBase, self).__init__(callbacks=callbacks, profiler=profiler)
-        assert isinstance(device, int) or device is None, (
-            "device should be int (gpu id) or None (run on cpu), but get %s"
-            % type(device)
+        assert (
+            isinstance(device, int) or device is None
+        ), "device should be int (gpu id) or None (run on cpu), but get %s" % type(
+            device
         )
 
         assert start_epoch >= 0, (
@@ -311,9 +312,7 @@ class LoopBase(PipeBase):  # noqa: D205,D400
                 _skip_loop = True
 
         else:
-            raise ValueError(
-                f"stop_by should be `epoch` or `step`, but get {stop_by}"
-            )
+            raise ValueError(f"stop_by should be `epoch` or `step`, but get {stop_by}")
 
         self._skip_loop = _skip_loop
         self.storage = EventStorage()
@@ -349,9 +348,7 @@ class LoopBase(PipeBase):  # noqa: D205,D400
             resumable = checkpoint_resumable(self.checkpoint)
 
             if resume_epoch_or_step or resume_optimizer:
-                assert (
-                    resumable
-                ), "Resume only when number of devices is consistent"
+                assert resumable, "Resume only when number of devices is consistent"
 
             if resume_optimizer:
                 # update optimizer states from checkpoint
@@ -388,9 +385,7 @@ class LoopBase(PipeBase):  # noqa: D205,D400
             # resume grad_scaler state_dict for amp
             grad_scaler_state = self.checkpoint.get("grad_scaler", {})
             if len(grad_scaler_state) > 0:
-                self.batch_processor.grad_scaler.load_state_dict(
-                    grad_scaler_state
-                )
+                self.batch_processor.grad_scaler.load_state_dict(grad_scaler_state)
 
             if resume_dataloader and self._stop_by_step:
                 set_value("dataloader_batch_size", self.data_loader.batch_size)

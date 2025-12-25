@@ -112,9 +112,7 @@ def create_process_group(rank_list: Tuple[str]) -> Any:
         group = dist.new_group(
             rank_list,
             timeout=timedelta(
-                seconds=int(
-                    os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800")
-                )
+                seconds=int(os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800"))
             ),
         )
     return group
@@ -212,9 +210,7 @@ def split_process_group_by_host(
 
     if len(new_group_ranks) == 0:
         # all process group on one host, not need to create new group
-        logger.info(
-            f"rank {current_rank} same host {hostid} not need to split"
-        )
+        logger.info(f"rank {current_rank} same host {hostid} not need to split")
         return process_group, True
 
     # create new groups
@@ -257,9 +253,7 @@ def gather(outputs, target_device, dim=0):
         if isinstance(out, dict):
             if not all((len(out) == len(d) for d in outputs)):
                 raise ValueError("All dicts must have the same number of keys")
-            return type(out)(
-                ((k, gather_map([d[k] for d in outputs])) for k in out)
-            )
+            return type(out)(((k, gather_map([d[k] for d in outputs])) for k in out))
         if is_namedtuple(out):
             return type(out)._make(map(gather_map, zip(*outputs)))
         return type(out)(map(gather_map, zip(*outputs)))

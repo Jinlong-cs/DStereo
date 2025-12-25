@@ -75,8 +75,7 @@ def check_sha256(in_file: str, sha256: str):
     sha = calculate_sha256(in_file)
 
     assert len(sha) >= len(sha256), (
-        f"The len of `hash_value` {sha256} should not "
-        f"be greater than {len(sha)}"
+        f"The len of `hash_value` {sha256} should not " f"be greater than {len(sha)}"
     )
 
     return sha[: len(sha256)] == sha256

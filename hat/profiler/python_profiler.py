@@ -53,9 +53,7 @@ class PythonProfiler(BaseProfiler):  # noqa: D205,D400
                 If you attempt to stop recording an action which was
                 never started.
         """
-        super(PythonProfiler, self).__init__(
-            dirpath=dirpath, filename=filename
-        )
+        super(PythonProfiler, self).__init__(dirpath=dirpath, filename=filename)
         self.profiled_actions: Dict[str, cProfile.Profile] = {}
         self.line_count_restriction = line_count_restriction
         logger.warning(

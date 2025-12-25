@@ -146,9 +146,11 @@ class MBConvBlock(nn.Module):
                 out_channels=self.out_planes,
                 kernel_size=self.kernel_size,
                 stride=self.stride,
-                padding=math.ceil((self.kernel_size - 1) // 2)
-                if self.stride == 1
-                else math.ceil(self.kernel_size // self.stride),
+                padding=(
+                    math.ceil((self.kernel_size - 1) // 2)
+                    if self.stride == 1
+                    else math.ceil(self.kernel_size // self.stride)
+                ),
                 bias=False,
                 groups=self.out_planes,
                 norm_layer=nn.BatchNorm2d(self.out_planes, **bn_kwargs),
@@ -168,9 +170,11 @@ class MBConvBlock(nn.Module):
                 out_channels=self.out_planes1,
                 kernel_size=self.kernel_size,
                 stride=self.stride,
-                padding=math.ceil((self.kernel_size - 1) // 2)
-                if self.stride == 1
-                else math.ceil(self.kernel_size // self.stride),
+                padding=(
+                    math.ceil((self.kernel_size - 1) // 2)
+                    if self.stride == 1
+                    else math.ceil(self.kernel_size // self.stride)
+                ),
                 bias=False,
                 groups=self.out_planes1,
                 norm_layer=nn.BatchNorm2d(self.out_planes1, **bn_kwargs),
@@ -181,9 +185,11 @@ class MBConvBlock(nn.Module):
                 out_channels=self.out_planes2,
                 kernel_size=self.kernel_size,
                 stride=self.stride,
-                padding=math.ceil((self.kernel_size - 1) // 2)
-                if self.stride == 1
-                else math.ceil(self.kernel_size // self.stride),
+                padding=(
+                    math.ceil((self.kernel_size - 1) // 2)
+                    if self.stride == 1
+                    else math.ceil(self.kernel_size // self.stride)
+                ),
                 bias=False,
                 groups=self.out_planes2,
                 norm_layer=nn.BatchNorm2d(self.out_planes2, **bn_kwargs),
@@ -208,9 +214,7 @@ class MBConvBlock(nn.Module):
             self.float_func_proj_conv = FloatFunctional()
 
         if self.has_se:
-            num_squeezed_num = max(
-                1, int(self.in_planes * self._block_args.se_ratio)
-            )
+            num_squeezed_num = max(1, int(self.in_planes * self._block_args.se_ratio))
             self._se_block = SEBlock(
                 in_channels=self.out_planes,
                 num_squeezed_channels=num_squeezed_num,

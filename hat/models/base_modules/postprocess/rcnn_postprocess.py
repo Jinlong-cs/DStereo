@@ -108,9 +108,7 @@ class RCNNPostProcess(nn.Module):
             Tensor[num_batch, nms_top_n, 6]: output data
                 in format [x1, y1, x2, y2, score, class_index].
         """
-        assert isinstance(batch_rois, List) and (
-            batch_rois[0].shape[-1] == 4
-        ), (
+        assert isinstance(batch_rois, List) and (batch_rois[0].shape[-1] == 4), (
             "batch_rois must be list of bbox tesnor",
             "each tensor is (num_rois_per_img, 4): x1, y1, x2, y2",
         )

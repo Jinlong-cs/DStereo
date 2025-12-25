@@ -70,9 +70,7 @@ class OnlineReParamBlock(nn.Module):
             ), f"{type(norm_layer)} is not supported."
 
         self.max_kernel = max(kernel_args.keys())
-        kernel_args = sorted(
-            kernel_args.items(), key=lambda i: i[0], reverse=True
-        )
+        kernel_args = sorted(kernel_args.items(), key=lambda i: i[0], reverse=True)
 
         if stride == 1:
             self.padding = math.ceil((self.max_kernel - 1) // 2)
@@ -178,9 +176,7 @@ class OnlineReParamBlock(nn.Module):
 
     def float_forward(self, x: torch.Tensor) -> torch.Tensor:
         w, b = self.get_weight_bias()
-        out = F.conv2d(
-            x, w, b, self.stride, self.padding, self.dilation, self.groups
-        )
+        out = F.conv2d(x, w, b, self.stride, self.padding, self.dilation, self.groups)
         if self.norm_layer:
             out = self.norm_layer(out)
         if self.act_layer:

@@ -143,9 +143,7 @@ class BottleNeck(nn.Module):
                 padding=0,
                 stride=1,
                 bias=bias,
-                norm_layer=nn.BatchNorm2d(
-                    out_channels * expansion, **bn_kwargs
-                ),
+                norm_layer=nn.BatchNorm2d(out_channels * expansion, **bn_kwargs),
             ),
         )
 
@@ -156,9 +154,7 @@ class BottleNeck(nn.Module):
                 out_channels * expansion,
                 1,
                 stride=stride,
-                norm_layer=nn.BatchNorm2d(
-                    out_channels * expansion, **bn_kwargs
-                ),
+                norm_layer=nn.BatchNorm2d(out_channels * expansion, **bn_kwargs),
                 act_layer=nn.ReLU(inplace=True),
             )
 

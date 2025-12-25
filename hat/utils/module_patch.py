@@ -36,9 +36,7 @@ __all__ = [
 
 
 @require_packages("hatbc")
-def _make_class_traceable(
-    obj, *, return_patch_func_only=False, allow_input_skip=False
-):
+def _make_class_traceable(obj, *, return_patch_func_only=False, allow_input_skip=False):
     """Wrap __call__ function of class `obj` to make it traceable."""
     assert hasattr(  # noqa
         obj, "__call__"
@@ -94,13 +92,9 @@ class _OpID:
         if self.cls != __o.cls:
             return "module class not equal! {} != {}".format(self.cls, __o.cls)
         if self.args != __o.args:
-            return "module args not equal! {} != {}".format(
-                self.args, __o.args
-            )
+            return "module args not equal! {} != {}".format(self.args, __o.args)
         if self.kwargs != __o.kwargs:
-            return "module kwargs not equal! {} != {}".format(
-                self.kwargs, __o.kwargs
-            )
+            return "module kwargs not equal! {} != {}".format(self.kwargs, __o.kwargs)
         return None
 
 

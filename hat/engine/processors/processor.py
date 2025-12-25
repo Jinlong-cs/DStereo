@@ -138,17 +138,13 @@ class BasicBatchProcessor(BatchProcessorMixin):  # noqa: D205,D400
             ), "Provide `loss_collector` when need_grad_update"
             assert callable(loss_collector)
         if enable_amp and enable_apex:
-            raise RuntimeError(
-                "enable_amp and enable_apex cannot be true together."
-            )
+            raise RuntimeError("enable_amp and enable_apex cannot be true together.")
         if enable_apex and apex is None:
             check_packages_available("apex")
 
         if enable_amp_dtype == torch.bfloat16:
             if not torch.cuda.is_bf16_supported():
-                raise RuntimeError(
-                    "current gpu devices do not support bfloat16."
-                )
+                raise RuntimeError("current gpu devices do not support bfloat16.")
 
         self.need_grad_update = need_grad_update
         self.enable_amp_dtype = enable_amp_dtype
@@ -242,13 +238,9 @@ class BasicBatchProcessor(BatchProcessorMixin):  # noqa: D205,D400
 
         batch = maybe_cast_batch_for_deterministic(batch)
 
-        grad_decorator = (
-            torch.enable_grad if self.need_grad_update else torch.no_grad
-        )
+        grad_decorator = torch.enable_grad if self.need_grad_update else torch.no_grad
         if not self.enable_apex:
-            auto_cast = autocast(
-                enabled=self.enable_amp, dtype=self.enable_amp_dtype
-            )
+            auto_cast = autocast(enabled=self.enable_amp, dtype=self.enable_amp_dtype)
         else:
             auto_cast = localcontext()
         with profiler.profile("model_forward"):
@@ -300,17 +292,13 @@ class BasicBatchProcessor(BatchProcessorMixin):  # noqa: D205,D400
                     else:
                         self.grad_scaler.scale(loss_scalar).backward()
                 if backward_end_callback:
-                    backward_end_callback(
-                        batch=batch, grad_scaler=self.grad_scaler
-                    )
+                    backward_end_callback(batch=batch, grad_scaler=self.grad_scaler)
 
             if (step_id + 1) % self.ga_step == 0:
                 # when grad_scaler is not enable, equivalent to optimizer.step() # noqa E501
                 with profiler.profile("optimizer_step"):
                     if optimizer_step_begin_callback is not None:
-                        optimizer_step_begin_callback(
-                            grad_scaler=self.grad_scaler
-                        )
+                        optimizer_step_begin_callback(grad_scaler=self.grad_scaler)
                     if self.enable_apex:
                         optimizer.step()
                     elif self.use_deepspeed:
@@ -326,9 +314,7 @@ class BasicBatchProcessor(BatchProcessorMixin):  # noqa: D205,D400
                 model_outs=model_outs,
             )
         if self.enable_amp:
-            storage.put(
-                "grad_scaler", self.grad_scaler.state_dict(), always_dict=True
-            )
+            storage.put("grad_scaler", self.grad_scaler.state_dict(), always_dict=True)
 
 
 @OBJECT_REGISTRY.register
@@ -422,9 +408,7 @@ class MultiBatchProcessor(BatchProcessorMixin):
             ), "Provide `loss_collector` when need_grad_update"
             assert callable(loss_collector)
         if enable_amp and enable_apex:
-            raise RuntimeError(
-                "enable_amp and enable_apex cannot be true together."
-            )
+            raise RuntimeError("enable_amp and enable_apex cannot be true together.")
         if enable_apex and apex is None:
             check_packages_available("apex")
 
@@ -440,9 +424,7 @@ class MultiBatchProcessor(BatchProcessorMixin):
 
         if enable_amp_dtype == torch.bfloat16:
             if not torch.cuda.is_bf16_supported():
-                raise RuntimeError(
-                    "current gpu devices do not support bfloat16."
-                )
+                raise RuntimeError("current gpu devices do not support bfloat16.")
 
         self.need_grad_update = need_grad_update
         self.loss_collector = loss_collector
@@ -623,9 +605,7 @@ class MultiBatchProcessor(BatchProcessorMixin):
             # 3. backward
             if self.need_grad_update:
                 # Not allow to backward each loss independently, so sum them
-                loss = sum(
-                    [loss for loss in _as_list(losses) if loss is not None]
-                )
+                loss = sum([loss for loss in _as_list(losses) if loss is not None])
                 assert isinstance(loss, torch.Tensor), type(loss)
                 # mean of grad accumulation step
                 loss_scalar = loss.sum() / self.ga_step
@@ -634,9 +614,7 @@ class MultiBatchProcessor(BatchProcessorMixin):
                 # when grad_scaler is not enable, equivalent to loss.backward()
                 with profiler.profile(f"model_backward_{profile_suffix}"):
                     if self.enable_apex:
-                        with apex.amp.scale_loss(
-                            loss_scalar, optimizer
-                        ) as loss_s:
+                        with apex.amp.scale_loss(loss_scalar, optimizer) as loss_s:
                             loss_s.backward()
                     else:
                         if self.delay_sync and idx != last_batch_idx:
@@ -657,9 +635,7 @@ class MultiBatchProcessor(BatchProcessorMixin):
                     backward_end_callback(batch=batch_i, batch_idx=idx)
 
             if batch_end_callback is not None:
-                batch_end_callback(
-                    batch=batch_i, losses=losses, model_outs=model_outs
-                )
+                batch_end_callback(batch=batch_i, losses=losses, model_outs=model_outs)
 
         # 4. update grad
         if self.need_grad_update and (step_id + 1) % self.ga_step == 0:
@@ -679,9 +655,7 @@ class MultiBatchProcessor(BatchProcessorMixin):
             torch.cuda.empty_cache()
 
         if self.enable_amp:
-            storage.put(
-                "grad_scaler", self.grad_scaler.state_dict(), always_dict=True
-            )
+            storage.put("grad_scaler", self.grad_scaler.state_dict(), always_dict=True)
 
 
 @OBJECT_REGISTRY.register
@@ -870,9 +844,7 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
             # check splitable
             sort_names = sorted(_as_list(batch_i[1]))
             tag = (
-                ">".join(sort_names)
-                if isinstance(sort_names, Sequence)
-                else sort_names
+                ">".join(sort_names) if isinstance(sort_names, Sequence) else sort_names
             )
             if tag in self._model_cache:
                 # use cache
@@ -907,9 +879,9 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                             "device_ids": model.device_ids,
                         }
                         if hasattr(model, "assign_module_buffers"):
-                            common_kwargs[
-                                "assign_module_buffers"
-                            ] = model.assign_module_buffers
+                            common_kwargs["assign_module_buffers"] = (
+                                model.assign_module_buffers
+                            )
                         common_model = type(model)(
                             module=common_model,
                             process_group=group_common,
@@ -967,22 +939,20 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                                 common_model.enable_allreduce()
                         # model outputs can be in any format
                         common_model_outs = common_model(*_as_list(batch_i[0]))
-                flatten_common_outputs, outputs_layout = flatten(
-                    common_model_outs
-                )
+                flatten_common_outputs, outputs_layout = flatten(common_model_outs)
                 detached_common_outputs = [
                     tensor.detach() for tensor in flatten_common_outputs
                 ]
                 detached_common_outputs = [
-                    _call_as_tensor(torch.Tensor.requires_grad_, tensor)
-                    if isinstance(tensor, QTensor)
-                    else tensor.requires_grad_()
+                    (
+                        _call_as_tensor(torch.Tensor.requires_grad_, tensor)
+                        if isinstance(tensor, QTensor)
+                        else tensor.requires_grad_()
+                    )
                     for tensor in detached_common_outputs
                 ]
 
-                split_inputs = regroup(
-                    detached_common_outputs, outputs_layout
-                )[0]
+                split_inputs = regroup(detached_common_outputs, outputs_layout)[0]
 
                 model_outs = None
                 total_loss = []
@@ -990,11 +960,7 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                 common_model_output_keys = list(split_inputs.keys())
                 for k, v in batch_i[0].items():
                     if (
-                        k
-                        in (
-                            split_model_input_names
-                            + split_model_opt_input_names
-                        )
+                        k in (split_model_input_names + split_model_opt_input_names)
                         and k not in batch_i[1]
                     ):
                         split_inputs[k] = v
@@ -1032,17 +998,13 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                     else:
                         losses = None
 
-                    loss = sum(
-                        [loss for loss in _as_list(losses) if loss is not None]
-                    )
+                    loss = sum([loss for loss in _as_list(losses) if loss is not None])
 
                     total_loss.extend(losses)
                     # mean of grad accumulation step
                     loss_scalar = loss.sum() / self.ga_step
                     if self.enable_apex:
-                        with apex.amp.scale_loss(
-                            loss_scalar, optimizer
-                        ) as loss_s:
+                        with apex.amp.scale_loss(loss_scalar, optimizer) as loss_s:
                             loss_s.backward()
                     else:
                         if self.delay_sync and idx != last_batch_idx:
@@ -1067,8 +1029,7 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                 valid_split_inputs = [
                     tensor
                     for tensor in flatten_split_inputs
-                    if _call_as_tensor(torch.Tensor.grad.__get__, tensor)
-                    is not None
+                    if _call_as_tensor(torch.Tensor.grad.__get__, tensor) is not None
                 ]
                 last_valid_idx = len(valid_split_inputs) - 1
                 for i, tensor in enumerate(valid_split_inputs):
@@ -1076,9 +1037,7 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                     if self.delay_sync and idx != last_batch_idx:
                         with common_model.no_sync():
                             flatten_common_outputs[i].backward(
-                                _call_as_tensor(
-                                    torch.Tensor.grad.__get__, tensor
-                                ),
+                                _call_as_tensor(torch.Tensor.grad.__get__, tensor),
                                 retain_graph=retain_graph,
                             )
                     else:
@@ -1135,9 +1094,7 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                 if self.need_grad_update:
                     # Not allow to backward each loss independently,
                     # so sum them
-                    loss = sum(
-                        [loss for loss in _as_list(losses) if loss is not None]
-                    )
+                    loss = sum([loss for loss in _as_list(losses) if loss is not None])
                     assert isinstance(loss, torch.Tensor), type(loss)
                     # mean of grad accumulation step
                     loss_scalar = loss.sum() / self.ga_step
@@ -1147,16 +1104,12 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
                     # equivalent to loss.backward()
                     with profiler.profile(f"model_backward_{profile_suffix}"):
                         if self.enable_apex:
-                            with apex.amp.scale_loss(
-                                loss_scalar, optimizer
-                            ) as loss_s:
+                            with apex.amp.scale_loss(loss_scalar, optimizer) as loss_s:
                                 loss_s.backward()
                         else:
                             if self.delay_sync and idx != last_batch_idx:
                                 with model.no_sync():
-                                    self.grad_scaler.scale(
-                                        loss_scalar
-                                    ).backward()
+                                    self.grad_scaler.scale(loss_scalar).backward()
 
                             elif self.use_deepspeed:
                                 model.backward(loss_scalar)
@@ -1188,6 +1141,4 @@ class MultiStageBatchProcessor(MultiBatchProcessor):
             torch.cuda.empty_cache()
 
         if self.enable_amp:
-            storage.put(
-                "grad_scaler", self.grad_scaler.state_dict(), always_dict=True
-            )
+            storage.put("grad_scaler", self.grad_scaler.state_dict(), always_dict=True)

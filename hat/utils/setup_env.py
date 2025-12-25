@@ -46,12 +46,8 @@ def setup_hat_env(
         )
 
     os.environ["TORCH_NUM_THREADS"] = os.environ.get("TORCH_NUM_THREADS", "12")
-    os.environ["OPENCV_NUM_THREADS"] = os.environ.get(
-        "OPENCV_NUM_THREADS", "12"
-    )
-    os.environ["OPENBLAS_NUM_THREADS"] = os.environ.get(
-        "OPENBLAS_NUM_THREADS", "12"
-    )
+    os.environ["OPENCV_NUM_THREADS"] = os.environ.get("OPENCV_NUM_THREADS", "12")
+    os.environ["OPENBLAS_NUM_THREADS"] = os.environ.get("OPENBLAS_NUM_THREADS", "12")
     os.environ["OMP_NUM_THREADS"] = os.environ.get("OMP_NUM_THREADS", "12")
     os.environ["MKL_NUM_THREADS"] = os.environ.get("MKL_NUM_THREADS", "12")
     os.environ["NCCL_DEBUG"] = os.environ.get("NCCL_DEBUG", "WARN")
@@ -67,8 +63,8 @@ def setup_hat_env(
         os.environ["HIP_UPSAMPLE_OPTIMIZE"] = "1"
         os.environ["CUDA_DEVICE_MAX_CONNECTIONS"] = "1"
         os.environ["UCX_NET_DEVICES"] = "mlx5_0:1,mlx5_1:1,mlx5_2:1,mlx5_3:1"
-        os.environ[
-            "UCX_IB_PCI_BW"
-        ] = "mlx5_0:50Gbs,mlx5_1:50Gbs,mlx5_2:50Gbs,mlx5_3:50Gbs"
+        os.environ["UCX_IB_PCI_BW"] = (
+            "mlx5_0:50Gbs,mlx5_1:50Gbs,mlx5_2:50Gbs,mlx5_3:50Gbs"
+        )
         os.environ["UCX_IB_RANGE_MAX_REGIONS"] = "1000"
         os.environ["NCCL_DEBUG"] = "INFO"

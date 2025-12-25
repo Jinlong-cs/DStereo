@@ -106,15 +106,11 @@ class SummaryWriter(tensorboard.SummaryWriter):
 
     @timeout(seconds=60)
     def add_custom_scalars_multilinechart(self, *args, **kwargs):
-        super(SummaryWriter, self).add_custom_scalars_multilinechart(
-            *args, **kwargs
-        )
+        super(SummaryWriter, self).add_custom_scalars_multilinechart(*args, **kwargs)
 
     @timeout(seconds=60)
     def add_custom_scalars_marginchart(self, *args, **kwargs):
-        super(SummaryWriter, self).add_custom_scalars_marginchart(
-            *args, **kwargs
-        )
+        super(SummaryWriter, self).add_custom_scalars_marginchart(*args, **kwargs)
 
     @timeout(seconds=60)
     def add_custom_scalars(self, *args, **kwargs):
@@ -179,9 +175,7 @@ class TensorBoard(CallbackMixin):  # noqa: D205,D400
             if self.loss_name_pattern.match(k):
                 if v is not None and isinstance(v, torch.Tensor):
                     try:
-                        self.writer.add_scalar(
-                            k, v, global_step=global_step_id
-                        )
+                        self.writer.add_scalar(k, v, global_step=global_step_id)
                     except TimeoutError as exception:
                         logger.exception(str(exception))
                         continue
@@ -224,7 +218,11 @@ class TensorBoard(CallbackMixin):  # noqa: D205,D400
     def on_step_end(self, **kwargs):
         # print("on_step_end")
         try:
-            self.writer.add_scalar("lr", kwargs['optimizer'].param_groups[-1]["lr"], global_step=kwargs['global_step_id'])
+            self.writer.add_scalar(
+                "lr",
+                kwargs["optimizer"].param_groups[-1]["lr"],
+                global_step=kwargs["global_step_id"],
+            )
         except Exception as e:
             return
         # print("on_step_end lr done")

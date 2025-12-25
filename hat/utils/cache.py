@@ -108,15 +108,11 @@ class Cache(data.Dataset):
             assert self.writable
             assert isinstance(data, dict)
             data = convert_numpy(data)
-            self._rec.write(
-                key, msgpack.packb(data, default=msgpack_numpy.encode)
-            )
+            self._rec.write(key, msgpack.packb(data, default=msgpack_numpy.encode))
         elif hasattr(self, "_lmdb"):
             assert isinstance(data, dict)
             data = convert_numpy(data)
-            self._lmdb.write(
-                key, msgpack.packb(data, default=msgpack_numpy.encode)
-            )
+            self._lmdb.write(key, msgpack.packb(data, default=msgpack_numpy.encode))
         else:
             raise NotImplementedError
 
@@ -258,9 +254,7 @@ class Cache(data.Dataset):
             raise NotImplementedError
 
 
-def fetch_batch_size(
-    data: Dict[str, Any], batch_length: Optional[dict] = None
-) -> int:
+def fetch_batch_size(data: Dict[str, Any], batch_length: Optional[dict] = None) -> int:
     """Fetch batch_size from batch data.
 
     Some data may stack on batch dimension, so we specify

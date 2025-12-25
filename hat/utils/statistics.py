@@ -31,9 +31,7 @@ def count_parameters(m):
 
 def count_linear(m, x, y):
     total_mul = m.in_features
-    num_elements = (
-        y.numel() if isinstance(y, torch.Tensor) else y.float.numel()
-    )
+    num_elements = y.numel() if isinstance(y, torch.Tensor) else y.float.numel()
     total_ops = total_mul * num_elements
     global module_total_ops
     module_total_ops += int(total_ops)
@@ -43,14 +41,10 @@ def count_convNd(m, x, y):
     kernel_ops = torch.zeros(m.weight.size()[2:]).numel()  # Kw x Kh
 
     # N x Cout x H x W x  (Cin x Kw x Kh + bias)
-    nelement = (
-        y.nelement() if isinstance(y, torch.Tensor) else y.float.nelement()
-    )
+    nelement = y.nelement() if isinstance(y, torch.Tensor) else y.float.nelement()
     # index 1 represent channel
     in_channels = (
-        x[0].shape[1]
-        if isinstance(x[0], torch.Tensor)
-        else x[0].float.shape[1]
+        x[0].shape[1] if isinstance(x[0], torch.Tensor) else x[0].float.shape[1]
     )
     try:
         groups = m._conv_kwargs["groups"]
@@ -69,14 +63,10 @@ def count_convtranspose2d(m, x, y):
     # N x Cout x Hin x Win x Cin x Kw x Kh
 
     nelement = (
-        x[0].nelement()
-        if isinstance(x[0], torch.Tensor)
-        else x[0].float.nelement()
+        x[0].nelement() if isinstance(x[0], torch.Tensor) else x[0].float.nelement()
     )
     # index 1 represent channel
-    out_channels = (
-        y.shape[1] if isinstance(y, torch.Tensor) else y.float.shape[1]
-    )
+    out_channels = y.shape[1] if isinstance(y, torch.Tensor) else y.float.shape[1]
     try:
         groups = m._conv_kwargs["groups"]
     except Exception:
@@ -103,9 +93,7 @@ def count_matmul(output, args, kwargs):
             else args[0].float.shape[-1]
         )
     num_elements = (
-        output.numel()
-        if isinstance(output, torch.Tensor)
-        else output.float.numel()
+        output.numel() if isinstance(output, torch.Tensor) else output.float.numel()
     )
     total_ops = total_mul * num_elements
     global module_total_ops
@@ -203,9 +191,7 @@ def horizon_symbolic_trace(module: nn.Module):
     return graph_module
 
 
-def cal_ops(
-    model: nn.Module, inputs: Union[torch.Tensor, dict], method: str = None
-):
+def cal_ops(model: nn.Module, inputs: Union[torch.Tensor, dict], method: str = None):
     """Calculate total ops and parameters of model.
 
     Use method `fx` or `hook` to record the ops

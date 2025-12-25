@@ -20,9 +20,7 @@ def custom_param_optimizer(
     optim_cls: Type[optim.Optimizer],
     model: nn.Module,
     optim_cfgs: Dict,
-    custom_param_mapper: Dict[
-        Union[str, Type[nn.Module], Tuple], Dict[str, float]
-    ],
+    custom_param_mapper: Dict[Union[str, Type[nn.Module], Tuple], Dict[str, float]],
 ):
     """Return optimizer with custom params setting.
 
@@ -138,9 +136,7 @@ def _custom_set_param(
         matched_key = None
         for module, param_name in param_module_name_dict[p]:
             for match_key in custom_param_mapper:
-                if _custom_match(
-                    param_name, module, match_key, custom_type_dict
-                ):
+                if _custom_match(param_name, module, match_key, custom_type_dict):
                     if matched_key is None:
                         matched_value = custom_param_mapper[match_key]
                         matched_key = match_key

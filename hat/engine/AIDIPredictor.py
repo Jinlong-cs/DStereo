@@ -84,9 +84,9 @@ class AIDIPredictor:
         self.run_device = run_device
         self.aidi_config = aidi_config
         # init inference instance before running
-        self.instance: Optional[
-            Union[Model, RemoteInferenceApi, LocalInferenceApi]
-        ] = None
+        self.instance: Optional[Union[Model, RemoteInferenceApi, LocalInferenceApi]] = (
+            None
+        )
         self.check_init_config()
         self.aidi_client = AIDIClient() if aidi_client is None else aidi_client
 
@@ -111,17 +111,12 @@ class AIDIPredictor:
         ]:
             return self.model_name
         elif self.infer_mode in [AIDIPredictor.InferenceMode.InferModelLocal]:
-            return Config.fromfile(self.init_config["aidi_config"])[
-                "model_name"
-            ]
+            return Config.fromfile(self.init_config["aidi_config"])["model_name"]
         else:
             raise ValueError("Invalid inference mode")
 
     def _init_infer_instance(self):
-        if (
-            self.infer_mode
-            == AIDIPredictor.InferenceMode.AidiInferServiceRemote
-        ):
+        if self.infer_mode == AIDIPredictor.InferenceMode.AidiInferServiceRemote:
             instance = self.load_aidi_inference_service_remote(
                 self.model_serving_config,
             )
@@ -159,10 +154,8 @@ class AIDIPredictor:
         )
         if wait_for_launch:
             while True:
-                status = (
-                    self.aidi_client.model_registry.inference_service_status(
-                        model_serving_config["service_path"]
-                    )
+                status = self.aidi_client.model_registry.inference_service_status(
+                    model_serving_config["service_path"]
                 )
                 if status == "launch_success":
                     break
@@ -207,17 +200,12 @@ class AIDIPredictor:
     def forward(self, source_data: List[CameraFrame], output_name: str = None):
         return self.__call__(source_data, output_name=output_name)
 
-    def __call__(
-        self, source_data: List[CameraFrame], output_name: str = None
-    ):
+    def __call__(self, source_data: List[CameraFrame], output_name: str = None):
         if self.instance is None:
             self._init_infer_instance()
         source_data = _as_list(source_data)
         assert all(
-            [
-                isinstance(i, (CameraFrame, CameraFrameProto))
-                for i in source_data
-            ]
+            [isinstance(i, (CameraFrame, CameraFrameProto)) for i in source_data]
         ), "Input should be a list of hatbc.message::CameraFrame or its serialized version"  # noqa
         if self.infer_mode in [
             AIDIPredictor.InferenceMode.AidiInferServiceRemote,
@@ -254,9 +242,7 @@ class AIDIPredictor:
         instance_min=1,
         instance_max=4,
     ):
-        if self.aidi_client.model_registry.inference_service_exist(
-            service_path
-        ):
+        if self.aidi_client.model_registry.inference_service_exist(service_path):
             return
         name = f"{self.init_config['model_name']}:{self.init_config['model_version']}"  # noqa
         self.aidi_client.model_registry.create_inference_service(

@@ -551,27 +551,15 @@ class ProposalTargetRoi3D(ProposalTarget):
             cls_ids = batch_cls_ids[batch_idx]
 
             if self.undistort_depth_uv:
-                depth_u = np.zeros(
-                    [self.max_gt_boxes_num, 1], dtype=np.float32
-                )
-                depth_v = np.zeros(
-                    [self.max_gt_boxes_num, 1], dtype=np.float32
-                )
+                depth_u = np.zeros([self.max_gt_boxes_num, 1], dtype=np.float32)
+                depth_v = np.zeros([self.max_gt_boxes_num, 1], dtype=np.float32)
             else:
                 depth = np.zeros([self.max_gt_boxes_num, 1], dtype=np.float32)
-            proj_2d_bboxes = np.zeros(
-                [self.max_gt_boxes_num, 4], dtype=np.float32
-            )
+            proj_2d_bboxes = np.zeros([self.max_gt_boxes_num, 4], dtype=np.float32)
             ig_regions = np.zeros([self.max_gt_boxes_num, 4], dtype=np.float32)
-            ret_dimensions = np.zeros(
-                [self.max_gt_boxes_num, 3], dtype=np.float32
-            )
-            ret_locations = np.zeros(
-                [self.max_gt_boxes_num, 3], dtype=np.float32
-            )
-            ret_rotation_y = np.zeros(
-                [self.max_gt_boxes_num, 1], dtype=np.float32
-            )
+            ret_dimensions = np.zeros([self.max_gt_boxes_num, 3], dtype=np.float32)
+            ret_locations = np.zeros([self.max_gt_boxes_num, 3], dtype=np.float32)
+            ret_rotation_y = np.zeros([self.max_gt_boxes_num, 1], dtype=np.float32)
             ret_location_offsets = np.zeros(
                 [self.max_gt_boxes_num, 2], dtype=np.float32
             )
@@ -581,9 +569,7 @@ class ProposalTargetRoi3D(ProposalTarget):
             valid_idx_none_padding = np.where(cls_ids > 0)
             if len(valid_idx_none_padding[0]) != 0:
                 filter_cls = (
-                    np.vectorize(self.classid_map.get)(
-                        cls_ids[valid_idx_none_padding]
-                    )
+                    np.vectorize(self.classid_map.get)(cls_ids[valid_idx_none_padding])
                     >= 0
                 )
                 filter_depth = depths[valid_idx_none_padding] <= self.max_depth
@@ -610,9 +596,7 @@ class ProposalTargetRoi3D(ProposalTarget):
                     )
                 else:
                     depth[:gt_boxes_num] = np.expand_dims(
-                        depths[valid_idx]
-                        * self.focal_length_default
-                        / calib[0, 0],
+                        depths[valid_idx] * self.focal_length_default / calib[0, 0],
                         axis=1,
                     )
                 ret_location_offsets[:gt_boxes_num] = (

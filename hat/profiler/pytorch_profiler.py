@@ -88,19 +88,13 @@ class RegisterRecordFunction:
     def __enter__(self) -> None:
         for module_name, module in self._model.named_modules():
             if module_name:
-                full_name = (
-                    f"{type(module).__module__}.{type(module).__name__}"
-                )
+                full_name = f"{type(module).__module__}.{type(module).__name__}"
                 record_name = f"{full_name}: {module_name}"
                 pre_forward_handle = module.register_forward_pre_hook(
-                    partial(
-                        self._start_recording_forward, record_name=record_name
-                    )
+                    partial(self._start_recording_forward, record_name=record_name)
                 )
                 post_forward_handle = module.register_forward_hook(
-                    partial(
-                        self._stop_recording_forward, record_name=record_name
-                    )
+                    partial(self._stop_recording_forward, record_name=record_name)
                 )
 
                 self._handles[module_name] = [
@@ -280,9 +274,8 @@ class PyTorchProfiler(BaseProfiler):
     ) -> None:
         super().__init__(dirpath=dirpath, filename=filename)
 
-        self._group_by_input_shapes = (
-            group_by_input_shapes
-            and profiler_kwargs.get("record_shapes", False)
+        self._group_by_input_shapes = group_by_input_shapes and profiler_kwargs.get(
+            "record_shapes", False
         )
         self._emit_nvtx = emit_nvtx
         self._export_to_chrome = export_to_chrome
@@ -295,9 +288,7 @@ class PyTorchProfiler(BaseProfiler):
         self._record_functions = (
             record_functions if record_functions else self.RECORD_FUNCTIONS
         )
-        self._step_function = (
-            step_function if step_function else self.STEP_FUNCTION
-        )
+        self._step_function = step_function if step_function else self.STEP_FUNCTION
 
         self._record_module_names = record_module_names
         self._profiler_kwargs = profiler_kwargs
@@ -326,9 +317,7 @@ class PyTorchProfiler(BaseProfiler):
         schedule = profiler_kwargs.get("schedule", None)
         if schedule is not None:
             if not isinstance(schedule, Callable):
-                raise TypeError(
-                    f"Schedule should be a callable. Found: {schedule}"
-                )
+                raise TypeError(f"Schedule should be a callable. Found: {schedule}")
             action = schedule(0)
             if not isinstance(action, ProfilerAction):
                 raise TypeError(
@@ -337,22 +326,17 @@ class PyTorchProfiler(BaseProfiler):
                 )
         self._default_schedule()
         schedule = schedule if has_schedule else self._default_schedule()
-        self._schedule = (
-            ScheduleWrapper(schedule) if schedule is not None else schedule
-        )
+        self._schedule = ScheduleWrapper(schedule) if schedule is not None else schedule
         self._profiler_kwargs["schedule"] = self._schedule
 
         activities = profiler_kwargs.get("activities", None)
-        self._profiler_kwargs["activities"] = (
-            activities or self._default_activities()
-        )
+        self._profiler_kwargs["activities"] = activities or self._default_activities()
         self._export_to_flame_graph = profiler_kwargs.get(
             "export_to_flame_graph", False
         )
         self._metric = profiler_kwargs.get("metric", "self_cpu_time_total")
         with_stack = (
-            profiler_kwargs.get("with_stack", False)
-            or self._export_to_flame_graph
+            profiler_kwargs.get("with_stack", False) or self._export_to_flame_graph
         )
         self._profiler_kwargs["with_stack"] = with_stack
 
@@ -411,9 +395,7 @@ class PyTorchProfiler(BaseProfiler):
 
         if (
             self.profiler is not None
-            and self._match_any_record_func(
-                action_name, self._record_functions
-            )
+            and self._match_any_record_func(action_name, self._record_functions)
             and action_name not in self._recording_map
         ):
             recording = record_function(action_name)
@@ -428,9 +410,7 @@ class PyTorchProfiler(BaseProfiler):
         if self._emit_nvtx:
             return
 
-        if self.profiler is not None and action_name.startswith(
-            self._step_function
-        ):
+        if self.profiler is not None and action_name.startswith(self._step_function):
             if self._schedule is not None:
                 self._schedule.pre_step(action_name)
 
@@ -444,9 +424,7 @@ class PyTorchProfiler(BaseProfiler):
                     "steps to properly record traces."
                 )
                 self._schedule = None
-                self.profiler.schedule = (
-                    torch.profiler.profiler._default_schedule_fn
-                )
+                self.profiler.schedule = torch.profiler.profiler._default_schedule_fn
 
             def on_trace_ready(profiler):
                 if self.dirpath is not None:
@@ -504,9 +482,7 @@ class PyTorchProfiler(BaseProfiler):
         data = self.function_events.key_averages(
             group_by_input_shapes=self._group_by_input_shapes
         )
-        table = data.table(
-            sort_by=self._sort_by_key, row_limit=self._row_limit
-        )
+        table = data.table(sort_by=self._sort_by_key, row_limit=self._row_limit)
 
         recorded_stats = {"records": table}
         return self._stats_to_str(recorded_stats)
@@ -518,9 +494,7 @@ class PyTorchProfiler(BaseProfiler):
         if self._emit_nvtx:
             if self._parent_profiler is None:
                 self._parent_profiler = torch.cuda.profiler.profile()
-            self.profiler = self._create_profiler(
-                torch.autograd.profiler.emit_nvtx
-            )
+            self.profiler = self._create_profiler(torch.autograd.profiler.emit_nvtx)
         else:
             self._parent_profiler = None
             self.profiler = self._create_profiler(torch.profiler.profile)
@@ -528,9 +502,7 @@ class PyTorchProfiler(BaseProfiler):
     def _create_profiler(self, profiler: Type[_PROFILER]) -> _PROFILER:
         init_parameters = inspect.signature(profiler.__init__).parameters
         kwargs = {
-            k: v
-            for k, v in self._profiler_kwargs.items()
-            if k in init_parameters
+            k: v for k, v in self._profiler_kwargs.items() if k in init_parameters
         }
         return profiler(**kwargs)
 

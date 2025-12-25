@@ -54,13 +54,9 @@ class InputModule(nn.Sequential):
                         padding=2,
                         stride=1,
                         bias=bias,
-                        dw_norm_layer=nn.BatchNorm2d(
-                            output_channels, **bn_kwargs
-                        ),
+                        dw_norm_layer=nn.BatchNorm2d(output_channels, **bn_kwargs),
                         dw_act_layer=nn.ReLU(inplace=True),
-                        pw_norm_layer=nn.BatchNorm2d(
-                            output_channels * 2, **bn_kwargs
-                        ),
+                        pw_norm_layer=nn.BatchNorm2d(output_channels * 2, **bn_kwargs),
                         pw_act_layer=nn.ReLU(inplace=True),
                     )
                 )
@@ -73,13 +69,9 @@ class InputModule(nn.Sequential):
                         padding=2,
                         stride=1,
                         bias=bias,
-                        dw_norm_layer=nn.BatchNorm2d(
-                            output_channels, **bn_kwargs
-                        ),
+                        dw_norm_layer=nn.BatchNorm2d(output_channels, **bn_kwargs),
                         dw_act_layer=nn.ReLU(inplace=True),
-                        pw_norm_layer=nn.BatchNorm2d(
-                            output_channels * 2, **bn_kwargs
-                        ),
+                        pw_norm_layer=nn.BatchNorm2d(output_channels * 2, **bn_kwargs),
                         pw_act_layer=nn.ReLU(inplace=True),
                     )
                 )
@@ -159,9 +151,7 @@ class YoloGroupNeck(nn.Module):
                         bias=bias,
                         dw_norm_layer=nn.BatchNorm2d(channels, **bn_kwargs),
                         dw_act_layer=nn.ReLU(inplace=True),
-                        pw_norm_layer=nn.BatchNorm2d(
-                            channels * 2, **bn_kwargs
-                        ),
+                        pw_norm_layer=nn.BatchNorm2d(channels * 2, **bn_kwargs),
                         pw_act_layer=nn.ReLU(inplace=True),
                     ),
                 )
@@ -177,22 +167,16 @@ class YoloGroupNeck(nn.Module):
                         bias=bias,
                         dw_norm_layer=nn.BatchNorm2d(channels, **bn_kwargs),
                         dw_act_layer=nn.ReLU(inplace=True),
-                        pw_norm_layer=nn.BatchNorm2d(
-                            channels * 2, **bn_kwargs
-                        ),
+                        pw_norm_layer=nn.BatchNorm2d(channels * 2, **bn_kwargs),
                         pw_act_layer=nn.ReLU(inplace=True),
                     ),
                 )
 
             if i < len(self.backbone_idx) - 1:
-                self.add_module(
-                    "concat%d" % (i), nn.quantized.FloatFunctional()
-                )
+                self.add_module("concat%d" % (i), nn.quantized.FloatFunctional())
                 self.add_module(
                     "resize%d" % (i),
-                    horizon.nn.Interpolate(
-                        scale_factor=2, recompute_scale_factor=True
-                    ),
+                    horizon.nn.Interpolate(scale_factor=2, recompute_scale_factor=True),
                 )
                 self.add_module(
                     "trans_conv%d" % (i),

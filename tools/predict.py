@@ -1,4 +1,5 @@
 """predict tools."""
+
 import argparse
 import ast
 import logging
@@ -41,8 +42,7 @@ def parse_args():
         type=str,
         required=True,
         help=(
-            "the predict stage, you should define "
-            "{stage}_predictor in your config"
+            "the predict stage, you should define " "{stage}_predictor in your config"
         ),
     )
     parser.add_argument(
@@ -58,8 +58,7 @@ def parse_args():
         type=str,
         required=False,
         default=None,
-        help="GPU device ids like '0,1,2,3', "
-        "will override `device_ids` in config",
+        help="GPU device ids like '0,1,2,3', " "will override `device_ids` in config",
     )
     parser.add_argument(
         "--dist-url",
@@ -181,9 +180,7 @@ def predict_entrance(
         if ckpt is not None:
             logger.warning("Make sure ckpt is consistent with training stage")
             model = predictor.model
-            load_pred_ckpt_func = cfg.get(
-                "load_pred_ckpt_func", load_state_dict
-            )
+            load_pred_ckpt_func = cfg.get("load_pred_ckpt_func", load_state_dict)
             load_pred_ckpt_func(
                 model,
                 path_or_dict=ckpt,

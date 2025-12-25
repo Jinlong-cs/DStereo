@@ -150,9 +150,7 @@ def check_packages_available(
 
         _imported_caches[module] = (require_available, msg)
 
-    all_available = all(
-        list(map(lambda x: x[0], list(_imported_caches.values())))
-    )
+    all_available = all(list(map(lambda x: x[0], list(_imported_caches.values()))))
 
     if not all_available:
         missing_msgs = os.linesep.join(

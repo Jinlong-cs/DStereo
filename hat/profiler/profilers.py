@@ -227,13 +227,10 @@ class BaseProfiler(AbstractProfiler):  # noqa: D205,D400
         strict: bool = False,
     ):
         if strict:
-            return any(
-                action_name == func_name for func_name in list(record_funcs)
-            )
+            return any(action_name == func_name for func_name in list(record_funcs))
         else:
             return any(
-                action_name.startswith(func_name)
-                for func_name in list(record_funcs)
+                action_name.startswith(func_name) for func_name in list(record_funcs)
             )
 
 
@@ -298,8 +295,7 @@ class SimpleProfiler(BaseProfiler):  # noqa: D205,D400
     def start(self, action_name: str) -> None:
         if action_name in self.current_actions:
             raise ValueError(
-                f"Attempted to start {action_name} "
-                f"which has already started."
+                f"Attempted to start {action_name} " f"which has already started."
             )
         self.current_actions[action_name] = time.monotonic()
 
@@ -340,16 +336,12 @@ class SimpleProfiler(BaseProfiler):  # noqa: D205,D400
     def summary(self) -> str:
         sep = os.linesep
         output_string = ""
-        output_string += (
-            f"{sep}{str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
-        )
+        output_string += f"{sep}{str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}"
 
         if len(self.recorded_durations) > 0:
             max_key = np.max([len(k) for k in self.recorded_durations.keys()])
 
-            def log_row(
-                action, mean, num_calls, total, per, skip_calls, skip_total
-            ):
+            def log_row(action, mean, num_calls, total, per, skip_calls, skip_total):
                 row = f"{sep}{action:<{max_key}s}\t|  {mean:<15}\t|"
                 row += f"{num_calls:<15}\t|  {total:<15}\t|  {per:<15}\t|"
                 row += f"{skip_calls:<15}\t|  {skip_total:<15}\t|"

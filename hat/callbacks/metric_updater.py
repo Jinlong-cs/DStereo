@@ -162,9 +162,7 @@ def update_metric_using_regex(
             [re.compile(i) for i in _as_list(pat_dict["pred_pattern"])]
         )
 
-    def _update(
-        metrics: Sequence, batch: Any, model_outs: Any
-    ):  # noqa: D205,D400
+    def _update(metrics: Sequence, batch: Any, model_outs: Any):  # noqa: D205,D400
         """
         Args:
             metrics: Metrics to update.
@@ -176,9 +174,7 @@ def update_metric_using_regex(
         ), f"{len(metrics)} vs. {len(per_metric_pred_pat)}"
 
         batch = to_flat_ordered_dict(batch, flat_condition=flat_condition)
-        model_outs = to_flat_ordered_dict(
-            model_outs, flat_condition=flat_condition
-        )
+        model_outs = to_flat_ordered_dict(model_outs, flat_condition=flat_condition)
 
         def _filter(patterns, dict_data):
             res = []
@@ -268,10 +264,13 @@ class MetricUpdater(CallbackMixin):
             m.reset()
 
     def on_loop_begin(self, loop, storage: EventStorage, **kwargs):
-        for dataset in kwargs['data_loader'].dataset.datasets:
+        for dataset in kwargs["data_loader"].dataset.datasets:
             if isinstance(dataset, ConcatDataset):
                 for sub_dataset in dataset.datasets:
-                    logger.info("len(%s): %d" % (sub_dataset.base_dataset.name, len(sub_dataset.base_dataset)))
+                    logger.info(
+                        "len(%s): %d"
+                        % (sub_dataset.base_dataset.name, len(sub_dataset.base_dataset))
+                    )
                     # hist, bin_edges = sub_dataset.base_dataset.statsic_disp()
                     # message = "Statistical distribution of disparities. \n"
                     # for idx, val in enumerate(hist):
@@ -280,7 +279,10 @@ class MetricUpdater(CallbackMixin):
                     #         message += "\n"
                     # logger.info(message)
             else:
-                logger.info("len(%s): %d" % (dataset.base_dataset.name, len(dataset.base_dataset)))
+                logger.info(
+                    "len(%s): %d"
+                    % (dataset.base_dataset.name, len(dataset.base_dataset))
+                )
                 # hist, bin_edges = dataset.base_dataset.statsic_disp()
                 # message = "Statistical distribution of disparities. \n"
                 # for idx, val in enumerate(hist):
@@ -295,9 +297,7 @@ class MetricUpdater(CallbackMixin):
 
     def on_batch_end(self, batch, model_outs, train_metrics, **kwargs):
         # filter task by filter_condition
-        if self.filter_condition is not None and (
-            not self.filter_condition(batch)
-        ):
+        if self.filter_condition is not None and (not self.filter_condition(batch)):
             return
 
         metrics = train_metrics if self.metrics is None else self.metrics
@@ -314,10 +314,7 @@ class MetricUpdater(CallbackMixin):
     ):
         metrics = train_metrics if self.metrics is None else self.metrics
 
-        if (
-            self.step_storage_freq > 0
-            and (step_id + 1) % self.step_storage_freq == 0
-        ):
+        if self.step_storage_freq > 0 and (step_id + 1) % self.step_storage_freq == 0:
             name_prefix = "GlobalStep[%d]_" % global_step_id
             self._monitor_storage(metrics, storage, name_prefix)
 
@@ -397,9 +394,7 @@ class MetricUpdater(CallbackMixin):
                     StorageHandler.produce(storage, storage_key, (k, v))
                 elif isinstance(v, torch.Tensor):
                     try:
-                        StorageHandler.produce(
-                            storage, storage_key, (k, v.item())
-                        )
+                        StorageHandler.produce(storage, storage_key, (k, v.item()))
                     except Exception:
                         pass
                 else:

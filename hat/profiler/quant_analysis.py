@@ -65,12 +65,8 @@ class QuantAnalysis:
         bad_case_input=None,
         analysis_pipeline=None,
     ):
-        self.baseline_model = baseline_model_convert_pipeline(
-            copy.deepcopy(model)
-        )
-        self.analysis_model = analysis_model_convert_pipeline(
-            copy.deepcopy(model)
-        )
+        self.baseline_model = baseline_model_convert_pipeline(copy.deepcopy(model))
+        self.analysis_model = analysis_model_convert_pipeline(copy.deepcopy(model))
         self.device_id = device_id
         self.dataloader = dataloader
         self.bad_case_input = bad_case_input
@@ -86,11 +82,11 @@ class QuantAnalysis:
         default_pipeline = [
             dict(  # noqa C408
                 analysis_type="AutoFindBadCase",
-                data_generator=[
-                    self.batch_transforms(x) for x in self.dataloader
-                ]
-                if self.batch_transforms is not None
-                else self.dataloader,
+                data_generator=(
+                    [self.batch_transforms(x) for x in self.dataloader]
+                    if self.batch_transforms is not None
+                    else self.dataloader
+                ),
                 num_steps=self.num_steps,
                 metric="L1",
                 device=self.device_id,

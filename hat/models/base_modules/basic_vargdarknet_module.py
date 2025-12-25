@@ -30,9 +30,7 @@ class VargDarkNetBlock(nn.Module):
         bn_kwargs: Dict,
     ):
         super(VargDarkNetBlock, self).__init__()
-        assert (
-            in_channels == out_channels * 2
-        ), f"{in_channels} != 2 * {out_channels}"
+        assert in_channels == out_channels * 2, f"{in_channels} != 2 * {out_channels}"
         self.conv1 = ConvModule2d(
             in_channels=in_channels,
             out_channels=out_channels,

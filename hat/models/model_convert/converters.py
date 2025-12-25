@@ -59,9 +59,7 @@ logger = logging.getLogger(__name__)
 
 def _preserve_qat_mode(model, preserve_dict):
     if preserve_dict is not None:
-        if check_packages_available(
-            "horizon_plugin_profiler", raise_exception=False
-        ):
+        if check_packages_available("horizon_plugin_profiler", raise_exception=False):
             from horizon_plugin_profiler import set_preserve_qat_mode
         elif check_packages_available(
             "horizon_plugin_pytorch>=1.2.0", raise_exception=False
@@ -90,9 +88,7 @@ class BaseConverter(object):
         assert convert_mode in (
             "eager",
             "fx",
-        ), "convert_mode must be 'eager' or 'fx', but receive {}".format(
-            convert_mode
-        )
+        ), "convert_mode must be 'eager' or 'fx', but receive {}".format(convert_mode)
         if convert_mode == "fx":
             check_packages_available("horizon_plugin_pytorch>=1.0.3")
 
@@ -200,7 +196,11 @@ class Float2QAT(BaseConverter):
         deploy_inputs = dict(
             img=torch.randn((2, 3, 480, 640)),
         )
-        check_qconfig(model, deploy_inputs, out_dir='/open_explorer/ddk/samples/ai_toolchain/horizon_model_train_sample/scripts') 
+        check_qconfig(
+            model,
+            deploy_inputs,
+            out_dir="/open_explorer/ddk/samples/ai_toolchain/horizon_model_train_sample/scripts",
+        )
         logger.info(
             format_msg(
                 "Successfully convert float model to qat model.",
@@ -326,9 +326,7 @@ class Float2Calibration(BaseConverter):
             # make sure the input model is a float model
             model.fuse_model()
 
-        qconfig_manager.set_qconfig_mode(
-            qconfig_manager.QconfigMode.CALIBRATION
-        )
+        qconfig_manager.set_qconfig_mode(qconfig_manager.QconfigMode.CALIBRATION)
         if self.qconfig_setter is None or self.example_inputs is None:
             model.qconfig = qconfig_manager.get_default_qconfig()
         if hasattr(model, "set_qconfig"):
@@ -690,9 +688,7 @@ class Torch2Compile(BaseConverter):
         self.compile_args = kwargs
 
         if compile_submodules and skip_modules:
-            raise RuntimeError(
-                "compile and skip cannot be used simultaneously!!!"
-            )
+            raise RuntimeError("compile and skip cannot be used simultaneously!!!")
 
         default_dynamo_cfg = {"log_level": logging.WARNING}
 
@@ -876,10 +872,7 @@ class GraphModelSplit(BaseConverter):
         if save_models is not None:
             assert len(split_nodes) == len(save_models)
             assert all(
-                [
-                    k in [None, "", "top", "bottom", "top,bottom"]
-                    for k in save_models
-                ]
+                [k in [None, "", "top", "bottom", "top,bottom"] for k in save_models]
             )
         else:
             save_models = ["top,bottom"] * len(split_nodes)
@@ -891,9 +884,7 @@ class GraphModelSplit(BaseConverter):
     def __call__(self, graph_model: MultitaskGraphModel):
         top_models = []
         bottom_models = []
-        for s_n, n_b, k_m in zip(
-            self.split_nodes, self.next_bases, self.save_models
-        ):
+        for s_n, n_b, k_m in zip(self.split_nodes, self.next_bases, self.save_models):
             top_model, bottom_model, _, _ = graph_model.split_module(
                 out_names=None, split_node_name=s_n, common_module_flatten=True
             )
@@ -938,11 +929,11 @@ class GraphModelInputKeyMapping(BaseConverter):
                         self.input_key_mapping[input_i.name]
                         not in created_place_holders
                     ):
-                        created_place_holders[
-                            self.input_key_mapping[input_i.name]
-                        ] = Node.create_placeholder(
-                            name=self.input_key_mapping[input_i.name],
-                            attr=input_i.attr,
+                        created_place_holders[self.input_key_mapping[input_i.name]] = (
+                            Node.create_placeholder(
+                                name=self.input_key_mapping[input_i.name],
+                                attr=input_i.attr,
+                            )
                         )
                     create_node = created_place_holders[
                         self.input_key_mapping[input_i.name]

@@ -81,14 +81,6 @@ if __name__ == "__main__":
         # of the args tuple.
         export_quantized_onnx(model, (example_input, {}), file_path, **kwargs)
     else:
-        # torch.onnx.export(model,                     # PyTorch model
-        #           (example_input, {}),             # Example input tensor
-        #           file_path,         # Output ONNX file path
-        #           input_names=None,    # Input names used in the ONNX model
-        #           output_names=None,  # Output names used in the ONNX model
-        #           export_params=True,
-        #           opset_version= 16,
-        #           verbose=True)  
         export_to_onnx(model, example_input, file_path, **kwargs)
 
     logger.info("=" * 50 + "END ONNX" + "=" * 50)

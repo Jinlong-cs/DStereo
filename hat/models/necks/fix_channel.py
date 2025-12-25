@@ -83,9 +83,11 @@ class FixChannelNeck(nn.Module):
                 padding=0,
                 stride=1,
                 bias=True,
-                norm_layer=None
-                if bn_kwargs is None
-                else nn.BatchNorm2d(out_channel, **bn_kwargs),
+                norm_layer=(
+                    None
+                    if bn_kwargs is None
+                    else nn.BatchNorm2d(out_channel, **bn_kwargs)
+                ),
             )
         self.out_strides = out_strides
         self.out_indices = out_indices
@@ -193,9 +195,7 @@ class VargFixChannelNeck(nn.Module):
                 if varg_block_type == "BasicVarGBlock":
                     layers.append(
                         BasicVarGBlock(
-                            in_channels=in_channels[idx]
-                            if i == 0
-                            else out_channel,
+                            in_channels=in_channels[idx] if i == 0 else out_channel,
                             mid_channels=out_channel,
                             out_channels=out_channel,
                             stride=1,
@@ -211,9 +211,7 @@ class VargFixChannelNeck(nn.Module):
                 elif varg_block_type == "BasicMixVarGEBlock":
                     layers.append(
                         BasicMixVarGEBlock(
-                            in_channels=in_channels[idx]
-                            if i == 0
-                            else out_channel,
+                            in_channels=in_channels[idx] if i == 0 else out_channel,
                             out_channels=out_channel,
                             stride=1,
                             bias=True,

@@ -1,0 +1,24 @@
+# 使用基础镜像
+FROM openexplorer/ai_toolchain_ubuntu_20_x5_gpu:v1.2.8-py310 AS base
+
+# 设置工作目录
+WORKDIR /workspace
+
+# 更新包列表并安装bash
+RUN apt-get update && apt-get install -y bash && rm -rf /var/lib/apt/lists/*
+
+# 首先复制除了output、input、work_dirs之外的所有文件
+COPY . /workspace/
+# 删除不需要的目录（如果存在的话）
+RUN rm -rf /workspace/output && \
+    rm -rf /workspace/input && \
+    rm -rf /workspace/work_dirs
+
+# 创建必要的目录
+RUN mkdir -p /workspace/output && \
+    mkdir -p /workspace/input && \
+    mkdir -p /workspace/work_dirs
+
+RUN chmod +x /workspace/cloud_ptq.sh
+# 设置默认的训练命令
+CMD ["/workspace/cloud_ptq.sh"]

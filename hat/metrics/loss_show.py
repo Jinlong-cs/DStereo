@@ -54,8 +54,7 @@ class LossShow(EvalMetric):
             else:
                 losses = [ll.item() for ll in loss.values()]
                 self.loss = [
-                    loss1 + loss2
-                    for (loss1, loss2) in zip(*(self.loss, losses))
+                    loss1 + loss2 for (loss1, loss2) in zip(*(self.loss, losses))
                 ]
             self.num_inst += 1
 

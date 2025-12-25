@@ -43,8 +43,7 @@ def pad_and_split(
             elif replicate_type == "edge":
                 pad_edge_left = x[:, :, :, 0:1]
                 txpdl = torch.cat(
-                    *[pad_edge_left for j in range(num_cached_frames - 1)],
-                    dim=3
+                    *[pad_edge_left for j in range(num_cached_frames - 1)], dim=3
                 )
             tx = torch.cat((txpdl, x), dim=3)
         elif i == num_cached_frames - 1:
@@ -57,8 +56,7 @@ def pad_and_split(
             elif replicate_type == "edge":
                 pad_edge_right = x[:, :, :, -1:]
                 txpdr = torch.cat(
-                    *[pad_edge_right for j in range(num_cached_frames - 1)],
-                    dim=3
+                    *[pad_edge_right for j in range(num_cached_frames - 1)], dim=3
                 )
             tx = torch.cat((x, txpdr), dim=3)
         else:
@@ -75,8 +73,7 @@ def pad_and_split(
                 pad_edge_left = x[:, :, :, 0:1]
                 pad_edge_right = x[:, :, :, -1:]
                 txpdl = torch.cat(
-                    *[pad_edge_left for j in range(num_cached_frames - 1 - i)],
-                    dim=3
+                    *[pad_edge_left for j in range(num_cached_frames - 1 - i)], dim=3
                 )
                 txpdr = torch.cat(*[pad_edge_right for j in range(i)], dim=3)
             tx = torch.cat((txpdl, x, txpdr), dim=3)
@@ -90,15 +87,11 @@ def pad_and_split(
     # x: (batch_size, seq_len, channel, 1, cached_frame)
     x = x.permute((0, 3, 1, 2, 4))
     # x: (batch_size * seq_len, channel, 1, cached_frame)
-    x = torch.reshape(
-        x, [batch_size * seq_len, num_channel, 1, num_cached_frames]
-    )
+    x = torch.reshape(x, [batch_size * seq_len, num_channel, 1, num_cached_frames])
     return x
 
 
-def pad_and_split_v2(
-    x: torch.Tensor, num_cached_frames, padding_type: str = "zero"
-):
+def pad_and_split_v2(x: torch.Tensor, num_cached_frames, padding_type: str = "zero"):
     """Pad and split the training data.
 
     Pad `Zeros` or `Edges` at the head of the sequence . And split the

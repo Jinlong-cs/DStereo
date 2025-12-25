@@ -40,9 +40,7 @@ def collect_requirements_env_info(data):
         try:
             m = import_module(name)
         except ImportError as e:
-            raise ImportError(
-                "Unable to import dependency {}. {}".format(name, e)
-            )
+            raise ImportError("Unable to import dependency {}. {}".format(name, e))
         else:
             try:
                 version_info = str(m.__pypi_version__)
@@ -139,9 +137,7 @@ def collect_env_info():
     if has_gpu:
         devices = defaultdict(list)
         for k in range(torch.cuda.device_count()):
-            cap = ".".join(
-                (str(x) for x in torch.cuda.get_device_capability(k))
-            )
+            cap = ".".join((str(x) for x in torch.cuda.get_device_capability(k)))
             name = torch.cuda.get_device_name(k) + f" (arch={cap})"
             devices[name].append(str(k))
         for name, devids in devices.items():
@@ -154,11 +150,7 @@ def collect_env_info():
             data.append(("Driver version", get_nvidia_driver_version(_run)))
         except Exception:
             pass
-        msg = (
-            " - invalid!"
-            if not (CUDA_HOME and os.path.isdir(CUDA_HOME))
-            else ""
-        )
+        msg = " - invalid!" if not (CUDA_HOME and os.path.isdir(CUDA_HOME)) else ""
         data.append(("CUDA_HOME", str(CUDA_HOME) + msg))
 
         cuda_arch_list = os.environ.get("TORCH_CUDA_ARCH_LIST", None)

@@ -68,9 +68,7 @@ def run(cmd, node, exit_if_error: bool = True):
             shell=True,
         )
     except subprocess.CalledProcessError as e:
-        logger.warning(
-            f"subprocess({e.cmd}) failed({e.returncode})! {e.output}.\n"
-        )
+        logger.warning(f"subprocess({e.cmd}) failed({e.returncode})! {e.output}.\n")
         if exit_if_error:
             os._exit(-1)
 
@@ -228,9 +226,7 @@ if __name__ == "__main__":
         default=False,
         help="whether to use watchdog to monitor",
     )
-    parser.add_argument(
-        "command", nargs="+", help="command for plugin program"
-    )
+    parser.add_argument("command", nargs="+", help="command for plugin program")
     args = parser.parse_args()
     cmd = " ".join(args.command)
     submit(

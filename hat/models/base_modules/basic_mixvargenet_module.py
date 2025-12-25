@@ -274,19 +274,13 @@ class BasicMixVarGEBlock(nn.Module):
         self.fuse_2x = fuse_2x and stride == 2
         self.use_reparam = use_reparam
 
-        mid_channle = (
-            out_channels if factor == 1 else int(in_channels * factor)
-        )
+        mid_channle = out_channels if factor == 1 else int(in_channels * factor)
 
         conv1_groups = (
-            1
-            if conv1_group_base is None
-            else int(in_channels / conv1_group_base)
+            1 if conv1_group_base is None else int(in_channels / conv1_group_base)
         )
         conv2_groups = (
-            1
-            if conv2_group_base is None
-            else int(out_channels / conv2_group_base)
+            1 if conv2_group_base is None else int(out_channels / conv2_group_base)
         )
 
         if use_reparam:
@@ -335,15 +329,10 @@ class BasicMixVarGEBlock(nn.Module):
             ExtSequential(fusion_layers) if len(fusion_channels) else None
         )
 
-        self.fusion_relu = (
-            nn.ReLU(inplace=True) if len(fusion_channels) else None
-        )
+        self.fusion_relu = nn.ReLU(inplace=True) if len(fusion_channels) else None
 
         self.fusion_adds = ExtSequential(
-            [
-                nn.quantized.FloatFunctional()
-                for i in range(len(fusion_channels))
-            ]
+            [nn.quantized.FloatFunctional() for i in range(len(fusion_channels))]
         )
 
         self.downsample = None

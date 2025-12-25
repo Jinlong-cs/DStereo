@@ -80,18 +80,16 @@ try:
             "ch_axis": 0,
         },
     )
-    global_calibration_out_qconfig_v2 = (
-        horizon.quantization.get_default_qconfig(
-            activation_fake_quant=None,
-            weight_fake_quant="fake_quant",
-            activation_observer=None,
-            weight_observer="min_max",
-            activation_qkwargs=None,
-            weight_qkwargs={
-                "qscheme": torch.per_channel_symmetric,
-                "ch_axis": 0,
-            },
-        )
+    global_calibration_out_qconfig_v2 = horizon.quantization.get_default_qconfig(
+        activation_fake_quant=None,
+        weight_fake_quant="fake_quant",
+        activation_observer=None,
+        weight_observer="min_max",
+        activation_qkwargs=None,
+        weight_qkwargs={
+            "qscheme": torch.per_channel_symmetric,
+            "ch_axis": 0,
+        },
     )
 except Exception:
     global_qat_qconfig_v2 = global_qat_qconfig
@@ -186,25 +184,21 @@ def set_default_qconfig(
             activation_qkwargs=None,
             weight_qkwargs=weight_qat_qkwargs,
         )
-        global_calibration_qconfig_v2 = (
-            horizon.quantization.get_default_qconfig(
-                activation_fake_quant=activation_fake_quant,
-                weight_fake_quant=weight_fake_quant,
-                activation_observer=activation_calibration_observer,
-                weight_observer=weight_calibration_observer,
-                activation_qkwargs=activation_calibration_qkwargs,
-                weight_qkwargs=weight_calibration_qkwargs,
-            )
+        global_calibration_qconfig_v2 = horizon.quantization.get_default_qconfig(
+            activation_fake_quant=activation_fake_quant,
+            weight_fake_quant=weight_fake_quant,
+            activation_observer=activation_calibration_observer,
+            weight_observer=weight_calibration_observer,
+            activation_qkwargs=activation_calibration_qkwargs,
+            weight_qkwargs=weight_calibration_qkwargs,
         )
-        global_calibration_out_qconfig_v2 = (
-            horizon.quantization.get_default_qconfig(
-                activation_fake_quant=None,
-                weight_fake_quant=weight_fake_quant,
-                activation_observer=None,
-                weight_observer=weight_calibration_observer,
-                activation_qkwargs=None,
-                weight_qkwargs=weight_calibration_qkwargs,
-            )
+        global_calibration_out_qconfig_v2 = horizon.quantization.get_default_qconfig(
+            activation_fake_quant=None,
+            weight_fake_quant=weight_fake_quant,
+            activation_observer=None,
+            weight_observer=weight_calibration_observer,
+            activation_qkwargs=None,
+            weight_qkwargs=weight_calibration_qkwargs,
         )
     except AttributeError:
         pass

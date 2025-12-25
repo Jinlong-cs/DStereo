@@ -80,9 +80,11 @@ class ConvDownscaleNeck(nn.Module):
                 padding=1,
                 stride=2,
                 bias=True,
-                norm_layer=None
-                if bn_kwargs is None
-                else nn.BatchNorm2d(out_channels[idx], **bn_kwargs),
+                norm_layer=(
+                    None
+                    if bn_kwargs is None
+                    else nn.BatchNorm2d(out_channels[idx], **bn_kwargs)
+                ),
             )
         self.out_strides = out_strides
         self.out_indices = out_indices

@@ -75,10 +75,7 @@ class UFPN(nn.Module):
                 bottom_proj_blocks is None
                 or len(bottom_proj_blocks) == len(in_strides) - 1
             )
-            and (
-                up_proj_blocks is None
-                or len(up_proj_blocks) == len(in_strides) - 1
-            )
+            and (up_proj_blocks is None or len(up_proj_blocks) == len(in_strides) - 1)
         ), "Custom mixvarge blocks not matched with input strides"
 
         stride2channels = {s: c for s, c in zip(in_strides, out_channels)}
@@ -146,12 +143,14 @@ class UFPN(nn.Module):
                 factor=factor,
                 use_bias=True,
                 is_relu_after_add=is_with_relu,
-                bottom_proj_block=bottom_proj_blocks[-i - 1]
-                if bottom_proj_blocks is not None
-                else None,
-                up_proj_block=up_proj_blocks[-i - 1]
-                if up_proj_blocks is not None
-                else None,
+                bottom_proj_block=(
+                    bottom_proj_blocks[-i - 1]
+                    if bottom_proj_blocks is not None
+                    else None
+                ),
+                up_proj_block=(
+                    up_proj_blocks[-i - 1] if up_proj_blocks is not None else None
+                ),
                 kernel_size=fusion_kernel_size,
             )
             self.fusion_blocks[f"stride_{s}"] = block
@@ -222,8 +221,7 @@ class UFPN(nn.Module):
             up_outputs = up_outputs[::-1]
         else:
             up_outputs = [
-                up_outputs[::-1][self.in_strides.index(i)]
-                for i in self.output_strides
+                up_outputs[::-1][self.in_strides.index(i)] for i in self.output_strides
             ]
 
         return up_outputs

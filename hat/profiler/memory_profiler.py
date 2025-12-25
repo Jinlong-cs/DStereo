@@ -52,9 +52,7 @@ DEFAULT_RECORD_FUNCS = {
 
 
 def match_any_func(action_name: str, record_funcs: Set[str]):
-    return any(
-        action_name.startswith(func_name) for func_name in list(record_funcs)
-    )
+    return any(action_name.startswith(func_name) for func_name in list(record_funcs))
 
 
 class GPUMemorySnapshot:
@@ -108,9 +106,7 @@ class GPUMemorySnapshot:
             self.resister_oom_observer(output_dir=self.output_dir)
 
     def start_action(self, action_name: str):
-        if self.record_snapshot and match_any_func(
-            action_name, self.record_functions
-        ):
+        if self.record_snapshot and match_any_func(action_name, self.record_functions):
             step = self.snapshot_steps.get(action_name, -1)
             self.snapshot_steps[action_name] = step + 1
 
@@ -120,9 +116,7 @@ class GPUMemorySnapshot:
         device: Optional[int] = None,
     ):
         snapshot = None
-        if self.record_snapshot and match_any_func(
-            action_name, self.record_functions
-        ):
+        if self.record_snapshot and match_any_func(action_name, self.record_functions):
             step = self.snapshot_steps.get(action_name, -1)
 
             if (step + 1) % self.snapshot_interval == 0:
@@ -161,8 +155,7 @@ class GPUMemorySnapshot:
             save_to_svg: Whether to convert svg. Defaults to False.
         """
         assert (
-            LooseVersion(torch.__version__) >= LooseVersion("1.13.0")
-            and _write_blocks
+            LooseVersion(torch.__version__) >= LooseVersion("1.13.0") and _write_blocks
         ), (
             f"Memory snapshot require torch >= 1.13.0 and has "
             f"`torch.cuda._memory_viz._write_blocks`, but in your environment"
@@ -194,9 +187,7 @@ class GPUMemorySnapshot:
                 with open(svg_file, "w") as svg_file:
                     svg_file.write(flame_graph)
             except Exception as e:
-                logger.warning(
-                    f"Failed to save convert flame graph to svg: {e}"
-                )
+                logger.warning(f"Failed to save convert flame graph to svg: {e}")
 
     def resister_oom_observer(
         self,
@@ -262,9 +253,7 @@ class GPUMemoryProfiler(BaseProfiler):
                 if you attempt to stop recording an action which was never
                 started.
         """
-        super(GPUMemoryProfiler, self).__init__(
-            dirpath=dirpath, filename=filename
-        )
+        super(GPUMemoryProfiler, self).__init__(dirpath=dirpath, filename=filename)
         if LooseVersion(torch.__version__) >= LooseVersion("1.10.2"):
             self.memory_metric_list = [
                 "memory_allocated",
@@ -303,8 +292,7 @@ class GPUMemoryProfiler(BaseProfiler):
     def start(self, action_name: str) -> None:
         if action_name in self.current_actions:
             raise ValueError(
-                f"Attempted to start {action_name} "
-                f"which has already started."
+                f"Attempted to start {action_name} " f"which has already started."
             )
         self.current_actions.add(action_name)
         # Resets the starting point in tracking maximum GPU memory occupied
@@ -359,10 +347,7 @@ class GPUMemoryProfiler(BaseProfiler):
         output_string += f"GPU Memory Profiler Report{sep}"
         if len(self.recorded_memory["memory_allocated"].keys()) > 0:
             max_key = np.max(
-                [
-                    len(k)
-                    for k in self.recorded_memory["memory_allocated"].keys()
-                ]
+                [len(k) for k in self.recorded_memory["memory_allocated"].keys()]
             )
 
             def log_row(action_name, *args):
@@ -461,34 +446,25 @@ class GPUMemoryProfiler(BaseProfiler):
                     continue
             plt.legend(plot_and_save_names)
             plt.savefig(
-                os.path.join(
-                    output_dir, f"{memory_name}_{self._local_rank}.png"
-                )
+                os.path.join(output_dir, f"{memory_name}_{self._local_rank}.png")
             )
 
         action_names = list(self.recorded_memory["memory_allocated"].keys())
         for action_name in action_names:
-            if (
-                not len(self.recorded_memory["memory_allocated"][action_name])
-                > 1
-            ):
+            if not len(self.recorded_memory["memory_allocated"][action_name]) > 1:
                 continue
             plt.figure(figsize=(15, 15), dpi=100)
             plt.title(action_name)
             plt.xlabel("iters")
             plt.ylabel("GPU Memory (M)")
             for memory_name in self.memory_metric_list:
-                action_name_memory = self.recorded_memory[memory_name][
-                    action_name
-                ]
+                action_name_memory = self.recorded_memory[memory_name][action_name]
                 x = list(range(len(action_name_memory)))
                 y = action_name_memory
                 plt.plot(x, y)
             plt.legend(self.memory_metric_list)
             plt.savefig(
-                os.path.join(
-                    output_dir, f"{action_name}_{self._local_rank}.png"
-                )
+                os.path.join(output_dir, f"{action_name}_{self._local_rank}.png")
             )
 
     def save_snapshots(self):
@@ -539,9 +515,7 @@ class CPUMemoryProfiler(BaseProfiler):
                 if you attempt to stop recording an action which was never
                 started.
         """
-        super(CPUMemoryProfiler, self).__init__(
-            dirpath=dirpath, filename=filename
-        )
+        super(CPUMemoryProfiler, self).__init__(dirpath=dirpath, filename=filename)
 
         self.memory_metric_list = [
             "action_start",
@@ -573,8 +547,7 @@ class CPUMemoryProfiler(BaseProfiler):
     def start(self, action_name: str) -> None:
         if action_name in self.current_actions:
             raise ValueError(
-                f"Attempted to start {action_name} "
-                f"which has already started."
+                f"Attempted to start {action_name} " f"which has already started."
             )
         self.current_actions.add(action_name)
         # Get cpu rss memory.
@@ -593,9 +566,7 @@ class CPUMemoryProfiler(BaseProfiler):
             memory_rss - self.recorded_memory["action_start"][action_name][-1]
         )
         self.recorded_memory["action_end"][action_name].append(memory_rss)
-        self.recorded_memory["action_delta"][action_name].append(
-            action_delta_rss
-        )
+        self.recorded_memory["action_delta"][action_name].append(action_delta_rss)
 
     def _make_report(self):
         action_names = list(self.recorded_memory["action_start"].keys())
@@ -728,9 +699,7 @@ class CPUMemoryProfiler(BaseProfiler):
             plt.xlabel("iters")
             plt.ylabel("CPU Memory (M)")
             for memory_name in self.memory_metric_list:
-                action_name_memory = self.recorded_memory[memory_name][
-                    action_name
-                ]
+                action_name_memory = self.recorded_memory[memory_name][action_name]
                 x = list(range(len(action_name_memory)))
                 y = action_name_memory
                 plt.plot(x, y)
@@ -770,9 +739,7 @@ class StageCPUMemoryProfiler(BaseProfiler):
         if filename is None:
             filename = profile_action_name
 
-        super(StageCPUMemoryProfiler, self).__init__(
-            dirpath=dirpath, filename=filename
-        )
+        super(StageCPUMemoryProfiler, self).__init__(dirpath=dirpath, filename=filename)
         pymalloc_flag = os.environ.get("PYTHONMALLOC", None)
 
         if leaks:
@@ -788,15 +755,12 @@ class StageCPUMemoryProfiler(BaseProfiler):
         res = re.findall("get_(.*?)_batch_data", self.profile_action_name)
 
         if len(res) > 0:
-            logger.warn(
-                "Please make sure you has set numwork=0 in dataloader!"
-            )
+            logger.warn("Please make sure you has set numwork=0 in dataloader!")
 
     def profile(self, action_name: str):
         if self.profile_action_name == action_name:
             filename = (
-                self.filename
-                + f"_rank{self.local_rank}_{self.index}_{os.getpid()}.bin"
+                self.filename + f"_rank{self.local_rank}_{self.index}_{os.getpid()}.bin"
             )
             file_path = os.path.join(self.dirpath, filename)
             self.profile_tracker = memray.Tracker(file_path)
@@ -811,8 +775,7 @@ class StageCPUMemoryProfiler(BaseProfiler):
             try:
                 if self.profile_action_name == action_name:
                     filename = (
-                        self.filename
-                        + f"_rank{self.local_rank}_{self.index}.bin"
+                        self.filename + f"_rank{self.local_rank}_{self.index}.bin"
                     )
                     file_path = os.path.join(self.dirpath, filename)
                     with memray.Tracker(file_path):
@@ -827,9 +790,7 @@ class StageCPUMemoryProfiler(BaseProfiler):
                 break
 
     def describe_midway(self, idx) -> None:
-        filename = (
-            self.filename + f"_rank{self.local_rank}_{idx}_{os.getpid()}.bin"
-        )
+        filename = self.filename + f"_rank{self.local_rank}_{idx}_{os.getpid()}.bin"
         file_path = os.path.join(self.dirpath, filename)
         if self.leaks:
             cmd = "memray flamegraph --leaks {}".format(file_path)

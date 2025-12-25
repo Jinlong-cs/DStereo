@@ -29,12 +29,7 @@ def resize(
             output_h, output_w = size
             if output_h > input_h or output_w > output_h:
                 if (
-                    (
-                        output_h > 1
-                        and output_w > 1
-                        and input_h > 1
-                        and input_w > 1
-                    )
+                    (output_h > 1 and output_w > 1 and input_h > 1 and input_w > 1)
                     and (output_h - 1) % (input_h - 1)
                     and (output_w - 1) % (input_w - 1)
                 ):
@@ -44,9 +39,7 @@ def resize(
                         f"input size {(input_h, input_w)} is `x+1` and "
                         f"out size {(output_h, output_w)} is `nx+1`"
                     )
-    output = F.interpolate(
-        input.float(), size, scale_factor, mode, align_corners
-    )
+    output = F.interpolate(input.float(), size, scale_factor, mode, align_corners)
     if torch.is_autocast_enabled():
         output = output.to(torch.float16)
     return output
@@ -102,9 +95,7 @@ class ResizeParser(torch.nn.Module):
         if isinstance(preds, Mapping) and self.data_name not in preds:
             return preds
 
-        ori_data = (
-            preds[self.data_name] if isinstance(preds, Mapping) else preds
-        )
+        ori_data = preds[self.data_name] if isinstance(preds, Mapping) else preds
         if isinstance(ori_data, Sequence):
             resize_data = []
             for one_stride in ori_data:

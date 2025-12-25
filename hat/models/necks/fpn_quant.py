@@ -38,9 +38,7 @@ class FPNQuant(nn.Module):
         return feats_out
 
     def set_qconfig(self):
-        self.qconfig = (
-            horizon_plugin_pytorch.quantization.get_default_qat_qconfig()
-        )
+        self.qconfig = horizon_plugin_pytorch.quantization.get_default_qat_qconfig()
 
 
 @OBJECT_REGISTRY.register
@@ -56,6 +54,4 @@ class FPNDeQuant(nn.Module):
         return feats
 
     def set_qconfig(self):
-        self.qconfig = (
-            horizon_plugin_pytorch.quantization.get_default_qat_out_qconfig()
-        )
+        self.qconfig = horizon_plugin_pytorch.quantization.get_default_qat_out_qconfig()

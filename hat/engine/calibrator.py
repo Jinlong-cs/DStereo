@@ -112,9 +112,9 @@ class Calibrator(LoopBase):
                 "activation_calibration_qkwargs", {}
             )
             qkwargs.update(update_interval=num_steps)
-            model_convert_pipeline.qconfig_params[
-                "activation_calibration_qkwargs"
-            ] = qkwargs
+            model_convert_pipeline.qconfig_params["activation_calibration_qkwargs"] = (
+                qkwargs
+            )
 
             model_convert_pipeline.refresh_global_qconfig()
 
@@ -166,9 +166,7 @@ class Calibrator(LoopBase):
             self.num_steps = 0
 
             self.auto_calibration_config = (
-                auto_calibration_config
-                if auto_calibration_config is not None
-                else {}
+                auto_calibration_config if auto_calibration_config is not None else {}
             )
             self.auto_preload_data = self.auto_calibration_config.pop(
                 "preload_data", False
@@ -289,9 +287,7 @@ class Calibrator(LoopBase):
             )
 
             reconstruction_time = time.time() - reconstruction_time_begin
-            logger.info(
-                "Weight Reconstruction Cost Time: %.3fs" % reconstruction_time
-            )
+            logger.info("Weight Reconstruction Cost Time: %.3fs" % reconstruction_time)
 
             model.eval()
             horizon.quantization.set_fake_quantize(
@@ -301,9 +297,7 @@ class Calibrator(LoopBase):
         return super().on_loop_end(model=model, **kwargs)
 
 
-def launch(
-    main_func, device_ids=None, dist_url=None, dist_launcher=None, args=()
-):
+def launch(main_func, device_ids=None, dist_url=None, dist_launcher=None, args=()):
     if device_ids is None:
         current_device = None
     else:

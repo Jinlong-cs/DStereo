@@ -49,8 +49,7 @@ class CylindricalCamera(CameraBase):
         )
         self.vfov_down = (
             np.arctan2(
-                np.array(self.image_size[1])
-                - np.array(self.principle_point[1]),
+                np.array(self.image_size[1]) - np.array(self.principle_point[1]),
                 np.array(self.fy),
             )
             * 180
@@ -67,15 +66,10 @@ class CylindricalCamera(CameraBase):
             camera_height = config["camera_z"]
         ground_bsd = (
             np.array(self.fy)
-            / (
-                np.array(self.image_size[1])
-                - np.array(self.principle_point[1])
-            )
+            / (np.array(self.image_size[1]) - np.array(self.principle_point[1]))
             * camera_height
         )
-        visionable_height = (
-            1 * (np.tan(self.vfov_up * np.pi / 180)) + camera_height
-        )
+        visionable_height = 1 * (np.tan(self.vfov_up * np.pi / 180)) + camera_height
 
         return ground_bsd, visionable_height
 
@@ -208,9 +202,7 @@ class IPMCamera(PinholeCamera):
                 (abs(vcs_range[2] - vcs_range[0]) / image_size[1]),
             ]
         )
-        principle_point = (
-            np.array([vcs_range[3], vcs_range[2]]) / self.resolution
-        )
+        principle_point = np.array([vcs_range[3], vcs_range[2]]) / self.resolution
         super().__init__(
             image_size=image_size,
             camera_matrix=np.array(
@@ -272,14 +264,8 @@ class IPMCamera(PinholeCamera):
     def _update_intrinsic(self):
         self._resolution = np.array(
             [
-                (
-                    abs(self.vcs_range[3] - self.vcs_range[1])
-                    / self.image_size[0]
-                ),
-                (
-                    abs(self.vcs_range[2] - self.vcs_range[0])
-                    / self.image_size[1]
-                ),
+                (abs(self.vcs_range[3] - self.vcs_range[1]) / self.image_size[0]),
+                (abs(self.vcs_range[2] - self.vcs_range[0]) / self.image_size[1]),
             ]
         )
         self.fx = 1 / self._resolution[0]

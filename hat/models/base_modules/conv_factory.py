@@ -59,18 +59,14 @@ def get_conv_module(
             groups=in_channels,
             dilation=dilation,
             bias=bias,
-            dw_act_layer=dw_activation(**act_kwargs)
-            if dw_activation
-            else None,
-            pw_act_layer=pw_activation(**act_kwargs)
-            if pw_activation
-            else None,
-            dw_norm_layer=dw_norm_method(in_channels, **bn_kwargs)
-            if dw_norm_method
-            else None,
-            pw_norm_layer=pw_norm_method(out_channels, **bn_kwargs)
-            if pw_norm_method
-            else None,
+            dw_act_layer=dw_activation(**act_kwargs) if dw_activation else None,
+            pw_act_layer=pw_activation(**act_kwargs) if pw_activation else None,
+            dw_norm_layer=(
+                dw_norm_method(in_channels, **bn_kwargs) if dw_norm_method else None
+            ),
+            pw_norm_layer=(
+                pw_norm_method(out_channels, **bn_kwargs) if pw_norm_method else None
+            ),
         )
     else:
         return ConvModule2d(
@@ -81,8 +77,8 @@ def get_conv_module(
             dilation=dilation,
             padding=padding,
             bias=bias,
-            norm_layer=dw_norm_method(out_channels, **bn_kwargs)
-            if dw_norm_method
-            else None,
+            norm_layer=(
+                dw_norm_method(out_channels, **bn_kwargs) if dw_norm_method else None
+            ),
             act_layer=dw_activation(**act_kwargs) if dw_activation else None,
         )

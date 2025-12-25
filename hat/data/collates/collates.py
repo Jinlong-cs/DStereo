@@ -90,21 +90,15 @@ def default_collate_v2(batch):
     elif isinstance(elem, string_classes):
         return batch
     elif isinstance(elem, collections.abc.Mapping):
-        return {
-            key: default_collate_v2([d[key] for d in batch]) for key in elem
-        }
+        return {key: default_collate_v2([d[key] for d in batch]) for key in elem}
     elif isinstance(elem, tuple) and hasattr(elem, "_fields"):  # namedtuple
-        return elem_type(
-            *(default_collate_v2(samples) for samples in zip(*batch))
-        )
+        return elem_type(*(default_collate_v2(samples) for samples in zip(*batch)))
     elif isinstance(elem, collections.abc.Sequence):
         # check to make sure that the elements in batch have consistent size
         it = iter(batch)
         elem_size = len(next(it))
         if not all(len(elem) == elem_size for elem in it):
-            raise RuntimeError(
-                "each element in list of batch should be of equal size"
-            )
+            raise RuntimeError("each element in list of batch should be of equal size")
         transposed = zip(*batch)
         return [default_collate_v2(samples) for samples in transposed]
     return batch
@@ -138,9 +132,7 @@ def collate_psd(batch: List[Any]):
         return return_data
 
 
-def collate_2d(
-    batch: List[Any], verbose: bool = False
-) -> Union[torch.Tensor, Dict]:
+def collate_2d(batch: List[Any], verbose: bool = False) -> Union[torch.Tensor, Dict]:
     """Merge a list of samples to form a mini-batch of Tensor(s).
 
     Used in 2d task, for collating data with inconsistent shapes.
@@ -380,9 +372,7 @@ def collate_2d_pad(batch: List[Any]) -> Union[torch.Tensor, Dict]:
                 pad_img_shape = [collate_data[0].shape[-2:] for _ in batch]
                 return_data.update({"batch_input_shape": pad_img_shape})
             else:
-                collate_data = default_collate(
-                    [d[key] for d in batch if key in d]
-                )
+                collate_data = default_collate([d[key] for d in batch if key in d])
 
             return_data.update({key: collate_data})
         return return_data
@@ -423,9 +413,7 @@ def collate_3d(
                 assert custom_func is not None
                 result[key] = custom_func(batch_data, key)
             else:
-                result[key] = collate_3d(
-                    [d[key] for d in batch_data], ignore_keys
-                )
+                result[key] = collate_3d([d[key] for d in batch_data], ignore_keys)
         return result
     elif isinstance(batch_data[0], (list, tuple)):
         return [collate_3d(data, ignore_keys) for data in zip(*batch_data)]
@@ -643,9 +631,7 @@ def collate_lidar(batch_list: List[Any]) -> Union[torch.Tensor, Dict]:
                     )
                     coors.append(coor_pad)
 
-                batch_collated_list.append(
-                    torch.tensor(np.concatenate(coors, axis=0))
-                )
+                batch_collated_list.append(torch.tensor(np.concatenate(coors, axis=0)))
             ret[key] = batch_collated_list
 
         # 下述key,将每个elem在放回到所属batch的list中拼接并张量化.
@@ -1091,9 +1077,7 @@ def collate_mot_seq(
                                 f"Unsupport image datatype: {type(d[key])}"
                             )
                 else:
-                    collate_data = [
-                        d[key] for d in one_seq_data["frame_data_list"]
-                    ]
+                    collate_data = [d[key] for d in one_seq_data["frame_data_list"]]
             else:
                 collate_data = default_collate(
                     [d[key] for d in one_seq_data["frame_data_list"]]
@@ -1145,9 +1129,7 @@ def collate_lidar3d(batch_list: List[Any]) -> Union[torch.Tensor, Dict]:
                     coor, ((0, 0), (1, 0)), mode="constant", constant_values=i
                 )
                 coors.append(coor_pad)
-            ret[key] = torch.tensor(
-                np.concatenate(coors, axis=0), dtype=torch.int64
-            )
+            ret[key] = torch.tensor(np.concatenate(coors, axis=0), dtype=torch.int64)
 
         elif key in ["points", "gt_boxes", "gt_classess"]:
             points_lst = [torch.tensor(points) for points in elems]
@@ -1211,18 +1193,14 @@ def collate_2d_cat(batch: List[Any]) -> Union[torch.Tensor, Dict]:
             if key in list_key:
                 collate_data = [d[key] for d in batch if key in d]
             elif key == "img" or "detection" in key:
-                collate_data = torch.cat(
-                    [d[key] for d in batch if key in d], 0
-                )
+                collate_data = torch.cat([d[key] for d in batch if key in d], 0)
             else:
                 if key == "num_boxes":
                     for d in batch:
                         for g_key in goal_keys:
                             if g_key not in d[key]:
                                 d[key][g_key] = 0
-                collate_data = default_collate_v2(
-                    [d[key] for d in batch if key in d]
-                )
+                collate_data = default_collate_v2([d[key] for d in batch if key in d])
 
             return_data.update({key: collate_data})
         return return_data
@@ -1259,9 +1237,7 @@ def collate_mmfusion_3d(batch_list):
             ret_value = []
             for idx in range(len(elems[0])):
                 batch_elem = [elem[idx] for elem in elems]
-                ret_value.append(
-                    torch.tensor(np.concatenate(batch_elem, axis=0))
-                )
+                ret_value.append(torch.tensor(np.concatenate(batch_elem, axis=0)))
         elif key in [
             "voxel_coordinates",
             "pillar_coordinates",
@@ -1410,9 +1386,7 @@ def collate_disp_cat(batch: List[Any]) -> Union[torch.Tensor, Dict]:
                 right = collate_data[1::2]
                 collate_data = torch.cat([left, right], 0)
             else:
-                collate_data = default_collate_v2(
-                    [d[key] for d in batch if key in d]
-                )
+                collate_data = default_collate_v2([d[key] for d in batch if key in d])
 
             return_data.update({key: collate_data})
         return return_data

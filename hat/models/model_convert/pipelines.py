@@ -116,9 +116,7 @@ class QATFuseBNConvertPipeline(ModelConvertPipeline):
             )
             assert checkpoint_configs is not None
 
-        fuse_part_configs = (
-            {} if fuse_part_configs is None else fuse_part_configs
-        )
+        fuse_part_configs = {} if fuse_part_configs is None else fuse_part_configs
         pipelines = [
             Float2QAT(),
             QATFusePartBN(
@@ -133,11 +131,7 @@ class QATFuseBNConvertPipeline(ModelConvertPipeline):
 
         if checkpoint_mode is not None:
             checkpoint = LoadCheckpoint(**checkpoint_configs)
-            idx = (
-                len(pipelines)
-                if checkpoint_mode == "resume"
-                else len(pipelines) - 1
-            )
+            idx = len(pipelines) if checkpoint_mode == "resume" else len(pipelines) - 1
             pipelines.insert(idx, checkpoint)
 
         super().__init__(
@@ -198,11 +192,7 @@ class FloatQatConvertPipeline(ModelConvertPipeline):
 
         if checkpoint_mode is not None:
             checkpoint = LoadCheckpoint(**checkpoint_configs)
-            idx = (
-                len(pipelines)
-                if checkpoint_mode == "resume"
-                else len(pipelines) - 1
-            )
+            idx = len(pipelines) if checkpoint_mode == "resume" else len(pipelines) - 1
             pipelines.insert(idx, checkpoint)
 
         super().__init__(

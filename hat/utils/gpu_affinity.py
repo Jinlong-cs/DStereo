@@ -80,9 +80,7 @@ def build_thread_siblings_dict(siblings_list):
 
 
 def group_list_by_dict(affinity, siblings_dict):
-    sorted_affinity = sorted(
-        affinity, key=lambda x: siblings_dict.get(x, (x,))
-    )
+    sorted_affinity = sorted(affinity, key=lambda x: siblings_dict.get(x, (x,)))
     grouped = itertools.groupby(
         sorted_affinity, key=lambda x: siblings_dict.get(x, (x,))
     )
@@ -135,8 +133,7 @@ def get_socket_affinities(nproc_per_node, exclude_unavailable_cores=True):
     if exclude_unavailable_cores:
         available_cores = os.sched_getaffinity(0)
         socket_affinities = [
-            list(set(affinity) & available_cores)
-            for affinity in socket_affinities
+            list(set(affinity) & available_cores) for affinity in socket_affinities
         ]
 
     check_socket_affinities(socket_affinities)
@@ -144,12 +141,8 @@ def get_socket_affinities(nproc_per_node, exclude_unavailable_cores=True):
     return socket_affinities
 
 
-def get_grouped_socket_affinities(
-    nproc_per_node, exclude_unavailable_cores=True
-):
-    socket_affinities = get_socket_affinities(
-        nproc_per_node, exclude_unavailable_cores
-    )
+def get_grouped_socket_affinities(nproc_per_node, exclude_unavailable_cores=True):
+    socket_affinities = get_socket_affinities(nproc_per_node, exclude_unavailable_cores)
     grouped_socket_affinities = group_affinity_by_siblings(socket_affinities)
     return grouped_socket_affinities
 
@@ -190,9 +183,7 @@ def set_socket_single_affinity(gpu_id, nproc_per_node, cores):
     single_grouped_socket_affinities = [
         group[:1] for group in grouped_socket_affinities
     ]
-    ungrouped_affinities = ungroup_affinities(
-        single_grouped_socket_affinities, cores
-    )
+    ungrouped_affinities = ungroup_affinities(single_grouped_socket_affinities, cores)
     os.sched_setaffinity(0, ungrouped_affinities[gpu_id])
 
 
@@ -227,9 +218,7 @@ def set_socket_single_unique_affinity(gpu_id, nproc_per_node, cores):
     os.sched_setaffinity(0, ungrouped_affinities[gpu_id])
 
 
-def set_socket_unique_affinity(
-    gpu_id, nproc_per_node, cores, mode, balanced=True
-):
+def set_socket_unique_affinity(gpu_id, nproc_per_node, cores, mode, balanced=True):
     """Set socket unique affinity.
 
     The process is assigned with a unique subset of available physical CPU
@@ -251,9 +240,9 @@ def set_socket_unique_affinity(
     grouped_socket_affinities_to_device_ids = collections.defaultdict(list)
 
     for idx, grouped_socket_affinity in enumerate(grouped_socket_affinities):
-        grouped_socket_affinities_to_device_ids[
-            tuple(grouped_socket_affinity)
-        ].append(idx)
+        grouped_socket_affinities_to_device_ids[tuple(grouped_socket_affinity)].append(
+            idx
+        )
 
     # compute minimal number of physical cores per GPU across all GPUs and
     # sockets, code assigns this number of cores per GPU if balanced == True
@@ -277,9 +266,7 @@ def set_socket_unique_affinity(
                 : devices_per_group * min_physical_cores_per_gpu
             ]
         else:
-            cores_per_device = (
-                len(grouped_socket_affinity) // devices_per_group
-            )
+            cores_per_device = len(grouped_socket_affinity) // devices_per_group
 
         for socket_subgroup_id, device_id in enumerate(device_ids):
             # In theory there should be no difference in performance between
@@ -293,9 +280,7 @@ def set_socket_unique_affinity(
 
             if mode == "interleaved":
                 unique_grouped_affinity = list(
-                    grouped_socket_affinity[
-                        socket_subgroup_id::devices_per_group
-                    ]
+                    grouped_socket_affinity[socket_subgroup_id::devices_per_group]
                 )
             elif mode == "contiguous":
                 unique_grouped_affinity = list(

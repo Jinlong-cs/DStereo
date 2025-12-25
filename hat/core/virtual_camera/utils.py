@@ -50,9 +50,7 @@ def ensure_point_list(points, dim, concatenate=True, crop=True):
         for test_dim in range(4, dim, -1):
             if points.shape[1] == test_dim:
                 new_shape = test_dim - 1
-                assert np.array_equal(
-                    points[:, new_shape], np.ones(points.shape[0])
-                )
+                assert np.array_equal(points[:, new_shape], np.ones(points.shape[0]))
                 points = points[:, 0:new_shape]
 
     if concatenate and points.shape[1] == (dim - 1):
@@ -62,9 +60,7 @@ def ensure_point_list(points, dim, concatenate=True, crop=True):
 
     if points.shape[1] != dim:
         raise AssertionError(
-            "points.shape[1] == dim failed ({} != {})".format(
-                points.shape[1], dim
-            )
+            "points.shape[1] == dim failed ({} != {})".format(points.shape[1], dim)
         )
     return points
 
@@ -99,9 +95,7 @@ def transform_euler2rotMat(rpyAngle: typing.Union[list, tuple, np.ndarray]):
 def parse_extrinsicParam(config, is_virtual=False, return_extra=False):
     # fix: local to vcs coord(vcs_pt = poseMat_local2vcs * local_pt)
     poseMat_local2vcs = np.eye(4)
-    rotMat_local2vcs = transform_euler2rotMat(
-        np.array(config["vcs"]["rotation"])
-    )
+    rotMat_local2vcs = transform_euler2rotMat(np.array(config["vcs"]["rotation"]))
     poseMat_local2vcs[:3, :3] = rotMat_local2vcs
     poseMat_local2vcs[0:3, 3] = np.array(config["vcs"]["translation"]).T
 
@@ -167,9 +161,7 @@ def get_cam_uuid(src_cam, dst_cam=None):
                 params.extend(arg)
             else:
                 params.append(arg)
-    cam_uuid = uuid.uuid3(
-        uuid.NAMESPACE_DNS, "_".join([f"{x:.6f}" for x in params])
-    )
+    cam_uuid = uuid.uuid3(uuid.NAMESPACE_DNS, "_".join([f"{x:.6f}" for x in params]))
     return cam_uuid
 
 
@@ -290,7 +282,7 @@ class ImagePointsInterpolation(object):
         pts_x_dst = np.reshape(pts_x_dst, (num_dst, 1))
         A = np.hstack([pts_x_src] * num_dst)
         B = np.hstack([pts_x_dst] * num_src)
-        dist2 = A ** 2 + B.T ** 2 - 2 * A * B.T
+        dist2 = A**2 + B.T**2 - 2 * A * B.T
         ptx_idx = np.argmin(dist2, axis=0)
 
         return ptx_idx
@@ -305,9 +297,7 @@ class ImagePointsInterpolation(object):
             if idx == 0:
                 continue
             last_key_position = key_positions[idx - 1]
-            point_group = point_sequence[
-                last_key_position : (key_position + 1)
-            ]
+            point_group = point_sequence[last_key_position : (key_position + 1)]
             point_groups.append(point_group)
             if idx == num_groups - 1:
                 point_group = np.vstack(
@@ -385,9 +375,7 @@ class ImagePointsInterpolation(object):
                 )
             else:
                 cur_color = color
-            cv2.circle(
-                image, (int(point[0]), int(point[1])), 1, cur_color, thickness
-            )
+            cv2.circle(image, (int(point[0]), int(point[1])), 1, cur_color, thickness)
 
         return image
 

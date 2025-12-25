@@ -191,9 +191,7 @@ def _raise_invalid_type_error(obj_type, registry=None):  # type: ignore
         class_obj = "class " + obj_type
         func_obj = "def " + obj_type
         # path of hat
-        dir_path = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), "..")
-        )
+        dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         file_name = os.path.join(dir_path, py_file_name)
 
         with open(file_name + ".py", "r", encoding="utf-8") as py_file:
@@ -277,9 +275,7 @@ def _build_optimizer(cfg: dict) -> Any:
 
             loc_name["others"] = {
                 "params": [],
-                "weight_decay": (
-                    cfg["weight_decay"] if "weight_decay" in cfg else 0
-                ),
+                "weight_decay": (cfg["weight_decay"] if "weight_decay" in cfg else 0),
             }
             for name, p in model.named_parameters():
                 if not p.requires_grad:
@@ -298,9 +294,7 @@ def _build_optimizer(cfg: dict) -> Any:
                 res.append(v)
             cfg["params"] = res
         else:
-            cfg["params"] = filter(
-                lambda p: p.requires_grad, model.parameters()
-            )
+            cfg["params"] = filter(lambda p: p.requires_grad, model.parameters())
         return build_from_cfg(OBJECT_REGISTRY, cfg)
 
     if "model" in cfg:
@@ -313,10 +307,7 @@ def _build_optimizer(cfg: dict) -> Any:
 
 def _modify_pytorch_dataloader_config(cfg: dict) -> dict:
     if "sampler" in cfg:
-        if (
-            isinstance(cfg["sampler"], dict)
-            and "dataset" not in cfg["sampler"]
-        ):  # noqa
+        if isinstance(cfg["sampler"], dict) and "dataset" not in cfg["sampler"]:  # noqa
             cfg["sampler"]["dataset"] = cfg["dataset"]
         cfg["shuffle"] = False
 
@@ -331,10 +322,7 @@ def _modify_pytorch_dataloader_config(cfg: dict) -> dict:
 
 def _is_dataloader(object_type: Any) -> bool:
     custom_loader_types = ["RankSplitDataLoader"]
-    if (
-        object_type is torch.utils.data.DataLoader
-        or object_type in custom_loader_types
-    ):
+    if object_type is torch.utils.data.DataLoader or object_type in custom_loader_types:
         return True
     else:
         return False
@@ -391,9 +379,7 @@ def build_from_registry(x: Any) -> Any:
                     object_type, torch.utils.data.Dataset
                 ):  # noqa
                     obj = _build_dataset(x)
-                elif isclass and issubclass(
-                    object_type, torch.optim.Optimizer
-                ):  # noqa
+                elif isclass and issubclass(object_type, torch.optim.Optimizer):  # noqa
                     obj = _build_optimizer(x)
                 else:
                     obj = build_from_cfg(OBJECT_REGISTRY, x)

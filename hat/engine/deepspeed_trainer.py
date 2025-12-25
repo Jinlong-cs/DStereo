@@ -130,9 +130,10 @@ class DeepSpeedTrainer(Trainer):
             **kwargs,
         )
         assert deepspeed is not None, "Please install deepspeed"
-        assert isinstance(self.device, int), (
-            "%s, run `DistributedDataParallel` model"
-            " only on one gpu" % type(self.device)
+        assert isinstance(
+            self.device, int
+        ), "%s, run `DistributedDataParallel` model" " only on one gpu" % type(
+            self.device
         )
         current_device = torch.cuda.current_device()
         assert current_device == self.device, "%d vs. %d" % (
@@ -170,9 +171,7 @@ class DeepSpeedTrainer(Trainer):
         if config_params.get("activation_checkpointing", False):
             deepspeed.checkpointing.configure(
                 mpu_=None,
-                deepspeed_config=config_params
-                if config_json is None
-                else config_json,
+                deepspeed_config=config_params if config_json is None else config_json,
             )
 
         if checkpoint_dir is not None:
@@ -208,8 +207,7 @@ def launch(
         assert num_processes > 0
         if num_processes == num_devices and backend != "NCCL":
             logger.warning(
-                "NCCL is the best choice in case of single "
-                "process on single gpu."
+                "NCCL is the best choice in case of single " "process on single gpu."
             )
 
         # Note: if device_ids=[1, 3], then after setting
@@ -228,9 +226,7 @@ def launch(
         dist_url = "tcp://localhost:%s" % port
 
     if dist_launcher is not None:
-        assert (
-            dist_launcher == "torch"
-        ), "Only support torch as launcher for deepspeed"
+        assert dist_launcher == "torch", "Only support torch as launcher for deepspeed"
         master_port = os.getenv("MASTER_PORT", None)
         if master_port:
             logger.warning(f"DDP master port will be set to {master_port}")
@@ -301,22 +297,16 @@ def _main_func(
             rank=local_rank,
             auto_mpi_discovery=False,
             timeout=timedelta(
-                seconds=int(
-                    os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800")
-                )
+                seconds=int(os.environ.get("HAT_PROCESS_GROUP_TIMEOUT", "1800"))
             ),
         )
 
     except Exception as e:
-        logger.error(
-            f"init process group({local_rank}:{dist_url}) error!" + str(e)
-        )
+        logger.error(f"init process group({local_rank}:{dist_url}) error!" + str(e))
         raise e
 
     if num_devices is not None:
-        local_rank = (
-            int(os.environ["LOCAL_RANK"]) if local_rank == -1 else local_rank
-        )
+        local_rank = int(os.environ["LOCAL_RANK"]) if local_rank == -1 else local_rank
         torch.cuda.set_device(local_rank % num_devices)
         main_func(local_rank % num_devices, *args)
     else:

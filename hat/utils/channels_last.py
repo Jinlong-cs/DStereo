@@ -36,9 +36,7 @@ def convert_memory_format(batch, keys, memory_format=torch.channels_last):
         if keys is None:
             for key, value in batch.items():
                 v_key = value.keys() if isinstance(value, Mapping) else ()
-                batch[key] = convert_memory_format(
-                    batch[key], v_key, memory_format
-                )
+                batch[key] = convert_memory_format(batch[key], v_key, memory_format)
         else:
             for k in keys:
                 assert k in batch.keys(), f"Cannot find {k} in input batch."

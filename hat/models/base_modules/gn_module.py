@@ -34,9 +34,7 @@ class GroupNorm2d(nn.GroupNorm):
         track_running_stats=True,
         use_momentum=False,
     ):
-        super(GroupNorm2d, self).__init__(
-            num_groups, num_channels, eps, affine
-        )
+        super(GroupNorm2d, self).__init__(num_groups, num_channels, eps, affine)
         self.track_running_stats = track_running_stats
         self.momentum = momentum
         self.use_momentum = use_momentum
@@ -74,21 +72,15 @@ class GroupNorm2d(nn.GroupNorm):
 
         if self.track_running_stats:
 
-            current_means = means.mean(dim=0, keepdim=True).reshape(
-                self.num_groups
-            )
-            current_vars = vars.mean(dim=0, keepdim=True).reshape(
-                self.num_groups
-            )
+            current_means = means.mean(dim=0, keepdim=True).reshape(self.num_groups)
+            current_vars = vars.mean(dim=0, keepdim=True).reshape(self.num_groups)
 
             if self.use_momentum:
                 exponential_average_factor = 0.0
                 if self.training:
                     if self.num_batches_tracked is not None:
                         self.num_batches_tracked += 1
-                        if (
-                            self.momentum is None
-                        ):  # use cumulative moving average
+                        if self.momentum is None:  # use cumulative moving average
                             exponential_average_factor = 1.0 / float(
                                 self.num_batches_tracked
                             )

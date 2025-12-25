@@ -167,9 +167,7 @@ if __name__ == "__main__":
         required=True,
         help="Number of workers per node.",
     )
-    parser.add_argument(
-        "command", nargs="+", help="command for plugin program"
-    )
+    parser.add_argument("command", nargs="+", help="command for plugin program")
     args = parser.parse_args()
     cmd = " ".join(args.command)
     submit(args.job_idx, args.nnodes, args.nproc_per_node, cmd)

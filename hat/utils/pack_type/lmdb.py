@@ -57,7 +57,7 @@ class Lmdb(PackType):
         else:
             # set map_size to 1T while writing.
             if self.lmdb_kwargs.get("map_size") is None:
-                self.lmdb_kwargs["map_size"] = 1024 ** 4
+                self.lmdb_kwargs["map_size"] = 1024**4
         # LMDB env
         self.env = None
         self.txn = None
@@ -75,8 +75,7 @@ class Lmdb(PackType):
             return self.get(idx)
         except TimeoutError as exception:
             logger.error(
-                f"Time out when reading data with index of "
-                f"{idx} from {self.uri}"
+                f"Time out when reading data with index of " f"{idx} from {self.uri}"
             )
             raise exception
 

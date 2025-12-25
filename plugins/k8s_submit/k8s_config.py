@@ -1,4 +1,5 @@
 """Job Settings."""
+
 import hat
 
 job_name = "torch-hat-k8s-example"
@@ -55,8 +56,7 @@ job_list = [
 ]
 
 custom_cmds_before_job_list = [
-    "ln -s /horizon-bucket/%s/data/pack_data ${WORKING_PATH}/tmp_data"
-    % input_bucket,
+    "ln -s /horizon-bucket/%s/data/pack_data ${WORKING_PATH}/tmp_data" % input_bucket,
     "ln -s /horizon-bucket/%s/models/bayes_release_models ${WORKING_PATH}/tmp_pretrained_models"  # noqa
     % input_bucket,
     "mkdir -p /job_data/models",

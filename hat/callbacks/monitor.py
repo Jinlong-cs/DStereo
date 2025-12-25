@@ -36,9 +36,7 @@ class StatsMonitor(CallbackMixin):  # noqa: D205,D400
         self.log_profiler = log_profiler
         self.gpu_monitor = True
         if shutil.which("nvidia-smi") is None:
-            logger.warning(
-                "Cannot monitor gpus because NVIDIA driver is not installed"
-            )
+            logger.warning("Cannot monitor gpus because NVIDIA driver is not installed")
             self.gpu_monitor = False
 
         self.step_time = AverageMeter("step_time", fmt=":6.3f")
@@ -122,9 +120,7 @@ class StatsMonitor(CallbackMixin):  # noqa: D205,D400
                     report.append([a, np.sum(d)])
 
                 report.sort(key=lambda x: x[1], reverse=True)
-                msg += (
-                    f" Most time cost op: {report[0][0]}({report[0][1]:.2f}s);"
-                )
+                msg += f" Most time cost op: {report[0][0]}({report[0][1]:.2f}s);"
                 msg += f" {report[1][0]}({report[1][1]:.2f}s);"
                 msg += f" {report[2][0]}({report[2][1]:.2f}s);"
 
@@ -146,9 +142,7 @@ class StatsMonitor(CallbackMixin):  # noqa: D205,D400
         logger.info("Epoch[%d] End   " % epoch_id + "=" * 50)
         epoch_time = time.time() - self.epoch_time_begin
         self.epoch_time.update(epoch_time)
-        logger.info(
-            "Epoch[%d] Cost Time: %.3fs" % (epoch_id, self.epoch_time.sum)
-        )
+        logger.info("Epoch[%d] Cost Time: %.3fs" % (epoch_id, self.epoch_time.sum))
 
     def _estimate_speed(
         self,
@@ -188,16 +182,12 @@ class StatsMonitor(CallbackMixin):  # noqa: D205,D400
             remaining_steps = (self.num_epochs - epoch_id - 1) * epoch_size + (
                 epoch_size - step_id - 1
             )
-            remaining_step_percent = remaining_steps / (
-                self.num_epochs * epoch_size
-            )
+            remaining_step_percent = remaining_steps / (self.num_epochs * epoch_size)
         elif self.num_steps:
             remaining_steps = self.num_steps - global_step_id - 1
             remaining_step_percent = remaining_steps / self.num_steps
         else:
-            raise ValueError(
-                "One of (num_steps, num_epochs) " "should not be None"
-            )
+            raise ValueError("One of (num_steps, num_epochs) " "should not be None")
 
         training_time = int(remaining_steps * self.step_time.avg)
         return training_time, remaining_step_percent

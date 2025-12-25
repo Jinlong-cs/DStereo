@@ -1,4 +1,5 @@
 """train tools."""
+
 import argparse
 import ast
 import logging
@@ -42,8 +43,7 @@ def parse_args():
         type=str,
         required=True,
         help=(
-            "the training stage, you should define "
-            "{stage}_trainer in your config"
+            "the training stage, you should define " "{stage}_trainer in your config"
         ),
     )
     parser.add_argument(
@@ -59,8 +59,7 @@ def parse_args():
         type=str,
         required=False,
         default=None,
-        help="GPU device ids like '0,1,2,3', "
-        "will override `device_ids` in config",
+        help="GPU device ids like '0,1,2,3', " "will override `device_ids` in config",
     )
     parser.add_argument(
         "--dist-url",
@@ -169,8 +168,7 @@ def train_entrance(
         with open(cfg["redirect_config_logging_path"], "w") as fid:
             fid.write(pprint.pformat(filter_configs(cfg)))
         rank_zero_info(
-            "save config logging output to %s"
-            % cfg["redirect_config_logging_path"]
+            "save config logging output to %s" % cfg["redirect_config_logging_path"]
         )
     else:
         rank_zero_info(pprint.pformat(filter_configs(cfg)))

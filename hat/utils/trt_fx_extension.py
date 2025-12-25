@@ -149,9 +149,7 @@ def _mean_replace_adp_avg_pool2d():
                 network, target, args, _kwargs, trt.ReduceOperation.AVG, name
             )
         else:
-            return acc_ops_adaptive_avg_poolnd(
-                network, target, args, kwargs, name
-            )
+            return acc_ops_adaptive_avg_poolnd(network, target, args, kwargs, name)
 
 
 def _group_norm():
@@ -175,9 +173,7 @@ def _group_norm():
         assert len(args) == 0
         input_val = kwargs["input"]
         num_group = kwargs["num_groups"]
-        weight = get_trt_tensor(
-            network, kwargs["weight"], f"{layer_name}_weight"
-        )
+        weight = get_trt_tensor(network, kwargs["weight"], f"{layer_name}_weight")
         bias = get_trt_tensor(network, kwargs["bias"], f"{layer_name}_bias")
         eps = kwargs["eps"]
 
@@ -195,9 +191,7 @@ def _group_norm():
         eps_field = trt.PluginField(
             "eps", np.array(eps, dtype=np.float32), trt.PluginFieldType.FLOAT32
         )
-        field_collection = trt.PluginFieldCollection(
-            [num_groups_field, eps_field]
-        )
+        field_collection = trt.PluginFieldCollection([num_groups_field, eps_field])
         try:
             plugin = get_trt_plugin(plugin_name, field_collection, "1")
         except AssertionError:
@@ -215,9 +209,7 @@ def _dynamic_shape_pad():
     from torch_tensorrt.fx.types import TRTTensor
 
     @tensorrt_converter(acc_ops.pad)
-    def acc_ops_pad_with_padding_layer(
-        network, target, args, kwargs, layer_name
-    ):
+    def acc_ops_pad_with_padding_layer(network, target, args, kwargs, layer_name):
         input_val = kwargs["input"]
         pad = cast(Sequence[int], kwargs["pad"])
         mode = kwargs["mode"]
@@ -274,9 +266,7 @@ EXTENSIONS["dynamic_shape_pad"] = _dynamic_shape_pad
 
 def list_extension():
     for k, v in EXTENSIONS.items():
-        logger.info(
-            f"Extension name: {k}, file location: {v.__globals__['__file__']}"
-        )
+        logger.info(f"Extension name: {k}, file location: {v.__globals__['__file__']}")
 
 
 def load_extension(name):

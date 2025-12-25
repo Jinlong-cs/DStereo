@@ -390,9 +390,7 @@ class CheckDeployDevice(BaseModelProfiler):
             * VALUE (Tuple): (deploy device(BPU or CPU), module type)
     """
 
-    def __init__(
-        self, print_tabulate: bool = True, out_dir: Optional[str] = None
-    ):
+    def __init__(self, print_tabulate: bool = True, out_dir: Optional[str] = None):
         super(CheckDeployDevice, self).__init__()
         self.print_tabulate = print_tabulate
         self.out_dir = out_dir
@@ -496,9 +494,7 @@ class ModelProfiler(BaseModelProfiler):
                         if v is not None:
                             get_raw_features_dict.update({key: v})
                     self.kwargs_dict.update({_key_map[k]: d})
-                    self.kwargs_dict.update(
-                        {"get_raw_features": get_raw_features_dict}
-                    )
+                    self.kwargs_dict.update({"get_raw_features": get_raw_features_dict})
                 else:
                     self.kwargs_dict.update({_key_map[k]: d})
 

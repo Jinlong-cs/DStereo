@@ -91,9 +91,7 @@ def refine_all_in_file(temp_info, keep_in_all):
         for tmp in in_all_modules:
             if tmp.strip() in keep_in_all:
                 keep_tmp.append(tmp.strip().strip(","))
-        all_keeps = [
-            '"{}"'.format(keep_tmp_each) for keep_tmp_each in keep_tmp
-        ]
+        all_keeps = ['"{}"'.format(keep_tmp_each) for keep_tmp_each in keep_tmp]
         if len(keep_tmp):
             temp_info[0] = "__all__ = [{}]\n".format(", ".join(all_keeps))
         else:
@@ -101,9 +99,7 @@ def refine_all_in_file(temp_info, keep_in_all):
     return temp_info
 
 
-def refine_import_in_file(
-    res, import_modules, temp_info, keep_in_all, ori_imports
-):
+def refine_import_in_file(res, import_modules, temp_info, keep_in_all, ori_imports):
     """Refine import in __init__.py."""
     keep_tmp = []
     for tmp in import_modules:
@@ -119,9 +115,7 @@ def refine_import_in_file(
             temp_info = []
     else:
         if len(keep_tmp):
-            temp_info[0] = "from {} import {}\n".format(
-                res[0][0], ", ".join(keep_tmp)
-            )
+            temp_info[0] = "from {} import {}\n".format(res[0][0], ", ".join(keep_tmp))
         else:
             temp_info = []
     return temp_info, keep_in_all
@@ -231,9 +225,7 @@ def refine_init_file(dst_dir, dst_file, each_file):
                     num_flag -= init_info.count("]")
 
                     init_info_strip = init_info.strip()
-                    init_info_strip = re.findall(
-                        '["](.*?)["]', init_info_strip
-                    )
+                    init_info_strip = re.findall('["](.*?)["]', init_info_strip)
                     for init_info_tmp in init_info_strip:
                         keep_in_all.append(init_info_tmp)
                 if num_flag == 0:
@@ -304,9 +296,7 @@ def main(args):
         relative_paths = []
         for path, _, files in os.walk(src_module_path):
 
-            abs_paths = [
-                os.path.join(path, x) for x in files if x == "__init__.py"
-            ]
+            abs_paths = [os.path.join(path, x) for x in files if x == "__init__.py"]
 
             relative_path = [path[src_module_path_len:] for path in abs_paths]
             relative_paths += relative_path

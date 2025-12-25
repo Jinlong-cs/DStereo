@@ -118,8 +118,7 @@ def convert_numpy(
             return data
     elif isinstance(data, Mapping):
         return {
-            key: convert_numpy(data[key], to_list=to_list, dtype=dtype)
-            for key in data
+            key: convert_numpy(data[key], to_list=to_list, dtype=dtype) for key in data
         }
     elif isinstance(data, tuple) and hasattr(data, "_fields"):  # namedtuple
         return elem_type(
@@ -297,18 +296,12 @@ def apply_to_collection(
 
     if isinstance(data, tuple) and hasattr(data, "_fields"):  # named tuple
         return elem_type(
-            *(
-                apply_to_collection(d, dtype, function, *args, **kwargs)
-                for d in data
-            )
+            *(apply_to_collection(d, dtype, function, *args, **kwargs) for d in data)
         )
 
     if isinstance(data, Sequence) and not isinstance(data, str):
         return elem_type(
-            [
-                apply_to_collection(d, dtype, function, *args, **kwargs)
-                for d in data
-            ]
+            [apply_to_collection(d, dtype, function, *args, **kwargs) for d in data]
         )
 
     # data is neither of dtype, nor a collection
@@ -320,9 +313,7 @@ def is_namedtuple(obj):  # noqa: D205,D400
     collections.namedtuple.
     """
     return (
-        isinstance(obj, tuple)
-        and hasattr(obj, "_fields")
-        and hasattr(obj, "_asdict")
+        isinstance(obj, tuple) and hasattr(obj, "_fields") and hasattr(obj, "_asdict")
     )
 
 
@@ -365,14 +356,10 @@ def to_flat_ordered_dict(
     def _flat():
         if isinstance(obj, dict):
             for k, v in obj.items():
-                name2val.update(
-                    to_flat_ordered_dict(v, _append(k), flat_condition)
-                )
+                name2val.update(to_flat_ordered_dict(v, _append(k), flat_condition))
         elif is_namedtuple(obj):
             for k, v in zip(obj._fields, obj):
-                name2val.update(
-                    to_flat_ordered_dict(v, _append(k), flat_condition)
-                )
+                name2val.update(to_flat_ordered_dict(v, _append(k), flat_condition))
         elif isinstance(obj, (list, tuple)):
             for i, v in enumerate(obj):
                 name2val.update(
@@ -388,8 +375,7 @@ def to_flat_ordered_dict(
         assert callable(flat_condition)
         formal_args = sorted(signature(flat_condition).parameters)
         assert len(formal_args) == 2, (
-            "flat_condition input should be "
-            f"(key, value), found {formal_args}"
+            "flat_condition input should be " f"(key, value), found {formal_args}"
         )
 
     name2val = OrderedDict()
@@ -594,17 +580,11 @@ def pytree_convert(
     Returns:
         Same structure as input with manipulated elements.
     """
-    if (
-        type(input) is convert_type
-        if strict_type
-        else isinstance(input, convert_type)
-    ):
+    if type(input) is convert_type if strict_type else isinstance(input, convert_type):
         return func(input)
     elif isinstance(input, (list, tuple)):
         return type(input)(
-            pytree_convert(
-                x, convert_type, func, skip_unsupported, strict_type
-            )
+            pytree_convert(x, convert_type, func, skip_unsupported, strict_type)
             for x in input
         )
     elif isinstance(input, dict):

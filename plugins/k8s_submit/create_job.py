@@ -23,7 +23,9 @@ PRIORITY = {
 
 # TODO(mengyang.duan): remove
 ENDPOINT = "http://aidi.hobot.cc"
-ENDPOINT_API_URL = "http://api.aidi.hobot.cc/infra/api/v1alpha/job_manager/job/create"  # noqa E501
+ENDPOINT_API_URL = (
+    "http://api.aidi.hobot.cc/infra/api/v1alpha/job_manager/job/create"  # noqa E501
+)
 
 
 class SingleJob(SingleJobModule):

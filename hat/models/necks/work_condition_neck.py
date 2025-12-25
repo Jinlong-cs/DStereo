@@ -46,9 +46,7 @@ class WorkConditionNeck(nn.Module):
 
     def forward(self, x):
         in_feat = x[: self.end_feature_idx]
-        in_feat = [
-            i if self.disable_quanti_input else self.quant(i) for i in in_feat
-        ]
+        in_feat = [i if self.disable_quanti_input else self.quant(i) for i in in_feat]
         in_feat = self.extra_layers(in_feat)
         in_feat = [self.dequant(i) for i in in_feat]
         return in_feat

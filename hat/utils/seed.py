@@ -66,5 +66,5 @@ def worker_reset_seed(worker_id: int):
     Args:
         worker_id: worker index.
     """
-    initial_seed = torch.initial_seed() % 2 ** 31
+    initial_seed = torch.initial_seed() % 2**31
     seed_everything(initial_seed + worker_id)

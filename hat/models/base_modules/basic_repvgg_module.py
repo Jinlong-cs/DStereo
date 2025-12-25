@@ -292,9 +292,7 @@ class RepBlock(nn.Module):
                 ), "The ConvModule2d layer should not have nonlinear layer."
             elif isinstance(branch, (nn.Identity, nn.BatchNorm2d)):
                 conv_args_dict["kernel_size"].append((1, 1))
-            elif hasattr(branch, "get_conv_bn") and hasattr(
-                branch, "conv_args"
-            ):
+            elif hasattr(branch, "get_conv_bn") and hasattr(branch, "conv_args"):
                 for arg in conv_args_dict:
                     conv_args_dict[arg].append(branch.conv_args[arg])
             else:
@@ -317,10 +315,7 @@ class RepBlock(nn.Module):
             conv_args_dict["groups"].append(1)
             conv_args_dict["dilation"].append((1, 1))
         conv_args = {k: conv_args_dict[k][0] for k in conv_args_dict.keys()}
-        k_size = [
-            max([k[i] for k in conv_args_dict["kernel_size"]])
-            for i in range(2)
-        ]
+        k_size = [max([k[i] for k in conv_args_dict["kernel_size"]]) for i in range(2)]
         conv_args["kernel_size"] = tuple(k_size)
 
         return conv_args
@@ -428,9 +423,7 @@ class RepBlock(nn.Module):
         eps = bn.eps
         std = (running_var + eps).sqrt()
         t = (gamma / std).reshape(-1, 1, 1, 1)
-        return (kernel * t).data, (
-            beta + (bias - running_mean) * gamma / std
-        ).data
+        return (kernel * t).data, (beta + (bias - running_mean) * gamma / std).data
 
     def _pad_kernel(self, kernel, k_size):
         if not isinstance(kernel, int):

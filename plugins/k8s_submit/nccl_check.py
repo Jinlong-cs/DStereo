@@ -58,9 +58,7 @@ def run_nccl_test(node, gpus):
         run(cmd=cmd, node=node)
 
     # nccl-test
-    nccl_test_cmd = (
-        f"./nccl-tests/build/all_gather_perf -b 8 -e 128M -f 2 -g {gpus}"
-    )
+    nccl_test_cmd = f"./nccl-tests/build/all_gather_perf -b 8 -e 128M -f 2 -g {gpus}"
     result = run(cmd=nccl_test_cmd, node=node)
     if result:
         print(f"{result.stdout}")

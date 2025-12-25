@@ -231,9 +231,7 @@ def submit(
             cfg.launcher = "torch"
     use_elastic = cfg.get("launcher", "torch") == "torchrun"
 
-    upload_folder = generate_upload_folder(
-        cfg, upload_folder, cfg.upload_folder_name
-    )
+    upload_folder = generate_upload_folder(cfg, upload_folder, cfg.upload_folder_name)
 
     if use_elastic:
         generate_watchdog_bash_file(cfg, upload_folder, sleep)
@@ -311,9 +309,7 @@ def submit(
                         value = value.replace(c, "_")
                 return value
 
-            dag_name = (
-                dag_name if dag_name is not None else cfg.get("dag_name", None)
-            )
+            dag_name = dag_name if dag_name is not None else cfg.get("dag_name", None)
             dag_name = (
                 f"{dag_name}_{time_suffix}"
                 if dag_name is not None

@@ -82,8 +82,7 @@ def set_deterministic_level(level: int = None):
     """
     if level:
         assert level in [0, 1, 2], (
-            f"`deterministic_level` should be one of [0, 1, 2], "
-            f"but get {level}."
+            f"`deterministic_level` should be one of [0, 1, 2], " f"but get {level}."
         )
         os.environ["HAT_DETERMINISTIC_LEVEL"] = str(level)
     else:
@@ -149,13 +148,9 @@ def register_hooks_to_non_deterministic_modules(model: nn.Module):
         return output
 
     for name, module in model.named_modules():
-        module_name = "{}.{}".format(
-            module.__module__, module.__class__.__name__
-        )
+        module_name = "{}.{}".format(module.__module__, module.__class__.__name__)
 
-        if not isinstance(
-            module, (nn.Sequential, nn.ModuleDict, nn.ModuleList)
-        ):
+        if not isinstance(module, (nn.Sequential, nn.ModuleDict, nn.ModuleList)):
             modules_list.add(module_name)
             module.register_forward_pre_hook(_forward_pre_hook)
             module.register_forward_hook(_forward_hook)
@@ -209,8 +204,7 @@ class NonDeterministicOpsTensor(Tensor):
             kwargs = to_device(kwargs, device="cpu")
 
             types = (
-                torch.Tensor if t is NonDeterministicOpsTensor else t
-                for t in types
+                torch.Tensor if t is NonDeterministicOpsTensor else t for t in types
             )
 
             ret = Tensor.__torch_function__(func, types, args, kwargs)

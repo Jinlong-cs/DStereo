@@ -72,13 +72,9 @@ class LrUpdaterBase(CallbackMixin):
     ):
         update_by = update_by.lower()
         warmup_by = warmup_by.lower()
-        assert (
-            update_by in self.UPDATE_MODES
-        ), f"{update_by} not in {self.UPDATE_MODES}"
+        assert update_by in self.UPDATE_MODES, f"{update_by} not in {self.UPDATE_MODES}"
 
-        assert (
-            warmup_by in self.UPDATE_MODES
-        ), f"{warmup_by} not in {self.UPDATE_MODES}"
+        assert warmup_by in self.UPDATE_MODES, f"{warmup_by} not in {self.UPDATE_MODES}"
         assert warmup_len >= 0, warmup_len
         assert (
             warmup_mode in self.WARMUP_MODES
@@ -126,9 +122,7 @@ class LrUpdaterBase(CallbackMixin):
         num_update = float(num_update)
         if self.warmup_mode == "linear":
             increase = (
-                (warmup_end_lr - self.warmup_begin_lr)
-                * num_update
-                / self.warmup_steps
+                (warmup_end_lr - self.warmup_begin_lr) * num_update / self.warmup_steps
             )
             return self.warmup_begin_lr + increase
 
@@ -139,9 +133,7 @@ class LrUpdaterBase(CallbackMixin):
             raise ValueError("Invalid warmup mode %s" % self.warmup_mode)
 
     @staticmethod
-    def set_lr(
-        optimizer: torch.optim.Optimizer, per_group_lr: Sequence[float]
-    ):
+    def set_lr(optimizer: torch.optim.Optimizer, per_group_lr: Sequence[float]):
         """Set lr for each param group.
 
         Args:
@@ -159,9 +151,7 @@ class LrUpdaterBase(CallbackMixin):
         for param_group, lr in zip(optimizer.param_groups, per_group_lr):
             param_group["lr"] = lr
 
-    def set_formal_training_lr(
-        self, optimizer: torch.optim.Optimizer, num_update: int
-    ):
+    def set_formal_training_lr(self, optimizer: torch.optim.Optimizer, num_update: int):
         """Calculate current lr then assign to optimizer among formal training.
 
         Args:
@@ -174,9 +164,7 @@ class LrUpdaterBase(CallbackMixin):
         ]
         self.set_lr(optimizer, per_group_lr)
 
-    def set_warmup_training_lr(
-        self, optimizer: torch.optim.Optimizer, num_update: int
-    ):
+    def set_warmup_training_lr(self, optimizer: torch.optim.Optimizer, num_update: int):
         """Calculate current lr then assign to optimizer among warmup training.
 
         Args:
@@ -214,19 +202,14 @@ class LrUpdaterBase(CallbackMixin):
         if has_len_func(data_loader):
             self.step_per_epoch = get_dataloader_length(data_loader)
             assert (
-                self.step_per_epoch != float("inf")
-                and self.step_per_epoch is not None
+                self.step_per_epoch != float("inf") and self.step_per_epoch is not None
             ), err_msg
             if self.warmup_by == "epoch":
                 self.warmup_steps = self.warmup_len * self.step_per_epoch
             else:
-                self.warmup_epochs = ceil(
-                    self.warmup_len / self.step_per_epoch
-                )
+                self.warmup_epochs = ceil(self.warmup_len / self.step_per_epoch)
         else:
-            assert (
-                self.warmup_by == "step" and self.update_by == "step"
-            ), err_msg
+            assert self.warmup_by == "step" and self.update_by == "step", err_msg
 
         # 2. backup initial lr of optimizer
         # NOTE: when resuming from a checkpoint, if 'initial_lr' is not
@@ -376,9 +359,7 @@ class PolyLrUpdater(LrUpdaterBase):
             formal_update = num_update - self.warmup_epochs
 
         if formal_update < self.max_update:
-            coeff = (
-                1.0 - float(formal_update) / self.max_update
-            ) ** self.power
+            coeff = (1.0 - float(formal_update) / self.max_update) ** self.power
             return (begin_lr - self.final_lr) * coeff + self.final_lr
         else:
             return self.final_lr
@@ -420,12 +401,8 @@ class StepDecayLrUpdater(LrUpdaterBase):
             assert is_list_of_type(
                 lr_decay_id, int
             ), "lr_decay_id should be a list of int"
-            assert is_list_sorted(
-                lr_decay_id
-            ), "lr_decay_id should be sorted ascending"
-        assert (
-            0 <= lr_decay_factor <= 1.0
-        ), "lr_decay_factor should be in [0.0, 1.0]"
+            assert is_list_sorted(lr_decay_id), "lr_decay_id should be sorted ascending"
+        assert 0 <= lr_decay_factor <= 1.0, "lr_decay_factor should be in [0.0, 1.0]"
         self.lr_decay_id = lr_decay_id
         self.lr_decay_factor = lr_decay_factor
 
@@ -453,7 +430,7 @@ class StepDecayLrUpdater(LrUpdaterBase):
             ), "StepDecay should be done after warmup epochs."
 
         exp = self._find_exp(num_update)
-        return begin_lr * self.lr_decay_factor ** exp
+        return begin_lr * self.lr_decay_factor**exp
 
     def _find_exp(self, num_update):
         exp = len(self.lr_decay_id)
@@ -501,26 +478,17 @@ class CosLrUpdater(LrUpdaterBase):
         self.stop_lr = stop_lr
 
     def on_loop_begin(self, optimizer, data_loader, num_epochs, **kwargs):
-        super(CosLrUpdater, self).on_loop_begin(
-            optimizer, data_loader, **kwargs
-        )
+        super(CosLrUpdater, self).on_loop_begin(optimizer, data_loader, **kwargs)
         if self.max_epoch > 0:
-            self.max_steps = (
-                self.max_epoch * self.step_per_epoch - self.warmup_steps
-            )
+            self.max_steps = self.max_epoch * self.step_per_epoch - self.warmup_steps
         if self.max_steps < 0:
             assert num_epochs is not None, (
-                "you should set the num_epochs of the Trainer or "
-                "set the max_steps."
+                "you should set the num_epochs of the Trainer or " "set the max_steps."
             )
-            self.max_steps = (
-                num_epochs * self.step_per_epoch - self.warmup_steps
-            )
+            self.max_steps = num_epochs * self.step_per_epoch - self.warmup_steps
 
     def get_lr(self, begin_lr: float, num_update: int):
-        factor = 1 + cos(
-            pi * (num_update - self.warmup_steps) / self.max_steps
-        )
+        factor = 1 + cos(pi * (num_update - self.warmup_steps) / self.max_steps)
         new_lr = (begin_lr - self.stop_lr) * factor / 2 + self.stop_lr
         return new_lr
 
@@ -568,8 +536,8 @@ class NoamLrUpdater(LrUpdaterBase):
         step_num = num_update + 1
         ret_lr = (
             begin_lr
-            * self.d_model ** 0.5
-            * min(step_num ** -0.5, step_num * self.warmup_step ** -1.5)
+            * self.d_model**0.5
+            * min(step_num**-0.5, step_num * self.warmup_step**-1.5)
         )
         return ret_lr
 
@@ -627,13 +595,9 @@ class OneCycleUpdater(LrUpdaterBase):
         assert 0 <= num_update < self.warmup_steps
         num_update = float(num_update)
         pct = num_update / self.warmup_steps
-        return OneCycleUpdater.annealing_cos(
-            self.warmup_begin_lr, warmup_end_lr, pct
-        )
+        return OneCycleUpdater.annealing_cos(self.warmup_begin_lr, warmup_end_lr, pct)
 
-    def set_warmup_training_lr(
-        self, optimizer: torch.optim.Optimizer, num_update: int
-    ):
+    def set_warmup_training_lr(self, optimizer: torch.optim.Optimizer, num_update: int):
         """Calculate current lr then assign to optimizer among warmup training.
 
         Args:
@@ -650,9 +614,7 @@ class OneCycleUpdater(LrUpdaterBase):
         self.set_lr(optimizer, per_group_wm_lr)
 
     def on_loop_begin(self, optimizer, data_loader, num_epochs, **kwargs):
-        super(OneCycleUpdater, self).on_loop_begin(
-            optimizer, data_loader, **kwargs
-        )
+        super(OneCycleUpdater, self).on_loop_begin(optimizer, data_loader, **kwargs)
         self.warmup_steps = num_epochs * self.step_per_epoch * self.pct_start
         self.max_steps = num_epochs * self.step_per_epoch - self.warmup_steps
 
@@ -681,17 +643,13 @@ class CyclicLrUpdater(LrUpdaterBase):
         step_ratio_up: float = 0.4,
         step_log_interval: int = 1,
     ):
-        super(CyclicLrUpdater, self).__init__(
-            step_log_interval=step_log_interval
-        )
+        super(CyclicLrUpdater, self).__init__(step_log_interval=step_log_interval)
         self.target_ratio = target_ratio
         self.cyclic_times = cyclic_times
         self.step_ratio_up = step_ratio_up
 
     def on_loop_begin(self, optimizer, data_loader, num_epochs, **kwargs):
-        super(CyclicLrUpdater, self).on_loop_begin(
-            optimizer, data_loader, **kwargs
-        )
+        super(CyclicLrUpdater, self).on_loop_begin(optimizer, data_loader, **kwargs)
         max_steps = num_epochs * self.step_per_epoch
         self.max_update_per_phase = max_steps // self.cyclic_times
         iter_up_phase = int(self.step_ratio_up * self.max_update_per_phase)

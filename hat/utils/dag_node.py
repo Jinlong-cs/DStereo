@@ -126,9 +126,7 @@ class HATOp(Operator):
                         dry_run=dry_run,
                     )
                 else:
-                    raise NotImplementedError(
-                        f"Unsupported launcher: {self.launcher}"
-                    )
+                    raise NotImplementedError(f"Unsupported launcher: {self.launcher}")
             # use torchrun for single machine
             elif self.launcher == "torch":
                 pre_cmd = [
@@ -164,9 +162,7 @@ class HATOp(Operator):
             # update entrance path
             if not os.path.exists(self.entrance):
                 self.entrance = os.path.join(working_path, self.entrance)
-            assert os.path.exists(
-                self.entrance
-            ), f"Not exists: {self.entrance}"
+            assert os.path.exists(self.entrance), f"Not exists: {self.entrance}"
 
     def update_working_path(self, working_path: Optional[str] = None):
         if working_path is not None:
@@ -187,9 +183,7 @@ class HATOp(Operator):
                 for name in names:
                     try:
                         module = importlib.import_module(name)
-                        logger.info(
-                            f"Reload Module {name} from {module.__file__}"
-                        )
+                        logger.info(f"Reload Module {name} from {module.__file__}")
                     except Exception:
                         logger.warning(f"Error reload Module {name}")
                         continue
@@ -325,9 +319,7 @@ def _run_subprocess(
         else:
             subprocess.check_call(command, shell=shell)
     except subprocess.CalledProcessError as e:
-        logger.fatal(
-            f"Subprocess({command}) failed({e.returncode})! {e.output}"
-        )
+        logger.fatal(f"Subprocess({command}) failed({e.returncode})! {e.output}")
         raise
 
 

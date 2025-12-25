@@ -15,9 +15,7 @@ class PostProcessorBase(nn.Module):
     @abstractmethod
     def forward(
         self,
-        pred: Union[
-            torch.Tensor, Sequence[torch.Tensor], Dict[str, torch.Tensor]
-        ],
+        pred: Union[torch.Tensor, Sequence[torch.Tensor], Dict[str, torch.Tensor]],
         meta_data: Optional[Dict[str, Any]] = None,
     ):
         """Do post process for model predictions.

@@ -6,9 +6,9 @@ from .base_reader import BaseReader
 
 
 class ETH3DReader(BaseReader):
-    def __init__(self, root, list_file, image_reader='PIL', disp_reader='PFM'):
+    def __init__(self, root, list_file, image_reader="PIL", disp_reader="PFM"):
         super().__init__(root, list_file, image_reader, disp_reader)
-        assert disp_reader == 'PFM', 'ETH3D Disp only support PFM format'
+        assert disp_reader == "PFM", "ETH3D Disp only support PFM format"
 
     def item_loader(self, item):
         full_paths = [os.path.join(self.root, x) for x in item]
@@ -19,18 +19,20 @@ class ETH3DReader(BaseReader):
         # remove invalid values
         disp_img[disp_img == np.inf] = 0
         sample = {
-            'left': left_img,
-            'right': right_img,
-            'disp': disp_img,
+            "left": left_img,
+            "right": right_img,
+            "disp": disp_img,
         }
         return sample
 
 
-if __name__ == '__main__':
-    dataset = ETH3DReader(root='../../data/ETH3D', list_file='../../../datasets/ETH3D/ETH3D_train.txt')
+if __name__ == "__main__":
+    dataset = ETH3DReader(
+        root="../../data/ETH3D", list_file="../../../datasets/ETH3D/ETH3D_train.txt"
+    )
     print(dataset)
     for i in range(len(dataset)):
         sample = dataset[i]
-        disp = sample['disp']
+        disp = sample["disp"]
         disp = disp.squeeze()
         print(disp.max(), disp.min())

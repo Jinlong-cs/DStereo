@@ -124,9 +124,7 @@ def get_setup_version(version: str = __version__) -> str:
 def get_tmp_version(version: str = __version__) -> str:
     # if HAT has not been installed, get a temporary version number
     # with format __version__.dev{timestamp}+unknown
-    version += ".dev{}+{}".format(
-        datetime.now().strftime("%Y%m%d%H%M"), "unknown"
-    )
+    version += ".dev{}+{}".format(datetime.now().strftime("%Y%m%d%H%M"), "unknown")
     return version
 
 

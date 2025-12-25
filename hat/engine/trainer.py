@@ -125,9 +125,7 @@ class Trainer(LoopBase):  # noqa: D205,D400
             clear_saved_tensors()
 
 
-def launch(
-    main_func, device_ids=None, dist_url=None, dist_launcher=None, args=()
-):
+def launch(main_func, device_ids=None, dist_url=None, dist_launcher=None, args=()):
     if device_ids is None:
         current_device = None
     else:

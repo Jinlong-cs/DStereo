@@ -75,9 +75,7 @@ class HorizonAdasClsPostProcessor(torch.nn.Module):
     @torch.no_grad()
     def forward(self, pred_cls: Mapping, *args):
         assert isinstance(pred_cls, torch.Tensor), "only support torch.Tensor"
-        batch_scores, batch_cls_idxs = pred_cls.max(
-            dim=self.dim, keepdim=self.keep_dim
-        )
+        batch_scores, batch_cls_idxs = pred_cls.max(dim=self.dim, keepdim=self.keep_dim)
 
         if self.march == March.BAYES:
             return torch.cat((batch_cls_idxs, batch_scores), dim=self.dim)

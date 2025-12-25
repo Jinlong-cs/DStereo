@@ -107,9 +107,7 @@ class FFN(nn.Module):
         add_identity: bool = True,
     ):
         super(FFN, self).__init__()
-        assert num_fcs >= 2, (
-            "num_fcs should be no less " f"than 2. got {num_fcs}."
-        )
+        assert num_fcs >= 2, "num_fcs should be no less " f"than 2. got {num_fcs}."
         self.embed_dim = embed_dim
         self.feedforward_dim = feedforward_dim
         self.num_fcs = num_fcs
@@ -136,9 +134,7 @@ class FFN(nn.Module):
         self.add_identity = add_identity
         self.add_identity_op = FloatFunctional()
 
-    def forward(
-        self, x: torch.Tensor, identity: Optional[torch.Tensor] = None
-    ):
+    def forward(self, x: torch.Tensor, identity: Optional[torch.Tensor] = None):
         """Forward function of `FFN`.
 
         Args:

@@ -163,9 +163,7 @@ class MultiHeadAttention(nn.Module):
         # v = v.transpose(2, 3)  # (batch, head, time2, d_k)
         return q, k, v, new_cache
 
-    def caculate_scores(
-        self, query: torch.Tensor, key: torch.Tensor
-    ) -> torch.Tensor:
+    def caculate_scores(self, query: torch.Tensor, key: torch.Tensor) -> torch.Tensor:
         """Compute attention scores.
 
         Args:

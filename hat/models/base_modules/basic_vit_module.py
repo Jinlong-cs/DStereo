@@ -94,7 +94,7 @@ class Attention(nn.Module):
         assert dim % num_heads == 0, "dim should be divisible by num_heads"
         self.num_heads = num_heads
         self.head_dim = dim // num_heads
-        self.scale = self.head_dim ** -0.5
+        self.scale = self.head_dim**-0.5
 
         self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
         self.q_norm = norm_layer(self.head_dim) if qk_norm else nn.Identity()
@@ -193,13 +193,9 @@ class ViTBlock(nn.Module):
             norm_layer=norm_layer,
         )
         self.ls1 = (
-            LayerScale(dim, init_values=init_values)
-            if init_values
-            else nn.Identity()
+            LayerScale(dim, init_values=init_values) if init_values else nn.Identity()
         )
-        self.drop_path1 = (
-            DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
-        )
+        self.drop_path1 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
 
         self.norm2 = norm_layer(dim)
         self.mlp = mlp_layer(
@@ -209,23 +205,15 @@ class ViTBlock(nn.Module):
             drop_ratio=proj_drop,
         )
         self.ls2 = (
-            LayerScale(dim, init_values=init_values)
-            if init_values
-            else nn.Identity()
+            LayerScale(dim, init_values=init_values) if init_values else nn.Identity()
         )
-        self.drop_path2 = (
-            DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
-        )
+        self.drop_path2 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
         self.add1 = FloatFunctional()
         self.add2 = FloatFunctional()
 
     def forward(self, x: torch.Tensor):
-        x = self.add1.add(
-            x, self.drop_path1(self.ls1(self.attn(self.norm1(x))))
-        )
-        x = self.add2.add(
-            x, self.drop_path2(self.ls2(self.mlp(self.norm2(x))))
-        )
+        x = self.add1.add(x, self.drop_path1(self.ls1(self.attn(self.norm1(x)))))
+        x = self.add2.add(x, self.drop_path2(self.ls2(self.mlp(self.norm2(x)))))
         return x
 
 
@@ -279,9 +267,7 @@ class ResPostBlock(nn.Module):
             norm_layer=norm_layer,
         )
         self.norm1 = norm_layer(dim)
-        self.drop_path1 = (
-            DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
-        )
+        self.drop_path1 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
 
         self.mlp = mlp_layer(
             in_channels=dim,
@@ -290,9 +276,7 @@ class ResPostBlock(nn.Module):
             drop_ratio=proj_drop,
         )
         self.norm2 = norm_layer(dim)
-        self.drop_path2 = (
-            DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
-        )
+        self.drop_path2 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
         self.add1 = FloatFunctional()
         self.add2 = FloatFunctional()
         self.init_weights()

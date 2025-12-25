@@ -4,6 +4,7 @@ Copied from `hatbc` repo and make modifications,
 retaining only the URL path conversion functions.
 originally from `hatbc.filestream.bucket.client`.
 """
+
 import logging
 import os
 import subprocess
@@ -29,7 +30,7 @@ GFPS_PREFIX = "/gpfs/"
 HTTPS_PATH = "https://us-data.hobot.cc/"
 
 
-B_PER_MB = 2 ** 20
+B_PER_MB = 2**20
 
 
 class KThread(threading.Thread):
@@ -269,9 +270,7 @@ class BucketClient(object):
         """
         if bucket_name in self.checked_buckets:
             return
-        assert (
-            bucket_name in self.bucket2root
-        ), f"{bucket_name} does not mount!"  # noqa
+        assert bucket_name in self.bucket2root, f"{bucket_name} does not mount!"  # noqa
         bucket_root = self.bucket2root[bucket_name]
         try:
             timeout_call(120, os.listdir, (bucket_root,))

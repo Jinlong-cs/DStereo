@@ -104,9 +104,7 @@ class MXIndexedRecordIO(MXIndexedRecordIO):
     """
 
     @require_packages("horizon_plugin_pytorch>=0.17.1")
-    def __init__(
-        self, idx_path: str, uri: str, flag: str, key_type: type = int
-    ):
+    def __init__(self, idx_path: str, uri: str, flag: str, key_type: type = int):
         super().__init__(idx_path, uri, flag, key_type)
 
 
@@ -153,8 +151,7 @@ class MXRecord(PackType):
             return self._read_idx(idx)
         except TimeoutError as exception:
             logger.error(
-                f"Time out when reading data with index of "
-                f"{idx} from {self.uri}"
+                f"Time out when reading data with index of " f"{idx} from {self.uri}"
             )
             raise exception
 
@@ -291,9 +288,7 @@ def pack_multi_record(header: IRHeader, s: str) -> str:  # noqa: D205,D400
     To use multi-record format recordio data in training, you should set
       recordio_format='multi_record' in your io iter config
     """
-    header = IRHeader(
-        flag=len(s), label=header.label, id=header.id, id2=header.id2
-    )
+    header = IRHeader(flag=len(s), label=header.label, id=header.id, id2=header.id2)
     s = struct.pack(_IR_FORMAT, *header) + s
     return s
 
@@ -322,9 +317,7 @@ def unpack(s: str, multi_record: bool = False) -> Tuple[IRHeader, str]:
     header = IRHeader(*struct.unpack(_IR_FORMAT, s[:_IR_SIZE]))
     s = s[_IR_SIZE:]
     if header.flag > 0:
-        header = header._replace(
-            label=np.frombuffer(s, np.float32, header.flag)
-        )
+        header = header._replace(label=np.frombuffer(s, np.float32, header.flag))
         s = s[header.flag * 4 :]
     return header, s
 

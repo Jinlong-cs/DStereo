@@ -5,8 +5,10 @@ import random
 import logging
 from torch.utils.data.dataset import Dataset, ConcatDataset
 import traceback
+
 logger = logging.getLogger(__name__)
-__all__ = ['CatRandomDataset']
+__all__ = ["CatRandomDataset"]
+
 
 class CatRandomDataset(ConcatDataset):
     # def __init__(self, datasets, debug=False, max_size=12800):
@@ -35,9 +37,9 @@ class CatRandomDataset(ConcatDataset):
                 # j = random.randint(0, len(dataset) - 1)
                 # print(i,j)
                 data = super().__getitem__(item)
-                if not data['mask_flag']:
-                    item = random.randint(0, len(self) - 1) # 295, 711  295, 400
-                    continue    
+                if not data["mask_flag"]:
+                    item = random.randint(0, len(self) - 1)  # 295, 711  295, 400
+                    continue
                 return data
             except Exception as e:
                 logger.info(traceback.format_exc())
