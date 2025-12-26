@@ -105,6 +105,45 @@ def parse_args():
         default=False,
         help="export HAT_ENABLE_MODEL_TRACKING=1, which enable aidi tracking",
     )
+    parser.add_argument(
+        "--use-wandb",
+        action="store_true",
+        default=False,
+        help="enable W&B logging",
+    )
+    parser.add_argument("--wandb-project", type=str, default=None)
+    parser.add_argument("--wandb-name", type=str, default=None)
+    parser.add_argument("--wandb-tags", type=str, default=None)
+    parser.add_argument("--wandb-resume", type=str, default=None)
+    parser.add_argument("--wandb-run-id", type=str, default=None)
+    parser.add_argument("--wandb-log-every-steps", type=int, default=None)
+    parser.add_argument("--fixed-train-index", type=int, default=None)
+    parser.add_argument("--fixed-val-index", type=int, default=None)
+    parser.add_argument("--vis-every-steps", type=int, default=None)
+    parser.add_argument("--vis-every-epochs", type=int, default=None)
+    parser.add_argument("--vis-num-samples", type=int, default=None)
+    parser.add_argument(
+        "--vis-strategy",
+        type=str,
+        choices=["fixed", "random"],
+        default=None,
+    )
+    parser.add_argument("--vis-seed", type=int, default=None)
+    parser.add_argument("--vis-train-indices", type=int, nargs="+", default=None)
+    parser.add_argument("--vis-val-indices", type=int, nargs="+", default=None)
+    parser.add_argument("--pretrained-ckpt", type=str, default=None)
+    parser.add_argument(
+        "--log-pretrained-baseline",
+        type=ast.literal_eval,
+        default=True,
+        help="True or False, default True, log pretrained baseline in W&B",
+    )
+    parser.add_argument(
+        "--use-tensorboard",
+        action="store_true",
+        default=False,
+        help="enable TensorBoard logging",
+    )
 
     known_args, unknown_args = parser.parse_known_args()
     return known_args, unknown_args
@@ -225,6 +264,25 @@ def train(
     args_env: list = None,
     level: int = logging.WARNING,
     enable_tracking: bool = False,
+    use_wandb: bool = False,
+    wandb_project: str = None,
+    wandb_name: str = None,
+    wandb_tags: str = None,
+    wandb_resume: str = None,
+    wandb_run_id: str = None,
+    wandb_log_every_steps: int = None,
+    fixed_train_index: int = None,
+    fixed_val_index: int = None,
+    vis_every_steps: int = None,
+    vis_every_epochs: int = None,
+    vis_num_samples: int = None,
+    vis_strategy: str = None,
+    vis_seed: int = None,
+    vis_train_indices: list = None,
+    vis_val_indices: list = None,
+    pretrained_ckpt: str = None,
+    log_pretrained_baseline: bool = True,
+    use_tensorboard: bool = False,
 ):
     """Training  function.
 
@@ -246,6 +304,48 @@ def train(
     """
     if args_env:
         setup_args_env(args_env)
+    os.environ["HAT_USE_TENSORBOARD"] = "1" if use_tensorboard else "0"
+    os.environ["HAT_USE_WANDB"] = "1" if use_wandb else "0"
+    if wandb_project:
+        os.environ["WANDB_PROJECT"] = wandb_project
+    if wandb_name:
+        os.environ["WANDB_NAME"] = wandb_name
+    if wandb_tags:
+        os.environ["WANDB_TAGS"] = wandb_tags
+    if wandb_resume:
+        os.environ["WANDB_RESUME"] = wandb_resume
+    if wandb_run_id:
+        os.environ["WANDB_RUN_ID"] = wandb_run_id
+    if wandb_log_every_steps is not None:
+        os.environ["WANDB_LOG_EVERY_STEPS"] = str(wandb_log_every_steps)
+    if fixed_train_index is not None:
+        os.environ["WANDB_FIXED_TRAIN_INDEX"] = str(fixed_train_index)
+    if fixed_val_index is not None:
+        os.environ["WANDB_FIXED_VAL_INDEX"] = str(fixed_val_index)
+    if vis_every_steps is not None:
+        os.environ["WANDB_VIS_EVERY_STEPS"] = str(vis_every_steps)
+    if vis_every_epochs is not None:
+        os.environ["WANDB_VIS_EVERY_EPOCHS"] = str(vis_every_epochs)
+    if vis_num_samples is not None:
+        os.environ["WANDB_VIS_NUM_SAMPLES"] = str(vis_num_samples)
+    if vis_strategy:
+        os.environ["WANDB_VIS_STRATEGY"] = str(vis_strategy)
+    if vis_seed is not None:
+        os.environ["WANDB_VIS_SEED"] = str(vis_seed)
+    if vis_train_indices is not None:
+        os.environ["WANDB_VIS_TRAIN_INDICES"] = ",".join(
+            [str(i) for i in vis_train_indices]
+        )
+    if vis_val_indices is not None:
+        os.environ["WANDB_VIS_VAL_INDICES"] = ",".join(
+            [str(i) for i in vis_val_indices]
+        )
+    if pretrained_ckpt:
+        os.environ["HAT_PRETRAINED_BASELINE_CKPT"] = pretrained_ckpt
+    if log_pretrained_baseline is not None:
+        os.environ["HAT_LOG_PRETRAINED_BASELINE"] = (
+            "1" if log_pretrained_baseline else "0"
+        )
     setup_hat_env(
         stage,
         pipeline_test,
@@ -326,6 +426,25 @@ if __name__ == "__main__":
             level=args.level,
             args_env=args_env,
             enable_tracking=args.enable_tracking,
+            use_wandb=args.use_wandb,
+            wandb_project=args.wandb_project,
+            wandb_name=args.wandb_name,
+            wandb_tags=args.wandb_tags,
+            wandb_resume=args.wandb_resume,
+            wandb_run_id=args.wandb_run_id,
+            wandb_log_every_steps=args.wandb_log_every_steps,
+            fixed_train_index=args.fixed_train_index,
+            fixed_val_index=args.fixed_val_index,
+            vis_every_steps=args.vis_every_steps,
+            vis_every_epochs=args.vis_every_epochs,
+            vis_num_samples=args.vis_num_samples,
+            vis_strategy=args.vis_strategy,
+            vis_seed=args.vis_seed,
+            vis_train_indices=args.vis_train_indices,
+            vis_val_indices=args.vis_val_indices,
+            pretrained_ckpt=args.pretrained_ckpt,
+            log_pretrained_baseline=args.log_pretrained_baseline,
+            use_tensorboard=args.use_tensorboard,
         )
 
     except Exception as e:

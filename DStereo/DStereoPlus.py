@@ -9,6 +9,7 @@ from hat.data.collates.collates import collate_disp_cat
 from hat.models.backbones.mixvargenet import MixVarGENetConfig
 from hat.utils.config import ConfigVersion
 from hat.metrics.loss_show import LossShow
+from hat.utils.distributed import get_dist_info
 from DStereo.common import disp2rgb, depth2rgb, disp2depth, uncert2rgb
 
 VERSION = ConfigVersion.v2
@@ -26,7 +27,42 @@ checkpoint_path = (
 local_train = not os.path.exists("/running_package")
 train_batch_size_per_gpu = 8
 test_batch_size_per_gpu = 1
-log_freq = 10
+log_freq = 1
+enable_tensorboard = os.environ.get("HAT_USE_TENSORBOARD", "0") == "1"
+use_wandb = os.environ.get("HAT_USE_WANDB", "0") == "1"
+wandb_project = os.environ.get("WANDB_PROJECT", "dstereo_vis")
+wandb_name = os.environ.get("WANDB_NAME", f"{task_name}-{training_step}")
+wandb_tags = os.environ.get("WANDB_TAGS", "")
+wandb_resume = os.environ.get("WANDB_RESUME", None)
+wandb_run_id = os.environ.get("WANDB_RUN_ID", None)
+
+wandb_log_every_steps = int(os.environ.get("WANDB_LOG_EVERY_STEPS", str(log_freq)))
+fixed_train_index = int(os.environ.get("WANDB_FIXED_TRAIN_INDEX", "0"))
+fixed_val_index = int(os.environ.get("WANDB_FIXED_VAL_INDEX", "0"))
+vis_every_steps = int(os.environ.get("WANDB_VIS_EVERY_STEPS", "0"))
+vis_every_epochs = int(os.environ.get("WANDB_VIS_EVERY_EPOCHS", "1"))
+vis_num_samples = int(os.environ.get("WANDB_VIS_NUM_SAMPLES", "5"))
+vis_strategy = os.environ.get("WANDB_VIS_STRATEGY", "fixed")
+vis_seed = int(os.environ.get("WANDB_VIS_SEED", "0"))
+vis_at_start = os.environ.get("WANDB_VIS_AT_START", "0") == "1"
+val_interval = int(os.environ.get("HAT_VAL_INTERVAL", "100"))
+enable_freeze_bn = os.environ.get("HAT_FREEZE_BN", "0") == "1"
+freeze_bn_affine = os.environ.get("HAT_FREEZE_BN_AFFINE", "0") == "1"
+freeze_bn_until_step = int(os.environ.get("HAT_FREEZE_BN_UNTIL_STEP", "-1"))
+baseline_ckpt = os.environ.get("HAT_PRETRAINED_BASELINE_CKPT", "")
+log_pretrained_baseline = os.environ.get("HAT_LOG_PRETRAINED_BASELINE", "1") == "1"
+
+
+def _parse_indices_env(value):
+    if not value:
+        return None
+    parts = value.replace(",", " ").split()
+    indices = [int(p) for p in parts if p]
+    return indices if indices else None
+
+
+vis_train_indices = _parse_indices_env(os.environ.get("WANDB_VIS_TRAIN_INDICES", ""))
+vis_val_indices = _parse_indices_env(os.environ.get("WANDB_VIS_VAL_INDICES", ""))
 sync_bn = True
 # device_ids = [0,1,2,3,4,5,6,7] # 4卡 【4，5，6，7】
 device_ids = [2,]
@@ -45,8 +81,8 @@ bn_kwargs = {}
 refine_levels = 3
 # base_lr = 0.0001
 base_lr = 0.001
-# num_steps = 100000
-num_steps = 200000
+# num_steps = 200000
+num_steps = 50000
 model = dict(
     type="DStereoPlus",
     maxdisp=maxdisp,
@@ -134,10 +170,17 @@ model = dict(
 )
 
 deploy_model = model
+tensorboard_dir = (
+    os.path.join(ckpt_dir, training_step) if local_train else "/job_tboard/"
+)
 deploy_inputs = dict(
     data=dict(
         infra1=torch.randn((1, 3, 352, 640)),
         infra2=torch.randn((1, 3, 352, 640)),
+        # infra1=torch.randn((1, 3, 480, 640)),
+        # infra2=torch.randn((1, 3, 480, 640)),
+        # infra1=torch.randn((1, 3, 640, 352)),
+        # infra2=torch.randn((1, 3, 640, 352)),
     )
 )
 
@@ -148,12 +191,14 @@ data_loader = dict(
         type="StereoMultiData",
         test_mode=False,
         dataset_list=[
-            "Sceneflow",
+            "BallCar",
+            # "Sceneflow",
             # "TartanAir",             
             # "IRS",
             # "FallingThings",
             # "SIDODDataset",
         ],
+        ballcar_root="/root/ballcar_datasets", 
         aug_args=[0.3, 0.5, 0.0, 0.0],
         res_args=[-1, -1, True],
         norm_args=["MixVarGENet"],
@@ -177,12 +222,14 @@ val_data_loader = dict(
         type="StereoMultiData",
         test_mode=True,
         dataset_list=[
-            "Sceneflow", 
+            "BallCar",
+            # "Sceneflow", 
             # "TartanAir",             
             # "IRS",
             # "FallingThings",
             # "SIDODDataset",
         ],
+        # ballcar_root="/root/ballcar_datasets",
         aug_args=None,
         res_args=[352, 640, False],
         norm_args=["MixVarGENet"],
@@ -204,10 +251,52 @@ stat_callback = dict(
     type="StatsMonitor",
     log_freq=1000,
 )
+wandb_callback = dict(
+    type="WandbCallback",
+    project=wandb_project,
+    name=wandb_name,
+    tags=wandb_tags.split(",") if wandb_tags else None,
+    resume=wandb_resume,
+    run_id=wandb_run_id,
+    config=dict(
+        task=task_name,
+        maxdisp=maxdisp,
+        base_lr=base_lr,
+        num_steps=num_steps,
+        batch_size=train_batch_size_per_gpu,
+    ),
+    log_every_steps=wandb_log_every_steps,
+    log_system_metrics=True,
+    log_time_metrics=True,
+    log_train_loss=True,
+    log_train_subloss=True,
+    log_lr=True,
+)
+fixed_sample_tracker = dict(
+    type="FixedSampleTracker",
+    train_dataset=data_loader["dataset"],
+    val_dataset=val_data_loader["dataset"],
+    collate_fn=collate_disp_cat,
+    fixed_train_index=fixed_train_index,
+    fixed_val_index=fixed_val_index,
+    vis_num_samples=vis_num_samples,
+    vis_strategy=vis_strategy,
+    vis_seed=vis_seed,
+    vis_train_indices=vis_train_indices,
+    vis_val_indices=vis_val_indices,
+    pretrained_ckpt=None,
+    log_pretrained_baseline=False,
+    vis_every_steps=vis_every_steps,
+    vis_every_epochs=vis_every_epochs,
+    vis_at_start=vis_at_start,
+    maxdisp=maxdisp,
+)
 
 
-def loss_collector(outputs: dict):
-    return outputs["losses"]
+def loss_collector(outputs):
+    if isinstance(outputs, dict):
+        return outputs.get("losses")
+    return None
 
 
 train_batch_processor = dict(
@@ -217,35 +306,94 @@ train_batch_processor = dict(
     loss_collector=loss_collector,
 )
 val_batch_processor = dict(
-    type="MultiBatchProcessor",
+    type="BasicBatchProcessor",
     need_grad_update=False,
-    loss_collector=None,
     enable_amp=False,
+    loss_collector=loss_collector,
 )
 
-tensorboard_callback = dict(
-    type="TensorBoard",
-    save_dir=(
-        os.path.join(ckpt_dir, training_step) if local_train else "/job_tboard/"
-    ),  
-    update_freq=log_freq,
-    update_by="step",
-    tb_update_funcs=None,
-)
+def _extract_losses(model_outs):
+    if not isinstance(model_outs, dict):
+        return []
+    losses = model_outs.get("losses")
+    if losses is not None:
+        if isinstance(losses, torch.Tensor):
+            return [losses]
+        if isinstance(losses, (list, tuple)):
+            return [loss for loss in losses if loss is not None]
+        return []
+    indexed = []
+    for k, v in model_outs.items():
+        if not isinstance(k, str) or not k.startswith("losses_"):
+            continue
+        idx = k.split("losses_", 1)[-1]
+        if idx.isdigit():
+            indexed.append((int(idx), v))
+    if not indexed:
+        return []
+    return [v for _, v in sorted(indexed, key=lambda x: x[0])]
+
+
+def _named_loss_items(losses):
+    if not losses:
+        return []
+    items = [("init_smooth_l1", losses[0])]
+    for idx, loss in enumerate(losses[1:]):
+        items.append((f"iter_{idx}_weighted_l1", loss))
+    return items
+
+
+def tb_update_train_losses(writer, model_outs, global_step_id, **kwargs):
+    losses = _extract_losses(model_outs)
+    if not losses:
+        return
+    total = sum([loss for loss in losses if loss is not None])
+    if isinstance(total, torch.Tensor):
+        writer.add_scalar("train/loss/total", total, global_step=global_step_id)
+    for name, loss in _named_loss_items(losses):
+        writer.add_scalar(f"train/loss/{name}", loss, global_step=global_step_id)
+
+
+def tb_update_val_losses(writer, model_outs, global_step_id, **kwargs):
+    losses = _extract_losses(model_outs)
+    if not losses:
+        return
+    for name, loss in _named_loss_items(losses):
+        writer.add_scalar(f"val/loss/{name}", loss, global_step=global_step_id)
+
+tensorboard_callback = None
+if enable_tensorboard:
+    tensorboard_callback = dict(
+        type="TensorBoard",
+        save_dir=tensorboard_dir,
+        update_freq=log_freq,
+        update_by="step",
+        tb_update_funcs=[tb_update_train_losses],
+    )
 
 
 def update_loss_metric(metrics, batch, model_outs):
-    loss = sum(model_outs["losses"])
-    metrics[0].update(loss)
     labels = batch["gt_disp"]
-    preds = model_outs["pred_disps"]
     masks = (labels > 0) & (labels < maxdisp)
-    metrics[1].update(labels, preds, masks)
+    preds = None
+    if isinstance(model_outs, dict):
+        losses = model_outs.get("losses")
+        if isinstance(losses, torch.Tensor):
+            metrics[0].update(losses)
+        elif isinstance(losses, (list, tuple)) and len(losses) > 0:
+            metrics[0].update(sum(losses))
+        preds = model_outs.get("pred_disps")
+    elif isinstance(model_outs, (list, tuple)) and len(model_outs) > 0:
+        preds = model_outs[0]
+    if preds is not None:
+        metrics[1].update(labels, preds, masks)
+
 
 
 def update_metric(metrics, batch, model_outs):
     labels = batch["gt_disp"]
     preds, disp_4x, init_disp = model_outs
+    # preds, init_disp = model_outs
     masks = (labels > 0) & (labels < maxdisp)
     metrics[0].update(labels, preds, masks)
 
@@ -260,31 +408,70 @@ loss_show_callback = dict(
 
 val_metric_updater = dict(
     type="MetricUpdater",
-    metric_update_func=update_metric,
+    metric_update_func=update_loss_metric,
     step_log_freq=log_freq,
     epoch_log_freq=log_freq,
-    log_prefix="Validation_" + task_name,
+    log_prefix="val_" + task_name,
 )
 
+val_callbacks = [val_metric_updater]
+if enable_tensorboard:
+    val_callbacks.append(
+        dict(
+            type="TensorBoard",
+            save_dir=tensorboard_dir,
+            update_freq=log_freq,
+            update_by="step",
+            tb_update_funcs=[tb_update_val_losses],
+        )
+    )
 val_callback = dict(
     type="Validation",
-    val_interval=10000,
+    val_interval=val_interval,
     interval_by="step",
     data_loader=val_data_loader,
     batch_processor=val_batch_processor,
-    callbacks=[val_metric_updater],
+    callbacks=val_callbacks,
     val_model=None,
     val_on_train_end=False,
 )
 ckpt_callback = dict(
     type="Checkpoint",
     interval_by="step",
-    save_interval=10000,
+    save_interval=2000,
     save_dir=ckpt_dir,
     name_prefix=training_step + "-",
     strict_match=True,
     monitor_metric_key="EPE",
 )
+
+train_callbacks = [
+    stat_callback,
+    loss_show_callback,
+    dict(
+        type="CosLrUpdater",
+        max_steps=num_steps,
+        warmup_by="step",
+        warmup_len=2000,
+        step_log_interval=1000,
+    ),
+    ckpt_callback,
+    val_callback,
+]
+if enable_freeze_bn:
+    train_callbacks.insert(
+        0,
+        dict(
+            type="FreezeBN",
+            freeze_affine=freeze_bn_affine,
+            unfreeze_step=freeze_bn_until_step,
+        ),
+    )
+if tensorboard_callback is not None:
+    train_callbacks.append(tensorboard_callback)
+if use_wandb:
+    train_callbacks.append(wandb_callback)
+    train_callbacks.append(fixed_sample_tracker)
 
 float_trainer = dict(
     type="distributed_data_parallel_trainer",
@@ -317,19 +504,7 @@ float_trainer = dict(
     num_steps=num_steps,
     device=None,
     sync_bn=sync_bn,
-    callbacks=[
-        stat_callback,
-        loss_show_callback,
-        dict(
-            type="CosLrUpdater",
-            max_steps=num_steps,
-            warmup_by="step",
-            warmup_len=2000,
-            step_log_interval=1000,
-        ),
-        ckpt_callback,
-        tensorboard_callback,
-    ],
+    callbacks=train_callbacks,
     train_metrics=[
         dict(type="LossShow"),
         dict(
@@ -338,12 +513,43 @@ float_trainer = dict(
         ),
     ],
     val_metrics=[
+        dict(type="LossShow"),
         dict(
             type="EndPointError",
             use_mask=True,
         ),
     ],
 )
+
+predict_callbacks = [
+    dict(type="SaveCalibdata", output_dir="ptq_V21/calib_data",),
+    # dict(type="SaveDisp", output_dir="work_dirs/disp_result",task_name="disp_result"),
+    stat_callback,
+    val_metric_updater,
+]
+if use_wandb:
+    predict_callbacks.append(wandb_callback)
+    predict_callbacks.append(
+        dict(
+            type="FixedSampleTracker",
+            train_dataset=None,
+            val_dataset=val_data_loader["dataset"],
+            collate_fn=collate_disp_cat,
+            fixed_train_index=fixed_train_index,
+            fixed_val_index=fixed_val_index,
+            vis_num_samples=vis_num_samples,
+            vis_strategy=vis_strategy,
+            vis_seed=vis_seed,
+            vis_at_start=vis_at_start,
+            vis_train_indices=None,
+            vis_val_indices=vis_val_indices,
+            pretrained_ckpt=baseline_ckpt if baseline_ckpt else None,
+            log_pretrained_baseline=log_pretrained_baseline,
+            vis_every_steps=vis_every_steps,
+            vis_every_epochs=vis_every_epochs,
+            maxdisp=maxdisp,
+        )
+    )
 
 float_predictor = dict(
     type="Predictor",
@@ -366,17 +572,13 @@ float_predictor = dict(
     batch_processor=val_batch_processor,
     device=None,
     metrics=[
+        dict(type="LossShow"),
         dict(
             type="EndPointError",
             use_mask=True,
         ),
     ],
-    callbacks=[
-        dict(type="SaveCalibdata", output_dir="ptq_V21/calib_data",),
-        # dict(type="SaveDisp", output_dir="work_dirs/disp_result",task_name="disp_result"),
-        stat_callback,
-        val_metric_updater,
-    ],
+    callbacks=predict_callbacks,
     log_interval=log_freq,
 )
 

@@ -1,15 +1,58 @@
-# 代码输出的checkpoint路径
-ln -s /horizon-bucket/d-robotics-bucket/zengpeng.sun/work_dirs/ work_dirs
-# 训练数据的软链接
-ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/ public
-ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/kws_outdoor_dataset/ kws_data_output
-ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/models/ tmp_pretrained_models
-ln -s /horizon-bucket/d-robotics-bucket/AIOT_algorithm_data/Depth_data Depth_data
-ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration SyntheticDataGeneration
-ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/NVIDIA NVIDIA
-ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/TartanAir/TartanAir/ TartanAir
+#!/usr/bin/env bash
+set -euo pipefail
 
-export PYTHONPATH=/docker-mount/zengpeng.sun/DStereo/:$PYTHONPATH
-# 训练的主要入口文件
-# python3 tools/train.py -s float -c DStereo/DStereoPlus.py
-python3 tools/predict.py -s float -c DStereo/DStereoPlus.py
+# # 代码输出的checkpoint路径
+# ln -s /horizon-bucket/d-robotics-bucket/zengpeng.sun/work_dirs/ work_dirs
+# # 训练数据的软链接
+# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/ public
+# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/kws_outdoor_dataset/ kws_data_output
+# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/models/ tmp_pretrained_models
+# ln -s /horizon-bucket/d-robotics-bucket/AIOT_algorithm_data/Depth_data Depth_data
+# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration SyntheticDataGeneration
+# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/NVIDIA NVIDIA
+# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/TartanAir/TartanAir/ TartanAir
+
+ROOT_DIR="/root/DStereo_V2.3"
+DATA_ROOT="/root/ballcar_datasets"
+GPU_ID="${GPU_ID:-0}"
+
+export PYTHONPATH="${ROOT_DIR}:${PYTHONPATH}"
+export BALLCAR_ROOT="${DATA_ROOT}"
+export HAT_SUPPRESS_OPTIONAL_WARNINGS=1
+export CUDA_VISIBLE_DEVICES="${GPU_ID}"
+export HAT_VAL_INTERVAL=100
+# 冻结bn层用来调试。
+export HAT_FREEZE_BN=1
+export HAT_FREEZE_BN_AFFINE=0
+export HAT_FREEZE_BN_UNTIL_STEP=2000  # 设置为-1表示一直冻结
+export WANDB_API_KEY="ccbc765e15286047df6262193193083e2cc3c48b"
+
+VIS_NUM_SAMPLES=5
+VIS_STRATEGY="random"
+VIS_SEED=0
+export WANDB_VIS_AT_START=1
+
+mkdir -p logs
+ts=$(date +"%Y%m%d_%H%M%S")
+log_file="logs/train_float_${ts}.log"
+
+cmd=(
+  python3 -u tools/train.py
+  -s float
+  -c DStereo/DStereoPlus.py
+  -ids 0
+  --use-wandb
+  --wandb-project dstereo_vis
+  --wandb-name DStereoV23_freezeBN
+  --wandb-log-every-steps 1
+  --fixed-train-index 0
+  --fixed-val-index 0
+  --vis-num-samples "${VIS_NUM_SAMPLES}"
+  --vis-strategy "${VIS_STRATEGY}"
+  --vis-seed "${VIS_SEED}"
+  --vis-every-steps 100
+  --vis-every-epochs 0
+)
+
+"${cmd[@]}" \
+  2>&1 | tee -a "${log_file}"

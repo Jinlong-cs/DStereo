@@ -32,14 +32,7 @@ def parse_args():
     return known_args, unknown_args
 
 
-if __name__ == "__main__":
-    args, args_env = parse_args()
-    if args_env:
-        setup_args_env(args_env)
-    cfg = Config.fromfile(args.config)
-
-    logger.info("=" * 50 + "BEGIN EXPORT ONNX" + "=" * 50)
-
+def _build_onnx_solver(cfg):
     if "march" not in cfg:
         logger.warning(
             format_msg(
@@ -65,12 +58,23 @@ if __name__ == "__main__":
                     MSGColor.RED,
                 )
             )
+    return onnx_solver, model, stage
 
+
+def export_onnx_from_cfg(
+    cfg,
+    out_dir=None,
+    stage_override=None,
+    filename=None,
+):
+    onnx_solver, model, stage = _build_onnx_solver(cfg)
+    stage = stage_override or stage
     example_input = onnx_solver.get("inputs", cfg.deploy_inputs)
-    out_dir = onnx_solver.get("out_dir", cfg.get("ckpt_dir", "."))
+    out_dir = out_dir or onnx_solver.get("out_dir", cfg.get("ckpt_dir", "."))
     if not os.path.exists(out_dir):
         os.makedirs(out_dir, exist_ok=True)
-    file_path = os.path.join(out_dir, stage + ".onnx")
+    onnx_name = filename or (stage + ".onnx")
+    file_path = os.path.join(out_dir, onnx_name)
     kwargs = onnx_solver.get("kwargs", {})
 
     logger.info("will export {} model to onnx...".format(stage))
@@ -83,4 +87,15 @@ if __name__ == "__main__":
     else:
         export_to_onnx(model, example_input, file_path, **kwargs)
 
+    return file_path
+
+
+if __name__ == "__main__":
+    args, args_env = parse_args()
+    if args_env:
+        setup_args_env(args_env)
+    cfg = Config.fromfile(args.config)
+
+    logger.info("=" * 50 + "BEGIN EXPORT ONNX" + "=" * 50)
+    export_onnx_from_cfg(cfg)
     logger.info("=" * 50 + "END ONNX" + "=" * 50)

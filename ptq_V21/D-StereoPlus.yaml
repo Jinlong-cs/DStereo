@@ -1,8 +1,8 @@
 model_parameters:
-  onnx_model: 'float.onnx'
+  onnx_model: 'DStereoV23_251226_onnx/float_9999.onnx'
   march: 'bayes-e'
-  output_model_file_prefix: 'DStereoV23'
-  working_dir: 'ptq_V21'
+  output_model_file_prefix: 'DStereoV23_quantization_251226_9999'
+  working_dir: 'Bin_model/20251226_3datasets/9999/'
   remove_node_type: 'Quantize;Dequantize;'
   node_info: {
     # 算法同学第一次添加(节选)
@@ -531,7 +531,7 @@ input_parameters:
   scale_value: 0.0078125;0.0078125
 
 calibration_parameters:
-  cal_data_dir: 'npy/infra1;npy/infra2'
+  cal_data_dir: 'calib_data_ballcar/infra1; calib_data_ballcar/infra2'
   cal_data_type: 'float32;float32'
   calibration_type: 'max'
   max_percentile: 0.99995

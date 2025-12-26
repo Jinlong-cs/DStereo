@@ -9,6 +9,8 @@ import torch.nn as nn
 
 from hat.engine.predictor import Predictor
 from hat.registry import OBJECT_REGISTRY
+from hat.utils.apply_func import _as_list
+from hat.utils.distributed import get_dist_info
 from hat.utils.logger import MSGColor, format_msg
 from hat.utils.model_helpers import (
     get_model_training_state,
@@ -16,6 +18,7 @@ from hat.utils.model_helpers import (
 )
 from .callbacks import CallbackMixin
 from .checkpoint import get_valid_state_dict
+from .tensorboard import TensorBoard
 
 __all__ = ["Validation"]
 
@@ -189,6 +192,12 @@ class Validation(CallbackMixin):  # noqa: D400
         self.predictor.set_device(device)
         self.predictor.start_epoch = epoch_id
         self.predictor.fit()
+        self._log_tb_metrics(
+            callbacks=self._train_callbacks,
+            metrics=metrics,
+            global_step_id=self._global_step_id,
+            epoch_id=epoch_id,
+        )
         if not is_copied_model:
             set_model_training_state(val_model, state_buffer)
             val_model.training = training
@@ -205,8 +214,11 @@ class Validation(CallbackMixin):  # noqa: D400
         ema_model=None,
         optimizer=None,
         num_steps=None,
+        callbacks=None,
         **kwargs,
     ):
+        self._train_callbacks = callbacks
+        self._global_step_id = global_step_id
         if self.interval_by == "step" and (
             (global_step_id + 1) % self.val_interval == 0
         ):
@@ -220,18 +232,85 @@ class Validation(CallbackMixin):  # noqa: D400
         num_epochs,
         val_metrics,
         ema_model=None,
+        callbacks=None,
+        global_step_id=None,
         **kwargs,
     ):
+        self._train_callbacks = callbacks
+        self._global_step_id = global_step_id
         if self.interval_by == "epoch" and (
             (epoch_id + 1) % self.val_interval == 0
         ):
             self._do_val(epoch_id, model, ema_model, device, val_metrics)
 
     def on_loop_end(
-        self, model, device, epoch_id, val_metrics, ema_model=None, **kwargs
+        self,
+        model,
+        device,
+        epoch_id,
+        val_metrics,
+        ema_model=None,
+        callbacks=None,
+        global_step_id=None,
+        **kwargs,
     ):
+        self._train_callbacks = callbacks
+        self._global_step_id = global_step_id
         if self.val_on_train_end:
             self._do_val(epoch_id, model, ema_model, device, val_metrics)
+
+    def _get_tb_writer(self, callbacks):
+        if not callbacks:
+            return None
+        for cb in callbacks:
+            if isinstance(cb, TensorBoard):
+                return getattr(cb, "writer", None)
+        return None
+
+    def _normalize_tb_name(self, name: str) -> str:
+        if not isinstance(name, str):
+            name = str(name)
+        lower_name = name.lower()
+        if lower_name == "epe":
+            return "epe"
+        if lower_name == "loss":
+            return "loss/total"
+
+        if "loss" in lower_name:
+            return lower_name
+        return lower_name
+
+    def _log_tb_metrics(
+        self,
+        callbacks,
+        metrics,
+        global_step_id=None,
+        epoch_id=None,
+        prefix: str = "val",
+    ):
+        if metrics is None:
+            return
+        step = global_step_id if global_step_id is not None else epoch_id
+        if step is None:
+            return
+        metric_pairs = []
+        for metric in metrics:
+            names, values = metric.get()
+            for name, value in zip(_as_list(names), _as_list(values)):
+                tag = f"{prefix}/{self._normalize_tb_name(name)}"
+                metric_pairs.append((tag, float(value)))
+
+        rank, _ = get_dist_info()
+        if rank != 0:
+            return
+        for cb in callbacks or []:
+            if hasattr(cb, "log_val_metrics"):
+                cb.log_val_metrics(metrics, step)
+        writer = self._get_tb_writer(callbacks)
+        if writer is None:
+            return
+        for tag, value in metric_pairs:
+            writer.add_scalar(tag, value, global_step=step)
 
 
 @OBJECT_REGISTRY.register
