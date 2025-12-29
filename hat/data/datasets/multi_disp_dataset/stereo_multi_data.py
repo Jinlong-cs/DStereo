@@ -52,6 +52,7 @@ def StereoMultiData(
 ):
     train_sets = []
     for dataset in dataset_list:
+        print("=> add dataset: ", dataset)
         if "InStereo2K" == dataset: 
             train_sets.append(
                 AugDataset(
@@ -73,7 +74,7 @@ def StereoMultiData(
         elif "Sceneflow" == dataset:  
             train_sets.append(
                 AugDataset(
-                    base_dataset="public/stereo_data/sceneflow_train.list",
+                    base_dataset="/mnt/sznas/yzf/stereo_data/SceneFlow/FlyingThings3D/train_list.txt",
                     debug=debug,
                     test_mode=test_mode,
                     max_disp=max_disp,

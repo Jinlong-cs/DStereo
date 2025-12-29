@@ -12,7 +12,8 @@ set -euo pipefail
 # ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/NVIDIA NVIDIA
 # ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/TartanAir/TartanAir/ TartanAir
 
-ROOT_DIR="/root/DStereo_V2.3"
+
+ROOT_DIR="/root/DStereo"
 DATA_ROOT="/root/ballcar_datasets"
 GPU_ID="${GPU_ID:-0}"
 

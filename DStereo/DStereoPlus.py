@@ -65,7 +65,7 @@ vis_train_indices = _parse_indices_env(os.environ.get("WANDB_VIS_TRAIN_INDICES",
 vis_val_indices = _parse_indices_env(os.environ.get("WANDB_VIS_VAL_INDICES", ""))
 sync_bn = True
 # device_ids = [0,1,2,3,4,5,6,7] # 4卡 【4，5，6，7】
-device_ids = [2,]
+device_ids = [0,]
 
 cudnn_benchmark = True
 seed = 666
@@ -191,14 +191,14 @@ data_loader = dict(
         type="StereoMultiData",
         test_mode=False,
         dataset_list=[
-            "BallCar",
-            # "Sceneflow",
+            #"BallCar",
+            "Sceneflow",
             # "TartanAir",             
             # "IRS",
             # "FallingThings",
             # "SIDODDataset",
         ],
-        ballcar_root="/root/ballcar_datasets", 
+        # ballcar_root="/root/ballcar_datasets", 
         aug_args=[0.3, 0.5, 0.0, 0.0],
         res_args=[-1, -1, True],
         norm_args=["MixVarGENet"],
@@ -222,8 +222,8 @@ val_data_loader = dict(
         type="StereoMultiData",
         test_mode=True,
         dataset_list=[
-            "BallCar",
-            # "Sceneflow", 
+            #"BallCar",
+             "Sceneflow", 
             # "TartanAir",             
             # "IRS",
             # "FallingThings",
