@@ -624,7 +624,7 @@ floatonnx_predictor = dict(
     type="Predictor",
     model=dict(
         type="OnnxStereoModel",
-        onnx_path="ptq_V21/Bin_model/DStereo_original_float_model.onnx",
+        onnx_path="ptq_V21/float.onnx",
     ),
     data_loader=[val_data_loader],
     batch_processor=val_batch_processor,
