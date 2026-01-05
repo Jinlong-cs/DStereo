@@ -1,26 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# # 代码输出的checkpoint路径
-# ln -s /horizon-bucket/d-robotics-bucket/zengpeng.sun/work_dirs/ work_dirs
-# # 训练数据的软链接
-# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/ public
-# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/kws_outdoor_dataset/ kws_data_output
-# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/models/ tmp_pretrained_models
-# ln -s /horizon-bucket/d-robotics-bucket/AIOT_algorithm_data/Depth_data Depth_data
-# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration SyntheticDataGeneration
-# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/NVIDIA NVIDIA
-# ln -s /horizon-bucket/d-robotics-bucket/bohao.zhang/SyntheticDataGeneration/TartanAir/TartanAir/ TartanAir
-
-
-ROOT_DIR="/root/DStereo"
-DATA_ROOT="/root/ballcar_datasets"
-GPU_ID="${GPU_ID:-0}"
-
-export PYTHONPATH="${ROOT_DIR}:${PYTHONPATH}"
-export BALLCAR_ROOT="${DATA_ROOT}"
+export PYTHONPATH=$PYTHONPATH:/root/DStereo
+export NUMBA_DISABLE_CUDA=1 # to avoid crash
 export HAT_SUPPRESS_OPTIONAL_WARNINGS=1
-export CUDA_VISIBLE_DEVICES="${GPU_ID}"
 export HAT_VAL_INTERVAL=100
 # 冻结bn层用来调试。
 export HAT_FREEZE_BN=1
@@ -38,7 +21,7 @@ ts=$(date +"%Y%m%d_%H%M%S")
 log_file="logs/train_float_${ts}.log"
 
 cmd=(
-  python3 -u tools/train.py
+  python3.10 -u tools/train.py
   -s float
   -c DStereo/DStereoPlus.py
   -ids 0

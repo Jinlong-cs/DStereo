@@ -299,52 +299,36 @@ def StereoMultiData(
                         )
             logger.info("TartanAir total sample: %d" % data_info)
         elif 'DStereoDataset' == dataset:
-            # 读取input.json配置文件
-            input_path = "/workspace/input/task.json"
-            if not os.path.exists(input_path):
-                raise FileNotFoundError(f"Input file not found: {input_path}")
+            #获取数据集左目、右目、视差的全部绝对路径
+            if test_mode:
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/test_list.txt"
+            else:
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/test_list.txt"
+            with open(datasets_list_path, 'r') as f:
+                file_list = f.readlines()
+                # print(self.file_list)
+                file_list = [line.strip().split(' ') for line in file_list]
             
-            with open(input_path, "r") as f:
-                task_config = json.load(f)
-                
-            train_config = task_config["train"]
-            input_path = train_config["data"]["root"]
-            datasets_path = train_config["data"]["datasets_path"] #数据集目录
-            datasets_list_dir = input_path
-            datasets_list = train_config["data"]["val_datasets_list"] if test_mode else train_config["data"]["train_datasets_list"]
+            # 加载数据集首个图像，获取数据集的宽高
+            width, height = 960,540
+            with Image.open(file_list[0][0]) as img:
+                width, height = img.size  # 获取宽高
+                print(f"数据集图像宽度: {width}, 数据集图像高度: {height}")
             
-            # 遍历dataset中的数据集
-            for dataset_list_path in datasets_list:
-                
-                # 获取数据集列表txt路径
-                datasets_list_path = os.path.join(datasets_list_dir, dataset_list_path)
-                
-                #获取数据集左目、右目、视差的全部绝对路径
-                with open(datasets_list_path, 'r') as f:
-                    file_list = f.readlines()
-                    # print(self.file_list)
-                    file_list = [[os.path.join(datasets_path, path) for path in line.strip().split(' ')] for line in file_list if line.strip()]
-                
-                # 加载数据集首个图像，获取数据集的宽高
-                width, height = 960,540
-                with Image.open(file_list[0][0]) as img:
-                    width, height = img.size  # 获取宽高
-                    print(f"数据集图像宽度: {width}, 数据集图像高度: {height}")
-                
-                train_sets.append(AugDataset(
-                    base_dataset=DStereoDataset(
-                        file_list=file_list,
-                        dataset_name=dataset_list_path.split("_")[0],
-                        debug=debug,
-                        img_open_mode=img_open_mode
-                    ),
-                    test_mode=test_mode, 
-                    max_disp=max_disp,
-                    aug_args=aug_args,
-                    res_args=res_args if test_mode else [-1, -1, True, 1.0, crop_args[2] / width, 1.2],
-                    norm_args=norm_args,
-                    crop_args=crop_args
-                ))
+            train_sets.append(AugDataset(
+                base_dataset=DStereoDataset(
+                    file_list=file_list,
+                    dataset_name='DStereoV',
+                    debug=debug,
+                    img_open_mode=img_open_mode
+                ),
+                test_mode=test_mode, 
+                max_disp=max_disp,
+                aug_args=aug_args,
+                res_args=res_args if test_mode else [-1, -1, True, 1.0, crop_args[2] / width, 1.2],
+                norm_args=norm_args,
+                crop_args=crop_args
+            ))
         else:
             raise NotImplementedError
     return CatRandomDataset(train_sets)

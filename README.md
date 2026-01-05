@@ -1,13 +1,12 @@
+
 # Docker Image
 
-we use `uniflexai/robo:latest5` by default, which is CentOS-based image.
+we use `uniflexai/robo:ai_toolchain_ubuntu_20_x5_gpu_v1.2.8-py310` by default, which is Ubuntu-based image.
 
 # rclone install
 
 ```
-yum install epel-release
-yum install man-db man-pages
-curl https://rclone.org/install.sh | bash
+apt install -y rclone
 ```
 
 # rclone config
@@ -242,51 +241,16 @@ Run:
 ```bash
 bash train_local.sh
 ```
-
-Key knobs in `train_local.sh`:
-- **Dataset path**: `DATA_ROOT` → exported as `BALLCAR_ROOT`.
-- **GPU selection**: `GPU_ID` + `CUDA_VISIBLE_DEVICES`.
-- **FreezeBN**:
-  - `HAT_FREEZE_BN`
-  - `HAT_FREEZE_BN_AFFINE`
-  - `HAT_FREEZE_BN_UNTIL_STEP`
-- **Validation cadence**: `HAT_VAL_INTERVAL`.
-- **W&B logging frequency**: `--wandb-log-every-steps`.
-- **Visualization frequency**: `--vis-every-steps` / `--vis-every-epochs`.
-- **W&B visual sampling**: `VIS_NUM_SAMPLES`, `VIS_STRATEGY`, `VIS_SEED`, `WANDB_VIS_AT_START`.
-
-
-## Inference (predict_local.sh)
-Run:
-```bash
-bash predict_local.sh
+## Quantization
+### export onnx
 ```
-
-What it does:
-- Loads a checkpoint via `tools/predict.py` with `--ckpt`.
-- Runs validation-only prediction with `float_predictor` in `DStereo/DStereoPlus.py`.
-- Logs W&B visuals if `HAT_USE_WANDB=1`.
-
-Key inputs/outputs:
-- Checkpoint path: `PRETRAINED_CKPT` in `predict_local.sh`.
-- Logs: `logs/predict_float_*.log`.
-- Calibration data output: `ptq_V21/calib_data` (from `SaveCalibdata` callback in `float_predictor`).
-  - `SaveDisp` is present but commented in `DStereo/DStereoPlus.py`.
-
-## Export ONNX (export_local.sh + export_cfg)
-There is no `export_local.sh` in this repo. Use the provided exporter directly:
-```bash
 python3 tools/deploy/export_onnx.py -c DStereo/DStereoPlus.py
 ```
-
-## Horizon Quantization & Compilation (calibration + DStereoPlus.yaml)
-1) Prepare calibration images (typically 20–100):
-   - Place left images under one folder and right images under another.
-2) Convert calibration data:
-```bash
-python3 ptq_V21/save_calib_data.p
+### save calib data
 ```
-Run quantization/compile using Horizon tools:
-```bash
+bash predict_local.sh
+```
+### gen bin model: onnx+calib_data=bin_model
+```
 bash ptq_V21/bin_build.sh
 ```

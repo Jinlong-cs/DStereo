@@ -121,9 +121,10 @@ class SaveCalibdata(CallbackMixin):
         left_cropped = np.ascontiguousarray(left_cropped)
         right_cropped = batch["right_img_yuv"][0].transpose(2, 0, 1)
         right_cropped = np.ascontiguousarray(right_cropped)
-        left_cropped.tofile(
-            os.path.join(self.output_dir, "infra1", "%d.npy" % global_step_id)
-        )
-        right_cropped.tofile(
-            os.path.join(self.output_dir, "infra2", "%d.npy" % global_step_id)
-        )
+
+        print("shape:", left_cropped.shape, "dtype:", left_cropped.dtype)
+        left_f = left_cropped.astype(np.float32)
+        right_f = right_cropped.astype(np.float32)
+
+        left_f.tofile(os.path.join(self.output_dir, "infra1", f"{global_step_id}.npy"))
+        right_f.tofile(os.path.join(self.output_dir, "infra2", f"{global_step_id}.npy"))

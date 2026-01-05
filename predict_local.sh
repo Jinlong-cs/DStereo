@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="/root/DStereo_V2.3"
-DATA_ROOT="/root/ballcar_datasets"
-PRETRAINED_CKPT="/root/DStereo_V2.3/tmp_pretrained_models/mixvargenet_imagenet/float-checkpoint-last.pth.tar"
+ROOT_DIR="/root/DStereo"
 
 export PYTHONPATH="${ROOT_DIR}:${PYTHONPATH}"
-export BALLCAR_ROOT="${DATA_ROOT}"
 export HAT_SUPPRESS_OPTIONAL_WARNINGS=1
 export HAT_USE_WANDB=1
 export HAT_LOG_PRETRAINED_BASELINE=0
@@ -27,11 +24,9 @@ ts=$(date +"%Y%m%d_%H%M%S")
 log_file="logs/predict_float_${ts}.log"
 
 cmd=(
-  python3 -u tools/predict.py
+  python3.10 -u tools/predict.py
   -s float
   -c DStereo/DStereoPlus.py
-  -ids 0
-  --ckpt "${PRETRAINED_CKPT}"
 )
 
 "${cmd[@]}" \
