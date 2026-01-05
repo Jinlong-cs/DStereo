@@ -254,3 +254,11 @@ bash predict_local.sh
 ```
 bash ptq_V21/bin_build.sh
 ```
+### eval float onnx model
+```
+bash predict_floatonnx.sh
+```
+### eval quant onnx model
+```
+bash predict_quantonnx.sh
+```

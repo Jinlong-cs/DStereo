@@ -47,7 +47,12 @@ class SaveDisp(CallbackMixin):
             right = batch["right_img"][sample_idx]
             disp_gt = batch["gt_disp"][sample_idx].detach().cpu().numpy()
             pred = model_outs[0][sample_idx, ...].detach().cpu().numpy()
-            initdisp = model_outs[1][sample_idx, ...].detach().cpu().numpy()
+            init_source = None
+            if isinstance(model_outs, (list, tuple)) and len(model_outs) > 1:
+                init_source = model_outs[1]
+            if init_source is None:
+                init_source = model_outs[0]
+            initdisp = init_source[ sample_idx, ...].detach().cpu().numpy()
             left, right, disp_gt, pred, initdisp = self.unpad(
                 left, right, disp_gt, pred, initdisp, batch["origin_shape"][sample_idx]
             )
@@ -117,14 +122,14 @@ class SaveCalibdata(CallbackMixin):
         assert (
             len(batch["dataset_name"]) == 1
         ), "test_batch_size_per_gpu in DStereo/DStereoPlus.py must be 1"
-        left_cropped = batch["left_img_yuv"][0].transpose(2, 0, 1)
-        left_cropped = np.ascontiguousarray(left_cropped)
-        right_cropped = batch["right_img_yuv"][0].transpose(2, 0, 1)
-        right_cropped = np.ascontiguousarray(right_cropped)
+        img = batch["img"]
+        if img.shape[0] != 2:
+            raise ValueError("SaveCalibdata expects stacked left/right images")
+        left_f = img[0].detach().cpu().numpy().astype(np.float32)
+        right_f = img[1].detach().cpu().numpy().astype(np.float32)
 
-        print("shape:", left_cropped.shape, "dtype:", left_cropped.dtype)
-        left_f = left_cropped.astype(np.float32)
-        right_f = right_cropped.astype(np.float32)
+        left_f = np.ascontiguousarray(left_f)
+        right_f = np.ascontiguousarray(right_f)
 
         left_f.tofile(os.path.join(self.output_dir, "infra1", f"{global_step_id}.npy"))
         right_f.tofile(os.path.join(self.output_dir, "infra2", f"{global_step_id}.npy"))

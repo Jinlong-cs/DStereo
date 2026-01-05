@@ -416,6 +416,14 @@ val_metric_updater = dict(
     log_prefix="val_" + task_name,
 )
 
+onnx_metric_updater = dict(
+    type="MetricUpdater",
+    metric_update_func=update_metric,
+    step_log_freq=log_freq,
+    epoch_log_freq=log_freq,
+    log_prefix="onnx_" + task_name,
+)
+
 val_callbacks = [val_metric_updater]
 if enable_tensorboard:
     val_callbacks.append(
@@ -581,6 +589,62 @@ float_predictor = dict(
         ),
     ],
     callbacks=predict_callbacks,
+    log_interval=log_freq,
+)
+
+quantonnx_predictor = dict(
+    type="Predictor",
+    model=dict(
+        type="OnnxStereoModel",
+        onnx_path="ptq_V21/Bin_model/DStereo_quantized_model.onnx",
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=[
+        dict(
+            type="EndPointError",
+            use_mask=True,
+        ),
+    ],
+    callbacks=[
+        onnx_metric_updater,
+        stat_callback,
+        dict(
+            type="SaveDisp",
+            output_dir="ptq_V21/vis/quant",
+            task_name="onnx_disp",
+            maxdisp=maxdisp,
+        ),
+    ],
+    log_interval=log_freq,
+)
+
+floatonnx_predictor = dict(
+    type="Predictor",
+    model=dict(
+        type="OnnxStereoModel",
+        onnx_path="ptq_V21/Bin_model/DStereo_original_float_model.onnx",
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=[
+        dict(
+            type="EndPointError",
+            use_mask=True,
+        ),
+    ],
+    callbacks=[
+        onnx_metric_updater,
+        stat_callback,
+        dict(
+            type="SaveDisp",
+            output_dir="ptq_V21/vis/float",
+            task_name="onnx_disp",
+            maxdisp=maxdisp,
+        ),
+    ],
     log_interval=log_freq,
 )
 

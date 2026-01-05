@@ -1,8 +1,8 @@
 model_parameters:
   onnx_model: 'float.onnx'
   march: 'bayes-e'
-  output_model_file_prefix: 'DStereoV23_quantization_251226_9999'
-  working_dir: 'Bin_model/20251226_3datasets/9999/'
+  output_model_file_prefix: 'DStereo'
+  working_dir: 'Bin_model/'
   remove_node_type: 'Quantize;Dequantize;'
   node_info: {
     # 算法同学第一次添加(节选)
@@ -540,5 +540,5 @@ calibration_parameters:
 compiler_parameters:
   compile_mode: 'latency'
   debug: True
-  optimize_level: 'O3'
+  optimize_level: 'O0'
   jobs: 32
