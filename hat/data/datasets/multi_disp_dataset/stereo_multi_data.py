@@ -303,7 +303,7 @@ def StereoMultiData(
             if test_mode:
                 datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/test_list.txt"
             else:
-                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/test_list.txt"
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/train_list.txt"
             with open(datasets_list_path, 'r') as f:
                 file_list = f.readlines()
                 # print(self.file_list)

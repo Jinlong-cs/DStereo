@@ -14,9 +14,10 @@ from DStereo.common import disp2rgb, depth2rgb, disp2depth, uncert2rgb
 
 VERSION = ConfigVersion.v2
 
-training_step = os.environ.get("HAT_TRAINING_STEP", "float")
-
 task_name = "DStereoV23"
+
+
+training_step = "float"
 data_num_workers = 4
 march = March.BAYES_E
 # ckpt_dir = "work_dirs/ckpt_models/%s" % task_name
@@ -28,41 +29,28 @@ local_train = not os.path.exists("/running_package")
 train_batch_size_per_gpu = 8
 test_batch_size_per_gpu = 1
 log_freq = 1
-enable_tensorboard = os.environ.get("HAT_USE_TENSORBOARD", "0") == "1"
-use_wandb = os.environ.get("HAT_USE_WANDB", "0") == "1"
-wandb_project = os.environ.get("WANDB_PROJECT", "dstereo_vis")
-wandb_name = os.environ.get("WANDB_NAME", f"{task_name}-{training_step}")
-wandb_tags = os.environ.get("WANDB_TAGS", "")
-wandb_resume = os.environ.get("WANDB_RESUME", None)
-wandb_run_id = os.environ.get("WANDB_RUN_ID", None)
+wandb_project = "dstereo_vis"
+wandb_name = f"{task_name}-{training_step}"
+wandb_tags = ""
+wandb_resume = None
+wandb_run_id = None
 
-wandb_log_every_steps = int(os.environ.get("WANDB_LOG_EVERY_STEPS", str(log_freq)))
-fixed_train_index = int(os.environ.get("WANDB_FIXED_TRAIN_INDEX", "0"))
-fixed_val_index = int(os.environ.get("WANDB_FIXED_VAL_INDEX", "0"))
-vis_every_steps = int(os.environ.get("WANDB_VIS_EVERY_STEPS", "0"))
-vis_every_epochs = int(os.environ.get("WANDB_VIS_EVERY_EPOCHS", "1"))
-vis_num_samples = int(os.environ.get("WANDB_VIS_NUM_SAMPLES", "5"))
-vis_strategy = os.environ.get("WANDB_VIS_STRATEGY", "fixed")
-vis_seed = int(os.environ.get("WANDB_VIS_SEED", "0"))
-vis_at_start = os.environ.get("WANDB_VIS_AT_START", "0") == "1"
-val_interval = int(os.environ.get("HAT_VAL_INTERVAL", "100"))
-enable_freeze_bn = os.environ.get("HAT_FREEZE_BN", "0") == "1"
-freeze_bn_affine = os.environ.get("HAT_FREEZE_BN_AFFINE", "0") == "1"
-freeze_bn_until_step = int(os.environ.get("HAT_FREEZE_BN_UNTIL_STEP", "-1"))
-baseline_ckpt = os.environ.get("HAT_PRETRAINED_BASELINE_CKPT", "")
-log_pretrained_baseline = os.environ.get("HAT_LOG_PRETRAINED_BASELINE", "1") == "1"
+wandb_log_every_steps = 100
+fixed_train_index = 0
+fixed_val_index = 0
+vis_every_steps = 1000
+vis_every_epochs = 0
+vis_num_samples = 5
+vis_strategy = "random"
+vis_seed = 0
+vis_at_start = True
+val_interval = 10000
+enable_freeze_bn = True
+freeze_bn_affine = False
+freeze_bn_until_step = 2000
 
-
-def _parse_indices_env(value):
-    if not value:
-        return None
-    parts = value.replace(",", " ").split()
-    indices = [int(p) for p in parts if p]
-    return indices if indices else None
-
-
-vis_train_indices = _parse_indices_env(os.environ.get("WANDB_VIS_TRAIN_INDICES", ""))
-vis_val_indices = _parse_indices_env(os.environ.get("WANDB_VIS_VAL_INDICES", ""))
+vis_train_indices = None
+vis_val_indices = None
 sync_bn = True
 # device_ids = [0,1,2,3,4,5,6,7] # 4卡 【4，5，6，7】
 device_ids = [0,]
@@ -170,9 +158,6 @@ model = dict(
 )
 
 deploy_model = model
-tensorboard_dir = (
-    os.path.join(ckpt_dir, training_step) if local_train else "/job_tboard/"
-)
 deploy_inputs = dict(
     data=dict(
         infra1=torch.randn((1, 3, 640, 352)),
@@ -236,7 +221,7 @@ val_data_loader = dict(
         res_args=[640, 352, False],
         norm_args=["MixVarGENet"],
         crop_args=["center", 640, 352],
-        debug=True,
+        debug=False,
         max_disp=maxdisp,
         img_open_mode="bgr",
     ),
@@ -345,35 +330,6 @@ def _named_loss_items(losses):
     return items
 
 
-def tb_update_train_losses(writer, model_outs, global_step_id, **kwargs):
-    losses = _extract_losses(model_outs)
-    if not losses:
-        return
-    total = sum([loss for loss in losses if loss is not None])
-    if isinstance(total, torch.Tensor):
-        writer.add_scalar("train/loss/total", total, global_step=global_step_id)
-    for name, loss in _named_loss_items(losses):
-        writer.add_scalar(f"train/loss/{name}", loss, global_step=global_step_id)
-
-
-def tb_update_val_losses(writer, model_outs, global_step_id, **kwargs):
-    losses = _extract_losses(model_outs)
-    if not losses:
-        return
-    for name, loss in _named_loss_items(losses):
-        writer.add_scalar(f"val/loss/{name}", loss, global_step=global_step_id)
-
-tensorboard_callback = None
-if enable_tensorboard:
-    tensorboard_callback = dict(
-        type="TensorBoard",
-        save_dir=tensorboard_dir,
-        update_freq=log_freq,
-        update_by="step",
-        tb_update_funcs=[tb_update_train_losses],
-    )
-
-
 def update_loss_metric(metrics, batch, model_outs):
     labels = batch["gt_disp"]
     masks = (labels > 0) & (labels < maxdisp)
@@ -425,16 +381,6 @@ onnx_metric_updater = dict(
 )
 
 val_callbacks = [val_metric_updater]
-if enable_tensorboard:
-    val_callbacks.append(
-        dict(
-            type="TensorBoard",
-            save_dir=tensorboard_dir,
-            update_freq=log_freq,
-            update_by="step",
-            tb_update_funcs=[tb_update_val_losses],
-        )
-    )
 val_callback = dict(
     type="Validation",
     val_interval=val_interval,
@@ -448,7 +394,7 @@ val_callback = dict(
 ckpt_callback = dict(
     type="Checkpoint",
     interval_by="step",
-    save_interval=100,
+    save_interval=val_interval,
     save_dir=ckpt_dir,
     name_prefix=training_step + "-",
     strict_match=True,
@@ -476,12 +422,9 @@ if enable_freeze_bn:
             freeze_affine=freeze_bn_affine,
             unfreeze_step=freeze_bn_until_step,
         ),
-    )
-if tensorboard_callback is not None:
-    train_callbacks.append(tensorboard_callback)
-if use_wandb:
-    train_callbacks.append(wandb_callback)
-    train_callbacks.append(fixed_sample_tracker)
+)
+train_callbacks.append(wandb_callback)
+train_callbacks.append(fixed_sample_tracker)
 
 float_trainer = dict(
     type="distributed_data_parallel_trainer",
@@ -537,29 +480,6 @@ predict_callbacks = [
     stat_callback,
     val_metric_updater,
 ]
-if use_wandb:
-    predict_callbacks.append(wandb_callback)
-    predict_callbacks.append(
-        dict(
-            type="FixedSampleTracker",
-            train_dataset=None,
-            val_dataset=val_data_loader["dataset"],
-            collate_fn=collate_disp_cat,
-            fixed_train_index=fixed_train_index,
-            fixed_val_index=fixed_val_index,
-            vis_num_samples=vis_num_samples,
-            vis_strategy=vis_strategy,
-            vis_seed=vis_seed,
-            vis_at_start=vis_at_start,
-            vis_train_indices=None,
-            vis_val_indices=vis_val_indices,
-            pretrained_ckpt=baseline_ckpt if baseline_ckpt else None,
-            log_pretrained_baseline=log_pretrained_baseline,
-            vis_every_steps=vis_every_steps,
-            vis_every_epochs=vis_every_epochs,
-            maxdisp=maxdisp,
-        )
-    )
 
 float_predictor = dict(
     type="Predictor",

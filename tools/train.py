@@ -105,12 +105,6 @@ def parse_args():
         default=False,
         help="export HAT_ENABLE_MODEL_TRACKING=1, which enable aidi tracking",
     )
-    parser.add_argument(
-        "--use-wandb",
-        action="store_true",
-        default=False,
-        help="enable W&B logging",
-    )
     parser.add_argument("--wandb-project", type=str, default=None)
     parser.add_argument("--wandb-name", type=str, default=None)
     parser.add_argument("--wandb-tags", type=str, default=None)
@@ -137,12 +131,6 @@ def parse_args():
         type=ast.literal_eval,
         default=True,
         help="True or False, default True, log pretrained baseline in W&B",
-    )
-    parser.add_argument(
-        "--use-tensorboard",
-        action="store_true",
-        default=False,
-        help="enable TensorBoard logging",
     )
 
     known_args, unknown_args = parser.parse_known_args()
@@ -264,7 +252,6 @@ def train(
     args_env: list = None,
     level: int = logging.WARNING,
     enable_tracking: bool = False,
-    use_wandb: bool = False,
     wandb_project: str = None,
     wandb_name: str = None,
     wandb_tags: str = None,
@@ -282,7 +269,6 @@ def train(
     vis_val_indices: list = None,
     pretrained_ckpt: str = None,
     log_pretrained_baseline: bool = True,
-    use_tensorboard: bool = False,
 ):
     """Training  function.
 
@@ -304,8 +290,6 @@ def train(
     """
     if args_env:
         setup_args_env(args_env)
-    os.environ["HAT_USE_TENSORBOARD"] = "1" if use_tensorboard else "0"
-    os.environ["HAT_USE_WANDB"] = "1" if use_wandb else "0"
     if wandb_project:
         os.environ["WANDB_PROJECT"] = wandb_project
     if wandb_name:
@@ -426,7 +410,6 @@ if __name__ == "__main__":
             level=args.level,
             args_env=args_env,
             enable_tracking=args.enable_tracking,
-            use_wandb=args.use_wandb,
             wandb_project=args.wandb_project,
             wandb_name=args.wandb_name,
             wandb_tags=args.wandb_tags,
@@ -444,7 +427,6 @@ if __name__ == "__main__":
             vis_val_indices=args.vis_val_indices,
             pretrained_ckpt=args.pretrained_ckpt,
             log_pretrained_baseline=args.log_pretrained_baseline,
-            use_tensorboard=args.use_tensorboard,
         )
 
     except Exception as e:
