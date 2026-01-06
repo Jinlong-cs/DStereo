@@ -1,5 +1,6 @@
-# Copyright (c) Horizon Robotics. All rights reserved.
-from typing import Iterator
+from __future__ import annotations
+
+from typing import Iterator, List, Optional
 
 import torch
 from torch.utils.data import Sampler
@@ -11,40 +12,92 @@ __all__ = ["InterleaveConcatSampler"]
 
 @OBJECT_REGISTRY.register
 class InterleaveConcatSampler(Sampler[int]):
-    """Interleave two sub-datasets: A0,B0,A1,B1..., repeat smaller one."""
+    """
+    Interleave multiple sub-datasets in a ConcatDataset in round-robin order:
+      D0[0], D1[0], ..., Dk-1[0], D0[1], D1[1], ...
 
-    def __init__(self, dataset, shuffle: bool = False, seed: int = 0,  sampler_len = None) -> None:
-        assert isinstance(dataset, ConcatDataset)
-        assert len(dataset.datasets) == 2
+    Smaller datasets are repeated with modulo indexing.
+
+    Args:
+        dataset: must be torch.utils.data.dataset.ConcatDataset with >= 2 sub-datasets
+        shuffle: shuffle each sub-dataset independently every epoch
+        seed: base seed
+        sampler_len: optional cap on the number of "rows" (i steps). Total yielded = rows * num_subdatasets.
+                     Default rows = max(len(subdataset_i)).
+        drop_empty: if True, ignore empty sub-datasets (len==0). If False, empty dataset raises.
+    """
+
+    def __init__(
+        self,
+        dataset: ConcatDataset,
+        shuffle: bool = False,
+        seed: int = 0,
+        sampler_len: Optional[int] = None,
+        drop_empty: bool = False,
+    ) -> None:
+        assert isinstance(dataset, ConcatDataset), "dataset must be a ConcatDataset"
+        assert len(dataset.datasets) >= 2, "need at least 2 sub-datasets"
+
         self.dataset = dataset
         self.shuffle = shuffle
-        self.seed = seed
+        self.seed = int(seed)
         self.epoch = 0
-        self.len_a = len(dataset.datasets[0])
-        self.len_b = len(dataset.datasets[1])
-        self.offset_b = dataset.cumulative_sizes[0]
         self.sampler_len = sampler_len
+        self.drop_empty = drop_empty
 
-    def __len__(self) -> int:
-        return 2 * max(self.len_a, self.len_b)
+        # Lengths of each sub-dataset
+        lengths = [len(d) for d in dataset.datasets]
+        if any(l == 0 for l in lengths):
+            if drop_empty:
+                # Keep only non-empty datasets
+                self._keep = [i for i, l in enumerate(lengths) if l > 0]
+                assert len(self._keep) >= 2, "after drop_empty, need at least 2 non-empty sub-datasets"
+            else:
+                raise ValueError(f"Found empty sub-dataset(s) with lengths={lengths}. "
+                                 f"Set drop_empty=True to ignore them.")
+        else:
+            self._keep = list(range(len(lengths)))
+
+        self.lengths = [lengths[i] for i in self._keep]
+
+        # Offsets in the flattened ConcatDataset index space
+        # dataset.cumulative_sizes[j] = sum_{t<=j} len(dataset.datasets[t])
+        # offset for dataset j is sum_{t<j} len(dataset.datasets[t])
+        offsets_all = [0]
+        for sz in dataset.cumulative_sizes[:-1]:
+            offsets_all.append(sz)
+
+        self.offsets = [offsets_all[i] for i in self._keep]
+        self.num_sub = len(self.lengths)
 
     def set_epoch(self, epoch: int) -> None:
-        self.epoch = epoch
+        self.epoch = int(epoch)
+
+    def _rows(self) -> int:
+        # number of i-steps (each step yields one sample per sub-dataset)
+        rows = max(self.lengths)
+        if self.sampler_len is not None:
+            rows = min(rows, int(self.sampler_len))
+        return rows
+
+    def __len__(self) -> int:
+        return self._rows() * self.num_sub
 
     def __iter__(self) -> Iterator[int]:
-        a_idx = list(range(self.len_a))
-        b_idx = list(range(self.len_b))
+        # Build per-subdataset index lists (optionally shuffled)
+        per_idx: List[List[int]] = [list(range(L)) for L in self.lengths]
+
         if self.shuffle:
-            g = torch.Generator()
-            g.manual_seed(self.seed + self.epoch)
-            a_idx = torch.randperm(self.len_a, generator=g).tolist()
-            g.manual_seed(self.seed + self.epoch + 1)
-            b_idx = torch.randperm(self.len_b, generator=g).tolist()
-        total = max(self.len_a, self.len_b)
-        if self.sampler_len is not None:
-            total = min(total, self.sampler_len)
-        for i in range(total):
-            #print("sample a from: ",a_idx[i % self.len_a])
-            yield a_idx[i % self.len_a]
-            #print("sample b from: ",self.offset_b + b_idx[i % self.len_b])
-            yield self.offset_b + b_idx[i % self.len_b]
+            # independent shuffle per subdataset, deterministic per epoch
+            # use different seed stream per subdataset to avoid same permutations
+            for j, L in enumerate(self.lengths):
+                g = torch.Generator()
+                g.manual_seed(self.seed + self.epoch + 9973 * j)
+                per_idx[j] = torch.randperm(L, generator=g).tolist()
+
+        rows = self._rows()
+        for i in range(rows):
+            for j in range(self.num_sub):
+                local = per_idx[j][i % self.lengths[j]]
+                yield self.offsets[j] + local
+

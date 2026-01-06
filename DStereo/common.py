@@ -353,8 +353,8 @@ def readPFM(file):
 def disp2rgb(disp, disp_max, disp_min):
     mask = np.logical_or(disp > disp_max, disp < disp_min)
     disp = np.clip(disp, disp_min, disp_max)
-    mat_min = disp.min()
-    mat_max = disp.max()
+    mat_min = disp_min
+    mat_max = disp_max
     norm_matrix = (disp - mat_min) / (mat_max - mat_min)
     disp = 0.1 + norm_matrix * (0.9 - 0.1)
     disp *= 255

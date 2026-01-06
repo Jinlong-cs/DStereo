@@ -62,7 +62,7 @@ refine_levels = 3
 base_lr = 0.0001
 # base_lr = 0.001
 # num_steps = 200000
-num_steps = 50000
+num_steps = 200000
 model = dict(
     type="DStereoPlus",
     maxdisp=maxdisp,
@@ -169,6 +169,7 @@ data_loader = dict(
         test_mode=False,
         dataset_list=[
             "Sceneflow",
+            "DStereoDataset",
             "DStereoDataset",
         ],
         aug_args=[0.3, 0.5, 0.0, 0.0],
