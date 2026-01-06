@@ -35,22 +35,14 @@ wandb_tags = ""
 wandb_resume = None
 wandb_run_id = None
 
-wandb_log_every_steps = 100
-fixed_train_index = 0
-fixed_val_index = 0
-vis_every_steps = 1000
-vis_every_epochs = 0
-vis_num_samples = 5
-vis_strategy = "random"
-vis_seed = 0
-vis_at_start = True
+wandb_log_every_steps = 1000
+wandb_log_samples = True
+wandb_samples_per_batch = 2
 val_interval = 10000
-enable_freeze_bn = True
+enable_freeze_bn = False
 freeze_bn_affine = False
-freeze_bn_until_step = 2000
+freeze_bn_until_step = 200000
 
-vis_train_indices = None
-vis_val_indices = None
 sync_bn = True
 # device_ids = [0,1,2,3,4,5,6,7] # 4卡 【4，5，6，7】
 device_ids = [0,]
@@ -67,8 +59,8 @@ maxdisp = 96
 bias = False
 bn_kwargs = {}
 refine_levels = 3
-# base_lr = 0.0001
-base_lr = 0.001
+base_lr = 0.0001
+# base_lr = 0.001
 # num_steps = 200000
 num_steps = 50000
 model = dict(
@@ -176,15 +168,9 @@ data_loader = dict(
         type="StereoMultiData",
         test_mode=False,
         dataset_list=[
-            #"BallCar",
             "Sceneflow",
-            # "TartanAir",             
-            # "IRS",
-            # "FallingThings",
-            # "SIDODDataset",
-            # "DStereoDataset",
+            "DStereoDataset",
         ],
-        # ballcar_root="/root/ballcar_datasets", 
         aug_args=[0.3, 0.5, 0.0, 0.0],
         res_args=[-1, -1, True],
         norm_args=["MixVarGENet"],
@@ -193,11 +179,11 @@ data_loader = dict(
         max_disp=maxdisp,
         img_open_mode="bgr",
     ),
-    sampler=dict(type=torch.utils.data.DistributedSampler),
+    sampler=dict(type="InterleaveConcatSampler", shuffle=True, seed=0),
     batch_size=train_batch_size_per_gpu,
     pin_memory=True,
     prefetch_factor=4,
-    shuffle=True,
+    shuffle=False,
     num_workers=data_num_workers,
     collate_fn=collate_disp_cat,
 )
@@ -258,24 +244,8 @@ wandb_callback = dict(
     log_train_loss=True,
     log_train_subloss=True,
     log_lr=True,
-)
-fixed_sample_tracker = dict(
-    type="FixedSampleTracker",
-    train_dataset=data_loader["dataset"],
-    val_dataset=val_data_loader["dataset"],
-    collate_fn=collate_disp_cat,
-    fixed_train_index=fixed_train_index,
-    fixed_val_index=fixed_val_index,
-    vis_num_samples=vis_num_samples,
-    vis_strategy=vis_strategy,
-    vis_seed=vis_seed,
-    vis_train_indices=vis_train_indices,
-    vis_val_indices=vis_val_indices,
-    pretrained_ckpt=None,
-    log_pretrained_baseline=False,
-    vis_every_steps=vis_every_steps,
-    vis_every_epochs=vis_every_epochs,
-    vis_at_start=vis_at_start,
+    log_samples=wandb_log_samples,
+    samples_per_batch=wandb_samples_per_batch,
     maxdisp=maxdisp,
 )
 
@@ -424,7 +394,6 @@ if enable_freeze_bn:
         ),
 )
 train_callbacks.append(wandb_callback)
-train_callbacks.append(fixed_sample_tracker)
 
 float_trainer = dict(
     type="distributed_data_parallel_trainer",
@@ -474,12 +443,41 @@ float_trainer = dict(
     ],
 )
 
+
 predict_callbacks = [
     dict(type="SaveCalibdata", output_dir="ptq_V21/calib_data",),
     # dict(type="SaveDisp", output_dir="work_dirs/disp_result",task_name="disp_result"),
     stat_callback,
     val_metric_updater,
 ]
+
+# almost train_data_loader, but disable augs
+calib_data_loader = dict(
+    type=torch.utils.data.DataLoader,
+    dataset=dict(
+        type="StereoMultiData",
+        test_mode=False,
+        dataset_list=[
+            "Sceneflow",
+            "DStereoDataset",
+        ],
+        aug_args=None,
+        res_args=[-1, -1, True],
+        norm_args=["MixVarGENet"],
+        crop_args=["center", 640, 352],
+        debug=False,
+        max_disp=maxdisp,
+        img_open_mode="bgr",
+    ),
+    sampler=dict(type="InterleaveConcatSampler", shuffle=False, seed=0, sampler_len=100),
+    batch_size=test_batch_size_per_gpu,
+    pin_memory=True,
+    prefetch_factor=4,
+    shuffle=False,
+    num_workers=data_num_workers,
+    collate_fn=collate_disp_cat,
+)
+
 
 float_predictor = dict(
     type="Predictor",
@@ -498,7 +496,7 @@ float_predictor = dict(
             ),
         ],
     ),
-    data_loader=[val_data_loader],
+    data_loader=[calib_data_loader],
     batch_processor=val_batch_processor,
     device=None,
     metrics=[
@@ -518,7 +516,7 @@ quantonnx_predictor = dict(
         type="OnnxStereoModel",
         onnx_path="ptq_V21/Bin_model/DStereo_quantized_model.onnx",
     ),
-    data_loader=[val_data_loader],
+    data_loader=[calib_data_loader],
     batch_processor=val_batch_processor,
     device=None,
     metrics=[
@@ -546,7 +544,7 @@ floatonnx_predictor = dict(
         type="OnnxStereoModel",
         onnx_path="ptq_V21/float.onnx",
     ),
-    data_loader=[val_data_loader],
+    data_loader=[calib_data_loader],
     batch_processor=val_batch_processor,
     device=None,
     metrics=[

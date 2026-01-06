@@ -540,5 +540,5 @@ calibration_parameters:
 compiler_parameters:
   compile_mode: 'latency'
   debug: True
-  optimize_level: 'O0'
+  optimize_level: 'O3'
   jobs: 32

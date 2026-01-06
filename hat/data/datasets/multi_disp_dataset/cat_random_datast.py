@@ -39,6 +39,7 @@ class CatRandomDataset(ConcatDataset):
                 data = super().__getitem__(item)
                 if not data["mask_flag"]:
                     item = random.randint(0, len(self) - 1)  # 295, 711  295, 400
+                    print("mask_flag False, retrying...")
                     continue
                 return data
             except Exception as e:

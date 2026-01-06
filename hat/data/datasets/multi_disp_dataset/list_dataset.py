@@ -641,7 +641,9 @@ class DStereoDataset(AIOTBaseDataset):
     
     def __getitem__(self, index):
         l, r, d = self.file_list[index]
-        left, right, disp = self.img_loader(l, self.img_open_mode), self.img_loader(r, self.img_open_mode), self.disp_loader(d)
+        left = self.img_loader(l, self.img_open_mode)
+        right = self.img_loader(r, self.img_open_mode)
+        disp = self.disp_loader(d)
         return left, right, disp
     
     @staticmethod

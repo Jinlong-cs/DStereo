@@ -125,6 +125,9 @@ class WandbLogger:
         log_train_loss: bool = True,
         log_train_subloss: bool = True,
         log_lr: bool = True,
+        log_samples: bool = False,
+        samples_per_batch: int = 1,
+        maxdisp: float = 96.0,
     ):
         self.project = project
         self.name = name
@@ -138,6 +141,9 @@ class WandbLogger:
         self.log_train_loss = bool(log_train_loss)
         self.log_train_subloss = bool(log_train_subloss)
         self.log_lr = bool(log_lr)
+        self.log_samples = bool(log_samples)
+        self.samples_per_batch = int(max(1, samples_per_batch))
+        self.maxdisp = float(maxdisp)
 
         self._step_start_time = None
         self._data_ready_time = None
@@ -222,6 +228,68 @@ class WandbLogger:
             return
         wandb.log(data, step=step)
 
+    def _extract_pred(self, outputs):
+        if isinstance(outputs, dict):
+            pred = outputs.get("pred_disps")
+            if pred is not None:
+                return pred
+        if isinstance(outputs, (list, tuple)) and len(outputs) > 0:
+            return outputs[0]
+        return None
+
+    def _log_batch_samples(self, batch, model_outs, step):
+        if wandb is None or wandb.run is None:
+            return
+        if step is None or batch is None:
+            return
+        pred = self._extract_pred(model_outs)
+        if pred is None:
+            return
+        batch_size = int(batch["gt_disp"].shape[0])
+        num_samples = min(self.samples_per_batch, batch_size)
+        media = {}
+        for i in range(num_samples):
+            def _to_numpy(x):
+                if torch.is_tensor(x):
+                    return x.detach().cpu().numpy()
+                return np.asarray(x)
+
+            def _to_hwc(img):
+                if img.ndim == 2:
+                    return np.repeat(img[:, :, None], 3, axis=2)
+                if img.ndim == 3 and img.shape[0] in (1, 3):
+                    img = np.transpose(img, (1, 2, 0))
+                if img.ndim == 3 and img.shape[2] == 1:
+                    img = np.repeat(img, 3, axis=2)
+                return img
+
+            left = _to_numpy(batch["left_img"][i])
+            right = _to_numpy(batch["right_img"][i])
+            gt = _to_numpy(batch["gt_disp"][i])
+            pred_i = _to_numpy(pred[i])
+            if pred_i.ndim == 3:
+                pred_i = pred_i[0]
+            if gt.ndim == 3:
+                gt = gt[0]
+            left = _to_hwc(left)
+            right = _to_hwc(right)
+            pred_vis = disp2rgb(pred_i, self.maxdisp, 0.1)
+            gt_vis = disp2rgb(gt, self.maxdisp, 0.1)
+            err_vis = disp2rgb(abs(pred_i - gt), self.maxdisp, 0.1)
+            panel = np.concatenate(
+                [
+                    left,
+                    right,
+                    pred_vis,
+                    gt_vis,
+                    err_vis,
+                ],
+                axis=1,
+            )
+            media[f"train/batch_samples/{i}"] = wandb.Image(panel[:, :, ::-1])
+        if media:
+            wandb.log(media, step=step)
+
     def log_metrics(self, metrics, step):
         if not metrics:
             return
@@ -282,6 +350,12 @@ class WandbLogger:
                             {f"train/loss/{name}": float(loss.detach().cpu().item())},
                             global_step_id,
                         )
+        if self.log_samples:
+            self._log_batch_samples(
+                kwargs.get("batch"),
+                model_outs,
+                global_step_id,
+            )
 
     def on_step_end(self, global_step_id=None, optimizer=None, **kwargs):
         if not self._should_log(global_step_id):
