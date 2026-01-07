@@ -21,7 +21,7 @@ training_step = "float"
 data_num_workers = 4
 march = March.BAYES_E
 # ckpt_dir = "work_dirs/ckpt_models/%s" % task_name
-ckpt_dir = "work_dirs/tmp_models_szp1/%s" % task_name
+ckpt_dir = "work_dirs/tmp_models_save_best/%s" % task_name
 checkpoint_path = (
     "tmp_pretrained_models/mixvargenet_imagenet/float-checkpoint-last.pth.tar"
 )
@@ -175,7 +175,7 @@ data_loader = dict(
         aug_args=[0.3, 0.5, 0.0, 0.0],
         res_args=[-1, -1, True],
         norm_args=["MixVarGENet"],
-        crop_args=["random", 320, 640],
+        crop_args=["random", 640, 352],
         debug=False,
         max_disp=maxdisp,
         img_open_mode="bgr",
@@ -240,7 +240,6 @@ wandb_callback = dict(
         batch_size=train_batch_size_per_gpu,
     ),
     log_every_steps=wandb_log_every_steps,
-    log_system_metrics=True,
     log_time_metrics=True,
     log_train_loss=True,
     log_train_subloss=True,
@@ -248,6 +247,9 @@ wandb_callback = dict(
     log_samples=wandb_log_samples,
     samples_per_batch=wandb_samples_per_batch,
     maxdisp=maxdisp,
+    log_checkpoints=True,
+    ckpt_dir=ckpt_dir,
+    ckpt_name_prefix=training_step + "-",
 )
 
 
@@ -351,17 +353,17 @@ onnx_metric_updater = dict(
     log_prefix="onnx_" + task_name,
 )
 
-val_callbacks = [val_metric_updater]
 val_callback = dict(
     type="Validation",
-    val_interval=val_interval,
     interval_by="step",
+    val_interval=val_interval,
     data_loader=val_data_loader,
     batch_processor=val_batch_processor,
-    callbacks=val_callbacks,
+    callbacks=[val_metric_updater],
     val_model=None,
     val_on_train_end=False,
 )
+
 ckpt_callback = dict(
     type="Checkpoint",
     interval_by="step",
@@ -369,6 +371,7 @@ ckpt_callback = dict(
     save_dir=ckpt_dir,
     name_prefix=training_step + "-",
     strict_match=True,
+    mode="min",
     monitor_metric_key="EPE",
 )
 
@@ -490,7 +493,7 @@ float_predictor = dict(
             dict(
                 type="LoadCheckpoint",
                 checkpoint_path=os.path.join(
-                    ckpt_dir, "float-checkpoint-last.pth.tar"
+                    ckpt_dir, "float-checkpoint-best.pth.tar",
                 ),
                 ignore_extra=False,
                 verbose=True,
@@ -584,7 +587,7 @@ onnx_cfg = dict(
         converters=[
             dict(
                 type="LoadCheckpoint",
-                checkpoint_path=os.path.join(ckpt_dir, "float-checkpoint-last.pth.tar"),
+                checkpoint_path=os.path.join(ckpt_dir, "float-checkpoint-best.pth.tar"),
                 verbose=False,
                 allow_miss=False,
             ),

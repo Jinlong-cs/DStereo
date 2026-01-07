@@ -14,6 +14,7 @@ from hat.registry import OBJECT_REGISTRY
 from hat.utils.apply_func import _as_list, to_cuda
 from hat.utils.checkpoint import load_state_dict
 from hat.utils.distributed import get_dist_info
+from DStereo.DStereoPlus import _extract_losses, _named_loss_items
 from .callbacks import CallbackMixin
 from DStereo.common import disp2rgb
 
@@ -23,90 +24,6 @@ try:
     import wandb  # type: ignore
 except Exception:  # pragma: no cover - optional dependency
     wandb = None
-
-
-def _read_cpu_times():
-    try:
-        with open("/proc/stat", "r") as f:
-            line = f.readline()
-        if not line.startswith("cpu "):
-            return None
-        parts = line.strip().split()[1:]
-        values = [int(p) for p in parts]
-        if len(values) < 5:
-            return None
-        idle = values[3] + values[4]
-        total = sum(values)
-        return total, idle
-    except Exception:
-        return None
-
-
-def _read_meminfo():
-    try:
-        info = {}
-        with open("/proc/meminfo", "r") as f:
-            for line in f:
-                key, rest = line.split(":", 1)
-                val = rest.strip().split()[0]
-                info[key] = int(val)
-        return info
-    except Exception:
-        return None
-
-
-def _mem_used_ratio():
-    info = _read_meminfo()
-    if not info:
-        return None
-    total = info.get("MemTotal")
-    if total is None or total == 0:
-        return None
-    available = info.get("MemAvailable")
-    if available is None:
-        available = info.get("MemFree", 0) + info.get("Buffers", 0) + info.get(
-            "Cached", 0
-        )
-    used = total - available
-    return float(used) / float(total)
-
-
-def _avg(vals: Iterable[float]) -> Optional[float]:
-    vals = [v for v in vals if v is not None]
-    if not vals:
-        return None
-    return float(sum(vals)) / float(len(vals))
-
-
-def _extract_losses(model_outs):
-    if not isinstance(model_outs, dict):
-        return []
-    losses = model_outs.get("losses")
-    if losses is not None:
-        if isinstance(losses, torch.Tensor):
-            return [losses]
-        if isinstance(losses, (list, tuple)):
-            return [loss for loss in losses if loss is not None]
-        return []
-    indexed = []
-    for k, v in model_outs.items():
-        if not isinstance(k, str) or not k.startswith("losses_"):
-            continue
-        idx = k.split("losses_", 1)[-1]
-        if idx.isdigit():
-            indexed.append((int(idx), v))
-    if not indexed:
-        return []
-    return [v for _, v in sorted(indexed, key=lambda x: x[0])]
-
-
-def _named_loss_items(losses):
-    if not losses:
-        return []
-    items = [("init_smooth_l1", losses[0])]
-    for idx, loss in enumerate(losses[1:]):
-        items.append((f"iter_{idx}_weighted_l1", loss))
-    return items
 
 
 @OBJECT_REGISTRY.register
@@ -120,7 +37,6 @@ class WandbLogger:
         run_id: Optional[str] = None,
         config: Optional[dict] = None,
         log_every_steps: int = 20,
-        log_system_metrics: bool = True,
         log_time_metrics: bool = True,
         log_train_loss: bool = True,
         log_train_subloss: bool = True,
@@ -128,6 +44,9 @@ class WandbLogger:
         log_samples: bool = False,
         samples_per_batch: int = 1,
         maxdisp: float = 96.0,
+        log_checkpoints: bool = False,
+        ckpt_dir: Optional[str] = None,
+        ckpt_name_prefix: str = "",
     ):
         self.project = project
         self.name = name
@@ -136,7 +55,6 @@ class WandbLogger:
         self.run_id = run_id
         self.config = config
         self.log_every_steps = int(max(1, log_every_steps))
-        self.log_system_metrics = bool(log_system_metrics)
         self.log_time_metrics = bool(log_time_metrics)
         self.log_train_loss = bool(log_train_loss)
         self.log_train_subloss = bool(log_train_subloss)
@@ -144,14 +62,13 @@ class WandbLogger:
         self.log_samples = bool(log_samples)
         self.samples_per_batch = int(max(1, samples_per_batch))
         self.maxdisp = float(maxdisp)
+        self.log_checkpoints = bool(log_checkpoints)
+        self.ckpt_dir = ckpt_dir
+        self.ckpt_name_prefix = ckpt_name_prefix
+        self._ckpt_mtime = {"best": None, "last": None}
 
         self._step_start_time = None
         self._data_ready_time = None
-        self._cpu_prev = None
-        self._nvml_inited = False
-        self._nvml_available = False
-        self._nvml_warned = False
-        self._nvml = None
 
     def _is_rank0(self):
         rank, _ = get_dist_info()
@@ -162,66 +79,42 @@ class WandbLogger:
             return False
         return (global_step_id + 1) % self.log_every_steps == 0
 
-    def _init_nvml(self):
-        if self._nvml_inited:
+    def _ckpt_path(self, tag: str) -> Optional[str]:
+        if not self.ckpt_dir:
+            return None
+        return os.path.join(
+            self.ckpt_dir,
+            f"{self.ckpt_name_prefix}checkpoint-{tag}.pth.tar",
+        )
+
+    def _artifact_name(self, tag: str) -> str:
+        base = self.ckpt_name_prefix.replace(os.sep, "-").strip("-")
+        if not base:
+            base = "model"
+        return f"{base}-{tag}"
+
+    def _maybe_log_checkpoints(self):
+        if (
+            not self.log_checkpoints
+            or not self._is_rank0()
+            or wandb is None
+            or wandb.run is None
+        ):
             return
-        self._nvml_inited = True
-        try:
-            import pynvml  # type: ignore
-
-            pynvml.nvmlInit()
-            self._nvml = pynvml
-            self._nvml_available = True
-        except Exception:
-            self._nvml_available = False
-
-    def _gpu_mem_used_ratio(self):
-        if not torch.cuda.is_available():
-            return None
-        ratios = []
-        for dev in [torch.cuda.current_device()]:
-            try:
-                free, total = torch.cuda.mem_get_info(dev)
-                if total > 0:
-                    ratios.append(float(total - free) / float(total))
-            except Exception:
+        for tag in ("best", "last"):
+            path = self._ckpt_path(tag)
+            if not path or not os.path.exists(path):
                 continue
-        return _avg(ratios)
-
-    def _gpu_util_percent_avg(self):
-        if not torch.cuda.is_available():
-            return None
-        self._init_nvml()
-        if not self._nvml_available:
-            if not self._nvml_warned:
-                logger.warning("pynvml not available; skip gpu/util_percent_avg.")
-                self._nvml_warned = True
-            return None
-        utils = []
-        for dev in [torch.cuda.current_device()]:
-            try:
-                handle = self._nvml.nvmlDeviceGetHandleByIndex(dev)
-                util = self._nvml.nvmlDeviceGetUtilizationRates(handle).gpu
-                utils.append(float(util))
-            except Exception:
+            mtime = os.path.getmtime(path)
+            last_mtime = self._ckpt_mtime.get(tag)
+            if last_mtime is not None and mtime <= last_mtime:
                 continue
-        return _avg(utils)
-
-    def _cpu_util_percent(self):
-        cur = _read_cpu_times()
-        if cur is None:
-            return None
-        if self._cpu_prev is None:
-            self._cpu_prev = cur
-            return None
-        total, idle = cur
-        prev_total, prev_idle = self._cpu_prev
-        self._cpu_prev = cur
-        delta_total = total - prev_total
-        delta_idle = idle - prev_idle
-        if delta_total <= 0:
-            return None
-        return 100.0 * (delta_total - delta_idle) / float(delta_total)
+            self._ckpt_mtime[tag] = mtime
+            artifact = wandb.Artifact(self._artifact_name(tag), type="model")
+            artifact.add_file(path, name=os.path.basename(path))
+            wandb.log_artifact(artifact, aliases=[tag])
+            wandb.save(path, base_path=self.ckpt_dir)
+            logger.info("W&B uploaded checkpoint: %s (alias=%s)", path, tag)
 
     def _log(self, data, step):
         if not self._is_rank0() or wandb is None or wandb.run is None:
@@ -321,6 +214,7 @@ class WandbLogger:
     def on_loop_end(self, **kwargs):
         if not self._is_rank0() or wandb is None or wandb.run is None:
             return
+        self._maybe_log_checkpoints()
         wandb.finish()
 
     def on_step_begin(self, **kwargs):
@@ -366,11 +260,6 @@ class WandbLogger:
                 data["lr"] = float(optimizer.param_groups[-1]["lr"])
             except Exception:
                 pass
-        if self.log_system_metrics:
-            data["gpu/mem_used_ratio"] = self._gpu_mem_used_ratio()
-            data["gpu/util_percent_avg"] = self._gpu_util_percent_avg()
-            data["cpu/util_percent"] = self._cpu_util_percent()
-            data["ram/used_ratio"] = _mem_used_ratio()
         if self.log_time_metrics and self._step_start_time is not None:
             now = time.time()
             data["time/step_time_ms"] = (now - self._step_start_time) * 1000.0
@@ -380,6 +269,7 @@ class WandbLogger:
                 ) * 1000.0
         if data:
             self.log_metrics(data, global_step_id)
+        self._maybe_log_checkpoints()
 
     def log_val_metrics(self, metrics, step):
         if metrics is None:
