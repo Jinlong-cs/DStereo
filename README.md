@@ -1,7 +1,6 @@
-
 # Docker Image
 
-we use `uniflexai/robo:ai_toolchain_ubuntu_20_x5_gpu_v1.2.8-py310` by default, which is Ubuntu-based image.
+we use `uniflexai/robo:ubuntu_01` by default, which is Ubuntu-based image.
 
 # rclone install
 
