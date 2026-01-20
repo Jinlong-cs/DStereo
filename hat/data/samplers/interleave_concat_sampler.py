@@ -36,7 +36,7 @@ class InterleaveConcatSampler(Sampler[int]):
         drop_empty: bool = False,
     ) -> None:
         assert isinstance(dataset, ConcatDataset), "dataset must be a ConcatDataset"
-        assert len(dataset.datasets) >= 2, "need at least 2 sub-datasets"
+        assert len(dataset.datasets) >= 1, "need at least 1 sub-datasets"
 
         self.dataset = dataset
         self.shuffle = shuffle
@@ -51,7 +51,7 @@ class InterleaveConcatSampler(Sampler[int]):
             if drop_empty:
                 # Keep only non-empty datasets
                 self._keep = [i for i, l in enumerate(lengths) if l > 0]
-                assert len(self._keep) >= 2, "after drop_empty, need at least 2 non-empty sub-datasets"
+                assert len(self._keep) >= 1, "after drop_empty, need at least 1 non-empty sub-datasets"
             else:
                 raise ValueError(f"Found empty sub-dataset(s) with lengths={lengths}. "
                                  f"Set drop_empty=True to ignore them.")
