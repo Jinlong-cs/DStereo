@@ -7,12 +7,11 @@ from hat.callbacks.callbacks import CallbackMixin
 from hat.registry import OBJECT_REGISTRY
 from DStereo.common import disp2rgb, uncert2rgb, view_infer_result
 
-
 @OBJECT_REGISTRY.register
 class SaveDisp(CallbackMixin):
     def __init__(
         self,
-        task_name,
+        task_name=None,
         maxdisp=192,
         output_dir=None,
         color=(252, 247, 192),
@@ -60,47 +59,19 @@ class SaveDisp(CallbackMixin):
 
             view_gt = disp2rgb(disp_gt, self.maxdisp, 1)
             view_pred = disp2rgb(pred, self.maxdisp, 1)
-            cv2.imwrite(
-                os.path.join(
-                    self.output_dir,
-                    os.path.splitext(batch["left_img_name"][sample_idx])[0].split("/")[
-                        -1
-                    ]
-                    + "_left.png",
-                ),
-                left,
-            )
-            cv2.imwrite(
-                os.path.join(
-                    self.output_dir,
-                    os.path.splitext(batch["left_img_name"][sample_idx])[0].split("/")[
-                        -1
-                    ]
-                    + "_right.png",
-                ),
-                right,
-            )
-            cv2.imwrite(
-                os.path.join(
-                    self.output_dir,
-                    os.path.splitext(batch["left_img_name"][sample_idx])[0].split("/")[
-                        -1
-                    ]
-                    + "_gt.png",
-                ),
-                view_gt,
-            )
-            cv2.imwrite(
-                os.path.join(
-                    self.output_dir,
-                    os.path.splitext(batch["left_img_name"][sample_idx])[0].split("/")[
-                        -1
-                    ]
-                    + "_pred.png",
-                ),
-                view_pred,
-            )
-          
+            left_right = np.hstack((left, right))
+            orgin_mask_disp = np.hstack((view_gt, view_pred))
+            out_img = np.vstack((left_right, orgin_mask_disp))
+            file_name = os.path.basename(batch["left_img_name"][sample_idx])
+            if "left" in file_name:
+                file_name = file_name.replace("_left", "")
+            file_name = os.path.splitext(file_name)[0]
+            cv2.imwrite(os.path.join(self.output_dir, file_name + ".png"), out_img)
+
+
+@OBJECT_REGISTRY.register
+class SaveDispInfer(SaveDisp):
+    pass
 
 @OBJECT_REGISTRY.register
 class SaveCalibdata(CallbackMixin):
