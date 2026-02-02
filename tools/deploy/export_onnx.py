@@ -2,11 +2,10 @@ import argparse
 import logging
 import os
 
+
 import horizon_plugin_pytorch as horizon
-from horizon_plugin_pytorch.utils.onnx_helper import (
-    export_quantized_onnx,
-    export_to_onnx,
-)
+import torch
+from horizon_plugin_pytorch.utils.onnx_helper import export_quantized_onnx
 
 from hat.registry import RegistryContext, build_from_registry
 from hat.utils.config import Config
@@ -85,7 +84,8 @@ def export_onnx_from_cfg(
         # of the args tuple.
         export_quantized_onnx(model, (example_input, {}), file_path, **kwargs)
     else:
-        export_to_onnx(model, example_input, file_path, **kwargs)
+        export_input = example_input["data"]
+        torch.onnx.export(model, (export_input, {}), file_path, **kwargs)
 
     return file_path
 
