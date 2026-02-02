@@ -17,7 +17,7 @@ VERSION = ConfigVersion.v2
 task_name = "DStereoV23"
 
 
-training_step = "float"
+training_stage = "float"
 data_num_workers = 4
 march = March.BAYES_E
 # ckpt_dir = "work_dirs/ckpt_models/%s" % task_name
@@ -29,16 +29,16 @@ local_train = not os.path.exists("/running_package")
 train_batch_size_per_gpu = 8
 test_batch_size_per_gpu = 1
 log_freq = 1
-wandb_project = "dstereo_vis"
-wandb_name = f"{task_name}-{training_step}"
-wandb_tags = ""
+wandb_project = "dstereo_vis_dstereoH_0115"
+wandb_name = f"{task_name}-{training_stage}"
+wandb_tags = "only wu data"
 wandb_resume = None
 wandb_run_id = None
 
 wandb_log_every_steps = 1000
 wandb_log_samples = True
 wandb_samples_per_batch = 2
-val_interval = 10000
+val_interval = 5000
 enable_freeze_bn = False
 freeze_bn_affine = False
 freeze_bn_until_step = 200000
@@ -152,12 +152,13 @@ model = dict(
 deploy_model = model
 deploy_inputs = dict(
     data=dict(
-        infra1=torch.randn((1, 3, 640, 352)),
-        infra2=torch.randn((1, 3, 640, 352)),
-        # infra1=torch.randn((1, 3, 480, 640)),
-        # infra2=torch.randn((1, 3, 480, 640)),
+        # NCHW
+        # Vertical
         # infra1=torch.randn((1, 3, 640, 352)),
         # infra2=torch.randn((1, 3, 640, 352)),
+        # Horizontal
+        infra1=torch.randn((1, 3, 352, 640)),
+        infra2=torch.randn((1, 3, 352, 640)),
     )
 )
 
@@ -168,14 +169,16 @@ data_loader = dict(
         type="StereoMultiData",
         test_mode=False,
         dataset_list=[
-            "Sceneflow",
+            # "Sceneflow",
             "DStereoDataset",
             "DStereoDataset",
+
         ],
         aug_args=[0.3, 0.5, 0.0, 0.0],
         res_args=[-1, -1, True],
         norm_args=["MixVarGENet"],
-        crop_args=["random", 640, 352],
+        # crop_args=["random", 640, 352],  # vertical
+        crop_args=["random", 352, 640],    # horizontal
         debug=False,
         max_disp=maxdisp,
         img_open_mode="bgr",
@@ -203,11 +206,12 @@ val_data_loader = dict(
             # "SIDODDataset",
             "DStereoDataset",
         ],
-        # ballcar_root="/root/ballcar_datasets",
         aug_args=None,
-        res_args=[640, 352, False],
+        # res_args=[640, 352, False], # vertical
+        res_args=[352, 640, False],   # horizontal
         norm_args=["MixVarGENet"],
-        crop_args=["center", 640, 352],
+        # crop_args=["center", 640, 352],  # vertical
+        crop_args=["center", 352, 640],  # horizontal
         debug=False,
         max_disp=maxdisp,
         img_open_mode="bgr",
@@ -223,7 +227,7 @@ val_data_loader = dict(
 
 stat_callback = dict(
     type="StatsMonitor",
-    log_freq=1000,
+    log_freq=500,
 )
 wandb_callback = dict(
     type="WandbCallback",
@@ -249,7 +253,7 @@ wandb_callback = dict(
     maxdisp=maxdisp,
     log_checkpoints=True,
     ckpt_dir=ckpt_dir,
-    ckpt_name_prefix=training_step + "-",
+    ckpt_name_prefix=training_stage + "-",
 )
 
 
@@ -369,7 +373,7 @@ ckpt_callback = dict(
     interval_by="step",
     save_interval=val_interval,
     save_dir=ckpt_dir,
-    name_prefix=training_step + "-",
+    name_prefix=training_stage + "-",
     strict_match=True,
     mode="min",
     monitor_metric_key="EPE",
@@ -462,18 +466,18 @@ calib_data_loader = dict(
         type="StereoMultiData",
         test_mode=False,
         dataset_list=[
-            "Sceneflow",
+            # "Sceneflow",
             "DStereoDataset",
         ],
         aug_args=None,
         res_args=[-1, -1, True],
         norm_args=["MixVarGENet"],
-        crop_args=["center", 640, 352],
+        crop_args=["center", 352, 640],  # horizontal
         debug=False,
         max_disp=maxdisp,
         img_open_mode="bgr",
     ),
-    sampler=dict(type="InterleaveConcatSampler", shuffle=False, seed=0, sampler_len=100),
+    sampler=dict(type="InterleaveConcatSampler", shuffle=True, seed=666, sampler_len=50),
     batch_size=test_batch_size_per_gpu,
     pin_memory=True,
     prefetch_factor=4,
@@ -533,9 +537,8 @@ quantonnx_predictor = dict(
         onnx_metric_updater,
         stat_callback,
         dict(
-            type="SaveDisp",
+            type="SaveDispInfer",
             output_dir="ptq_V21/vis/quant",
-            task_name="onnx_disp",
             maxdisp=maxdisp,
         ),
     ],
@@ -561,9 +564,8 @@ floatonnx_predictor = dict(
         onnx_metric_updater,
         stat_callback,
         dict(
-            type="SaveDisp",
+            type="SaveDispInfer",
             output_dir="ptq_V21/vis/float",
-            task_name="onnx_disp",
             maxdisp=maxdisp,
         ),
     ],

@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="/root/DStereo_V2.3"
-DATA_ROOT="/root/ballcar_datasets"
+export PYTHONPATH="${PYTHONPATH:-}:/root/DStereo"
+export NUMBA_DISABLE_CUDA=1
+export WANDB_API_KEY="ccbc765e15286047df6262193193083e2cc3c48b"
 
-export PYTHONPATH="${ROOT_DIR}:${PYTHONPATH}"
-export BALLCAR_ROOT="${DATA_ROOT}"
-export HAT_SUPPRESS_OPTIONAL_WARNINGS=1
+python3.10 -u tools/deploy/export_onnx.py \
+ -c DStereo/DStereoPlus.py 
 
-#python3 -u tools/export_onnx.py \
-#  -c DStereo/DStereoPlus.py 
 
-python3 tools/deploy/export_onnx_batch.py \
-  --config DStereo/DStereoPlus.py \
-  --ckpt_dir work_dirs/tmp_models_szp1/DStereoV23_60000 \
-  --out_dir work_dirs/tmp_models_szp1/DStereoV23_60000_onnx_test/ \
-  --skip_existing

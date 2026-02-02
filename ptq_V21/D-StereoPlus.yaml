@@ -525,7 +525,8 @@ input_parameters:
   input_type_rt: 'nv12;nv12'
   input_type_train: 'yuv444;yuv444'
   input_layout_train: 'NCHW;NCHW'
-  input_shape: '1x3x640x352;1x3x640x352'
+  # input_shape: '1x3x640x352;1x3x640x352' # vertical
+  input_shape: '1x3x352x640;1x3x352x640' # horizontal
   norm_type: 'data_mean_and_scale;data_mean_and_scale'
   mean_value: 128;128
   scale_value: 0.0078125;0.0078125
