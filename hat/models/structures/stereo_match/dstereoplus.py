@@ -1,14 +1,19 @@
-import torch
-import torch.nn as nn
-from torch import Tensor, nn
-import torch.nn.functional as F
-from .stereoplus.update import BasicUpdateBlock
-from .stereoplus.extractor import Feature
-
-from .stereoplus.submodule import *
-from hat.registry import OBJECT_REGISTRY
 import logging
 import math
+from typing import Dict, Tuple
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch import Tensor, nn
+
+from torch.fx.proxy import Proxy as FxProxy
+from horizon_plugin_pytorch.qtensor import QTensor
+
+from .stereoplus.extractor import Feature
+from .stereoplus.submodule import *
+from .stereoplus.update import BasicUpdateBlock
+from hat.registry import OBJECT_REGISTRY
 
 logger = logging.getLogger(__name__)
 
@@ -356,9 +361,9 @@ class refinement(nn.Module):
             # disp_unfold = self.interp_conv(self.interp_conv(disp_unfold))
             return disp_unfold, up_weights
         else:
-            disp_unfold = F.unfold(disp_low, 3, 1, 1).reshape(
-                b, -1, h, w
-            )  
+            # Keep unfold trace-friendly and QTensor-friendly by always using
+            # the equivalent conv implementation.
+            disp_unfold = self.unfold_conv(disp_low).reshape(b, -1, h, w)
             disp_unfold = F.interpolate(
                 disp_unfold, (h * 4, w * 4), mode="nearest"
             ).reshape(b, 9, h * 4, w * 4)
@@ -368,7 +373,7 @@ class refinement(nn.Module):
     def upsample_disp(self, disp, mask_feat_4, stem_2x):
         xspx = self.spx_2_gru(mask_feat_4, stem_2x)
         spx_pred = self.spx_gru(xspx)
-        spx_pred = F.softmax(spx_pred, 1)
+        spx_pred = torch.softmax(spx_pred, dim=1)
         up_disp = self.context_upsample(disp * 4.0, spx_pred)
         return up_disp
 
@@ -405,10 +410,11 @@ class prepare_forrefinement(nn.Module):
         # net = self.relu(hidden)
         net = torch.tanh(hidden)
         context = self.cnet(features_left[0])
-        context = list(
-            self.context_zqr_conv(context).split(split_size=self.hidden_dim, dim=1)
+        z, q, r = self.context_zqr_conv(context).split(
+            split_size=self.hidden_dim,
+            dim=1,
         )
-        return net, context
+        return net, (z, q, r)
 
 
 class get_initdisp(nn.Module):
@@ -417,11 +423,19 @@ class get_initdisp(nn.Module):
         self.maxdisp = maxdisp
         # self.classifier = BasicConv(48, 48, kernel_size=3, stride=1, padding=1)
         self.classifier = BasicConv(maxdisp // 4, maxdisp // 4, kernel_size=3, stride=1, padding=1)
+        disp_values = torch.arange(
+            0,
+            maxdisp // 4,
+            1,
+            dtype=torch.float32,
+        ).view(1, maxdisp // 4, 1, 1)
+        # Keep a trace-friendly constant without affecting checkpoint keys.
+        self.register_buffer("disp_values", disp_values, persistent=False)
 
     def forward(self, geo_encoding_volume):
         # Init disp from geometry encoding volume
-        prob = F.softmax(self.classifier(geo_encoding_volume), dim=1)
-        init_disp = disparity_regression(prob, self.maxdisp // 4, 1)
+        prob = torch.softmax(self.classifier(geo_encoding_volume), dim=1)
+        init_disp = torch.sum(prob * self.disp_values, 1, keepdim=True)
         return init_disp
 
 
@@ -431,7 +445,11 @@ class get_costvolum(nn.Module):
         self.maxdisp = maxdisp
 
     def forward(self, match_left, match_right):
-        if torch.onnx.is_in_onnx_export():
+        if (
+            torch.onnx.is_in_onnx_export()
+            or isinstance(match_left, FxProxy)
+            or isinstance(match_right, FxProxy)
+        ):
             gwc_volume = build_gwc_volume_onnx(
                 match_left, match_right, self.maxdisp // 4
             )
@@ -457,10 +475,11 @@ class before_costvolum(nn.Module):
 
 @OBJECT_REGISTRY.register
 class DStereoPlus(nn.Module):
-    def __init__(self, backbone, gru_iters, maxdisp):
+    def __init__(self, backbone, gru_iters, maxdisp, training_stage: str = "float"):
         super().__init__()
         self.backbone = backbone
         self.maxdisp = maxdisp
+        self.training_stage = training_stage
         self.hidden_dim = 48
         context_dim = self.hidden_dim
 
@@ -487,22 +506,80 @@ class DStereoPlus(nn.Module):
         )
         self.refinement = refinement(gru_iters, hidden_dim=32)
 
+    def _as_feature_tuple(self, features):
+        # MixVarGENet output_list=[0,1,2,3,4]:
+        # for input NCHW=(N,3,352,640), feature shapes are
+        # x2:  (N, 32, 176, 320)
+        # x4:  (N, 32,  88, 160)
+        # x8:  (N, 64,  44,  80)
+        # x16: (N, 96,  22,  40)
+        # x32: (N,160,  11,  20)
+        return (
+            features[0],
+            features[1],
+            features[2],
+            features[3],
+            features[4],
+        )
+
+    def _split_feature_tuple(self, features, batch_size: int):
+        return (
+            features[0][:batch_size, ...],
+            features[1][:batch_size, ...],
+            features[2][:batch_size, ...],
+            features[3][:batch_size, ...],
+            features[4][:batch_size, ...],
+        ), (
+            features[0][batch_size:, ...],
+            features[1][batch_size:, ...],
+            features[2][batch_size:, ...],
+            features[3][batch_size:, ...],
+            features[4][batch_size:, ...],
+        )
+
+    def _maybe_dequantize(self, value):
+        should_dequantize = isinstance(value, QTensor) or (
+            isinstance(value, torch.Tensor) and value.is_quantized
+        )
+        if should_dequantize:
+            return value.dequantize()
+        return value
+
     def forward(self, data):
-        """Estimate disparity between pair of frames"""
-        if not torch.onnx.is_in_onnx_export():
-            features_list = self.backbone(data["img"])
-            B, _, _, _ = data["img"].shape
-            B = B // 2
-            features_left = [i[:B, ...] for i in features_list]
-            features_right = [i[B:, ...] for i in features_list]
+        # FX tracing passes proxy objects instead of concrete tensors/dicts.
+        if isinstance(data, FxProxy):
+            img = data["img"]
+        # Training/calibration loader path uses packed stereo images in `img`.
+        elif isinstance(data, dict):
+            img = data["img"]
+        # Keep compatibility with callers that pass a raw image tensor.
         else:
-            features_left = self.backbone(
-                data["infra1"]
-            )  
-            features_right = self.backbone(data["infra2"])
+            img = data
+
+        features = self._as_feature_tuple(self.backbone(img))
+        features_left, features_right = self._split_feature_tuple(
+            features, img.shape[0] // 2
+        )
+
         stem_2x = features_left[0]
-        features_left = self.feature(*features_left)
-        features_right = self.feature(*features_right)
+        features_left = tuple(
+            self.feature(
+                features_left[0],
+                features_left[1],
+                features_left[2],
+                features_left[3],
+                features_left[4],
+            )
+        )
+        features_right = tuple(
+            self.feature(
+                features_right[0],
+                features_right[1],
+                features_right[2],
+                features_right[3],
+                features_right[4],
+            )
+        )
 
         match_left, match_right = self.before_costvolum(features_left, features_right)
         gwc_volume = self.get_costvolum(match_left, match_right)
@@ -512,35 +589,39 @@ class DStereoPlus(nn.Module):
         xspx = self.spx_4(features_left[0])
         xspx = self.spx_2(xspx, stem_2x)
         spx_pred = self.spx(xspx)
-        spx_pred = F.softmax(spx_pred, 1)
+        spx_pred = torch.softmax(spx_pred, dim=1)
 
         net, context = self.prepare_forrefinement(features_left)
         disp = init_disp
         disp_preds, disp_4x = self.refinement(
             disp, net, context, geo_encoding_volume, stem_2x
         )
-
         init_disp_pred = self.refinement.context_upsample(
             init_disp * 4.0, spx_pred.float()
         )
-        if not self.training:
-            return disp_preds[-1], disp_4x, init_disp
-
-        losses = self.sequence_loss(init_disp_pred, disp_preds, data["gt_disp"])
-        return {
-            "losses": losses,
-            "pred_disps": disp_preds[-1],
-        }
+        pred_disp = disp_preds[-1]
+        if self.training and (
+            isinstance(data, FxProxy)
+            or (isinstance(data, dict) and "gt_disp" in data)
+        ):
+            # Float training keeps in-graph loss behavior.
+            losses = self.sequence_loss(init_disp_pred, disp_preds, data["gt_disp"])
+            return {
+                "losses": losses,
+                "pred_disps": self._maybe_dequantize(pred_disp),
+            }
+        return pred_disp, disp_4x, init_disp
 
     def sequence_loss(self, agg_pred, iter_preds, disp_gt, loss_gamma=0.9):
         """Loss function defined over sequence of flow predictions"""
 
+        agg_pred = self._maybe_dequantize(agg_pred)
+        disp_gt = self._maybe_dequantize(disp_gt)
+        iter_preds = [self._maybe_dequantize(pred) for pred in iter_preds]
+
         n_predictions = len(iter_preds)
-        assert n_predictions >= 1
         disp_loss = []
         valid = (disp_gt > 0.0) & (disp_gt < self.maxdisp)
-        assert valid.shape == disp_gt.shape, [valid.shape, disp_gt.shape]
-        assert not torch.isinf(disp_gt[valid.bool()]).any()
 
         disp_loss.append(
             1.0
@@ -552,12 +633,6 @@ class DStereoPlus(nn.Module):
             adjusted_loss_gamma = loss_gamma ** (15 / (n_predictions - 1))
             i_weight = adjusted_loss_gamma ** (n_predictions - i - 1)
             i_loss = (iter_preds[i] - disp_gt).abs()
-            assert i_loss.shape == valid.shape, [
-                i_loss.shape,
-                valid.shape,
-                disp_gt.shape,
-                iter_preds[i].shape,
-            ]
             disp_loss.append(i_weight * i_loss[valid.bool()].mean())
 
         return disp_loss
