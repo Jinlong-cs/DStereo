@@ -4,6 +4,7 @@ import os
 from DStereo.DStereoPlus import *  # noqa: F401,F403
 
 from horizon_plugin_pytorch.quantization.qconfig import (
+    default_calib_8bit_fake_quant_qconfig,
     default_calib_8bit_weight_16bit_act_fake_quant_qconfig,
     default_calib_8bit_weight_32bit_out_fake_quant_qconfig,
 )
@@ -33,8 +34,45 @@ calibration_converter = dict(
         "__build_recursive": False,
         "": default_calib_8bit_weight_16bit_act_fake_quant_qconfig,
         "module_name": {
-            # Keep final disparity delta output in high precision during
-            # calibration; other modules follow global w8a16 policy.
+            **{
+                name: default_calib_8bit_fake_quant_qconfig
+                for name in (
+                    # Keep backbone/aggregation path on int8 to avoid int16-only branches.
+                    "backbone",
+                    "feature",
+                    "before_costvolum",
+                    "cost_agg",
+                    "get_costvolum",
+                    "get_initdisp",
+                    # refinement prepare path: force int8 to match BPU-supported input types.
+                    "prepare_forrefinement",
+                    "prepare_forrefinement.context_zqr_conv",
+                    "spx",
+                    "spx_2",
+                    "spx_4",
+                    # refinement update path: force int8 to avoid int16 Sumin checks in conv/add.
+                    "refinement",
+                    "refinement.update_block",
+                    "refinement.update_block.encoder",
+                    "refinement.update_block.gru",
+                    "refinement.update_block.mask_feat_4",
+                    "refinement.spx_2_gru",
+                    "refinement.spx_gru",
+                    # SegmentLUT(tanh/sigmoid): keep q8->q8 and avoid q8->q16 LUT assert.
+                    "prepare_forrefinement_generated_tanh_0",
+                    "refinement.update_block.gru_generated_sigmoid_0",
+                    "refinement.update_block.gru_generated_sigmoid_1",
+                    "refinement.update_block.gru_generated_sigmoid_2",
+                    "refinement.update_block.gru_generated_sigmoid_3",
+                    "refinement.update_block.gru_generated_tanh_0",
+                    "refinement.update_block.gru_generated_tanh_1",
+                    # refinement/init-disp glue adds: avoid int16 Sumin on ConvAdd2d in compile.
+                    "get_initdisp_generated_add_22",
+                    "get_initdisp_generated_add_23",
+                    "refinement_generated_add_0",
+                    "refinement_generated_add_1",
+                )
+            },
             "refinement.update_block.disp_head.conv2": (
                 default_calib_8bit_weight_32bit_out_fake_quant_qconfig
             ),

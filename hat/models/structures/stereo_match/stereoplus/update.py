@@ -45,7 +45,7 @@ class ConvGRU(nn.Module):
         r = torch.sigmoid(self.convr(hx) + c[1])
         # q = self.relu(self.convq(torch.cat([r * h, x], dim=1)) + c[2])
         q = torch.tanh(self.convq(torch.cat([r * h, x], dim=1)) + c[2])
-        h = (1 - z) * h + z * q
+        h = h + z * (q - h)
         return h
 
 
@@ -79,14 +79,14 @@ class SepConvGRU(nn.Module):
         z = torch.sigmoid(self.convz1(hx))
         r = torch.sigmoid(self.convr1(hx))
         q = torch.tanh(self.convq1(torch.cat([r * h, x], dim=1)))
-        h = (1 - z) * h + z * q
+        h = h + z * (q - h)
 
         # vertical
         hx = torch.cat([h, x], dim=1)
         z = torch.sigmoid(self.convz2(hx))
         r = torch.sigmoid(self.convr2(hx))
         q = torch.tanh(self.convq2(torch.cat([r * h, x], dim=1)))
-        h = (1 - z) * h + z * q
+        h = h + z * (q - h)
 
         return h
 

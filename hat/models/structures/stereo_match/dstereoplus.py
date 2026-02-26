@@ -435,7 +435,9 @@ class get_initdisp(nn.Module):
     def forward(self, geo_encoding_volume):
         # Init disp from geometry encoding volume
         prob = torch.softmax(self.classifier(geo_encoding_volume), dim=1)
-        init_disp = torch.sum(prob * self.disp_values, 1, keepdim=True)
+        init_disp = torch.zeros_like(prob[:, :1, :, :])
+        for idx in range(self.maxdisp // 4):
+            init_disp = init_disp + prob[:, idx : idx + 1, :, :] * float(idx)
         return init_disp
 
 
@@ -601,7 +603,7 @@ class DStereoPlus(nn.Module):
         )
         pred_disp = disp_preds[-1]
         if self.training and (
-            isinstance(data, FxProxy)
+            (self.training_stage == "qat" and isinstance(data, FxProxy))
             or (isinstance(data, dict) and "gt_disp" in data)
         ):
             # Float training keeps in-graph loss behavior.
