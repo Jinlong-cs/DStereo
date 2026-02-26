@@ -327,12 +327,8 @@ class Float2Calibration(BaseConverter):
             model.fuse_model()
 
         qconfig_manager.set_qconfig_mode(qconfig_manager.QconfigMode.CALIBRATION)
-        if self.qconfig_setter is None or self.example_inputs is None:
+        if self.convert_mode == "eager":
             model.qconfig = qconfig_manager.get_default_qconfig()
-        if hasattr(model, "set_qconfig"):
-            model.set_qconfig()
-        elif self.qconfig_setter is None or self.example_inputs is None:
-            raise RuntimeError("`model` should implement `set_qconfig()`")
         if self.convert_mode == "eager":
             if self.is_qconfig_template_available:
                 horizon.quantization.prepare_qat(

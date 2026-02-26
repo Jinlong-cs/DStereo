@@ -43,7 +43,7 @@ class BasicConv(nn.Module):
             x = self.bn(x)
         if self.relu:
             # x = nn.ReLU()(x)
-            x = nn.LeakyReLU()(x)
+            x = F.leaky_relu(x)
         return x
 
 
@@ -137,10 +137,8 @@ class Conv2x(nn.Module):
 
 def groupwise_correlation(fea1, fea2, num_groups):
     B, C, H, W = fea1.shape
-    assert C % num_groups == 0
     channels_per_group = C // num_groups
     cost = (fea1 * fea2).view([B, num_groups, channels_per_group, H, W]).mean(dim=2)
-    assert cost.shape == (B, num_groups, H, W)
     return cost
 
 
@@ -222,7 +220,6 @@ def build_concat_volume(refimg_fea, targetimg_fea, maxdisp):
 
 
 def disparity_regression(prob, maxdisp, interval):
-    assert len(prob.shape) == 4
     disp_values = torch.arange(
         0, maxdisp, interval, dtype=prob.dtype, device=prob.device
     )

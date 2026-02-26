@@ -301,9 +301,9 @@ def StereoMultiData(
         elif 'DStereoDataset' == dataset:
             #获取数据集左目、右目、视差的全部绝对路径
             if test_mode:
-                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/test_list.txt"
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoH/test_list.txt"
             else:
-                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoV/train_list.txt"
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoH/train_list.txt"
             with open(datasets_list_path, 'r') as f:
                 file_list = f.readlines()
                 # print(self.file_list)
@@ -318,7 +318,7 @@ def StereoMultiData(
             train_sets.append(AugDataset(
                 base_dataset=DStereoDataset(
                     file_list=file_list,
-                    dataset_name='DStereoV',
+                    dataset_name='DStereoH',
                     debug=debug,
                     img_open_mode=img_open_mode
                 ),
