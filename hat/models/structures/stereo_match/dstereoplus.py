@@ -367,7 +367,8 @@ class refinement(nn.Module):
             disp_unfold = F.interpolate(
                 disp_unfold, (h * 4, w * 4), mode="nearest"
             ).reshape(b, 9, h * 4, w * 4)
-            disp = (disp_unfold * up_weights).sum(dim=1, keepdim=False)
+            # HBDK horizon.sum requires keepdim=True on this quantized path.
+            disp = (disp_unfold * up_weights).sum(dim=1, keepdim=True)
             return disp
 
     def upsample_disp(self, disp, mask_feat_4, stem_2x):
@@ -548,13 +549,19 @@ class DStereoPlus(nn.Module):
         return value
 
     def forward(self, data):
-        # FX tracing passes proxy objects instead of concrete tensors/dicts.
         if isinstance(data, FxProxy):
-            img = data["img"]
-        # Training/calibration loader path uses packed stereo images in `img`.
+            # int_infer/compile keep PTQ-like dual-input protocol.
+            if self.training_stage in ("int_infer", "compile"):
+                img = torch.cat((data["infra1"], data["infra2"]), dim=0)
+            else:
+                img = data["img"]
         elif isinstance(data, dict):
-            img = data["img"]
-        # Keep compatibility with callers that pass a raw image tensor.
+            if "img" in data:
+                img = data["img"]
+            elif "infra1" in data and "infra2" in data:
+                img = torch.cat((data["infra1"], data["infra2"]), dim=0)
+            else:
+                img = data
         else:
             img = data
 

@@ -22,6 +22,7 @@ qat_work_root = os.path.join("work_dirs", "tmp_models_save_best", qat_task_name)
 float_stage_dir = os.path.join(qat_work_root, "float")
 calibration_stage_dir = os.path.join(qat_work_root, "calibration")
 qat_stage_dir = os.path.join(qat_work_root, "qat")
+int_infer_stage_dir = os.path.join(qat_work_root, "int_infer")
 
 model = copy.deepcopy(model)
 model["training_stage"] = training_stage
@@ -40,6 +41,25 @@ calibration_last_ckpt = os.path.join(
     calibration_stage_dir,
     "calibration-checkpoint-last.pth.tar",
 )
+qat_last_ckpt = os.path.join(qat_stage_dir, "qat-checkpoint-last.pth.tar")
+
+
+# Keep two-stream deploy inputs (infra1/infra2) aligned with PTQ runtime protocol.
+deploy_inputs = dict(
+    # hbdk pyramid inputs are integer typed; keep deploy sample dtype aligned.
+    infra1=torch.clamp(
+        (copy.deepcopy(deploy_inputs["data"]["infra1"]) * 128.0).round(),
+        -128,
+        127,
+    ).to(torch.int8),
+    infra2=torch.clamp(
+        (copy.deepcopy(deploy_inputs["data"]["infra2"]) * 128.0).round(),
+        -128,
+        127,
+    ).to(torch.int8),
+)
+
+
 
 
 def _dequantize_qat_tensor(value):
@@ -134,6 +154,14 @@ def qat_update_metric(metrics, batch, model_outs):
     metrics[0].update(labels, preds, masks)
 
 
+def int_infer_update_metric(metrics, batch, model_outs):
+    labels = batch["gt_disp"]
+    preds = model_outs[0] if isinstance(model_outs, (tuple, list)) else model_outs
+    preds = _dequantize_qat_tensor(preds)
+    masks = (labels > 0) & (labels < maxdisp)
+    metrics[0].update(labels, preds, masks)
+
+
 qat_train_batch_processor = dict(
     type="BasicBatchProcessor",
     need_grad_update=True,
@@ -209,6 +237,8 @@ qat_converter = dict(
                 name: default_qat_8bit_fake_quant_qconfig
                 for name in INT8_FALLBACK_MODULE_NAMES
             },
+            # Keep input concat in float domain: quantized cat requires QTensor inputs.
+            "_generated_cat_0": None,
             "refinement.update_block.disp_head.conv2": (
                 default_qat_8bit_weight_32bit_out_fake_quant_qconfig
             ),
@@ -334,4 +364,89 @@ qat_trainer = dict(
             use_mask=True,
         ),
     ],
+)
+
+int_infer_model = copy.deepcopy(qat_model)
+int_infer_model["training_stage"] = "int_infer"
+
+int_infer_ckpt_callback = dict(
+    type="Checkpoint",
+    interval_by="epoch",
+    save_interval=1,
+    save_dir=int_infer_stage_dir,
+    name_prefix="int_infer-",
+    strict_match=True,
+)
+
+int_infer_trainer = dict(
+    type="Trainer",
+    model=int_infer_model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            copy.deepcopy(qat_converter),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=qat_last_ckpt,
+                allow_miss=True,
+                ignore_extra=True,
+                ignore_tensor_shape=False,
+                verbose=True,
+            ),
+            dict(
+                type="QAT2Quantize",
+                convert_mode="fx",
+            ),
+        ],
+    ),
+    data_loader=None,
+    optimizer=None,
+    batch_processor=None,
+    num_epochs=0,
+    device=None,
+    callbacks=[stat_callback, int_infer_ckpt_callback],
+)
+
+int_infer_metric_updater = dict(
+    type="MetricUpdater",
+    metric_update_func=int_infer_update_metric,
+    step_log_freq=log_freq,
+    epoch_log_freq=log_freq,
+    log_prefix="int_infer_" + task_name,
+)
+
+int_infer_predictor = dict(
+    type="Predictor",
+    model=int_infer_model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            copy.deepcopy(qat_converter),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=qat_last_ckpt,
+                allow_miss=True,
+                ignore_extra=True,
+                ignore_tensor_shape=False,
+                verbose=True,
+            ),
+            dict(
+                type="QAT2Quantize",
+                convert_mode="fx",
+            ),
+        ],
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=[
+        dict(
+            type="EndPointError",
+            use_mask=True,
+        ),
+    ],
+    callbacks=[int_infer_metric_updater, stat_callback],
+    log_interval=log_freq,
 )
