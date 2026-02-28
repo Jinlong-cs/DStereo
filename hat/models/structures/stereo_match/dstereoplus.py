@@ -606,6 +606,15 @@ class DStereoPlus(nn.Module):
             (self.training_stage == "qat" and isinstance(data, FxProxy))
             or (isinstance(data, dict) and "gt_disp" in data)
         ):
+            if self.training_stage == "qat":
+                return {
+                    "loss_inputs": (
+                        init_disp_pred,
+                        tuple(disp_preds),
+                        data["gt_disp"],
+                    ),
+                    "pred_disps": self._maybe_dequantize(pred_disp),
+                }
             # Float training keeps in-graph loss behavior.
             losses = self.sequence_loss(init_disp_pred, disp_preds, data["gt_disp"])
             return {
