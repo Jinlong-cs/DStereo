@@ -10,7 +10,7 @@ from typing import Callable, Dict, List, Optional, Union
 import horizon_plugin_pytorch as horizon
 import torch
 import torch.nn as nn
-from horizon_plugin_pytorch.utils.quant_profiler import check_qconfig
+# from horizon_plugin_pytorch.utils.quant_profiler import check_qconfig
 
 try:
     from hatbc.workflow.symbol import Node
@@ -153,13 +153,13 @@ class Float2QAT(BaseConverter):
             model.fuse_model()
 
         qconfig_manager.set_qconfig_mode(qconfig_manager.QconfigMode.QAT)
-        if self.qconfig_setter is None or self.example_inputs is None:
-            model.qconfig = qconfig_manager.get_default_qconfig()
-        if hasattr(model, "set_qconfig"):
-            model.set_qconfig()
-        elif self.qconfig_setter is None or self.example_inputs is None:
-            raise RuntimeError("`model` should implement `set_qconfig()`")
         if self.convert_mode == "eager":
+            if self.qconfig_setter is None or self.example_inputs is None:
+                model.qconfig = qconfig_manager.get_default_qconfig()
+            if hasattr(model, "set_qconfig"):
+                model.set_qconfig()
+            elif self.qconfig_setter is None or self.example_inputs is None:
+                raise RuntimeError("`model` should implement `set_qconfig()`")
             if self.is_qconfig_template_available:
                 horizon.quantization.prepare_qat(
                     model,
@@ -175,6 +175,7 @@ class Float2QAT(BaseConverter):
                     optimize_graph=self.optimize_graph,
                 )
         else:
+            model.train()
             if self.is_qconfig_template_available:
                 model = horizon.quantization.prepare_qat_fx(
                     model,
@@ -193,14 +194,14 @@ class Float2QAT(BaseConverter):
                     hybrid=self.hybrid,
                     hybrid_dict=self.hybrid_dict,
                 )
-        deploy_inputs = dict(
-            img=torch.randn((2, 3, 480, 640)),
-        )
-        check_qconfig(
-            model,
-            deploy_inputs,
-            out_dir="/open_explorer/ddk/samples/ai_toolchain/horizon_model_train_sample/scripts",
-        )
+        # deploy_inputs = dict(
+        #     img=torch.randn((2, 3, 480, 640)),
+        # )
+        # check_qconfig(
+        #     model,
+        #     deploy_inputs,
+        #     out_dir="/root/DStereo/qconfig_check/",
+        # )
         logger.info(
             format_msg(
                 "Successfully convert float model to qat model.",

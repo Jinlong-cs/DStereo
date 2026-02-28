@@ -144,6 +144,8 @@ class WandbLogger:
         for i in range(num_samples):
             def _to_numpy(x):
                 if torch.is_tensor(x):
+                    if hasattr(x, "dequantize"):
+                        x = x.dequantize()
                     return x.detach().cpu().numpy()
                 return np.asarray(x)
 
