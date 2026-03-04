@@ -23,6 +23,7 @@ float_stage_dir = os.path.join(qat_work_root, "float")
 calibration_stage_dir = os.path.join(qat_work_root, "calibration")
 qat_stage_dir = os.path.join(qat_work_root, "qat")
 int_infer_stage_dir = os.path.join(qat_work_root, "int_infer")
+compile_stage_dir = os.path.join(qat_work_root, "compile")
 
 model = copy.deepcopy(model)
 model["training_stage"] = training_stage
@@ -41,7 +42,7 @@ calibration_last_ckpt = os.path.join(
     calibration_stage_dir,
     "calibration-checkpoint-last.pth.tar",
 )
-qat_last_ckpt = os.path.join(qat_stage_dir, "qat-checkpoint-last.pth.tar")
+qat_best_ckpt = os.path.join(qat_stage_dir, "qat-checkpoint-best.pth.tar")
 
 
 # Keep two-stream deploy inputs (infra1/infra2) aligned with PTQ runtime protocol.
@@ -67,22 +68,13 @@ def _dequantize_qat_tensor(value):
 
 
 INT8_FALLBACK_MODULE_NAMES = (
-    # Keep backbone/aggregation path on int8 to avoid int16-only branches in deploy.
-    "backbone",
-    "feature",
-    "before_costvolum",
-    "cost_agg",
-    "get_costvolum",
-    "get_initdisp",
     # refinement prepare path: force int8 to match BPU-supported input types.
     "prepare_forrefinement",
     "prepare_forrefinement.context_zqr_conv",
     "spx",
     "spx_2",
     "spx_4",
-    # refinement update path: force int8 to avoid int16 Sumin checks in conv/add.
-    "refinement",
-    "refinement.update_block",
+    # refinement update path: keep only compile-critical blocks on int8.
     "refinement.update_block.encoder",
     "refinement.update_block.gru",
     "refinement.update_block.mask_feat_4",
@@ -180,6 +172,11 @@ calibration_converter = dict(
                 name: default_calib_8bit_fake_quant_qconfig
                 for name in INT8_FALLBACK_MODULE_NAMES
             },
+            # Keep compile OUT0 (disp_unfold) on int32 so board postprocess
+            # matches the PTQ S32xS16 accumulation path.
+            "refinement.unfold_conv.unflod_conv": (
+                default_calib_8bit_weight_32bit_out_fake_quant_qconfig
+            ),
             "refinement.update_block.disp_head.conv2": (
                 default_calib_8bit_weight_32bit_out_fake_quant_qconfig
             ),
@@ -239,6 +236,11 @@ qat_converter = dict(
             },
             # Keep input concat in float domain: quantized cat requires QTensor inputs.
             "_generated_cat_0": None,
+            # Keep compile OUT0 (disp_unfold) on int32 so board postprocess
+            # matches the PTQ S32xS16 accumulation path.
+            "refinement.unfold_conv.unflod_conv": (
+                default_qat_8bit_weight_32bit_out_fake_quant_qconfig
+            ),
             "refinement.update_block.disp_head.conv2": (
                 default_qat_8bit_weight_32bit_out_fake_quant_qconfig
             ),
@@ -368,6 +370,8 @@ qat_trainer = dict(
 
 int_infer_model = copy.deepcopy(qat_model)
 int_infer_model["training_stage"] = "int_infer"
+compile_model = copy.deepcopy(qat_model)
+compile_model["training_stage"] = "compile"
 
 int_infer_ckpt_callback = dict(
     type="Checkpoint",
@@ -388,7 +392,7 @@ int_infer_trainer = dict(
             copy.deepcopy(qat_converter),
             dict(
                 type="LoadCheckpoint",
-                checkpoint_path=qat_last_ckpt,
+                checkpoint_path=qat_best_ckpt,
                 allow_miss=True,
                 ignore_extra=True,
                 ignore_tensor_shape=False,
@@ -406,6 +410,36 @@ int_infer_trainer = dict(
     num_epochs=0,
     device=None,
     callbacks=[stat_callback, int_infer_ckpt_callback],
+)
+
+compile_trainer = dict(
+    type="Trainer",
+    model=compile_model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            copy.deepcopy(qat_converter),
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=qat_best_ckpt,
+                allow_miss=True,
+                ignore_extra=True,
+                ignore_tensor_shape=False,
+                verbose=True,
+            ),
+            dict(
+                type="QAT2Quantize",
+                convert_mode="fx",
+            ),
+        ],
+    ),
+    data_loader=None,
+    optimizer=None,
+    batch_processor=None,
+    num_epochs=0,
+    device=None,
+    callbacks=[stat_callback],
 )
 
 int_infer_metric_updater = dict(
@@ -426,7 +460,7 @@ int_infer_predictor = dict(
             copy.deepcopy(qat_converter),
             dict(
                 type="LoadCheckpoint",
-                checkpoint_path=qat_last_ckpt,
+                checkpoint_path=qat_best_ckpt,
                 allow_miss=True,
                 ignore_extra=True,
                 ignore_tensor_shape=False,
@@ -449,4 +483,14 @@ int_infer_predictor = dict(
     ],
     callbacks=[int_infer_metric_updater, stat_callback],
     log_interval=log_freq,
+)
+
+compile_cfg = dict(
+    march=march,
+    name=qat_task_name,
+    out_dir=compile_stage_dir,
+    hbm=os.path.join(compile_stage_dir, "model.hbm"),
+    layer_details=True,
+    # Match PTQ's dual NV12 runtime path via two pyramid inputs.
+    input_source=["pyramid", "pyramid"],
 )

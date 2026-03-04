@@ -341,6 +341,9 @@ class refinement(nn.Module):
     def __init__(self, gru_iters, hidden_dim):
         super().__init__()
         self.gru_iters = gru_iters
+        # Compile path can request raw (disp_unfold, up_weights) outputs
+        # to keep protocol aligned with PTQ-side postprocess.
+        self.return_raw_upsample = False
         self.update_block = BasicUpdateBlock(hidden_dim=hidden_dim)
 
         self.interp_conv = Conv2DInterpolate(inputs_channel=9)
@@ -356,7 +359,7 @@ class refinement(nn.Module):
         # sp (b,9,4*h,4*w)
         ###
         b, c, h, w = disp_low.shape
-        if torch.onnx.is_in_onnx_export():
+        if torch.onnx.is_in_onnx_export() or self.return_raw_upsample:
             disp_unfold = self.unfold_conv(disp_low)
             # disp_unfold = self.interp_conv(self.interp_conv(disp_unfold))
             return disp_unfold, up_weights
@@ -549,6 +552,8 @@ class DStereoPlus(nn.Module):
         return value
 
     def forward(self, data):
+        self.refinement.return_raw_upsample = self.training_stage == "compile"
+
         if isinstance(data, FxProxy):
             # int_infer/compile keep PTQ-like dual-input protocol.
             if self.training_stage in ("int_infer", "compile"):
@@ -628,6 +633,12 @@ class DStereoPlus(nn.Module):
                 "losses": losses,
                 "pred_disps": self._maybe_dequantize(pred_disp),
             }
+        if self.refinement.return_raw_upsample and isinstance(
+            pred_disp, (tuple, list)
+        ):
+            # Keep compile outputs aligned to PTQ deploy protocol:
+            # (disp_unfold, up_weights, initdisp, initspx-proxy)
+            return pred_disp[0], pred_disp[1], disp_4x, init_disp
         return pred_disp, disp_4x, init_disp
 
     def sequence_loss(self, agg_pred, iter_preds, disp_gt, loss_gamma=0.9):

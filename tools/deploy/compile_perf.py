@@ -39,8 +39,8 @@ def compile_then_perf(
     ckpt: Optional[str] = None,
     save_qresults: bool = False,
 ):  # noqa: D205,D400
-    """Compile deploy_model of stage `int_infer` then test performance of it,
-    `.hbm` and other performance file like `.json` will save.
+    """Compile deploy_model then test performance of it,
+    `.hbm` and other performance file like `.json` will be saved.
 
     Args:
         cfg_file: Config file name.
@@ -82,8 +82,10 @@ def compile_then_perf(
         raise ValueError("`march` in config can not be None.")
 
     with RegistryContext():
-        int_infer_trainer = cfg["int_infer_trainer"]
-        int_infer_trainer = build_from_registry(int_infer_trainer)
+        trainer_cfg = cfg.get("compile_trainer", None)
+        if trainer_cfg is None:
+            trainer_cfg = cfg["int_infer_trainer"]
+        int_infer_trainer = build_from_registry(trainer_cfg)
 
     # device: cpu
     device = torch.device("cpu")
