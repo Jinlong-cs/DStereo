@@ -15,11 +15,17 @@ case "${stage}" in
   calibration|qat|int_infer)
     exec python3.10 tools/train.py -s "${stage}" -c DStereo/DStereoPlus_qat.py -ids "${ids}" "$@"
     ;;
+  int_infer_eval)
+    exec python3.10 tools/predict.py -s int_infer_eval -c DStereo/DStereoPlus_qat.py -ids "${ids}" "$@"
+    ;;
+  float_eval)
+    exec python3.10 tools/predict.py -s float_eval -c DStereo/DStereoPlus_qat.py -ids "${ids}" "$@"
+    ;;
   compile)
     exec python3.10 tools/deploy/compile_perf.py -c DStereo/DStereoPlus_qat.py "$@"
     ;;
   *)
-    echo "Usage: bash train_qat.sh {float|calibration|qat|int_infer|compile} [extra args]"
+    echo "Usage: bash train_qat.sh {float|calibration|qat|int_infer|int_infer_eval|float_eval|compile} [extra args]"
     exit 1
     ;;
 esac

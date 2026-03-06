@@ -68,18 +68,30 @@ def _dequantize_qat_tensor(value):
 
 
 INT8_FALLBACK_MODULE_NAMES = (
+    # Keep backbone/aggregation path on int8 to avoid int16-only branches in deploy.
+    "backbone",
+    # feature deconv path can hit unsupported int16 dtype in compile.
+    "feature",
+    # cost volume/front-end path: stabilize dtype before hourglass deconv.
+    "before_costvolum",
+    # cost_agg hourglass has deconv blocks that may receive unsupported int16.
+    "cost_agg",
+    "get_costvolum",
+    "get_initdisp",
     # refinement prepare path: force int8 to match BPU-supported input types.
     "prepare_forrefinement",
     "prepare_forrefinement.context_zqr_conv",
-    "spx",
-    "spx_2",
-    "spx_4",
-    # refinement update path: keep only compile-critical blocks on int8.
+    # "spx",
+    # "spx_2",
+    # "spx_4",
+    # refinement update path: force int8 to avoid int16 Sumin checks in conv/add.
+    "refinement",
+    "refinement.update_block",
     "refinement.update_block.encoder",
-    "refinement.update_block.gru",
+    # "refinement.update_block.gru",
     "refinement.update_block.mask_feat_4",
-    "refinement.spx_2_gru",
-    "refinement.spx_gru",
+    # "refinement.spx_2_gru",
+    # "refinement.spx_gru",
     # SegmentLUT(tanh/sigmoid) nodes: keep q8->q8 and avoid q8->q16 LUT assert.
     "prepare_forrefinement_generated_tanh_0",
     "refinement.update_block.gru_generated_sigmoid_0",
@@ -95,11 +107,33 @@ INT8_FALLBACK_MODULE_NAMES = (
     "refinement_generated_add_1",
 )
 
+INT8_EVAL_COMPAT_EXTRA_MODULE_NAMES = (
+    # int_infer_eval runs training-style dataset batches (not deploy inputs).
+    # Only add modules that are not already covered by INT8_FALLBACK_MODULE_NAMES.
+    "backbone",
+    "feature",
+    "before_costvolum",
+    "cost_agg",
+    "refinement",
+    "refinement.update_block",
+)
+
 
 def _compute_qat_sequence_loss(agg_pred, iter_preds, disp_gt, loss_gamma=0.9):
     agg_pred = _dequantize_qat_tensor(agg_pred)
     disp_gt = _dequantize_qat_tensor(disp_gt)
     iter_preds = [_dequantize_qat_tensor(pred) for pred in iter_preds]
+    # Keep loss operands in [N, H, W] to match the valid mask shape.
+    if isinstance(agg_pred, torch.Tensor) and agg_pred.dim() == 4 and agg_pred.size(1) == 1:
+        agg_pred = agg_pred[:, 0]
+    if isinstance(disp_gt, torch.Tensor) and disp_gt.dim() == 4 and disp_gt.size(1) == 1:
+        disp_gt = disp_gt[:, 0]
+    iter_preds = [
+        pred[:, 0]
+        if isinstance(pred, torch.Tensor) and pred.dim() == 4 and pred.size(1) == 1
+        else pred
+        for pred in iter_preds
+    ]
 
     n_predictions = len(iter_preds)
     valid = (disp_gt > 0.0) & (disp_gt < maxdisp)
@@ -127,31 +161,41 @@ def qat_update_loss_metric(*args):
         return _compute_qat_sequence_loss(*outputs["loss_inputs"])
 
     metrics, batch, model_outs = args
-    labels = batch["gt_disp"]
+    labels = _dequantize_qat_tensor(batch["gt_disp"])
+    preds = _dequantize_qat_tensor(model_outs["pred_disps"])
+    if isinstance(labels, torch.Tensor) and labels.dim() == 4 and labels.size(1) == 1:
+        labels = labels[:, 0]
+    if isinstance(preds, torch.Tensor) and preds.dim() == 4 and preds.size(1) == 1:
+        preds = preds[:, 0]
     masks = (labels > 0) & (labels < maxdisp)
     losses = _compute_qat_sequence_loss(*model_outs["loss_inputs"])
     metrics[0].update(sum(losses))
-    metrics[1].update(
-        labels,
-        _dequantize_qat_tensor(model_outs["pred_disps"]),
-        masks,
-    )
+    metrics[1].update(labels, preds, masks)
 
 
 def qat_update_metric(metrics, batch, model_outs):
+    # Normalize model outputs (dict/tuple/tensor) to prediction tensor.
+    if isinstance(model_outs, dict):
+        preds = model_outs["pred_disps"]
+    elif isinstance(model_outs, (tuple, list)):
+        preds = model_outs[0]
+    else:
+        preds = model_outs
+
     labels = batch["gt_disp"]
-    preds = model_outs["pred_disps"] if isinstance(model_outs, dict) else model_outs[0]
+    # Dequantize QTensor values before EPE computation.
+    labels = _dequantize_qat_tensor(labels)
     preds = _dequantize_qat_tensor(preds)
+    # Squeeze single-channel disparity to match metric input shape.
+    if isinstance(labels, torch.Tensor) and labels.dim() == 4 and labels.size(1) == 1:
+        labels = labels[:, 0]
+    if isinstance(preds, torch.Tensor) and preds.dim() == 4 and preds.size(1) == 1:
+        preds = preds[:, 0]
     masks = (labels > 0) & (labels < maxdisp)
     metrics[0].update(labels, preds, masks)
 
 
-def int_infer_update_metric(metrics, batch, model_outs):
-    labels = batch["gt_disp"]
-    preds = model_outs[0] if isinstance(model_outs, (tuple, list)) else model_outs
-    preds = _dequantize_qat_tensor(preds)
-    masks = (labels > 0) & (labels < maxdisp)
-    metrics[0].update(labels, preds, masks)
+int_infer_update_metric = qat_update_metric
 
 
 qat_train_batch_processor = dict(
@@ -241,6 +285,36 @@ qat_converter = dict(
             "refinement.unfold_conv.unflod_conv": (
                 default_qat_8bit_weight_32bit_out_fake_quant_qconfig
             ),
+            "refinement.update_block.disp_head.conv2": (
+                default_qat_8bit_weight_32bit_out_fake_quant_qconfig
+            ),
+        },
+    },
+)
+
+int_infer_eval_qat_converter = dict(
+    type="Float2QAT",
+    convert_mode="fx",
+    qconfig_dict={
+        "__build_recursive": False,
+        "": default_qat_8bit_weight_16bit_act_fake_quant_qconfig,
+        "module_name": {
+            **{
+                name: default_qat_8bit_fake_quant_qconfig
+                for name in INT8_FALLBACK_MODULE_NAMES
+            },
+            **{
+                name: default_qat_8bit_fake_quant_qconfig
+                for name in INT8_EVAL_COMPAT_EXTRA_MODULE_NAMES
+            },
+            # Keep input concat in float domain: quantized cat requires QTensor inputs.
+            "_generated_cat_0": None,
+            # Avoid quantized interpolate remap assertion in eval path.
+            "refinement.unfold_conv.unflod_conv": (
+                default_qat_8bit_fake_quant_qconfig
+            ),
+            # Keep compile OUT0 (disp_unfold) on int32 so board postprocess
+            # matches the PTQ S32xS16 accumulation path.
             "refinement.update_block.disp_head.conv2": (
                 default_qat_8bit_weight_32bit_out_fake_quant_qconfig
             ),
@@ -450,6 +524,14 @@ int_infer_metric_updater = dict(
     log_prefix="int_infer_" + task_name,
 )
 
+int_infer_eval_metric_updater = dict(
+    type="MetricUpdater",
+    metric_update_func=int_infer_update_metric,
+    step_log_freq=log_freq,
+    epoch_log_freq=log_freq,
+    log_prefix="int_infer_eval_" + task_name,
+)
+
 int_infer_predictor = dict(
     type="Predictor",
     model=int_infer_model,
@@ -485,6 +567,63 @@ int_infer_predictor = dict(
     log_interval=log_freq,
 )
 
+int_infer_eval_predictor = copy.deepcopy(int_infer_predictor)
+# Dataset-based int_infer eval follows training-style batch keys instead of
+# deploy-style infra1/infra2 keys, so use qat forward contract here.
+int_infer_eval_predictor["model"] = copy.deepcopy(qat_model)
+int_infer_eval_predictor["model"]["training_stage"] = "qat"
+int_infer_eval_predictor["model_convert_pipeline"]["converters"][0] = (
+    int_infer_eval_qat_converter
+)
+int_infer_eval_predictor["callbacks"] = [
+    int_infer_eval_metric_updater,
+    stat_callback,
+]
+
+float_eval_metric_updater = dict(
+    type="MetricUpdater",
+    metric_update_func=qat_update_metric,
+    step_log_freq=log_freq,
+    epoch_log_freq=log_freq,
+    log_prefix="float_eval_" + task_name,
+)
+
+float_eval_model = copy.deepcopy(model)
+float_eval_model["training_stage"] = "float"
+
+float_eval_predictor = dict(
+    type="Predictor",
+    model=float_eval_model,
+    model_convert_pipeline=dict(
+        type="ModelConvertPipeline",
+        qat_mode="fuse_bn",
+        converters=[
+            dict(
+                type="LoadCheckpoint",
+                checkpoint_path=float_best_ckpt,
+                allow_miss=False,
+                ignore_extra=False,
+                ignore_tensor_shape=False,
+                verbose=True,
+            ),
+        ],
+    ),
+    data_loader=[val_data_loader],
+    batch_processor=val_batch_processor,
+    device=None,
+    metrics=[
+        dict(
+            type="EndPointError",
+            use_mask=True,
+        ),
+    ],
+    callbacks=[
+        float_eval_metric_updater,
+        stat_callback,
+    ],
+    log_interval=log_freq,
+)
+
 compile_cfg = dict(
     march=march,
     name=qat_task_name,
@@ -493,4 +632,6 @@ compile_cfg = dict(
     layer_details=True,
     # Match PTQ's dual NV12 runtime path via two pyramid inputs.
     input_source=["pyramid", "pyramid"],
+    # Keep HBM outputs in NCHW so PTQ/QAT share the same deploy postprocess.
+    output_layout="NCHW",
 )
