@@ -717,6 +717,17 @@ class DStereoDataset(AIOTBaseDataset):
                     disp = disp[..., 0]
                 return disp
             
+            # 3. NPZ格式
+            elif ext == '.npz':
+                with np.load(disp_path) as data:
+                    if len(data.files) == 0:
+                        raise ValueError(f"NPZ视差文件为空: {disp_path}")
+                    key = 'disparity' if 'disparity' in data.files else data.files[0]
+                    disp = data[key]
+                if disp.ndim == 3 and disp.shape[-1] == 1:
+                    disp = disp[..., 0]
+                return disp.astype(np.float32, copy=False)
+
             # 3. NPY格式
             elif ext == '.npy':
                 disp = np.load(disp_path)

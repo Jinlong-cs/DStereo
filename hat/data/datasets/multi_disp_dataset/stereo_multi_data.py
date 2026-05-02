@@ -299,26 +299,23 @@ def StereoMultiData(
                         )
             logger.info("TartanAir total sample: %d" % data_info)
         elif 'DStereoDataset' == dataset:
-            #获取数据集左目、右目、视差的全部绝对路径
             if test_mode:
-                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoH/test_list.txt"
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DiscoverStereo/val_list.txt"
             else:
-                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DStereoH/train_list.txt"
+                datasets_list_path = "/mnt/sznas/yzf/stereo_data/DiscoverStereo/train_list.txt"
             with open(datasets_list_path, 'r') as f:
-                file_list = f.readlines()
-                # print(self.file_list)
-                file_list = [line.strip().split(' ') for line in file_list]
-            
+                file_list = [line.strip().split() for line in f if line.strip()]
+
             # 加载数据集首个图像，获取数据集的宽高
             width, height = 960,540
             with Image.open(file_list[0][0]) as img:
                 width, height = img.size  # 获取宽高
                 print(f"数据集图像宽度: {width}, 数据集图像高度: {height}")
-            
+
             train_sets.append(AugDataset(
                 base_dataset=DStereoDataset(
                     file_list=file_list,
-                    dataset_name='DStereoH',
+                    dataset_name='DiscoverStereo',
                     debug=debug,
                     img_open_mode=img_open_mode
                 ),

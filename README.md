@@ -215,7 +215,7 @@ e/n/d/r/c/s/q> q
 
 ## upload
 ```
-rclone sync /mnt/sznas/yzf/stereo_data/SceneFlow/ backblaze:/stereo_data/SceneFlow/ \
+rclone sync /mnt/sznas/yzf/stereo_data/DiscoverStereo/ backblaze:vastai-yzf/stereo_data/DiscoverStereo/ \
   --transfers=32 \
   --checkers=32 \
   --buffer-size=32M \
@@ -226,7 +226,7 @@ rclone sync /mnt/sznas/yzf/stereo_data/SceneFlow/ backblaze:/stereo_data/SceneFl
 
 ## download
 ```
-rclone sync backblaze:/stereo_data/SceneFlow/ /mnt/sznas/yzf/stereo_data/SceneFlow/ \
+rclone sync backblaze:vastai-yzf/stereo_data/DiscoverStereo/ /mnt/sznas/yzf/stereo_data/DiscoverStereo/ \
   --transfers=32 \
   --checkers=32 \
   --buffer-size=32M \

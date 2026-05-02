@@ -14,14 +14,14 @@ from DStereo.common import disp2rgb, depth2rgb, disp2depth, uncert2rgb
 
 VERSION = ConfigVersion.v2
 
-task_name = "DStereoV23"
+task_name = "DStereoV23_DiscoverStereo"
 
 
 training_stage = "float"
 data_num_workers = 4
 march = March.BAYES_E
 # ckpt_dir = "work_dirs/ckpt_models/%s" % task_name
-ckpt_dir = "work_dirs/tmp_models_save_best/%s" % task_name
+ckpt_dir = "work_dirs/discover_experiments/%s" % task_name
 checkpoint_path = (
     "tmp_pretrained_models/mixvargenet_imagenet/float-checkpoint-last.pth.tar"
 )
@@ -29,9 +29,9 @@ local_train = not os.path.exists("/running_package")
 train_batch_size_per_gpu = 8
 test_batch_size_per_gpu = 1
 log_freq = 1
-wandb_project = "dstereo_vis_dstereoH_0115"
+wandb_project = "DStereo-DiscoverStereo"
 wandb_name = f"{task_name}-{training_stage}"
-wandb_tags = "only wu data"
+wandb_tags = "discover,150k,preproc352x640,maxdisp96"
 wandb_resume = None
 wandb_run_id = None
 
@@ -389,8 +389,8 @@ train_callbacks = [
         warmup_len=2000,
         step_log_interval=1000,
     ),
-    ckpt_callback,
     val_callback,
+    ckpt_callback,
 ]
 if enable_freeze_bn:
     train_callbacks.insert(
