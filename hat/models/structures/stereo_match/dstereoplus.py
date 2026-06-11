@@ -20,6 +20,18 @@ logger = logging.getLogger(__name__)
 __all__ = ["DStereoPlus"]
 
 
+# DiscoverStereo rectified intrinsics in the 352x640 crop frame used by
+# the current preproc352x640 validation recipe:
+# original 1280x1088 -> resize to 640x544 -> center crop to 352x640.
+DUST3R_DISCOVER_PREPROC352X640_INTRINSICS = {
+    "fx": 186.2146208425,
+    "fy": 186.2146208425,
+    "cx": 320.0,
+    "cy": 176.0,
+    "bf": 20.44084855698,
+}
+
+
 class Conv2DInterpolate(nn.Module):
     def __init__(self, inputs_channel=1, scale_factor=2) -> None:
         super().__init__()
@@ -511,6 +523,7 @@ class DStereoPlus(nn.Module):
             hidden_dim=32, context_dim=32
         )
         self.refinement = refinement(gru_iters, hidden_dim=32)
+        self._pointmap_weight_cache = {}
 
     def _as_feature_tuple(self, features):
         # MixVarGENet output_list=[0,1,2,3,4]:
@@ -550,6 +563,38 @@ class DStereoPlus(nn.Module):
         if should_dequantize:
             return value.dequantize()
         return value
+
+    def _squeeze_single_channel_disp(self, value):
+        value = self._maybe_dequantize(value)
+        if isinstance(value, torch.Tensor) and value.dim() == 4 and value.size(1) == 1:
+            return value[:, 0]
+        return value
+
+    def _get_pointmap_weight(self, height, width, device, dtype):
+        intrinsics = DUST3R_DISCOVER_PREPROC352X640_INTRINSICS
+        device_index = device.index if device.type == "cuda" else None
+        cache_key = (height, width, device.type, device_index, dtype)
+        point_weight = self._pointmap_weight_cache.get(cache_key)
+        if point_weight is None:
+            u = torch.arange(width, device=device, dtype=dtype).view(1, 1, width)
+            v = torch.arange(height, device=device, dtype=dtype).view(1, height, 1)
+            point_weight = (
+                ((u - intrinsics["cx"]) / intrinsics["fx"]).abs()
+                + ((v - intrinsics["cy"]) / intrinsics["fy"]).abs()
+                + 1.0
+            )
+            self._pointmap_weight_cache[cache_key] = point_weight
+        return point_weight
+
+    def _pointmap_l1(self, disp_pred, valid_mask, z_gt, point_weight):
+        intrinsics = DUST3R_DISCOVER_PREPROC352X640_INTRINSICS
+        disp_pred = disp_pred.clamp_min(1e-3)
+        z_pred = intrinsics["bf"] / disp_pred
+        safe_mask = valid_mask & torch.isfinite(z_pred) & torch.isfinite(z_gt)
+        point_error = (z_pred - z_gt).abs() * point_weight
+        point_error = torch.where(safe_mask, point_error, torch.zeros_like(point_error))
+        valid_count = safe_mask.to(dtype=point_error.dtype).sum().clamp_min(1.0)
+        return point_error.sum() / valid_count
 
     def forward(self, data):
         self.refinement.return_raw_upsample = self.training_stage == "compile"
@@ -644,24 +689,27 @@ class DStereoPlus(nn.Module):
     def sequence_loss(self, agg_pred, iter_preds, disp_gt, loss_gamma=0.9):
         """Loss function defined over sequence of flow predictions"""
 
-        agg_pred = self._maybe_dequantize(agg_pred)
-        disp_gt = self._maybe_dequantize(disp_gt)
-        iter_preds = [self._maybe_dequantize(pred) for pred in iter_preds]
+        # Keep all operands in [N, H, W] so boolean mask indexing matches shape.
+        agg_pred = self._squeeze_single_channel_disp(agg_pred)
+        disp_gt = self._squeeze_single_channel_disp(disp_gt)
+        iter_preds = [
+            self._squeeze_single_channel_disp(pred) for pred in iter_preds
+        ]
 
         n_predictions = len(iter_preds)
         disp_loss = []
         valid = (disp_gt > 0.0) & (disp_gt < self.maxdisp)
-
-        disp_loss.append(
-            1.0
-            * F.smooth_l1_loss(
-                agg_pred[valid.bool()], disp_gt[valid.bool()], reduction="mean"
-            )
+        disp_gt = disp_gt.clamp_min(1e-3)
+        z_gt = DUST3R_DISCOVER_PREPROC352X640_INTRINSICS["bf"] / disp_gt
+        point_weight = self._get_pointmap_weight(
+            disp_gt.shape[-2], disp_gt.shape[-1], disp_gt.device, disp_gt.dtype
         )
+
+        disp_loss.append(self._pointmap_l1(agg_pred, valid, z_gt, point_weight))
+        adjusted_loss_gamma = loss_gamma ** (15 / (n_predictions - 1))
         for i in range(n_predictions):
-            adjusted_loss_gamma = loss_gamma ** (15 / (n_predictions - 1))
             i_weight = adjusted_loss_gamma ** (n_predictions - i - 1)
-            i_loss = (iter_preds[i] - disp_gt).abs()
-            disp_loss.append(i_weight * i_loss[valid.bool()].mean())
+            i_loss = self._pointmap_l1(iter_preds[i], valid, z_gt, point_weight)
+            disp_loss.append(i_weight * i_loss)
 
         return disp_loss
