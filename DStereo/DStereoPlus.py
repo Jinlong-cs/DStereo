@@ -21,9 +21,7 @@ data_num_workers = 4
 march = March.BAYES_E
 # ckpt_dir = "work_dirs/ckpt_models/%s" % task_name
 ckpt_dir = "work_dirs/discover_experiments/%s" % task_name
-checkpoint_path = (
-    "tmp_pretrained_models/mixvargenet_imagenet/float-checkpoint-last.pth.tar"
-)
+checkpoint_path = "tmp_pretrained_models/betterb_phase1_0.2391.pth.tar"
 local_train = not os.path.exists("/running_package")
 train_batch_size_per_gpu = 8
 test_batch_size_per_gpu = 1
