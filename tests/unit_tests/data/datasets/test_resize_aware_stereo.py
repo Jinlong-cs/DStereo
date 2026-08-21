@@ -112,6 +112,12 @@ def test_all_requested_scales_have_expected_32_aligned_geometry():
     assert all(spec.tensor_width % 32 == 0 for spec in specs)
 
 
+def test_effective_disparity_scale_uses_configured_base_width():
+    spec = build_resize_aware_specs([0.5], base_height=200, base_width=320)[0]
+    assert spec.content_shape == (100, 160)
+    assert spec.horizontal_scale == pytest.approx(0.5)
+
+
 def test_scale_one_preserves_valid_images_and_disparity():
     row = np.arange(640, dtype=np.uint8)
     left = np.repeat(row[None, :, None], 352, axis=0)
@@ -362,5 +368,8 @@ def test_aug_dataset_rejects_mismatched_geometry_and_index_modes():
         max_disp=96,
         crop_args=["center", 352, 640],
     )
+    legacy_sample = legacy[0]
+    assert legacy_sample["img"].shape == (2, 3, 352, 640)
+    assert "resize_scale" not in legacy_sample
     with pytest.raises(ValueError, match="disabled"):
         legacy[(0, 0.3)]
