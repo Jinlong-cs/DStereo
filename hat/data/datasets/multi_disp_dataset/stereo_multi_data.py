@@ -49,6 +49,8 @@ def StereoMultiData(
     crop_args=None,
     debug=False,
     img_open_mode="bgr",
+    *,
+    resize_aware_args=None,
 ):
     train_sets = []
     for dataset in dataset_list:
@@ -64,11 +66,12 @@ def StereoMultiData(
                     aug_args=aug_args,
                     res_args=(
                         res_args
-                        if test_mode
+                        if test_mode or resize_aware_args is not None
                         else [-1, -1, True, 1.0, crop_args[2] / 1080.0, 1.2]
                     ),
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "Sceneflow" == dataset:  
@@ -81,11 +84,12 @@ def StereoMultiData(
                     aug_args=aug_args,
                     res_args=(
                         res_args
-                        if test_mode
+                        if test_mode or resize_aware_args is not None
                         else [-1, -1, True, 1.0, crop_args[2] / 960.0, 1.4]
                     ),
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "DrivingStereo" == dataset:  
@@ -101,6 +105,7 @@ def StereoMultiData(
                     res_args=res_args,
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "ETH3D" == dataset:
@@ -116,6 +121,7 @@ def StereoMultiData(
                     res_args=res_args,
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "Middlebury" == dataset:  
@@ -131,11 +137,12 @@ def StereoMultiData(
                     aug_args=aug_args,
                     res_args=(
                         res_args
-                        if test_mode
+                        if test_mode or resize_aware_args is not None
                         else [-1, -1, True, 1.0, crop_args[2] / 718.0, 1.2]
                     ),
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "KITTI12" == dataset:
@@ -151,6 +158,7 @@ def StereoMultiData(
                     res_args=res_args,
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "KITTI15" == dataset:
@@ -166,6 +174,7 @@ def StereoMultiData(
                     res_args=res_args,
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "Sintel" == dataset:
@@ -182,6 +191,7 @@ def StereoMultiData(
                     res_args=res_args,
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "IRS" == dataset:  
@@ -197,11 +207,12 @@ def StereoMultiData(
                     aug_args=aug_args,
                     res_args=(
                         res_args
-                        if test_mode
+                        if test_mode or resize_aware_args is not None
                         else [-1, -1, True, 1.0, crop_args[2] / 960.0, 1.2]
                     ),
                     norm_args=norm_args,
                     crop_args=crop_args,
+                    resize_aware_args=resize_aware_args,
                 )
             )
         elif "FallingThings" == dataset:  
@@ -224,11 +235,12 @@ def StereoMultiData(
                         aug_args=aug_args,
                         res_args=(
                             res_args
-                            if test_mode
+                            if test_mode or resize_aware_args is not None
                             else [-1, -1, True, 1.0, crop_args[2] / 960.0, 1.2]
                         ),
                         norm_args=norm_args,
                         crop_args=crop_args,
+                        resize_aware_args=resize_aware_args,
                     )
                 )
         elif "SIDODDataset" == dataset:  
@@ -251,11 +263,12 @@ def StereoMultiData(
                         aug_args=aug_args,
                         res_args=(
                             res_args
-                            if test_mode
+                            if test_mode or resize_aware_args is not None
                             else [-1, -1, True, 1.0, crop_args[2] / 960.0, 1.2]
                         ),
                         norm_args=norm_args,
                         crop_args=crop_args,
+                        resize_aware_args=resize_aware_args,
                     )
                 )
         elif "TartanAir" == dataset:  
@@ -290,11 +303,22 @@ def StereoMultiData(
                                 aug_args=aug_args,
                                 res_args=(
                                     res_args
-                                    if test_mode
-                                    else [-1, -1, True, 1.0, crop_args[2] / 640.0, 1.2]
+                                    if (
+                                        test_mode
+                                        or resize_aware_args is not None
+                                    )
+                                    else [
+                                        -1,
+                                        -1,
+                                        True,
+                                        1.0,
+                                        crop_args[2] / 640.0,
+                                        1.2,
+                                    ]
                                 ),
                                 norm_args=norm_args,
                                 crop_args=crop_args,
+                                resize_aware_args=resize_aware_args,
                             )
                         )
             logger.info("TartanAir total sample: %d" % data_info)
@@ -322,9 +346,14 @@ def StereoMultiData(
                 test_mode=test_mode, 
                 max_disp=max_disp,
                 aug_args=aug_args,
-                res_args=res_args if test_mode else [-1, -1, True, 1.0, crop_args[2] / width, 1.2],
+                res_args=(
+                    res_args
+                    if test_mode or resize_aware_args is not None
+                    else [-1, -1, True, 1.0, crop_args[2] / width, 1.2]
+                ),
                 norm_args=norm_args,
-                crop_args=crop_args
+                crop_args=crop_args,
+                resize_aware_args=resize_aware_args,
             ))
         else:
             raise NotImplementedError

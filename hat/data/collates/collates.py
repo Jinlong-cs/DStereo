@@ -1372,6 +1372,12 @@ def collate_disp_cat(batch: List[Any]) -> Union[torch.Tensor, Dict]:
         "left_img_yuv",
         "right_img_yuv",
         "origin_shape",
+        "resize_scale",
+        "resize_content_shape",
+        "resize_tensor_shape",
+        "resize_padding",
+        "resize_horizontal_scale",
+        "resize_vertical_scale",
     ]
     if not isinstance(elem, dict):
         return pad_batch_img(batch)
