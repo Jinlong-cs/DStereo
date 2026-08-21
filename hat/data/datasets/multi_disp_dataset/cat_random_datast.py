@@ -49,7 +49,8 @@ class CatRandomDataset(ConcatDataset):
             return flat_index
         if len(item) != 2:
             raise ValueError(
-                "scale-tagged indices must be (flat_dataset_index, scale) pairs"
+                "scale-tagged indices must be "
+                "(flat_dataset_index, scale) pairs"
             )
         flat_index = operator.index(item[0])
         self._validate_flat_index(flat_index)
@@ -63,7 +64,8 @@ class CatRandomDataset(ConcatDataset):
     def _validate_flat_index(self, flat_index):
         if flat_index >= len(self) or flat_index < -len(self):
             raise IndexError(
-                f"index {flat_index} is out of range for dataset of size {len(self)}"
+                f"index {flat_index} is out of range for dataset "
+                f"of size {len(self)}"
             )
 
     def _get_item(self, item):

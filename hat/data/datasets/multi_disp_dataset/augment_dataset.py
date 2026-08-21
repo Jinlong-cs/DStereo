@@ -296,10 +296,11 @@ class AugDataset(Dataset):
         res_args=None,
         norm_args=None,
         crop_args=None,
-        resize_aware_args=None,
         debug=False,
         img_open_mode="bgr",
         skip=False,
+        *,
+        resize_aware_args=None,
     ):
         super().__init__()
         if isinstance(base_dataset, str):
@@ -315,7 +316,9 @@ class AugDataset(Dataset):
         self.cropper = Cropper(*crop_args) if crop_args else Identity()
         if resize_aware_args is not None:
             resize_aware_args = dict(resize_aware_args)
-            resize_max_disp = float(resize_aware_args.get("max_disp", max_disp))
+            resize_max_disp = float(
+                resize_aware_args.get("max_disp", max_disp)
+            )
             if not math.isclose(resize_max_disp, float(max_disp)):
                 raise ValueError(
                     "resize-aware max_disp must match AugDataset max_disp: "
@@ -323,15 +326,18 @@ class AugDataset(Dataset):
                 )
             resize_aware_args["max_disp"] = max_disp
             self.resize_aware = ResizeAwareStereo(**resize_aware_args)
+            resize_base_shape = (
+                self.resize_aware.base_height,
+                self.resize_aware.base_width,
+            )
             if (
                 not isinstance(self.cropper, Identity)
-                and self.cropper.crop_size
-                != (self.resize_aware.base_height, self.resize_aware.base_width)
+                and self.cropper.crop_size != resize_base_shape
             ):
                 raise ValueError(
-                    "resize-aware crop size must match its canonical base shape: "
-                    f"{self.cropper.crop_size} != "
-                    f"{(self.resize_aware.base_height, self.resize_aware.base_width)}"
+                    "resize-aware crop size must match its canonical "
+                    f"base shape: {self.cropper.crop_size} != "
+                    f"{resize_base_shape}"
                 )
         else:
             self.resize_aware = None
@@ -358,7 +364,8 @@ class AugDataset(Dataset):
         if self.resize_aware is not None:
             if resize_scale is None:
                 raise ValueError(
-                    "resize-aware AugDataset requires a (sample_index, scale) index"
+                    "resize-aware AugDataset requires a "
+                    "(sample_index, scale) index"
                 )
             resize_mask_flag = self._mask_flag_from_disparity(
                 x[2], exclude_max=True
@@ -371,7 +378,8 @@ class AugDataset(Dataset):
             data["origin_shape"] = metadata["resize_content_shape"]
         elif resize_scale is not None:
             raise ValueError(
-                "received a scale-tagged index but resize_aware_args is disabled"
+                "received a scale-tagged index but "
+                "resize_aware_args is disabled"
             )
 
         left_x5_nv12 = self._bgr2nv12(x[0])
@@ -444,7 +452,9 @@ class AugDataset(Dataset):
                 if exclude_max
                 else disparity > self.max_disp
             )
-            invalid = (~torch.isfinite(disparity)) | (disparity <= 0) | above_max
+            invalid = (
+                (~torch.isfinite(disparity)) | (disparity <= 0) | above_max
+            )
             ratio = torch.count_nonzero(invalid).item() / disparity.numel()
         else:
             disparity = np.asarray(disparity)

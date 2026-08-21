@@ -1,4 +1,5 @@
 from __future__ import annotations
+import inspect
 
 import numpy as np
 import pytest
@@ -99,6 +100,17 @@ def _content(array, spec):
     height_end = spec.tensor_height - spec.pad_bottom
     width_end = spec.tensor_width - spec.pad_right
     return array[spec.pad_top : height_end, spec.pad_left : width_end]
+
+
+def _nested_strings(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for item in value.values():
+            yield from _nested_strings(item)
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            yield from _nested_strings(item)
 
 
 def test_all_requested_scales_have_expected_32_aligned_geometry():
@@ -373,3 +385,110 @@ def test_aug_dataset_rejects_mismatched_geometry_and_index_modes():
     assert "resize_scale" not in legacy_sample
     with pytest.raises(ValueError, match="disabled"):
         legacy[(0, 0.3)]
+
+
+def test_resize_aware_options_preserve_legacy_positional_parameters():
+    from hat.data.datasets.multi_disp_dataset.augment_dataset import AugDataset
+    from hat.data.datasets.multi_disp_dataset.stereo_multi_data import (
+        StereoMultiData,
+    )
+
+    assert tuple(inspect.signature(AugDataset).parameters) == (
+        "base_dataset",
+        "test_mode",
+        "max_disp",
+        "aug_args",
+        "res_args",
+        "norm_args",
+        "crop_args",
+        "debug",
+        "img_open_mode",
+        "skip",
+        "resize_aware_args",
+    )
+    assert tuple(inspect.signature(StereoMultiData).parameters) == (
+        "dataset_list",
+        "max_disp",
+        "test_mode",
+        "aug_args",
+        "res_args",
+        "norm_args",
+        "crop_args",
+        "debug",
+        "img_open_mode",
+        "resize_aware_args",
+    )
+    aug_signature = inspect.signature(AugDataset)
+    stereo_signature = inspect.signature(StereoMultiData)
+    assert (
+        aug_signature.parameters["resize_aware_args"].kind
+        is inspect.Parameter.KEYWORD_ONLY
+    )
+    assert aug_signature.parameters["resize_aware_args"].default is None
+    assert (
+        stereo_signature.parameters["resize_aware_args"].kind
+        is inspect.Parameter.KEYWORD_ONLY
+    )
+    assert stereo_signature.parameters["resize_aware_args"].default is None
+    assert "resize_aware_args" not in aug_signature.bind(*range(10)).arguments
+    assert (
+        "resize_aware_args" not in stereo_signature.bind(*range(9)).arguments
+    )
+
+
+def test_resize_aware_config_scopes_predict_and_export_artifacts():
+    import os
+
+    import DStereo.DStereoPlus as base_config
+    import DStereo.DStereoPlus_resize_aware as config
+
+    assert (
+        config.float_predictor["model_convert_pipeline"]["converters"][0][
+            "checkpoint_path"
+        ]
+        == config.float_checkpoint_path
+    )
+    assert (
+        config.onnx_cfg["model_convert_pipeline"]["converters"][0][
+            "checkpoint_path"
+        ]
+        == config.float_checkpoint_path
+    )
+    assert config.onnx_cfg["out_dir"] == config.export_dir
+    assert config.predict_callbacks[0]["output_dir"] == os.path.join(
+        config.export_dir, "calib_data"
+    )
+    assert config.floatonnx_predictor["model"]["onnx_path"] == os.path.join(
+        config.export_dir, "float.onnx"
+    )
+    assert config.quantonnx_predictor["model"]["onnx_path"] == os.path.join(
+        config.export_dir,
+        "Bin_model",
+        "DStereo_quantized_model.onnx",
+    )
+    assert config.floatonnx_predictor["callbacks"][2][
+        "output_dir"
+    ] == os.path.join(config.export_dir, "vis", "float")
+    assert config.quantonnx_predictor["callbacks"][2][
+        "output_dir"
+    ] == os.path.join(config.export_dir, "vis", "quant")
+
+    for predictor in (
+        config.float_predictor,
+        config.floatonnx_predictor,
+        config.quantonnx_predictor,
+    ):
+        assert predictor["data_loader"][0] is config.calib_data_loader
+
+    scoped_objects = (
+        config.predict_callbacks,
+        config.float_predictor,
+        config.onnx_cfg,
+        config.floatonnx_predictor,
+        config.quantonnx_predictor,
+    )
+    for path in _nested_strings(scoped_objects):
+        assert path != base_config.ckpt_dir
+        assert not path.startswith(base_config.ckpt_dir + os.sep)
+        assert path != "ptq_V21"
+        assert not path.startswith("ptq_V21" + os.sep)

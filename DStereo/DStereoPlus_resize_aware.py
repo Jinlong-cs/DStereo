@@ -20,6 +20,8 @@ from hat.data.samplers.stereo_scale_sampler import StereoScaleSampler
 
 task_name = "DStereoV23_DiscoverStereo_ResizeAware"
 ckpt_dir = os.path.join("work_dirs", "discover_experiments", task_name)
+export_dir = os.path.join(ckpt_dir, "export_640x352")
+float_checkpoint_path = os.path.join(ckpt_dir, "float-checkpoint-best.pth.tar")
 cudnn_benchmark = False
 
 resize_aware_scales = tuple(
@@ -107,4 +109,46 @@ float_trainer = copy.deepcopy(_base_config.float_trainer)
 float_trainer.update(
     data_loader=data_loader,
     callbacks=train_callbacks,
+)
+
+calib_data_loader = copy.deepcopy(_base_config.calib_data_loader)
+
+predict_callbacks = copy.deepcopy(_base_config.predict_callbacks)
+predict_callbacks[0]["output_dir"] = os.path.join(export_dir, "calib_data")
+predict_callbacks[2] = val_metric_updater
+
+float_predictor = copy.deepcopy(_base_config.float_predictor)
+float_predictor["model_convert_pipeline"]["converters"][0][
+    "checkpoint_path"
+] = float_checkpoint_path
+float_predictor["data_loader"] = [calib_data_loader]
+float_predictor["callbacks"] = predict_callbacks
+
+onnx_metric_updater = copy.deepcopy(_base_config.onnx_metric_updater)
+onnx_metric_updater["log_prefix"] = "onnx_" + task_name
+
+onnx_cfg = copy.deepcopy(_base_config.onnx_cfg)
+onnx_cfg["out_dir"] = export_dir
+onnx_cfg["model_convert_pipeline"]["converters"][0][
+    "checkpoint_path"
+] = float_checkpoint_path
+
+floatonnx_predictor = copy.deepcopy(_base_config.floatonnx_predictor)
+floatonnx_predictor["model"]["onnx_path"] = os.path.join(
+    export_dir, "float.onnx"
+)
+floatonnx_predictor["data_loader"] = [calib_data_loader]
+floatonnx_predictor["callbacks"][0] = onnx_metric_updater
+floatonnx_predictor["callbacks"][2]["output_dir"] = os.path.join(
+    export_dir, "vis", "float"
+)
+
+quantonnx_predictor = copy.deepcopy(_base_config.quantonnx_predictor)
+quantonnx_predictor["model"]["onnx_path"] = os.path.join(
+    export_dir, "Bin_model", "DStereo_quantized_model.onnx"
+)
+quantonnx_predictor["data_loader"] = [calib_data_loader]
+quantonnx_predictor["callbacks"][0] = onnx_metric_updater
+quantonnx_predictor["callbacks"][2]["output_dir"] = os.path.join(
+    export_dir, "vis", "quant"
 )

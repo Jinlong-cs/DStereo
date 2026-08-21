@@ -47,9 +47,10 @@ def StereoMultiData(
     res_args=None,
     norm_args=None,
     crop_args=None,
-    resize_aware_args=None,
     debug=False,
     img_open_mode="bgr",
+    *,
+    resize_aware_args=None,
 ):
     train_sets = []
     for dataset in dataset_list:
@@ -302,8 +303,18 @@ def StereoMultiData(
                                 aug_args=aug_args,
                                 res_args=(
                                     res_args
-                                    if test_mode or resize_aware_args is not None
-                                    else [-1, -1, True, 1.0, crop_args[2] / 640.0, 1.2]
+                                    if (
+                                        test_mode
+                                        or resize_aware_args is not None
+                                    )
+                                    else [
+                                        -1,
+                                        -1,
+                                        True,
+                                        1.0,
+                                        crop_args[2] / 640.0,
+                                        1.2,
+                                    ]
                                 ),
                                 norm_args=norm_args,
                                 crop_args=crop_args,
