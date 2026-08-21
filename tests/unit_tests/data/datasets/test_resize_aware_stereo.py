@@ -249,10 +249,10 @@ def test_two_ranks_use_the_same_scale_at_each_step():
 def test_sampler_drops_only_incomplete_global_tail_and_can_skip_empty_child():
     dataset = CatRandomDataset([_RangeDataset(5), _RangeDataset(5)])
     rank_zero = StereoScaleSampler(
-        dataset, 2, [1.0], num_replicas=2, rank=0
+        dataset, 2, [1.0], shuffle=False, num_replicas=2, rank=0
     )
     rank_one = StereoScaleSampler(
-        dataset, 2, [1.0], num_replicas=2, rank=1
+        dataset, 2, [1.0], shuffle=False, num_replicas=2, rank=1
     )
     combined = {token[0] for token in list(rank_zero) + list(rank_one)}
     assert len(rank_zero) == len(rank_one) == 4
@@ -263,6 +263,7 @@ def test_sampler_drops_only_incomplete_global_tail_and_can_skip_empty_child():
         with_empty,
         2,
         [1.0],
+        shuffle=False,
         drop_empty=True,
         num_replicas=1,
         rank=0,
