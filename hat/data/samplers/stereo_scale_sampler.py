@@ -58,7 +58,7 @@ class StereoScaleSampler(DistributedSampler):
         if not scales:
             raise ValueError("at least one scale is required")
         normalized_scales = tuple(float(scale) for scale in scales)
-        if len(set(round(scale, 8) for scale in normalized_scales)) != len(
+        if len({round(scale, 8) for scale in normalized_scales}) != len(
             normalized_scales
         ):
             raise ValueError("scales must be unique")
@@ -158,7 +158,8 @@ class StereoScaleSampler(DistributedSampler):
         count = len(self._base_stream()) // global_batch
         if count <= 0:
             raise ValueError(
-                "dataset/sampler_len is too short for one complete global batch"
+                "dataset/sampler_len is too short for one complete "
+                "global batch"
             )
         return count
 

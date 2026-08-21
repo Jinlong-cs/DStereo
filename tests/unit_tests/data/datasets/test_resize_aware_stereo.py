@@ -163,7 +163,6 @@ def test_padding_is_black_for_bgr_and_zero_for_disparity():
     right = np.full((352, 640, 3), 63, dtype=np.uint8)
     disparity = np.full((352, 640), 10.0, dtype=np.float32)
     transformed = ResizeAwareStereo([0.3])
-    spec = transformed.spec_for(0.3)
 
     left_out, right_out, disparity_out, metadata = transformed(
         left, right, disparity, 0.3

@@ -211,7 +211,8 @@ class ResizeAwareStereo:
         ):
             raise ValueError(
                 "stereo/disparity geometry mismatch: "
-                f"left={left.shape}, right={right.shape}, disparity={disparity.shape}"
+                f"left={left.shape}, right={right.shape}, "
+                f"disparity={disparity.shape}"
             )
         if left.shape[:2] != (self.base_height, self.base_width):
             raise ValueError(

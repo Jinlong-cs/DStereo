@@ -10,6 +10,7 @@ resolution so its EPE is directly comparable with the baseline experiment.
 import copy
 import os
 
+import DStereo.DStereoPlus as _base_config
 from DStereo.DStereoPlus import *  # noqa: F401,F403
 
 from hat.data.datasets.multi_disp_dataset.resize_aware import (
@@ -29,13 +30,13 @@ resize_aware_args = resize_aware_config(
     base_height=352,
     base_width=640,
     size_divisor=32,
-    max_disp=maxdisp,
+    max_disp=_base_config.maxdisp,
 )
 
-wandb_name = f"{task_name}-{training_stage}"
+wandb_name = f"{task_name}-{_base_config.training_stage}"
 wandb_tags = "discover,resize-aware,multiscale,scale1.00-0.30,maxdisp96"
 
-data_loader = copy.deepcopy(data_loader)
+data_loader = copy.deepcopy(_base_config.data_loader)
 data_loader["dataset"].update(
     # Disable the baseline's per-sample random spatial resize.  Resizor first
     # makes a deterministic 640-wide view and Cropper creates the canonical
@@ -43,29 +44,29 @@ data_loader["dataset"].update(
     res_args=[352, 640, False],
     resize_aware_args=resize_aware_args,
 )
-data_loader["sampler"] = dict(
-    type=StereoScaleSampler,
-    batch_size=train_batch_size_per_gpu,
-    scales=resize_aware_scales,
-    shuffle=True,
-    seed=seed,
-    drop_last=True,
-)
+data_loader["sampler"] = {
+    "type": StereoScaleSampler,
+    "batch_size": _base_config.train_batch_size_per_gpu,
+    "scales": resize_aware_scales,
+    "shuffle": True,
+    "seed": _base_config.seed,
+    "drop_last": True,
+}
 data_loader["drop_last"] = True
 
-loss_show_callback = copy.deepcopy(loss_show_callback)
+loss_show_callback = copy.deepcopy(_base_config.loss_show_callback)
 loss_show_callback["log_prefix"] = "train_" + task_name
 
-val_metric_updater = copy.deepcopy(val_metric_updater)
+val_metric_updater = copy.deepcopy(_base_config.val_metric_updater)
 val_metric_updater["log_prefix"] = "val_" + task_name
 
-val_callback = copy.deepcopy(val_callback)
+val_callback = copy.deepcopy(_base_config.val_callback)
 val_callback["callbacks"] = [val_metric_updater]
 
-ckpt_callback = copy.deepcopy(ckpt_callback)
+ckpt_callback = copy.deepcopy(_base_config.ckpt_callback)
 ckpt_callback["save_dir"] = ckpt_dir
 
-wandb_callback = copy.deepcopy(wandb_callback)
+wandb_callback = copy.deepcopy(_base_config.wandb_callback)
 wandb_callback.update(
     name=wandb_name,
     tags=wandb_tags.split(","),
@@ -79,30 +80,30 @@ wandb_callback["config"].update(
 )
 
 train_callbacks = [
-    stat_callback,
+    _base_config.stat_callback,
     loss_show_callback,
-    dict(
-        type="CosLrUpdater",
-        max_steps=num_steps,
-        warmup_by="step",
-        warmup_len=2000,
-        step_log_interval=1000,
-    ),
+    {
+        "type": "CosLrUpdater",
+        "max_steps": _base_config.num_steps,
+        "warmup_by": "step",
+        "warmup_len": 2000,
+        "step_log_interval": 1000,
+    },
     val_callback,
     ckpt_callback,
 ]
-if enable_freeze_bn:
+if _base_config.enable_freeze_bn:
     train_callbacks.insert(
         0,
-        dict(
-            type="FreezeBN",
-            freeze_affine=freeze_bn_affine,
-            unfreeze_step=freeze_bn_until_step,
-        ),
+        {
+            "type": "FreezeBN",
+            "freeze_affine": _base_config.freeze_bn_affine,
+            "unfreeze_step": _base_config.freeze_bn_until_step,
+        },
     )
 train_callbacks.append(wandb_callback)
 
-float_trainer = copy.deepcopy(float_trainer)
+float_trainer = copy.deepcopy(_base_config.float_trainer)
 float_trainer.update(
     data_loader=data_loader,
     callbacks=train_callbacks,
