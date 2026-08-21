@@ -15,7 +15,6 @@ from hat.data.datasets.multi_disp_dataset.resize_aware import (
 )
 from hat.data.samplers.stereo_scale_sampler import StereoScaleSampler
 
-
 SCALES = tuple(round(1.00 - 0.05 * index, 2) for index in range(15))
 EXPECTED_GEOMETRY = (
     (1.00, (352, 640), (352, 640), (0, 0, 0, 0)),
@@ -99,7 +98,7 @@ class _FakeStereoDataset(Dataset):
 def _content(array, spec):
     height_end = spec.tensor_height - spec.pad_bottom
     width_end = spec.tensor_width - spec.pad_right
-    return array[spec.pad_top:height_end, spec.pad_left:width_end]
+    return array[spec.pad_top : height_end, spec.pad_left : width_end]
 
 
 def test_all_requested_scales_have_expected_32_aligned_geometry():
@@ -132,7 +131,9 @@ def test_scale_one_preserves_valid_images_and_disparity():
     assert metadata["resize_padding"] == (0, 0, 0, 0)
 
 
-@pytest.mark.parametrize("invalid_value", [0.0, -1.0, 96.0, 100.0, np.inf, np.nan])
+@pytest.mark.parametrize(
+    "invalid_value", [0.0, -1.0, 96.0, 100.0, np.inf, np.nan]
+)
 def test_invalid_disparity_stays_invalid_after_downscale(invalid_value):
     image = np.zeros((352, 640, 3), dtype=np.uint8)
     disparity = np.full((352, 640), invalid_value, dtype=np.float32)

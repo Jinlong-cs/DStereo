@@ -7,13 +7,11 @@ aligned to the model's size divisor.
 """
 
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Iterable, Mapping, Sequence
 
 import cv2
 import numpy as np
-
 
 DEFAULT_BASE_HEIGHT = 352
 DEFAULT_BASE_WIDTH = 640
@@ -106,7 +104,9 @@ def build_resize_aware_specs(
             raise ValueError(f"duplicate resize scale: {raw_scale}")
         seen.add(key)
         if not 0.0 < scale <= 1.0:
-            raise ValueError(f"resize scale must be in (0, 1], got {raw_scale}")
+            raise ValueError(
+                f"resize scale must be in (0, 1], got {raw_scale}"
+            )
 
         content_width = max(1, int(round(base_width * scale)))
         content_height = max(1, int(round(base_height * scale)))
@@ -191,7 +191,9 @@ class ResizeAwareStereo:
             if image.ndim != 3 or image.shape[2] != 3:
                 raise ValueError(f"{name} must be HWC with three channels")
             if image.dtype != np.uint8:
-                raise ValueError(f"{name} must be uint8 BGR, got {image.dtype}")
+                raise ValueError(
+                    f"{name} must be uint8 BGR, got {image.dtype}"
+                )
 
     def __call__(
         self,
@@ -203,7 +205,10 @@ class ResizeAwareStereo:
         spec = self.spec_for(scale)
         self._validate_images(left, right)
         disparity = np.asarray(disparity, dtype=np.float32)
-        if left.shape[:2] != right.shape[:2] or left.shape[:2] != disparity.shape:
+        if (
+            left.shape[:2] != right.shape[:2]
+            or left.shape[:2] != disparity.shape
+        ):
             raise ValueError(
                 "stereo/disparity geometry mismatch: "
                 f"left={left.shape}, right={right.shape}, disparity={disparity.shape}"
@@ -229,8 +234,10 @@ class ResizeAwareStereo:
         # Freeze validity in canonical coordinates before resizing.  Without
         # this step an invalid value just above max_disp could become valid
         # after downscaling and silently contribute to the loss.
-        valid = np.isfinite(disparity) & (disparity > 0.0) & (
-            disparity < self.max_disp
+        valid = (
+            np.isfinite(disparity)
+            & (disparity > 0.0)
+            & (disparity < self.max_disp)
         )
         safe_disparity = np.where(valid, disparity, 0.0).astype(
             np.float32, copy=False

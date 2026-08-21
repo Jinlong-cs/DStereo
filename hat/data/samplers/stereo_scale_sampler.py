@@ -1,13 +1,12 @@
 """Batch-aligned deterministic scale scheduling for stereo datasets."""
 
 from __future__ import annotations
-
 from typing import Iterator, Optional, Sequence
 
 import torch
 import torch.distributed as distributed
-from torch.utils.data.distributed import DistributedSampler
 from torch.utils.data.dataset import ConcatDataset
+from torch.utils.data.distributed import DistributedSampler
 
 from hat.registry import OBJECT_REGISTRY
 
@@ -16,7 +15,9 @@ def _distributed_size_and_rank(
     num_replicas: Optional[int], rank: Optional[int]
 ) -> tuple[int, int]:
     if num_replicas is None:
-        num_replicas = distributed.get_world_size() if distributed.is_initialized() else 1
+        num_replicas = (
+            distributed.get_world_size() if distributed.is_initialized() else 1
+        )
     if rank is None:
         rank = distributed.get_rank() if distributed.is_initialized() else 0
     return int(num_replicas), int(rank)
@@ -62,7 +63,9 @@ class StereoScaleSampler(DistributedSampler):
         ):
             raise ValueError("scales must be unique")
         if any(not 0.0 < scale <= 1.0 for scale in normalized_scales):
-            raise ValueError(f"scales must be in (0, 1], got {normalized_scales}")
+            raise ValueError(
+                f"scales must be in (0, 1], got {normalized_scales}"
+            )
         if not drop_last:
             raise ValueError(
                 "drop_last=False is unsupported: a partial global batch would "
@@ -106,9 +109,13 @@ class StereoScaleSampler(DistributedSampler):
                     "StereoScaleSampler found an empty child dataset; set "
                     "drop_empty=True to ignore it"
                 )
-            keep = [index for index, length in enumerate(lengths) if length > 0]
+            keep = [
+                index for index, length in enumerate(lengths) if length > 0
+            ]
             if not keep:
-                raise ValueError("StereoScaleSampler requires a non-empty dataset")
+                raise ValueError(
+                    "StereoScaleSampler requires a non-empty dataset"
+                )
         else:
             keep = list(range(len(lengths)))
         offsets = [0]
@@ -130,7 +137,9 @@ class StereoScaleSampler(DistributedSampler):
             indices = list(range(length))
             if self.shuffle:
                 generator = torch.Generator()
-                generator.manual_seed(self.seed + self.epoch + 9973 * child_index)
+                generator.manual_seed(
+                    self.seed + self.epoch + 9973 * child_index
+                )
                 indices = torch.randperm(length, generator=generator).tolist()
             per_dataset.append(indices)
 
@@ -138,7 +147,9 @@ class StereoScaleSampler(DistributedSampler):
         rows = self._rows()
         for row in range(rows):
             for child_position, child_index in enumerate(self._keep):
-                local = per_dataset[child_position][row % len(per_dataset[child_position])]
+                local = per_dataset[child_position][
+                    row % len(per_dataset[child_position])
+                ]
                 stream.append(self._offsets[child_index] + local)
         return stream
 
