@@ -1,12 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bisect import bisect_right
 import logging
 import math
 import operator
 import random
 import traceback
+from bisect import bisect_right
 
 from torch.utils.data.dataset import ConcatDataset
 
@@ -15,26 +15,9 @@ __all__ = ["CatRandomDataset"]
 
 
 class CatRandomDataset(ConcatDataset):
+    """Concatenate datasets and retry invalid samples with bounded attempts."""
+
     max_retries = 50
-
-    # def __init__(self, datasets, debug=False, max_size=12800):
-    #     super(CatRandomDataset, self).__init__()
-    #     self.datasets = datasets
-    #     self.debug = debug
-    #     self.max_size = max_size
-    #     logger.info("###################### init CatRandomDataset done ######################")
-
-    # def __len__(self):
-    #     if self.debug:
-    #         return 32
-    #     else:
-    #         n = 0
-    #         for d in self.datasets:
-    #             n += len(d)
-    #         if self.max_size is None:
-    #             return n
-    #         else:
-    #             return min(n, self.max_size)
 
     def __getitem__(self, item):
         item = self._normalize_index(item)
@@ -52,7 +35,9 @@ class CatRandomDataset(ConcatDataset):
                 last_error = e
                 item = self._replacement_index(item)
 
-        message = f"failed to load a valid sample after {self.max_retries} attempts"
+        message = (
+            f"failed to load a valid sample after {self.max_retries} attempts"
+        )
         if last_error is not None:
             raise RuntimeError(message) from last_error
         raise RuntimeError(message)
@@ -70,7 +55,9 @@ class CatRandomDataset(ConcatDataset):
         self._validate_flat_index(flat_index)
         scale = float(item[1])
         if not math.isfinite(scale) or scale <= 0.0:
-            raise ValueError(f"scale must be finite and positive, got {item[1]!r}")
+            raise ValueError(
+                f"scale must be finite and positive, got {item[1]!r}"
+            )
         return flat_index, scale
 
     def _validate_flat_index(self, flat_index):
@@ -94,7 +81,9 @@ class CatRandomDataset(ConcatDataset):
         if dataset_index == 0:
             sample_index = flat_index
         else:
-            sample_index = flat_index - self.cumulative_sizes[dataset_index - 1]
+            sample_index = (
+                flat_index - self.cumulative_sizes[dataset_index - 1]
+            )
         return self.datasets[dataset_index][(sample_index, scale)]
 
     def _replacement_index(self, item):
