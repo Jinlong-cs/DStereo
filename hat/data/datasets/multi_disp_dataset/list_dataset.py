@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 __all__ = ["ListDataset"]
-import OpenEXR
-import Imath
 import logging
 import os.path as osp
 import struct
@@ -55,6 +53,9 @@ class InputPadder:
 
 
 def exr2hdr(exrpath):
+    import Imath
+    import OpenEXR
+
     File = OpenEXR.InputFile(exrpath)
     PixType = Imath.PixelType(Imath.PixelType.FLOAT)
     DW = File.header()["dataWindow"]

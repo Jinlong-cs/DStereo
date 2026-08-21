@@ -1,4 +1,3 @@
-import copy
 import os
 import cv2
 import numpy as np
@@ -14,7 +13,7 @@ from DStereo.common import disp2rgb, depth2rgb, disp2depth, uncert2rgb
 
 VERSION = ConfigVersion.v2
 
-task_name = "DStereoV23_DiscoverStereo"
+task_name = "DStereoV23_Discover_villa_250k_preproc352x640_dust3r_better_exp01"
 
 
 training_stage = "float"
@@ -22,16 +21,17 @@ data_num_workers = 4
 march = March.BAYES_E
 # ckpt_dir = "work_dirs/ckpt_models/%s" % task_name
 ckpt_dir = "work_dirs/discover_experiments/%s" % task_name
-checkpoint_path = (
-    "tmp_pretrained_models/mixvargenet_imagenet/float-checkpoint-last.pth.tar"
-)
+checkpoint_path = "tmp_pretrained_models/betterb_phase1_0.2391.pth.tar"
 local_train = not os.path.exists("/running_package")
 train_batch_size_per_gpu = 8
 test_batch_size_per_gpu = 1
 log_freq = 1
 wandb_project = "DStereo-DiscoverStereo"
 wandb_name = f"{task_name}-{training_stage}"
-wandb_tags = "discover,150k,preproc352x640,maxdisp96"
+wandb_tags = (
+    "discover,villa,250k,preproc352x640,maxdisp96,"
+    "dust3r_better_exp01,loss_better,mixedres"
+)
 wandb_resume = None
 wandb_run_id = None
 
@@ -61,8 +61,7 @@ bn_kwargs = {}
 refine_levels = 3
 base_lr = 0.0001
 # base_lr = 0.001
-# num_steps = 200000
-num_steps = 200000
+num_steps = 250000
 model = dict(
     type="DStereoPlus",
     maxdisp=maxdisp,
@@ -276,6 +275,7 @@ val_batch_processor = dict(
     loss_collector=loss_collector,
 )
 
+
 def _extract_losses(model_outs):
     if not isinstance(model_outs, dict):
         return []
@@ -477,7 +477,7 @@ calib_data_loader = dict(
         max_disp=maxdisp,
         img_open_mode="bgr",
     ),
-    sampler=dict(type="InterleaveConcatSampler", shuffle=True, seed=666, sampler_len=50),
+    sampler=dict(type="InterleaveConcatSampler", shuffle=True, seed=666, sampler_len=256),
     batch_size=test_batch_size_per_gpu,
     pin_memory=True,
     prefetch_factor=4,

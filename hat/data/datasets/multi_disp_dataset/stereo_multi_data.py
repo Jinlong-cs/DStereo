@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
 import os.path as osp
 import logging
 import json
@@ -36,7 +35,6 @@ CUR_DIR = osp.abspath(osp.dirname(__file__))
 __all__ = [
     "StereoMultiData",
 ]
-
 
 @OBJECT_REGISTRY.register
 def StereoMultiData(
@@ -312,6 +310,17 @@ def StereoMultiData(
                 width, height = img.size  # 获取宽高
                 print(f"数据集图像宽度: {width}, 数据集图像高度: {height}")
 
+            resolved_res_args = res_args
+            if (
+                not test_mode
+                and isinstance(res_args, (list, tuple))
+                and len(res_args) == 3
+                and res_args[0] == -1
+                and res_args[1] == -1
+                and bool(res_args[2])
+            ):
+                resolved_res_args = [-1, -1, True, 1.0, crop_args[2] / width, 1.2]
+
             train_sets.append(AugDataset(
                 base_dataset=DStereoDataset(
                     file_list=file_list,
@@ -322,7 +331,7 @@ def StereoMultiData(
                 test_mode=test_mode, 
                 max_disp=max_disp,
                 aug_args=aug_args,
-                res_args=res_args if test_mode else [-1, -1, True, 1.0, crop_args[2] / width, 1.2],
+                res_args=resolved_res_args,
                 norm_args=norm_args,
                 crop_args=crop_args
             ))

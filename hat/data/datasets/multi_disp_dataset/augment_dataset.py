@@ -99,7 +99,14 @@ class Augmentor:
 
 class Resizor:
     def __init__(
-        self, nh, nw, rand_resize=False, scale=1.0, min_scale=None, max_scale=None
+        self,
+        nh,
+        nw,
+        rand_resize=False,
+        scale=1.0,
+        min_scale=None,
+        max_scale=None,
+        min_output_size=None,
     ):
         assert isinstance(nh, int)
         assert isinstance(nw, int)
@@ -112,16 +119,34 @@ class Resizor:
         self.rand_resize = rand_resize
         self.min_scale = min_scale
         self.max_scale = max_scale
+        self.min_output_size = min_output_size
+
+    def _sample_scale(self, h, w):
+        if self.min_scale is not None:
+            min_scale = self.min_scale
+            max_scale = self.max_scale if self.max_scale is not None else min_scale
+        else:
+            min_scale = 1.0 * self.scale
+            max_scale = 1.3 * self.scale
+
+        if self.min_output_size is not None:
+            crop_h, crop_w = self.min_output_size
+            min_scale = max(min_scale, crop_h / h, crop_w / w)
+
+        if max_scale < min_scale:
+            return min_scale
+        return np.random.uniform(min_scale, max_scale)
 
     def __call__(self, x):
         left, right, disp_left = x
         h, w = left.shape[:2]
         if self.rand_resize:
-            if self.min_scale is not None:
-                s = np.random.uniform(self.min_scale, self.max_scale)
-            else:
-                s = np.random.uniform(1.0, 1.3) * self.scale
+            s = self._sample_scale(h, w)
             nh, nw = int(round(h * s)), int(round(w * s))
+            if self.min_output_size is not None:
+                crop_h, crop_w = self.min_output_size
+                nh = max(nh, crop_h)
+                nw = max(nw, crop_w)
         else:
             # 1088 * 864 --> 640 * 508
             ratio = w / h
@@ -309,9 +334,16 @@ class AugDataset(Dataset):
             self.base_dataset = base_dataset
         self.test_mode = test_mode
         self.augmentor = Augmentor(*aug_args) if aug_args else Identity()
-        self.resizor = Resizor(*res_args) if res_args else Identity()
         self.normalizer = Normalizor(*norm_args) if norm_args else Identity()
         self.cropper = Cropper(*crop_args) if crop_args else Identity()
+        min_output_size = None
+        if res_args and crop_args and res_args[2]:
+            min_output_size = (crop_args[1], crop_args[2])
+        self.resizor = (
+            Resizor(*res_args, min_output_size=min_output_size)
+            if res_args
+            else Identity()
+        )
         self.debug = debug
         self.max_disp = max_disp
 
