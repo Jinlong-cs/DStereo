@@ -13,9 +13,9 @@ from PIL import Image, ImageEnhance
 import torch
 from torch.utils.data.dataset import Dataset, ConcatDataset
 from torchvision import transforms
-import horizon_plugin_pytorch.nn.bgr_to_yuv444 as b2y
 
 from .list_dataset import ListDataset, DrivingStereoDataset
+from .resize_aware import ResizeAwareStereo
 
 logger = logging.getLogger(__name__)
 __all__ = ["AugDataset", "Augmentor", "Resizor", "Cropper", "Normalizor", "Identity"]
@@ -296,6 +296,7 @@ class AugDataset(Dataset):
         res_args=None,
         norm_args=None,
         crop_args=None,
+        resize_aware_args=None,
         debug=False,
         img_open_mode="bgr",
         skip=False,
@@ -312,12 +313,35 @@ class AugDataset(Dataset):
         self.resizor = Resizor(*res_args) if res_args else Identity()
         self.normalizer = Normalizor(*norm_args) if norm_args else Identity()
         self.cropper = Cropper(*crop_args) if crop_args else Identity()
+        if resize_aware_args is not None:
+            resize_aware_args = dict(resize_aware_args)
+            resize_max_disp = float(resize_aware_args.get("max_disp", max_disp))
+            if not math.isclose(resize_max_disp, float(max_disp)):
+                raise ValueError(
+                    "resize-aware max_disp must match AugDataset max_disp: "
+                    f"{resize_max_disp} != {max_disp}"
+                )
+            resize_aware_args["max_disp"] = max_disp
+            self.resize_aware = ResizeAwareStereo(**resize_aware_args)
+            if (
+                not isinstance(self.cropper, Identity)
+                and self.cropper.crop_size
+                != (self.resize_aware.base_height, self.resize_aware.base_width)
+            ):
+                raise ValueError(
+                    "resize-aware crop size must match its canonical base shape: "
+                    f"{self.cropper.crop_size} != "
+                    f"{(self.resize_aware.base_height, self.resize_aware.base_width)}"
+                )
+        else:
+            self.resize_aware = None
         self.debug = debug
         self.max_disp = max_disp
 
     def __getitem__(self, i):
+        sample_index, resize_scale = self._split_sample_index(i)
         data = {}
-        x = self.base_dataset[i]
+        x = self.base_dataset[sample_index]
         x = self.resizor(x)
         if type(self.cropper) == Identity:
             data["origin_shape"] = x[0].shape[:2]
@@ -330,6 +354,26 @@ class AugDataset(Dataset):
             data["origin_shape"] = x[0].shape[:2]
         x = self.augmentor(x)
 
+        resize_mask_flag = None
+        if self.resize_aware is not None:
+            if resize_scale is None:
+                raise ValueError(
+                    "resize-aware AugDataset requires a (sample_index, scale) index"
+                )
+            resize_mask_flag = self._mask_flag_from_disparity(
+                x[2], exclude_max=True
+            )
+            left, right, disparity, metadata = self.resize_aware(
+                x[0], x[1], x[2], resize_scale
+            )
+            x = (left, right, disparity)
+            data.update(metadata)
+            data["origin_shape"] = metadata["resize_content_shape"]
+        elif resize_scale is not None:
+            raise ValueError(
+                "received a scale-tagged index but resize_aware_args is disabled"
+            )
+
         left_x5_nv12 = self._bgr2nv12(x[0])
         left_x5_nv12 = np.ascontiguousarray(left_x5_nv12)
         left = self._nv12Toyuv444(left_x5_nv12, *x[0].shape[:2])
@@ -341,16 +385,16 @@ class AugDataset(Dataset):
         data["right_img"] = x[1]  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
         data["left_img_yuv"] = left  # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
         data["right_img_yuv"] = right  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
-        data["sample_idx"] = i
+        data["sample_idx"] = sample_index
         data["left_img_name"] = (
-            self.base_dataset.file_list[i][0]
-            if type(self.base_dataset.file_list[i]) == list
-            else self.base_dataset.file_list[i]
+            self.base_dataset.file_list[sample_index][0]
+            if type(self.base_dataset.file_list[sample_index]) == list
+            else self.base_dataset.file_list[sample_index]
         )
         data["right_img_name"] = (
-            self.base_dataset.file_list[i][1]
-            if type(self.base_dataset.file_list[i]) == list
-            else self.base_dataset.file_list[i]
+            self.base_dataset.file_list[sample_index][1]
+            if type(self.base_dataset.file_list[sample_index]) == list
+            else self.base_dataset.file_list[sample_index]
         )
         data["data_root"] = self.base_dataset.root_dir
 
@@ -369,28 +413,49 @@ class AugDataset(Dataset):
         img = torch.stack([l, r], dim=0)
         data["img"] = img
         data["gt_disp"] = g
-        data["mask_flag"] = True
+        data["mask_flag"] = (
+            resize_mask_flag
+            if resize_mask_flag is not None
+            else self._mask_flag_from_disparity(g)
+        )
         data["dataset_name"] = self.base_dataset.name
-
-        # 判断小于0或大于100的元素
-        condition = (g <= 0) | (g > self.max_disp)
-
-        # 计算符合条件的元素个数
-        count = torch.sum(condition).item()
-
-        # 计算矩阵中的总元素个数
-        total_elements = g.numel()
-
-        # 计算符合条件的元素占比
-        ratio = count / total_elements
-
-        if ratio > 0.33 and not self.test_mode:
-            data["mask_flag"] = False
 
         return data
 
     def __len__(self):
         return len(self.base_dataset)
+
+    @staticmethod
+    def _split_sample_index(index):
+        if isinstance(index, tuple):
+            if len(index) != 2:
+                raise ValueError(
+                    "scale-tagged indices must be (sample_index, scale) pairs"
+                )
+            return index[0], float(index[1])
+        return index, None
+
+    def _mask_flag_from_disparity(self, disparity, exclude_max=False):
+        if self.test_mode:
+            return True
+        if isinstance(disparity, torch.Tensor):
+            above_max = (
+                disparity >= self.max_disp
+                if exclude_max
+                else disparity > self.max_disp
+            )
+            invalid = (~torch.isfinite(disparity)) | (disparity <= 0) | above_max
+            ratio = torch.count_nonzero(invalid).item() / disparity.numel()
+        else:
+            disparity = np.asarray(disparity)
+            above_max = (
+                disparity >= self.max_disp
+                if exclude_max
+                else disparity > self.max_disp
+            )
+            invalid = (~np.isfinite(disparity)) | (disparity <= 0) | above_max
+            ratio = np.count_nonzero(invalid) / disparity.size
+        return ratio <= 0.33
 
     def _test_opencv(self, data, channel_reversal):
         """
