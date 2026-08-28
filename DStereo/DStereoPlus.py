@@ -1,16 +1,27 @@
 import copy
 import os
+
+from DStereo.common import depth2rgb, disp2depth, disp2rgb, uncert2rgb
+
 import cv2
 import numpy as np
 import torch
+import torch.nn.functional as F
 from horizon_plugin_pytorch.march import March
 from PIL import Image
+from torch.utils.data.distributed import DistributedSampler
+
 from hat.data.collates.collates import collate_disp_cat
+from hat.data.datasets.multi_disp_dataset.resize_aware import (
+    DEFAULT_RESIZE_SCALES,
+    build_resize_aware_specs,
+    resize_aware_config,
+)
+from hat.data.samplers.interleave_concat_sampler import InterleaveConcatSampler
+from hat.metrics.loss_show import LossShow
 from hat.models.backbones.mixvargenet import MixVarGENetConfig
 from hat.utils.config import ConfigVersion
-from hat.metrics.loss_show import LossShow
 from hat.utils.distributed import get_dist_info
-from DStereo.common import disp2rgb, depth2rgb, disp2depth, uncert2rgb
 
 VERSION = ConfigVersion.v2
 
@@ -403,10 +414,212 @@ if enable_freeze_bn:
 )
 train_callbacks.append(wandb_callback)
 
+
+class _StereoScaleSampler(DistributedSampler):
+    """Attach one resize scale to every sample in a global batch."""
+
+    def __init__(
+        self,
+        dataset,
+        batch_size,
+        scales,
+        shuffle=True,
+        seed=0,
+        num_replicas=None,
+        rank=None,
+    ):
+        super().__init__(
+            dataset,
+            num_replicas=num_replicas,
+            rank=rank,
+            shuffle=False,
+            seed=seed,
+            drop_last=True,
+        )
+        self.interleave = InterleaveConcatSampler(
+            dataset,
+            shuffle=shuffle,
+            seed=seed,
+        )
+        self.batch_size = batch_size
+        self.scales = tuple(scales)
+        global_batch_size = batch_size * self.num_replicas
+        self.num_batches = len(self.interleave) // global_batch_size
+        self.num_batches -= self.num_batches % len(self.scales)
+        self.num_samples = self.num_batches * batch_size
+        self.total_size = self.num_samples * self.num_replicas
+
+    def __len__(self):
+        return self.num_samples
+
+    def __iter__(self):
+        self.interleave.set_epoch(self.epoch)
+        stream = list(self.interleave)
+        global_batch_size = self.batch_size * self.num_replicas
+        for batch_index in range(self.num_batches):
+            start = batch_index * global_batch_size
+            global_indices = stream[start : start + global_batch_size]
+            rank_start = self.rank * self.batch_size
+            rank_indices = global_indices[
+                rank_start : rank_start + self.batch_size
+            ]
+            scale = self.scales[batch_index % len(self.scales)]
+            yield from ((index, scale) for index in rank_indices)
+
+
+float_resize_scales = DEFAULT_RESIZE_SCALES
+float_resize_args = resize_aware_config(
+    float_resize_scales,
+    max_disp=maxdisp,
+)
+float_s100_spec, float_s080_spec = build_resize_aware_specs(
+    float_resize_scales
+)
+
+float_data_loader = copy.deepcopy(data_loader)
+float_data_loader["dataset"].update(
+    res_args=[352, 640, False],
+    resize_aware_args=float_resize_args,
+)
+float_data_loader["sampler"] = dict(
+    type=_StereoScaleSampler,
+    batch_size=train_batch_size_per_gpu,
+    scales=float_resize_scales,
+    shuffle=True,
+    seed=seed,
+)
+float_data_loader["drop_last"] = True
+
+
+def _build_float_val_loader(scale):
+    loader = copy.deepcopy(val_data_loader)
+    loader["dataset"].update(
+        resize_aware_args=resize_aware_config(
+            (scale,),
+            max_disp=maxdisp,
+        ),
+    )
+    return loader
+
+
+float_val_data_loader_s100 = _build_float_val_loader(1.0)
+float_val_data_loader_s080 = _build_float_val_loader(0.8)
+float_val_data_loader = [
+    float_val_data_loader_s100,
+    float_val_data_loader_s080,
+]
+
+
+def _restore_float_prediction(prediction, spec):
+    height_end = spec.tensor_height - spec.pad_bottom
+    width_end = spec.tensor_width - spec.pad_right
+    content = prediction[
+        ...,
+        spec.pad_top : height_end,
+        spec.pad_left : width_end,
+    ]
+    canonical = F.interpolate(
+        content,
+        size=(spec.base_height, spec.base_width),
+        mode="bilinear",
+        align_corners=False,
+    )
+    return canonical / spec.horizontal_scale
+
+
+def _update_float_val_metric(metrics, batch, model_outs, spec):
+    labels = batch["metric_gt_disp"]
+    predictions = _restore_float_prediction(model_outs[0], spec)
+    masks = (labels > 0) & (labels < maxdisp)
+    metrics[0].update(labels, predictions, masks)
+
+
+def update_float_s100_val_metric(metrics, batch, model_outs):
+    _update_float_val_metric(metrics, batch, model_outs, float_s100_spec)
+
+
+def update_float_s080_val_metric(metrics, batch, model_outs):
+    _update_float_val_metric(metrics, batch, model_outs, float_s080_spec)
+
+
+float_val_metric_s100 = dict(
+    type="EndPointError",
+    name="EPE_s100",
+    use_mask=True,
+)
+float_val_metric_s080 = dict(
+    type="EndPointError",
+    name="EPE_s080",
+    use_mask=True,
+)
+float_val_metrics = [float_val_metric_s100, float_val_metric_s080]
+
+float_val_metric_updater_s100 = copy.deepcopy(val_metric_updater)
+float_val_metric_updater_s100.update(
+    metric_update_func=update_float_s100_val_metric,
+    metrics=[float_val_metric_s100],
+    log_prefix="val_s100_" + task_name,
+)
+float_val_metric_updater_s080 = copy.deepcopy(val_metric_updater)
+float_val_metric_updater_s080.update(
+    metric_update_func=update_float_s080_val_metric,
+    metrics=[float_val_metric_s080],
+    log_prefix="val_s080_" + task_name,
+)
+
+float_val_callback = copy.deepcopy(val_callback)
+float_val_callback.update(
+    data_loader=float_val_data_loader,
+    callbacks=[
+        [float_val_metric_updater_s100],
+        [float_val_metric_updater_s080],
+    ],
+    share_callbacks=False,
+)
+
+float_ckpt_dir = os.environ.get("DSTEREO_RUN_DIR", ckpt_dir)
+float_ckpt_callback = copy.deepcopy(ckpt_callback)
+float_ckpt_callback.update(
+    save_dir=float_ckpt_dir,
+    monitor_metric_key="EPE_s100",
+)
+
+float_wandb_callback = copy.deepcopy(wandb_callback)
+float_wandb_callback.update(
+    name=f"{task_name}_ResizeAware_S100_S080-{training_stage}",
+    tags=(
+        "discover,v2,resize-aware,dual-scale,scale1.00,scale0.80,"
+        "canonical640x352,tensor512x288,maxdisp96,200k"
+    ).split(","),
+    ckpt_dir=float_ckpt_dir,
+)
+float_wandb_callback["config"].update(
+    resize_aware_scales=list(float_resize_scales),
+    resize_base_shape=[352, 640],
+    resize_content_shapes={
+        "s100": list(float_s100_spec.content_shape),
+        "s080": list(float_s080_spec.content_shape),
+    },
+    resize_tensor_shapes={
+        "s100": list(float_s100_spec.tensor_shape),
+        "s080": list(float_s080_spec.tensor_shape),
+    },
+    validation_metrics=["val/epe_s100", "val/epe_s080"],
+    checkpoint_monitor="EPE_s100",
+    resize_size_divisor=float_s100_spec.size_divisor,
+)
+
+float_train_callbacks = copy.deepcopy(train_callbacks)
+float_train_callbacks[-3:] = [
+    float_val_callback,
+    float_ckpt_callback,
+    float_wandb_callback,
+]
+
 float_trainer = dict(
     type="distributed_data_parallel_trainer",
     model=model,
-    data_loader=data_loader,
+    data_loader=float_data_loader,
     optimizer=dict(
         type=torch.optim.Adam,
         params={"weight": dict(weight_decay=4e-5)},
@@ -419,8 +632,8 @@ float_trainer = dict(
             dict(
                 type="LoadCheckpoint",
                 checkpoint_path=checkpoint_path,
-                allow_miss=True,
-                ignore_extra=True,
+                allow_miss=False,
+                ignore_extra=False,
                 ignore_tensor_shape=False,
                 verbose=True,
             ),
@@ -434,7 +647,7 @@ float_trainer = dict(
     num_steps=num_steps,
     device=None,
     sync_bn=sync_bn,
-    callbacks=train_callbacks,
+    callbacks=float_train_callbacks,
     train_metrics=[
         dict(type="LossShow"),
         dict(
@@ -442,13 +655,7 @@ float_trainer = dict(
             use_mask=True,
         ),
     ],
-    val_metrics=[
-        dict(type="LossShow"),
-        dict(
-            type="EndPointError",
-            use_mask=True,
-        ),
-    ],
+    val_metrics=float_val_metrics,
 )
 
 
