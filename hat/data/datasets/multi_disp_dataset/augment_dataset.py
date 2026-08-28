@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, copy, math
+import operator
 import traceback
 import logging
 import random
@@ -327,8 +328,8 @@ class AugDataset(Dataset):
             resize_aware_args["max_disp"] = max_disp
             self.resize_aware = ResizeAwareStereo(**resize_aware_args)
             canonical_shape = (
-                self.resize_aware.spec.base_height,
-                self.resize_aware.spec.base_width,
+                self.resize_aware.base_height,
+                self.resize_aware.base_width,
             )
             if (
                 not isinstance(self.cropper, Identity)
@@ -344,8 +345,9 @@ class AugDataset(Dataset):
         self.max_disp = max_disp
 
     def __getitem__(self, i):
+        sample_index, resize_scale = self._split_sample_index(i)
         data = {}
-        x = self.base_dataset[i]
+        x = self.base_dataset[sample_index]
         x = self.resizor(x)
         if type(self.cropper) == Identity:
             data["origin_shape"] = x[0].shape[:2]
@@ -359,12 +361,29 @@ class AugDataset(Dataset):
         x = self.augmentor(x)
 
         resize_mask_flag = None
+        metric_gt_disp = None
         if self.resize_aware is not None:
+            if resize_scale is None:
+                if len(self.resize_aware.scales) != 1:
+                    raise ValueError(
+                        "multi-scale resize-aware AugDataset requires a "
+                        "(sample_index, scale) index"
+                    )
+                resize_scale = self.resize_aware.scales[0]
+            if self.test_mode:
+                metric_gt_disp = np.asarray(x[2], dtype=np.float32).copy()
             resize_mask_flag = self._resize_mask_flag(x[2])
-            left, right, disparity, metadata = self.resize_aware(*x)
+            left, right, disparity, metadata = self.resize_aware(
+                x[0], x[1], x[2], resize_scale
+            )
             x = (left, right, disparity)
+            data.update(metadata)
             data["origin_shape"] = metadata["resize_content_shape"]
-            data["resize_scale"] = metadata["resize_scale"]
+        elif resize_scale is not None:
+            raise ValueError(
+                "received a scale-tagged index while resize-aware mode "
+                "is disabled"
+            )
 
         left_x5_nv12 = self._bgr2nv12(x[0])
         left_x5_nv12 = np.ascontiguousarray(left_x5_nv12)
@@ -377,16 +396,16 @@ class AugDataset(Dataset):
         data["right_img"] = x[1]  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
         data["left_img_yuv"] = left  # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
         data["right_img_yuv"] = right  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
-        data["sample_idx"] = i
+        data["sample_idx"] = sample_index
         data["left_img_name"] = (
-            self.base_dataset.file_list[i][0]
-            if type(self.base_dataset.file_list[i]) == list
-            else self.base_dataset.file_list[i]
+            self.base_dataset.file_list[sample_index][0]
+            if isinstance(self.base_dataset.file_list[sample_index], list)
+            else self.base_dataset.file_list[sample_index]
         )
         data["right_img_name"] = (
-            self.base_dataset.file_list[i][1]
-            if type(self.base_dataset.file_list[i]) == list
-            else self.base_dataset.file_list[i]
+            self.base_dataset.file_list[sample_index][1]
+            if isinstance(self.base_dataset.file_list[sample_index], list)
+            else self.base_dataset.file_list[sample_index]
         )
         data["data_root"] = self.base_dataset.root_dir
 
@@ -403,6 +422,20 @@ class AugDataset(Dataset):
             # experiment's labels channel-aligned without changing the legacy
             # dataset contract used by the canonical training profile.
             g = g.unsqueeze(0)
+            if metric_gt_disp is not None:
+                metric_gt_disp = np.nan_to_num(
+                    metric_gt_disp,
+                    copy=False,
+                    nan=0.0,
+                    posinf=0.0,
+                    neginf=0.0,
+                )
+                data["metric_gt_disp"] = (
+                    torch.from_numpy(metric_gt_disp)
+                    .float()
+                    .contiguous()
+                    .unsqueeze(0)
+                )
 
         # assert l.shape[-2:] == self.cropper.crop_size, self.base_dataset.file_list[i]
         # assert r.shape[-2:] == self.cropper.crop_size, self.base_dataset.file_list[i]
@@ -435,6 +468,17 @@ class AugDataset(Dataset):
 
     def __len__(self):
         return len(self.base_dataset)
+
+    @staticmethod
+    def _split_sample_index(index):
+        if isinstance(index, tuple):
+            if len(index) != 2:
+                raise ValueError(
+                    "scale-tagged indices must be "
+                    "(sample_index, scale) pairs"
+                )
+            return operator.index(index[0]), float(index[1])
+        return operator.index(index), None
 
     def _resize_mask_flag(self, disparity):
         if self.test_mode:

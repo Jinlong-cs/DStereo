@@ -58,7 +58,7 @@ def StereoMultiData(
         ]
         if unsupported:
             raise ValueError(
-                "fixed s0.8 resize-aware training only supports "
+                "s1.0/s0.8 resize-aware training only supports "
                 f"DStereoDataset, got {unsupported}"
             )
     train_sets = []

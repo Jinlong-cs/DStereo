@@ -1,14 +1,13 @@
-"""Fixed-scale resize-aware geometry for the DStereo s0.8 experiment."""
+"""Resize-aware geometry for the DStereo s1.0/s0.8 experiment."""
 
 from __future__ import annotations
-import math
 from dataclasses import dataclass
-from typing import Mapping
+from typing import Iterable, Mapping, Sequence
 
 import cv2
 import numpy as np
 
-FIXED_RESIZE_SCALE = 0.8
+DEFAULT_RESIZE_SCALES = (1.0, 0.8)
 DEFAULT_BASE_HEIGHT = 352
 DEFAULT_BASE_WIDTH = 640
 DEFAULT_SIZE_DIVISOR = 32
@@ -16,7 +15,7 @@ DEFAULT_SIZE_DIVISOR = 32
 
 @dataclass(frozen=True)
 class ResizeAwareSpec:
-    """Concrete content and padded tensor geometry for fixed scale 0.8."""
+    """Concrete content and padded tensor geometry for one scale."""
 
     scale: float
     base_height: int
@@ -56,46 +55,62 @@ def _ceil_to_divisor(value: int, divisor: int) -> int:
     return ((value + divisor - 1) // divisor) * divisor
 
 
-def build_resize_aware_spec(
+def _split_padding(total: int) -> tuple[int, int]:
+    before = total // 2
+    return before, total - before
+
+
+def build_resize_aware_specs(
+    scales: Iterable[float] = DEFAULT_RESIZE_SCALES,
     *,
-    scale: float = FIXED_RESIZE_SCALE,
     base_height: int = DEFAULT_BASE_HEIGHT,
     base_width: int = DEFAULT_BASE_WIDTH,
     size_divisor: int = DEFAULT_SIZE_DIVISOR,
-) -> ResizeAwareSpec:
-    """Build the only supported experiment geometry: fixed scale 0.8."""
+) -> tuple[ResizeAwareSpec, ...]:
+    """Build validated geometries for all configured resize scales."""
 
-    scale = float(scale)
-    if not math.isclose(scale, FIXED_RESIZE_SCALE):
-        raise ValueError(
-            "this profile only supports fixed scale "
-            f"{FIXED_RESIZE_SCALE}, got {scale}"
-        )
     if base_height <= 0 or base_width <= 0 or size_divisor <= 0:
         raise ValueError("base dimensions and size divisor must be positive")
 
-    content_height = int(round(base_height * scale))
-    content_width = int(round(base_width * scale))
-    tensor_height = _ceil_to_divisor(content_height, size_divisor)
-    tensor_width = _ceil_to_divisor(content_width, size_divisor)
-    vertical_padding = tensor_height - content_height
-    horizontal_padding = tensor_width - content_width
-    pad_top = vertical_padding // 2
-    pad_left = horizontal_padding // 2
-    return ResizeAwareSpec(
-        scale=scale,
-        base_height=base_height,
-        base_width=base_width,
-        size_divisor=size_divisor,
-        content_height=content_height,
-        content_width=content_width,
-        tensor_height=tensor_height,
-        tensor_width=tensor_width,
-        pad_top=pad_top,
-        pad_bottom=vertical_padding - pad_top,
-        pad_left=pad_left,
-        pad_right=horizontal_padding - pad_left,
-    )
+    specs = []
+    seen = set()
+    for raw_scale in scales:
+        scale = float(raw_scale)
+        key = round(scale, 8)
+        if key in seen:
+            raise ValueError(f"duplicate resize scale: {raw_scale}")
+        seen.add(key)
+        if not 0.0 < scale <= 1.0:
+            raise ValueError(
+                f"resize scale must be in (0, 1], got {raw_scale}"
+            )
+
+        content_height = max(1, int(round(base_height * scale)))
+        content_width = max(1, int(round(base_width * scale)))
+        tensor_height = _ceil_to_divisor(content_height, size_divisor)
+        tensor_width = _ceil_to_divisor(content_width, size_divisor)
+        pad_top, pad_bottom = _split_padding(tensor_height - content_height)
+        pad_left, pad_right = _split_padding(tensor_width - content_width)
+        specs.append(
+            ResizeAwareSpec(
+                scale=scale,
+                base_height=base_height,
+                base_width=base_width,
+                size_divisor=size_divisor,
+                content_height=content_height,
+                content_width=content_width,
+                tensor_height=tensor_height,
+                tensor_width=tensor_width,
+                pad_top=pad_top,
+                pad_bottom=pad_bottom,
+                pad_left=pad_left,
+                pad_right=pad_right,
+            )
+        )
+
+    if not specs:
+        raise ValueError("at least one resize scale is required")
+    return tuple(specs)
 
 
 class ResizeAwareStereo:
@@ -103,22 +118,38 @@ class ResizeAwareStereo:
 
     def __init__(
         self,
+        scales: Sequence[float] = DEFAULT_RESIZE_SCALES,
         *,
-        scale: float = FIXED_RESIZE_SCALE,
         base_height: int = DEFAULT_BASE_HEIGHT,
         base_width: int = DEFAULT_BASE_WIDTH,
         size_divisor: int = DEFAULT_SIZE_DIVISOR,
         max_disp: float = 96.0,
     ) -> None:
-        self.spec = build_resize_aware_spec(
-            scale=scale,
-            base_height=base_height,
-            base_width=base_width,
-            size_divisor=size_divisor,
-        )
+        self.base_height = int(base_height)
+        self.base_width = int(base_width)
+        self.size_divisor = int(size_divisor)
         self.max_disp = float(max_disp)
         if self.max_disp <= 0.0:
             raise ValueError("max_disp must be positive")
+        self.specs = build_resize_aware_specs(
+            scales,
+            base_height=self.base_height,
+            base_width=self.base_width,
+            size_divisor=self.size_divisor,
+        )
+        self._spec_by_key = {round(spec.scale, 8): spec for spec in self.specs}
+
+    @property
+    def scales(self) -> tuple[float, ...]:
+        return tuple(spec.scale for spec in self.specs)
+
+    def spec_for(self, scale: float) -> ResizeAwareSpec:
+        try:
+            return self._spec_by_key[round(float(scale), 8)]
+        except KeyError as error:
+            raise ValueError(
+                f"scale {scale!r} is not in configured scales {self.scales}"
+            ) from error
 
     @staticmethod
     def _validate_image(name: str, image: np.ndarray) -> None:
@@ -132,14 +163,16 @@ class ResizeAwareStereo:
         left: np.ndarray,
         right: np.ndarray,
         disparity: np.ndarray,
+        scale: float,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray, Mapping[str, object]]:
+        spec = self.spec_for(scale)
         self._validate_image("left", left)
         self._validate_image("right", right)
         disparity = np.asarray(disparity, dtype=np.float32)
-        expected_shape = (self.spec.base_height, self.spec.base_width)
+        expected_shape = (self.base_height, self.base_width)
         if left.shape[:2] != expected_shape:
             raise ValueError(
-                "resize-aware s0.8 expects canonical 640x352 input, got "
+                "resize-aware training expects canonical 640x352 input, got "
                 f"{left.shape[1]}x{left.shape[0]}"
             )
         if (
@@ -152,16 +185,6 @@ class ResizeAwareStereo:
                 f"disparity={disparity.shape}"
             )
 
-        content_size = (self.spec.content_width, self.spec.content_height)
-        left_content = cv2.resize(
-            left, content_size, interpolation=cv2.INTER_AREA
-        )
-        right_content = cv2.resize(
-            right, content_size, interpolation=cv2.INTER_AREA
-        )
-
-        # Freeze validity before scaling so an originally invalid disparity
-        # cannot become valid merely because its value is multiplied by 0.8.
         valid = (
             np.isfinite(disparity)
             & (disparity > 0.0)
@@ -170,51 +193,75 @@ class ResizeAwareStereo:
         safe_disparity = np.where(valid, disparity, 0.0).astype(
             np.float32, copy=False
         )
-        disparity_content = cv2.resize(
-            safe_disparity,
-            content_size,
-            interpolation=cv2.INTER_NEAREST,
-        ).astype(np.float32, copy=False)
-        valid_content = cv2.resize(
-            valid.astype(np.uint8),
-            content_size,
-            interpolation=cv2.INTER_NEAREST,
-        ).astype(bool, copy=False)
-        disparity_content *= np.float32(self.spec.horizontal_scale)
+
+        if spec.content_shape == expected_shape:
+            left_content = left
+            right_content = right
+            disparity_content = safe_disparity
+            valid_content = valid
+        else:
+            content_size = (spec.content_width, spec.content_height)
+            left_content = cv2.resize(
+                left, content_size, interpolation=cv2.INTER_AREA
+            )
+            right_content = cv2.resize(
+                right, content_size, interpolation=cv2.INTER_AREA
+            )
+            disparity_content = cv2.resize(
+                safe_disparity,
+                content_size,
+                interpolation=cv2.INTER_NEAREST,
+            ).astype(np.float32, copy=False)
+            valid_content = cv2.resize(
+                valid.astype(np.uint8),
+                content_size,
+                interpolation=cv2.INTER_NEAREST,
+            ).astype(bool, copy=False)
+
+        disparity_content = disparity_content * np.float32(
+            spec.horizontal_scale
+        )
         disparity_content[~valid_content] = 0.0
 
-        border = (
-            self.spec.pad_top,
-            self.spec.pad_bottom,
-            self.spec.pad_left,
-            self.spec.pad_right,
-        )
-        left_tensor = cv2.copyMakeBorder(
-            left_content, *border, cv2.BORDER_CONSTANT, value=(0, 0, 0)
-        )
-        right_tensor = cv2.copyMakeBorder(
-            right_content, *border, cv2.BORDER_CONSTANT, value=(0, 0, 0)
-        )
-        disparity_tensor = cv2.copyMakeBorder(
-            disparity_content, *border, cv2.BORDER_CONSTANT, value=0.0
-        )
-
-        if left_tensor.shape[:2] != self.spec.tensor_shape:
-            raise AssertionError((left_tensor.shape, self.spec.tensor_shape))
-        if right_tensor.shape[:2] != self.spec.tensor_shape:
-            raise AssertionError((right_tensor.shape, self.spec.tensor_shape))
-        if disparity_tensor.shape != self.spec.tensor_shape:
-            raise AssertionError(
-                (disparity_tensor.shape, self.spec.tensor_shape)
+        if spec.padding == (0, 0, 0, 0):
+            left_tensor = left_content
+            right_tensor = right_content
+            disparity_tensor = disparity_content
+        else:
+            border = spec.padding
+            left_tensor = cv2.copyMakeBorder(
+                left_content,
+                *border,
+                cv2.BORDER_CONSTANT,
+                value=(0, 0, 0),
+            )
+            right_tensor = cv2.copyMakeBorder(
+                right_content,
+                *border,
+                cv2.BORDER_CONSTANT,
+                value=(0, 0, 0),
+            )
+            disparity_tensor = cv2.copyMakeBorder(
+                disparity_content,
+                *border,
+                cv2.BORDER_CONSTANT,
+                value=0.0,
             )
 
+        if left_tensor.shape[:2] != spec.tensor_shape:
+            raise AssertionError((left_tensor.shape, spec.tensor_shape))
+        if right_tensor.shape[:2] != spec.tensor_shape:
+            raise AssertionError((right_tensor.shape, spec.tensor_shape))
+        if disparity_tensor.shape != spec.tensor_shape:
+            raise AssertionError((disparity_tensor.shape, spec.tensor_shape))
+
         metadata = {
-            "resize_scale": self.spec.scale,
-            "resize_content_shape": self.spec.content_shape,
-            "resize_tensor_shape": self.spec.tensor_shape,
-            "resize_padding": self.spec.padding,
-            "resize_horizontal_scale": self.spec.horizontal_scale,
-            "resize_vertical_scale": self.spec.vertical_scale,
+            "resize_scale": spec.scale,
+            "resize_content_shape": spec.content_shape,
+            "resize_tensor_shape": spec.tensor_shape,
+            "resize_padding": spec.padding,
+            "resize_horizontal_scale": spec.horizontal_scale,
+            "resize_vertical_scale": spec.vertical_scale,
         }
         return (
             np.ascontiguousarray(left_tensor),
@@ -225,23 +272,23 @@ class ResizeAwareStereo:
 
 
 def resize_aware_config(
+    scales: Sequence[float] = DEFAULT_RESIZE_SCALES,
     *,
-    scale: float = FIXED_RESIZE_SCALE,
     base_height: int = DEFAULT_BASE_HEIGHT,
     base_width: int = DEFAULT_BASE_WIDTH,
     size_divisor: int = DEFAULT_SIZE_DIVISOR,
     max_disp: float = 96.0,
 ) -> dict[str, object]:
-    """Return the serializable constructor args for the fixed transform."""
+    """Return serializable constructor args for the resize transform."""
 
-    build_resize_aware_spec(
-        scale=scale,
+    specs = build_resize_aware_specs(
+        scales,
         base_height=base_height,
         base_width=base_width,
         size_divisor=size_divisor,
     )
     return {
-        "scale": scale,
+        "scales": [spec.scale for spec in specs],
         "base_height": base_height,
         "base_width": base_width,
         "size_divisor": size_divisor,
@@ -252,10 +299,10 @@ def resize_aware_config(
 __all__ = [
     "DEFAULT_BASE_HEIGHT",
     "DEFAULT_BASE_WIDTH",
+    "DEFAULT_RESIZE_SCALES",
     "DEFAULT_SIZE_DIVISOR",
-    "FIXED_RESIZE_SCALE",
     "ResizeAwareSpec",
     "ResizeAwareStereo",
-    "build_resize_aware_spec",
+    "build_resize_aware_specs",
     "resize_aware_config",
 ]
