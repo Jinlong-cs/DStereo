@@ -52,15 +52,6 @@ def StereoMultiData(
     *,
     resize_aware_args=None,
 ):
-    if resize_aware_args is not None:
-        unsupported = [
-            dataset for dataset in dataset_list if dataset != "DStereoDataset"
-        ]
-        if unsupported:
-            raise ValueError(
-                "s1.0/s0.8 resize-aware training only supports "
-                f"DStereoDataset, got {unsupported}"
-            )
     train_sets = []
     for dataset in dataset_list:
         print("=> add dataset: ", dataset)

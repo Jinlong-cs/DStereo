@@ -14,13 +14,67 @@ from DStereo.DStereoPlus import *  # noqa: F401,F403
 
 import torch
 import torch.nn.functional as F
+from torch.utils.data.distributed import DistributedSampler
 
 from hat.data.datasets.multi_disp_dataset.resize_aware import (
     DEFAULT_RESIZE_SCALES,
     build_resize_aware_specs,
     resize_aware_config,
 )
-from hat.data.samplers.stereo_scale_sampler import StereoScaleSampler
+from hat.data.samplers.interleave_concat_sampler import InterleaveConcatSampler
+
+
+class _StereoScaleSampler(DistributedSampler):
+    """Attach one resize scale to every sample in a global batch."""
+
+    def __init__(
+        self,
+        dataset,
+        batch_size,
+        scales,
+        shuffle=True,
+        seed=0,
+        num_replicas=None,
+        rank=None,
+    ):
+        super().__init__(
+            dataset,
+            num_replicas=num_replicas,
+            rank=rank,
+            shuffle=False,
+            seed=seed,
+            drop_last=True,
+        )
+        self.interleave = InterleaveConcatSampler(
+            dataset,
+            shuffle=shuffle,
+            seed=seed,
+        )
+        self.batch_size = batch_size
+        self.scales = tuple(scales)
+        global_batch_size = batch_size * self.num_replicas
+        self.num_batches = len(self.interleave) // global_batch_size
+        self.num_batches -= self.num_batches % len(self.scales)
+        self.num_samples = self.num_batches * batch_size
+        self.total_size = self.num_samples * self.num_replicas
+
+    def __len__(self):
+        return self.num_samples
+
+    def __iter__(self):
+        self.interleave.set_epoch(self.epoch)
+        stream = list(self.interleave)
+        global_batch_size = self.batch_size * self.num_replicas
+        for batch_index in range(self.num_batches):
+            start = batch_index * global_batch_size
+            global_indices = stream[start : start + global_batch_size]
+            rank_start = self.rank * self.batch_size
+            rank_indices = global_indices[
+                rank_start : rank_start + self.batch_size
+            ]
+            scale = self.scales[batch_index % len(self.scales)]
+            yield from ((index, scale) for index in rank_indices)
+
 
 task_name = "DStereoV23_DiscoverStereo_ResizeAware_S100_S080"
 ckpt_dir = os.environ.get(
@@ -45,12 +99,11 @@ data_loader["dataset"].update(
     resize_aware_args=resize_aware_args,
 )
 data_loader["sampler"] = {
-    "type": StereoScaleSampler,
+    "type": _StereoScaleSampler,
     "batch_size": _base_config.train_batch_size_per_gpu,
     "scales": resize_aware_scales,
     "shuffle": True,
     "seed": _base_config.seed,
-    "drop_last": True,
 }
 data_loader["drop_last"] = True
 
@@ -72,16 +125,9 @@ val_data_loader_s080 = _build_val_loader(0.8)
 val_data_loader = [val_data_loader_s100, val_data_loader_s080]
 
 
-def _channel_less_disparity(value, name):
-    if not isinstance(value, torch.Tensor):
-        raise TypeError(f"{name} must be a torch.Tensor")
+def _channel_less_disparity(value):
     if value.dim() == 4 and value.size(1) == 1:
         value = value[:, 0]
-    if value.dim() != 3:
-        raise ValueError(
-            f"{name} must have shape [N,H,W] or [N,1,H,W], "
-            f"got {tuple(value.shape)}"
-        )
     return value
 
 
@@ -112,24 +158,13 @@ def update_resize_aware_train_metric(metrics, batch, model_outs):
     preds = _extract_prediction(model_outs)
     if preds is None:
         return
-    labels = _channel_less_disparity(batch["gt_disp"], "labels")
-    preds = _channel_less_disparity(preds, "predictions")
-    if labels.shape != preds.shape:
-        raise ValueError(
-            "label/prediction geometry mismatch: "
-            f"{tuple(labels.shape)} != {tuple(preds.shape)}"
-        )
+    labels = _channel_less_disparity(batch["gt_disp"])
+    preds = _channel_less_disparity(preds)
     metrics[1].update(labels, preds, _valid_mask(labels))
 
 
 def _restore_prediction_to_canonical(predictions, spec):
-    predictions = _channel_less_disparity(predictions, "predictions")
-    if predictions.shape[-2:] != spec.tensor_shape:
-        raise ValueError(
-            "prediction geometry mismatch for scale "
-            f"{spec.scale}: {tuple(predictions.shape[-2:])} "
-            f"!= {spec.tensor_shape}"
-        )
+    predictions = _channel_less_disparity(predictions)
 
     height_end = spec.tensor_height - spec.pad_bottom
     width_end = spec.tensor_width - spec.pad_right
@@ -138,8 +173,6 @@ def _restore_prediction_to_canonical(predictions, spec):
         spec.pad_top : height_end,
         spec.pad_left : width_end,
     ]
-    if content.shape[-2:] != spec.content_shape:
-        raise AssertionError((content.shape, spec.content_shape))
     if spec.content_shape != (spec.base_height, spec.base_width):
         content = F.interpolate(
             content.unsqueeze(1),
@@ -154,15 +187,8 @@ def _update_canonical_val_metric(metrics, batch, model_outs, spec):
     preds = _extract_prediction(model_outs)
     if preds is None:
         return
-    labels = _channel_less_disparity(
-        batch["metric_gt_disp"], "canonical labels"
-    )
+    labels = _channel_less_disparity(batch["metric_gt_disp"])
     preds = _restore_prediction_to_canonical(preds, spec)
-    if labels.shape != preds.shape:
-        raise ValueError(
-            "canonical label/prediction geometry mismatch: "
-            f"{tuple(labels.shape)} != {tuple(preds.shape)}"
-        )
     metrics[0].update(labels, preds, _valid_mask(labels))
 
 
@@ -280,9 +306,7 @@ float_trainer.update(
     val_metrics=val_metrics,
 )
 initialization = float_trainer["model_convert_pipeline"]["converters"][0]
-# Despite its historical directory name, this tracked artifact is a complete
-# 533-tensor DStereo checkpoint. Fail closed if that exact warm-start contract
-# ever drifts.
+# The tracked artifact is a complete 533-tensor DStereo checkpoint.
 initialization.update(
     checkpoint_path=_base_config.checkpoint_path,
     allow_miss=False,

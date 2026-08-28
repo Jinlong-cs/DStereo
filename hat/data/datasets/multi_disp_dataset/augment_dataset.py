@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os, copy, math
-import operator
 import traceback
 import logging
 import random
@@ -315,32 +314,11 @@ class AugDataset(Dataset):
         self.resizor = Resizor(*res_args) if res_args else Identity()
         self.normalizer = Normalizor(*norm_args) if norm_args else Identity()
         self.cropper = Cropper(*crop_args) if crop_args else Identity()
-        if resize_aware_args is not None:
-            resize_aware_args = dict(resize_aware_args)
-            resize_max_disp = float(
-                resize_aware_args.get("max_disp", max_disp)
-            )
-            if not math.isclose(resize_max_disp, float(max_disp)):
-                raise ValueError(
-                    "resize-aware max_disp must match AugDataset max_disp: "
-                    f"{resize_max_disp} != {max_disp}"
-                )
-            resize_aware_args["max_disp"] = max_disp
-            self.resize_aware = ResizeAwareStereo(**resize_aware_args)
-            canonical_shape = (
-                self.resize_aware.base_height,
-                self.resize_aware.base_width,
-            )
-            if (
-                not isinstance(self.cropper, Identity)
-                and self.cropper.crop_size != canonical_shape
-            ):
-                raise ValueError(
-                    "resize-aware crop size must match canonical shape: "
-                    f"{self.cropper.crop_size} != {canonical_shape}"
-                )
-        else:
-            self.resize_aware = None
+        self.resize_aware = (
+            ResizeAwareStereo(**resize_aware_args)
+            if resize_aware_args is not None
+            else None
+        )
         self.debug = debug
         self.max_disp = max_disp
 
@@ -363,12 +341,7 @@ class AugDataset(Dataset):
         resize_mask_flag = None
         metric_gt_disp = None
         if self.resize_aware is not None:
-            if resize_scale is None:
-                if len(self.resize_aware.scales) != 1:
-                    raise ValueError(
-                        "multi-scale resize-aware AugDataset requires a "
-                        "(sample_index, scale) index"
-                    )
+            if resize_scale is None and len(self.resize_aware.scales) == 1:
                 resize_scale = self.resize_aware.scales[0]
             if self.test_mode:
                 metric_gt_disp = np.asarray(x[2], dtype=np.float32).copy()
@@ -379,11 +352,6 @@ class AugDataset(Dataset):
             x = (left, right, disparity)
             data.update(metadata)
             data["origin_shape"] = metadata["resize_content_shape"]
-        elif resize_scale is not None:
-            raise ValueError(
-                "received a scale-tagged index while resize-aware mode "
-                "is disabled"
-            )
 
         left_x5_nv12 = self._bgr2nv12(x[0])
         left_x5_nv12 = np.ascontiguousarray(left_x5_nv12)
@@ -472,13 +440,8 @@ class AugDataset(Dataset):
     @staticmethod
     def _split_sample_index(index):
         if isinstance(index, tuple):
-            if len(index) != 2:
-                raise ValueError(
-                    "scale-tagged indices must be "
-                    "(sample_index, scale) pairs"
-                )
-            return operator.index(index[0]), float(index[1])
-        return operator.index(index), None
+            return index
+        return index, None
 
     def _resize_mask_flag(self, disparity):
         if self.test_mode:

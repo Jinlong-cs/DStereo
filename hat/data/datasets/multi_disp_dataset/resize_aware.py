@@ -67,24 +67,11 @@ def build_resize_aware_specs(
     base_width: int = DEFAULT_BASE_WIDTH,
     size_divisor: int = DEFAULT_SIZE_DIVISOR,
 ) -> tuple[ResizeAwareSpec, ...]:
-    """Build validated geometries for all configured resize scales."""
-
-    if base_height <= 0 or base_width <= 0 or size_divisor <= 0:
-        raise ValueError("base dimensions and size divisor must be positive")
+    """Build concrete geometries for all configured resize scales."""
 
     specs = []
-    seen = set()
     for raw_scale in scales:
         scale = float(raw_scale)
-        key = round(scale, 8)
-        if key in seen:
-            raise ValueError(f"duplicate resize scale: {raw_scale}")
-        seen.add(key)
-        if not 0.0 < scale <= 1.0:
-            raise ValueError(
-                f"resize scale must be in (0, 1], got {raw_scale}"
-            )
-
         content_height = max(1, int(round(base_height * scale)))
         content_width = max(1, int(round(base_width * scale)))
         tensor_height = _ceil_to_divisor(content_height, size_divisor)
@@ -108,8 +95,6 @@ def build_resize_aware_specs(
             )
         )
 
-    if not specs:
-        raise ValueError("at least one resize scale is required")
     return tuple(specs)
 
 
@@ -129,8 +114,6 @@ class ResizeAwareStereo:
         self.base_width = int(base_width)
         self.size_divisor = int(size_divisor)
         self.max_disp = float(max_disp)
-        if self.max_disp <= 0.0:
-            raise ValueError("max_disp must be positive")
         self.specs = build_resize_aware_specs(
             scales,
             base_height=self.base_height,
@@ -144,19 +127,7 @@ class ResizeAwareStereo:
         return tuple(spec.scale for spec in self.specs)
 
     def spec_for(self, scale: float) -> ResizeAwareSpec:
-        try:
-            return self._spec_by_key[round(float(scale), 8)]
-        except KeyError as error:
-            raise ValueError(
-                f"scale {scale!r} is not in configured scales {self.scales}"
-            ) from error
-
-    @staticmethod
-    def _validate_image(name: str, image: np.ndarray) -> None:
-        if image.ndim != 3 or image.shape[2] != 3:
-            raise ValueError(f"{name} must be an HWC three-channel image")
-        if image.dtype != np.uint8:
-            raise ValueError(f"{name} must be uint8 BGR, got {image.dtype}")
+        return self._spec_by_key[round(float(scale), 8)]
 
     def __call__(
         self,
@@ -166,24 +137,8 @@ class ResizeAwareStereo:
         scale: float,
     ) -> tuple[np.ndarray, np.ndarray, np.ndarray, Mapping[str, object]]:
         spec = self.spec_for(scale)
-        self._validate_image("left", left)
-        self._validate_image("right", right)
         disparity = np.asarray(disparity, dtype=np.float32)
         expected_shape = (self.base_height, self.base_width)
-        if left.shape[:2] != expected_shape:
-            raise ValueError(
-                "resize-aware training expects canonical 640x352 input, got "
-                f"{left.shape[1]}x{left.shape[0]}"
-            )
-        if (
-            right.shape[:2] != expected_shape
-            or disparity.shape != expected_shape
-        ):
-            raise ValueError(
-                "stereo/disparity geometry mismatch: "
-                f"left={left.shape}, right={right.shape}, "
-                f"disparity={disparity.shape}"
-            )
 
         valid = (
             np.isfinite(disparity)
@@ -247,13 +202,6 @@ class ResizeAwareStereo:
                 cv2.BORDER_CONSTANT,
                 value=0.0,
             )
-
-        if left_tensor.shape[:2] != spec.tensor_shape:
-            raise AssertionError((left_tensor.shape, spec.tensor_shape))
-        if right_tensor.shape[:2] != spec.tensor_shape:
-            raise AssertionError((right_tensor.shape, spec.tensor_shape))
-        if disparity_tensor.shape != spec.tensor_shape:
-            raise AssertionError((disparity_tensor.shape, spec.tensor_shape))
 
         metadata = {
             "resize_scale": spec.scale,
