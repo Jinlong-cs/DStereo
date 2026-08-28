@@ -13,9 +13,9 @@ from PIL import Image, ImageEnhance
 import torch
 from torch.utils.data.dataset import Dataset, ConcatDataset
 from torchvision import transforms
-import horizon_plugin_pytorch.nn.bgr_to_yuv444 as b2y
 
 from .list_dataset import ListDataset, DrivingStereoDataset
+from .resize_aware import ResizeAwareStereo
 
 logger = logging.getLogger(__name__)
 __all__ = ["AugDataset", "Augmentor", "Resizor", "Cropper", "Normalizor", "Identity"]
@@ -299,6 +299,8 @@ class AugDataset(Dataset):
         debug=False,
         img_open_mode="bgr",
         skip=False,
+        *,
+        resize_aware_args=None,
     ):
         super().__init__()
         if isinstance(base_dataset, str):
@@ -312,12 +314,18 @@ class AugDataset(Dataset):
         self.resizor = Resizor(*res_args) if res_args else Identity()
         self.normalizer = Normalizor(*norm_args) if norm_args else Identity()
         self.cropper = Cropper(*crop_args) if crop_args else Identity()
+        self.resize_aware = (
+            ResizeAwareStereo(**resize_aware_args)
+            if resize_aware_args is not None
+            else None
+        )
         self.debug = debug
         self.max_disp = max_disp
 
     def __getitem__(self, i):
+        sample_index, resize_scale = self._split_sample_index(i)
         data = {}
-        x = self.base_dataset[i]
+        x = self.base_dataset[sample_index]
         x = self.resizor(x)
         if type(self.cropper) == Identity:
             data["origin_shape"] = x[0].shape[:2]
@@ -330,6 +338,21 @@ class AugDataset(Dataset):
             data["origin_shape"] = x[0].shape[:2]
         x = self.augmentor(x)
 
+        resize_mask_flag = None
+        metric_gt_disp = None
+        if self.resize_aware is not None:
+            if resize_scale is None and len(self.resize_aware.scales) == 1:
+                resize_scale = self.resize_aware.scales[0]
+            if self.test_mode:
+                metric_gt_disp = np.asarray(x[2], dtype=np.float32).copy()
+            resize_mask_flag = self._resize_mask_flag(x[2])
+            left, right, disparity, metadata = self.resize_aware(
+                x[0], x[1], x[2], resize_scale
+            )
+            x = (left, right, disparity)
+            data.update(metadata)
+            data["origin_shape"] = metadata["resize_content_shape"]
+
         left_x5_nv12 = self._bgr2nv12(x[0])
         left_x5_nv12 = np.ascontiguousarray(left_x5_nv12)
         left = self._nv12Toyuv444(left_x5_nv12, *x[0].shape[:2])
@@ -341,16 +364,16 @@ class AugDataset(Dataset):
         data["right_img"] = x[1]  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
         data["left_img_yuv"] = left  # cv2.cvtColor(x[0], cv2.COLOR_RGB2BGR)
         data["right_img_yuv"] = right  # cv2.cvtColor(x[1], cv2.COLOR_RGB2BGR)
-        data["sample_idx"] = i
+        data["sample_idx"] = sample_index
         data["left_img_name"] = (
-            self.base_dataset.file_list[i][0]
-            if type(self.base_dataset.file_list[i]) == list
-            else self.base_dataset.file_list[i]
+            self.base_dataset.file_list[sample_index][0]
+            if isinstance(self.base_dataset.file_list[sample_index], list)
+            else self.base_dataset.file_list[sample_index]
         )
         data["right_img_name"] = (
-            self.base_dataset.file_list[i][1]
-            if type(self.base_dataset.file_list[i]) == list
-            else self.base_dataset.file_list[i]
+            self.base_dataset.file_list[sample_index][1]
+            if isinstance(self.base_dataset.file_list[sample_index], list)
+            else self.base_dataset.file_list[sample_index]
         )
         data["data_root"] = self.base_dataset.root_dir
 
@@ -362,6 +385,25 @@ class AugDataset(Dataset):
         l = torch.from_numpy(np.transpose(l, (2, 0, 1))).float().contiguous()
         r = torch.from_numpy(np.transpose(r, (2, 0, 1))).float().contiguous()
         g = torch.from_numpy(g).float().contiguous()
+        if self.resize_aware is not None:
+            # Float DStereo predictions are [N, 1, H, W].  Keep this
+            # experiment's labels channel-aligned without changing the legacy
+            # dataset contract used by the canonical training profile.
+            g = g.unsqueeze(0)
+            if metric_gt_disp is not None:
+                metric_gt_disp = np.nan_to_num(
+                    metric_gt_disp,
+                    copy=False,
+                    nan=0.0,
+                    posinf=0.0,
+                    neginf=0.0,
+                )
+                data["metric_gt_disp"] = (
+                    torch.from_numpy(metric_gt_disp)
+                    .float()
+                    .contiguous()
+                    .unsqueeze(0)
+                )
 
         # assert l.shape[-2:] == self.cropper.crop_size, self.base_dataset.file_list[i]
         # assert r.shape[-2:] == self.cropper.crop_size, self.base_dataset.file_list[i]
@@ -369,28 +411,48 @@ class AugDataset(Dataset):
         img = torch.stack([l, r], dim=0)
         data["img"] = img
         data["gt_disp"] = g
-        data["mask_flag"] = True
+        data["mask_flag"] = (
+            resize_mask_flag if resize_mask_flag is not None else True
+        )
         data["dataset_name"] = self.base_dataset.name
 
-        # 判断小于0或大于100的元素
-        condition = (g <= 0) | (g > self.max_disp)
+        if resize_mask_flag is None:
+            # 判断小于0或大于100的元素
+            condition = (g <= 0) | (g > self.max_disp)
 
-        # 计算符合条件的元素个数
-        count = torch.sum(condition).item()
+            # 计算符合条件的元素个数
+            count = torch.sum(condition).item()
 
-        # 计算矩阵中的总元素个数
-        total_elements = g.numel()
+            # 计算矩阵中的总元素个数
+            total_elements = g.numel()
 
-        # 计算符合条件的元素占比
-        ratio = count / total_elements
+            # 计算符合条件的元素占比
+            ratio = count / total_elements
 
-        if ratio > 0.33 and not self.test_mode:
-            data["mask_flag"] = False
+            if ratio > 0.33 and not self.test_mode:
+                data["mask_flag"] = False
 
         return data
 
     def __len__(self):
         return len(self.base_dataset)
+
+    @staticmethod
+    def _split_sample_index(index):
+        if isinstance(index, tuple):
+            return index
+        return index, None
+
+    def _resize_mask_flag(self, disparity):
+        if self.test_mode:
+            return True
+        disparity = np.asarray(disparity)
+        invalid = (
+            (~np.isfinite(disparity))
+            | (disparity <= 0)
+            | (disparity >= self.max_disp)
+        )
+        return np.count_nonzero(invalid) / disparity.size <= 0.33
 
     def _test_opencv(self, data, channel_reversal):
         """

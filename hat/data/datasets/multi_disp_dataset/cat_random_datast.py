@@ -1,44 +1,29 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import random
 import logging
-from torch.utils.data.dataset import Dataset, ConcatDataset
+import random
 import traceback
+from bisect import bisect_right
+
+from torch.utils.data.dataset import ConcatDataset
 
 logger = logging.getLogger(__name__)
 __all__ = ["CatRandomDataset"]
 
 
 class CatRandomDataset(ConcatDataset):
-    # def __init__(self, datasets, debug=False, max_size=12800):
-    #     super(CatRandomDataset, self).__init__()
-    #     self.datasets = datasets
-    #     self.debug = debug
-    #     self.max_size = max_size
-    #     logger.info("###################### init CatRandomDataset done ######################")
-
-    # def __len__(self):
-    #     if self.debug:
-    #         return 32
-    #     else:
-    #         n = 0
-    #         for d in self.datasets:
-    #             n += len(d)
-    #         if self.max_size is None:
-    #             return n
-    #         else:
-    #             return min(n, self.max_size)
+    """Concatenate datasets and preserve optional resize-scale index tags."""
 
     def __getitem__(self, item):
+        scale = item[1] if isinstance(item, tuple) else None
         while True:
             try:
-                # dataset = self.datasets[i]
-                # j = random.randint(0, len(dataset) - 1)
-                # print(i,j)
-                data = super().__getitem__(item)
+                data = self._get_item(item)
                 if not data["mask_flag"]:
-                    item = random.randint(0, len(self) - 1)  # 295, 711  295, 400
+                    item = random.randint(0, len(self) - 1)
+                    if scale is not None:
+                        item = (item, scale)
                     print("mask_flag False, retrying...")
                     continue
                 return data
@@ -46,4 +31,18 @@ class CatRandomDataset(ConcatDataset):
                 logger.info(traceback.format_exc())
                 logger.info(e)
                 item = random.randint(0, len(self) - 1)
-                continue
+                if scale is not None:
+                    item = (item, scale)
+
+    def _get_item(self, item):
+        if not isinstance(item, tuple):
+            return super().__getitem__(item)
+        flat_index, scale = item
+        dataset_index = bisect_right(self.cumulative_sizes, flat_index)
+        if dataset_index == 0:
+            sample_index = flat_index
+        else:
+            sample_index = (
+                flat_index - self.cumulative_sizes[dataset_index - 1]
+            )
+        return self.datasets[dataset_index][(sample_index, scale)]
