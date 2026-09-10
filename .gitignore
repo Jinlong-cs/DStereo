@@ -60,3 +60,8 @@ yarn-error.log
 *.~*
 *.orig
 
+# --------------------
+# Repo-local datasets (downloaded, never committed)
+# --------------------
+/datasets/
+

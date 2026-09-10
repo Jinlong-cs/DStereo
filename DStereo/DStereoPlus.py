@@ -179,6 +179,11 @@ data_loader = dict(
         norm_args=["MixVarGENet"],
         # crop_args=["random", 640, 352],  # vertical
         crop_args=["random", 352, 640],    # horizontal
+        # dataset_root: 指向数据集根目录(内含 train_list.txt/val_list.txt 与
+        # 场景目录);列表行可为相对路径(相对该根目录)。缺省 None 时沿用
+        # /mnt/sznas/yzf/stereo_data/DiscoverStereo 旧约定。
+        # 例: dataset_root=os.path.join(os.path.dirname(__file__), "..", "..", "datasets", "DiscoverStereo"),
+        dataset_root=None,
         debug=False,
         max_disp=maxdisp,
         img_open_mode="bgr",
