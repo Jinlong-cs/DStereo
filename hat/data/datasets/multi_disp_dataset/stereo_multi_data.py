@@ -49,6 +49,7 @@ def StereoMultiData(
     crop_args=None,
     debug=False,
     img_open_mode="bgr",
+    dataset_root=None,
 ):
     train_sets = []
     for dataset in dataset_list:
@@ -299,12 +300,24 @@ def StereoMultiData(
                         )
             logger.info("TartanAir total sample: %d" % data_info)
         elif 'DStereoDataset' == dataset:
-            if test_mode:
+            if dataset_root is not None:
+                list_name = "val_list.txt" if test_mode else "train_list.txt"
+                datasets_list_path = osp.join(dataset_root, list_name)
+            elif test_mode:
                 datasets_list_path = "/mnt/sznas/yzf/stereo_data/DiscoverStereo/val_list.txt"
             else:
                 datasets_list_path = "/mnt/sznas/yzf/stereo_data/DiscoverStereo/train_list.txt"
             with open(datasets_list_path, 'r') as f:
                 file_list = [line.strip().split() for line in f if line.strip()]
+
+            # Resolve relative rows against the list file directory so that
+            # repo-local datasets (relative-path lists) work out of the box;
+            # absolute rows (legacy /mnt/sznas lists) are kept as-is.
+            list_dir = osp.dirname(osp.abspath(datasets_list_path))
+            file_list = [
+                [path if osp.isabs(path) else osp.normpath(osp.join(list_dir, path)) for path in row]
+                for row in file_list
+            ]
 
             # 加载数据集首个图像，获取数据集的宽高
             width, height = 960,540
